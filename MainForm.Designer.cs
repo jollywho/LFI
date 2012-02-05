@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainStrip = new System.Windows.Forms.ToolStripContainer();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.mainPanel = new System.Windows.Forms.Panel();
@@ -148,7 +149,7 @@
             // testToolStripMenuItem4
             // 
             this.testToolStripMenuItem4.Name = "testToolStripMenuItem4";
-            this.testToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.testToolStripMenuItem4.Size = new System.Drawing.Size(96, 22);
             this.testToolStripMenuItem4.Text = "Test";
             // 
             // pictureBox1
@@ -167,6 +168,7 @@
             this.ClientSize = new System.Drawing.Size(594, 600);
             this.Controls.Add(this.mainStrip);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(610, 638);
             this.MinimumSize = new System.Drawing.Size(610, 638);
