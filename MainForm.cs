@@ -12,25 +12,52 @@ namespace LFI
     {
         public MainForm()
         {
+            DoubleBuffered = true;
             InitializeComponent();
             AppDomain.CurrentDomain.SetData("DataDirectory", @"../../data");
             AppDomain.CurrentDomain.SetData("Image", @"../../image");
             mainView us = new mainView();
-            mainPanel.Controls.Add(us);
+            mainPanel.Controls.Add(us);   
         }
 
         private void discToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bump_menuItem(mainToolStripMenuItem, discToolStripMenuItem);
             mainPanel.Controls.Clear();
             discView us = new discView();
             mainPanel.Controls.Add(us);
         }
 
-        private void testToolStripMenuItem4_Click(object sender, EventArgs e)
+        private void mainToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bump_menuItem(discToolStripMenuItem, mainToolStripMenuItem);
             mainPanel.Controls.Clear();
             mainView us = new mainView();
             mainPanel.Controls.Add(us);
+        }
+
+        private void jPJNToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bump_menuItem(eNGToolStripMenuItem, jPJNToolStripMenuItem);
+        }
+
+        private void eNGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bump_menuItem(jPJNToolStripMenuItem, eNGToolStripMenuItem);
+        }
+
+        private void bump_menuItem(ToolStripMenuItem obj1, ToolStripMenuItem obj2)
+        {
+            if (obj1.Checked == true)
+            {
+                obj1.Checked = false;
+                obj2.Checked = true;
+            }
+            else
+            {
+                obj1.Checked = true;
+                obj2.Checked = false;
+            }
         }
     }
     

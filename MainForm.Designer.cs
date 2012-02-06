@@ -38,9 +38,12 @@
             this.testToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.testToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.mainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.discToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jPJNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.mainStrip.ContentPanel.SuspendLayout();
             this.mainStrip.TopToolStripPanel.SuspendLayout();
             this.mainStrip.SuspendLayout();
@@ -74,10 +77,9 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Image = global::LFI.Properties.Resources.banner;
             this.pictureBox2.Location = new System.Drawing.Point(-64, 0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(776, 102);
@@ -95,12 +97,13 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(204)))), ((int)(((byte)(219)))));
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.testToolStripMenuItem3});
+            this.testToolStripMenuItem3,
+            this.modeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
@@ -111,6 +114,8 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(204)))), ((int)(((byte)(219)))));
+            this.fileToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.testToolStripMenuItem,
             this.testToolStripMenuItem1,
@@ -140,20 +145,60 @@
             // 
             // testToolStripMenuItem3
             // 
+            this.testToolStripMenuItem3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(204)))), ((int)(((byte)(219)))));
+            this.testToolStripMenuItem3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.testToolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.testToolStripMenuItem4,
+            this.mainToolStripMenuItem,
             this.discToolStripMenuItem});
             this.testToolStripMenuItem3.Name = "testToolStripMenuItem3";
             this.testToolStripMenuItem3.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.testToolStripMenuItem3.Size = new System.Drawing.Size(40, 24);
             this.testToolStripMenuItem3.Text = "View";
             // 
-            // testToolStripMenuItem4
+            // mainToolStripMenuItem
             // 
-            this.testToolStripMenuItem4.Name = "testToolStripMenuItem4";
-            this.testToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
-            this.testToolStripMenuItem4.Text = "Main";
-            this.testToolStripMenuItem4.Click += new System.EventHandler(this.testToolStripMenuItem4_Click);
+            this.mainToolStripMenuItem.Checked = true;
+            this.mainToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mainToolStripMenuItem.Name = "mainToolStripMenuItem";
+            this.mainToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mainToolStripMenuItem.Text = "Main";
+            this.mainToolStripMenuItem.Click += new System.EventHandler(this.mainToolStripMenuItem_Click);
+            // 
+            // discToolStripMenuItem
+            // 
+            this.discToolStripMenuItem.Name = "discToolStripMenuItem";
+            this.discToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.discToolStripMenuItem.Text = "Disc";
+            this.discToolStripMenuItem.Click += new System.EventHandler(this.discToolStripMenuItem_Click);
+            // 
+            // modeToolStripMenuItem
+            // 
+            this.modeToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(204)))), ((int)(((byte)(219)))));
+            this.modeToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.modeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eNGToolStripMenuItem,
+            this.jPJNToolStripMenuItem});
+            this.modeToolStripMenuItem.Name = "modeToolStripMenuItem";
+            this.modeToolStripMenuItem.Size = new System.Drawing.Size(50, 24);
+            this.modeToolStripMenuItem.Text = "Mode";
+            // 
+            // eNGToolStripMenuItem
+            // 
+            this.eNGToolStripMenuItem.CheckOnClick = true;
+            this.eNGToolStripMenuItem.Name = "eNGToolStripMenuItem";
+            this.eNGToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.eNGToolStripMenuItem.Text = "ENG";
+            this.eNGToolStripMenuItem.Click += new System.EventHandler(this.eNGToolStripMenuItem_Click);
+            // 
+            // jPJNToolStripMenuItem
+            // 
+            this.jPJNToolStripMenuItem.Checked = true;
+            this.jPJNToolStripMenuItem.CheckOnClick = true;
+            this.jPJNToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.jPJNToolStripMenuItem.Name = "jPJNToolStripMenuItem";
+            this.jPJNToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.jPJNToolStripMenuItem.Text = "JPN";
+            this.jPJNToolStripMenuItem.Click += new System.EventHandler(this.jPJNToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -163,13 +208,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
-            // discToolStripMenuItem
-            // 
-            this.discToolStripMenuItem.Name = "discToolStripMenuItem";
-            this.discToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.discToolStripMenuItem.Text = "Disc";
-            this.discToolStripMenuItem.Click += new System.EventHandler(this.discToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -211,8 +249,11 @@
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem mainToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem discToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eNGToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jPJNToolStripMenuItem;
 
     }
 }

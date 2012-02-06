@@ -28,12 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtEpisode = new System.Windows.Forms.TextBox();
             this.txtTitle = new System.Windows.Forms.TextBox();
-            this.txtStatus = new System.Windows.Forms.TextBox();
             this.txtCategory = new System.Windows.Forms.TextBox();
             this.listTitles = new System.Windows.Forms.ListBox();
-            this.txtYear = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,17 +40,15 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnImg = new System.Windows.Forms.Button();
             this.imgTitle = new System.Windows.Forms.PictureBox();
+            this.txtYear = new System.Windows.Forms.MaskedTextBox();
+            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.ddLocation = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtIndex = new System.Windows.Forms.MaskedTextBox();
+            this.txtEpisode = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtEpisode
-            // 
-            this.txtEpisode.Location = new System.Drawing.Point(326, 289);
-            this.txtEpisode.Name = "txtEpisode";
-            this.txtEpisode.ReadOnly = true;
-            this.txtEpisode.Size = new System.Drawing.Size(219, 20);
-            this.txtEpisode.TabIndex = 3;
             // 
             // txtTitle
             // 
@@ -62,14 +57,6 @@
             this.txtTitle.ReadOnly = true;
             this.txtTitle.Size = new System.Drawing.Size(219, 20);
             this.txtTitle.TabIndex = 4;
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.Location = new System.Drawing.Point(326, 385);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(219, 20);
-            this.txtStatus.TabIndex = 6;
             // 
             // txtCategory
             // 
@@ -87,15 +74,7 @@
             this.listTitles.ScrollAlwaysVisible = true;
             this.listTitles.Size = new System.Drawing.Size(181, 407);
             this.listTitles.TabIndex = 7;
-            this.listTitles.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
-            // txtYear
-            // 
-            this.txtYear.Location = new System.Drawing.Point(326, 353);
-            this.txtYear.Name = "txtYear";
-            this.txtYear.ReadOnly = true;
-            this.txtYear.Size = new System.Drawing.Size(219, 20);
-            this.txtYear.TabIndex = 8;
+            this.listTitles.SelectedIndexChanged += new System.EventHandler(this.listTitles_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -184,10 +163,67 @@
             this.imgTitle.TabIndex = 19;
             this.imgTitle.TabStop = false;
             // 
+            // txtYear
+            // 
+            this.txtYear.Location = new System.Drawing.Point(326, 353);
+            this.txtYear.Mask = "0000";
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Size = new System.Drawing.Size(33, 20);
+            this.txtYear.TabIndex = 20;
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.Location = new System.Drawing.Point(326, 385);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.ReadOnly = true;
+            this.txtStatus.Size = new System.Drawing.Size(219, 20);
+            this.txtStatus.TabIndex = 6;
+            // 
+            // ddLocation
+            // 
+            this.ddLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddLocation.FormattingEnabled = true;
+            this.ddLocation.Location = new System.Drawing.Point(326, 417);
+            this.ddLocation.MaxDropDownItems = 15;
+            this.ddLocation.Name = "ddLocation";
+            this.ddLocation.Size = new System.Drawing.Size(93, 21);
+            this.ddLocation.TabIndex = 21;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(215, 417);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(48, 13);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Location";
+            // 
+            // txtIndex
+            // 
+            this.txtIndex.Location = new System.Drawing.Point(425, 417);
+            this.txtIndex.Mask = "L000";
+            this.txtIndex.Name = "txtIndex";
+            this.txtIndex.ReadOnly = true;
+            this.txtIndex.Size = new System.Drawing.Size(120, 20);
+            this.txtIndex.TabIndex = 23;
+            // 
+            // txtEpisode
+            // 
+            this.txtEpisode.Location = new System.Drawing.Point(326, 289);
+            this.txtEpisode.Mask = "000";
+            this.txtEpisode.Name = "txtEpisode";
+            this.txtEpisode.Size = new System.Drawing.Size(33, 20);
+            this.txtEpisode.TabIndex = 24;
+            // 
             // mainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtEpisode);
+            this.Controls.Add(this.txtIndex);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.ddLocation);
+            this.Controls.Add(this.txtYear);
             this.Controls.Add(this.btnImg);
             this.Controls.Add(this.imgTitle);
             this.Controls.Add(this.groupBox1);
@@ -196,12 +232,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtYear);
             this.Controls.Add(this.listTitles);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.txtCategory);
             this.Controls.Add(this.txtTitle);
-            this.Controls.Add(this.txtEpisode);
             this.Name = "mainView";
             this.Size = new System.Drawing.Size(587, 465);
             this.groupBox1.ResumeLayout(false);
@@ -214,12 +248,9 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtEpisode;
         private System.Windows.Forms.TextBox txtTitle;
-        private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.TextBox txtCategory;
         private System.Windows.Forms.ListBox listTitles;
-        private System.Windows.Forms.TextBox txtYear;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -229,5 +260,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnImg;
         private System.Windows.Forms.PictureBox imgTitle;
+        private System.Windows.Forms.MaskedTextBox txtYear;
+        private System.Windows.Forms.TextBox txtStatus;
+        private System.Windows.Forms.ComboBox ddLocation;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.MaskedTextBox txtIndex;
+        private System.Windows.Forms.MaskedTextBox txtEpisode;
     }
 }

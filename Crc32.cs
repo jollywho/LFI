@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 public class Crc32 : HashAlgorithm
 {
     public const UInt32 DefaultPolynomial = 0xedb88320;
-    public const UInt32 DefaultSeed = 0xffffffff;
+    public const UInt32 DefaultSeed = 0xFFFFFFFF;
 
     private UInt32 hash;
     private UInt32 seed;

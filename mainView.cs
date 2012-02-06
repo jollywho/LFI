@@ -15,6 +15,7 @@ namespace LFI
     {
         DataTable dt;
         DataTable sel;
+        DataTable loc;
 
         public mainView()
         {
@@ -22,8 +23,9 @@ namespace LFI
             populateList();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void listTitles_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ddLocation.Items.Clear();
             if (listTitles.SelectedItem != null)
             {
                 sel = DB_Handle.GetDataTable(string.Format(
@@ -34,6 +36,15 @@ namespace LFI
                 txtCategory.Text = sel.Rows[0][2].ToString();
                 txtYear.Text = sel.Rows[0][3].ToString();
                 txtStatus.Text = sel.Rows[0][4].ToString();
+
+                loc = DB_Handle.GetDataTable(string.Format(
+                    @"SELECT location FROM loc where main_title='{0}'",
+                    listTitles.SelectedItem.ToString()));
+                for (int i=0; i <= loc.Rows.Count - 1; i++)
+                {
+                    ddLocation.Items.Add(loc.Rows[i][0]);
+                }
+                ddLocation.SelectedIndex = ddLocation.Items.Count - 1;
 
                 setImage(txtTitle.Text);
             }
@@ -63,6 +74,7 @@ namespace LFI
             }
         }
         
+        //todo: strip illegal chars OR prevent from the start
         private void setImage(string str)
         {
             string path = Path.Combine(

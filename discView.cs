@@ -15,6 +15,9 @@ namespace LFI
         public discView()
         {
             InitializeComponent();
+            DataTable info = DB_Handle.GetDataTable("Select * from loc");
+            gvDisc.DataSource = info;
+            lblDisc.Text = info.TableName;
         }
 
         private void btbCRC_Click(object sender, EventArgs e)
@@ -28,7 +31,6 @@ namespace LFI
                     String hash = String.Empty;
                     using (FileStream fs = File.Open(dlg.FileName, FileMode.Open))
                         foreach (byte b in crc32.ComputeHash(fs)) hash += b.ToString("x2").ToLower();
-                    txtCRC.Text = hash;
                 }
                 catch (Exception ex)
                 {
