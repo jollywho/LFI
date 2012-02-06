@@ -28,43 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtCRC = new System.Windows.Forms.TextBox();
+            this.btbCRC = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // txtCRC
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(77, 64);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.txtCRC.Location = new System.Drawing.Point(105, 124);
+            this.txtCRC.Name = "txtCRC";
+            this.txtCRC.Size = new System.Drawing.Size(100, 20);
+            this.txtCRC.TabIndex = 0;
             // 
-            // listBox1
+            // btbCRC
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(448, 346);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 95);
-            this.listBox1.TabIndex = 1;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(157, 51);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 2;
+            this.btbCRC.Location = new System.Drawing.Point(353, 103);
+            this.btbCRC.Name = "btbCRC";
+            this.btbCRC.Size = new System.Drawing.Size(75, 23);
+            this.btbCRC.TabIndex = 1;
+            this.btbCRC.Text = "button1";
+            this.btbCRC.UseVisualStyleBackColor = true;
+            this.btbCRC.Click += new System.EventHandler(this.btbCRC_Click);
             // 
             // discView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btbCRC);
+            this.Controls.Add(this.txtCRC);
             this.Name = "discView";
             this.Size = new System.Drawing.Size(587, 465);
             this.ResumeLayout(false);
@@ -74,8 +64,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtCRC;
+        private System.Windows.Forms.Button btbCRC;
+
     }
 }
