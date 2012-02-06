@@ -14,7 +14,22 @@ namespace LFI
         {
             InitializeComponent();
             AppDomain.CurrentDomain.SetData("DataDirectory", @"../../data");
-            UserControl1 us = new UserControl1();
+            AppDomain.CurrentDomain.SetData("Image", @"../../image");
+            mainView us = new mainView();
+            mainPanel.Controls.Add(us);
+        }
+
+        private void discToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mainPanel.Controls.Clear();
+            discView us = new discView();
+            mainPanel.Controls.Add(us);
+        }
+
+        private void testToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            mainPanel.Controls.Clear();
+            mainView us = new mainView();
             mainPanel.Controls.Add(us);
         }
     }

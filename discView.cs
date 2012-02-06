@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace LFI
 {
-    public partial class UserControl2 : UserControl
+    public partial class discView : UserControl
     {
-        public UserControl2()
+        public discView()
         {
             InitializeComponent();
         }

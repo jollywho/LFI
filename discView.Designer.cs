@@ -1,6 +1,6 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace LFI
 {
-    partial class UserControl2
+    partial class discView
     {
         /// <summary> 
         /// Required designer variable.
@@ -58,15 +58,15 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 2;
             // 
-            // UserControl2
+            // discView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label1);
-            this.Name = "UserControl2";
-            this.Size = new System.Drawing.Size(587, 456);
+            this.Name = "discView";
+            this.Size = new System.Drawing.Size(587, 465);
             this.ResumeLayout(false);
             this.PerformLayout();
 

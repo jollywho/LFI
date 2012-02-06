@@ -40,6 +40,7 @@
             this.testToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.discToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainStrip.ContentPanel.SuspendLayout();
             this.mainStrip.TopToolStripPanel.SuspendLayout();
             this.mainStrip.SuspendLayout();
@@ -122,35 +123,37 @@
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.testToolStripMenuItem.Text = "Test";
             // 
             // testToolStripMenuItem1
             // 
             this.testToolStripMenuItem1.Name = "testToolStripMenuItem1";
-            this.testToolStripMenuItem1.Size = new System.Drawing.Size(96, 22);
+            this.testToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.testToolStripMenuItem1.Text = "Test";
             // 
             // testToolStripMenuItem2
             // 
             this.testToolStripMenuItem2.Name = "testToolStripMenuItem2";
-            this.testToolStripMenuItem2.Size = new System.Drawing.Size(96, 22);
+            this.testToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.testToolStripMenuItem2.Text = "Test";
             // 
             // testToolStripMenuItem3
             // 
             this.testToolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.testToolStripMenuItem4});
+            this.testToolStripMenuItem4,
+            this.discToolStripMenuItem});
             this.testToolStripMenuItem3.Name = "testToolStripMenuItem3";
             this.testToolStripMenuItem3.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.testToolStripMenuItem3.Size = new System.Drawing.Size(37, 24);
-            this.testToolStripMenuItem3.Text = "Test";
+            this.testToolStripMenuItem3.Size = new System.Drawing.Size(40, 24);
+            this.testToolStripMenuItem3.Text = "View";
             // 
             // testToolStripMenuItem4
             // 
             this.testToolStripMenuItem4.Name = "testToolStripMenuItem4";
-            this.testToolStripMenuItem4.Size = new System.Drawing.Size(96, 22);
-            this.testToolStripMenuItem4.Text = "Test";
+            this.testToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.testToolStripMenuItem4.Text = "Main";
+            this.testToolStripMenuItem4.Click += new System.EventHandler(this.testToolStripMenuItem4_Click);
             // 
             // pictureBox1
             // 
@@ -160,6 +163,13 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+            // 
+            // discToolStripMenuItem
+            // 
+            this.discToolStripMenuItem.Name = "discToolStripMenuItem";
+            this.discToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.discToolStripMenuItem.Text = "Disc";
+            this.discToolStripMenuItem.Click += new System.EventHandler(this.discToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -202,6 +212,7 @@
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem discToolStripMenuItem;
 
     }
 }
