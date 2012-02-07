@@ -77,8 +77,8 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Location = new System.Drawing.Point(-64, 0);
             this.pictureBox2.Name = "pictureBox2";
@@ -128,19 +128,19 @@
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.testToolStripMenuItem.Text = "Test";
             // 
             // testToolStripMenuItem1
             // 
             this.testToolStripMenuItem1.Name = "testToolStripMenuItem1";
-            this.testToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.testToolStripMenuItem1.Size = new System.Drawing.Size(96, 22);
             this.testToolStripMenuItem1.Text = "Test";
             // 
             // testToolStripMenuItem2
             // 
             this.testToolStripMenuItem2.Name = "testToolStripMenuItem2";
-            this.testToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.testToolStripMenuItem2.Size = new System.Drawing.Size(96, 22);
             this.testToolStripMenuItem2.Text = "Test";
             // 
             // testToolStripMenuItem3
@@ -186,7 +186,7 @@
             // 
             this.eNGToolStripMenuItem.CheckOnClick = true;
             this.eNGToolStripMenuItem.Name = "eNGToolStripMenuItem";
-            this.eNGToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.eNGToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
             this.eNGToolStripMenuItem.Text = "ENG";
             this.eNGToolStripMenuItem.Click += new System.EventHandler(this.eNGToolStripMenuItem_Click);
             // 
@@ -196,7 +196,7 @@
             this.jPJNToolStripMenuItem.CheckOnClick = true;
             this.jPJNToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.jPJNToolStripMenuItem.Name = "jPJNToolStripMenuItem";
-            this.jPJNToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.jPJNToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
             this.jPJNToolStripMenuItem.Text = "JPN";
             this.jPJNToolStripMenuItem.Click += new System.EventHandler(this.jPJNToolStripMenuItem_Click);
             // 
@@ -221,7 +221,7 @@
             this.MaximumSize = new System.Drawing.Size(610, 638);
             this.MinimumSize = new System.Drawing.Size(610, 638);
             this.Name = "MainForm";
-            this.Text = "LFI 0.0.1";
+            this.Text = "LFI 0.0.2";
             this.mainStrip.ContentPanel.ResumeLayout(false);
             this.mainStrip.ContentPanel.PerformLayout();
             this.mainStrip.TopToolStripPanel.ResumeLayout(false);
