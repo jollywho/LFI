@@ -10,30 +10,33 @@ namespace LFI
 {
     public partial class MainForm : Form
     {
+        discView dv;
+        mainView mv;
+
         public MainForm()
         {
             DoubleBuffered = true;
             InitializeComponent();
             AppDomain.CurrentDomain.SetData("DataDirectory", @"../../data");
             AppDomain.CurrentDomain.SetData("Image", @"../../image");
-            mainView us = new mainView();
-            mainPanel.Controls.Add(us);   
+            mv = new mainView(mainPanel);
+            mainPanel.Controls.Add(mv);   
         }
 
         private void discToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bump_menuItem(mainToolStripMenuItem, discToolStripMenuItem);
-            mainPanel.Controls.Clear();
-            discView us = new discView();
-            mainPanel.Controls.Add(us);
+            //bump_menuItem(mainToolStripMenuItem, discToolStripMenuItem);
+            //mainPanel.Controls.Clear();
+            //discView us = new discView();
+            //mainPanel.Controls.Add(us);
         }
 
         private void mainToolStripMenuItem_Click(object sender, EventArgs e)
         {
             bump_menuItem(discToolStripMenuItem, mainToolStripMenuItem);
             mainPanel.Controls.Clear();
-            mainView us = new mainView();
-            mainPanel.Controls.Add(us);
+            mv = new mainView(mainPanel);
+            mainPanel.Controls.Add(mv);
         }
 
         private void jPJNToolStripMenuItem_Click(object sender, EventArgs e)
@@ -57,6 +60,20 @@ namespace LFI
             {
                 obj1.Checked = true;
                 obj2.Checked = false;
+            }
+        }
+
+        public void switchPanel(Panel panel, Panel caller)
+        {
+            mainPanel.Controls.Remove(caller);
+            mainPanel.Controls.Add(panel);
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (discView.active && e.KeyCode == Keys.Back)
+            {
+
             }
         }
     }

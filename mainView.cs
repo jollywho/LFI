@@ -15,10 +15,9 @@ namespace LFI
     {
         DataTable dt;
         DataTable sel;
-        DataTable loc;
         DataView dv;
 
-        public mainView()
+        public mainView(Panel parent) 
         {
             InitializeComponent();
             populateList();
@@ -29,7 +28,7 @@ namespace LFI
             if (txtSearch.Text.Length > 0)
             {
                 dv = new DataView(dt);
-                dv.RowFilter = string.Format("title like '%{0}*'", txtSearch.Text);
+                dv.RowFilter = string.Format("title_id like '%{0}*'", txtSearch.Text);
                 
                 gvTitles.DataSource = dv;
 
@@ -40,7 +39,7 @@ namespace LFI
 
         private void populateList()
         {
-            dt = DB_Handle.GetDataTable("SELECT title FROM main ORDER BY title");
+            dt = DB_Handle.GetDataTable("SELECT title_id FROM titles ORDER BY title_id");
             gvTitles.DataSource = dt;
         }
         
@@ -82,30 +81,54 @@ namespace LFI
         {
             if (gvTitles.SelectedCells.Count > 0)
             {
-                ddLocation.Items.Clear();
-                sel = DB_Handle.GetDataTable(string.Format(
-                        @"SELECT * FROM main WHERE title='{0}' ORDER BY title",
-                        gvTitles.SelectedCells[0].Value.ToString()));
 
-                txtTitle.Text = sel.Rows[0][0].ToString();
-                txtEpisode.Text = sel.Rows[0][1].ToString();
-                txtCategory.Text = sel.Rows[0][2].ToString();
-                txtYear.Text = sel.Rows[0][3].ToString();
-                txtStatus.Text = sel.Rows[0][4].ToString();
-
-                loc = DB_Handle.GetDataTable(string.Format(
-                    @"SELECT location FROM loc where main_title='{0}'",
-                    gvTitles.SelectedCells[0].Value.ToString()));
-                for (int i = 0; i <= loc.Rows.Count - 1; i++)
+                if (gvTitles.SelectedCells[0].Value != null)
                 {
-                    ddLocation.Items.Add(loc.Rows[i][0]);
+                    try
+                    {
+                        sel = DB_Handle.GetDataTable(string.Format(
+                            @"SELECT * FROM titles WHERE title_id='{0}'",
+                            gvTitles.SelectedCells[0].Value.ToString()));
+
+                        txtTitle.Text = sel.Rows[0][0].ToString();
+                        txtEpisode.Text = sel.Rows[0][1].ToString();
+                        txtCategory.Text = sel.Rows[0][2].ToString();
+                        txtYear.Text = sel.Rows[0][3].ToString();
+                        txtStatus.Text = sel.Rows[0][4].ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+
+                    setImage(txtTitle.Text);
                 }
-                ddLocation.SelectedIndex = ddLocation.Items.Count - 1;
-
-                setImage(txtTitle.Text);
             }
-
         }
+
+        private void gvTitles_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var hti = gvTitles.HitTest(e.X, e.Y);
+                gvTitles.ClearSelection();
+                gvTitles.Rows[hti.RowIndex].Cells[0].Selected = true;
+            }
+        }
+
+        private void contextMenuItemDisc_Click(object sender, EventArgs e)
+        {
+            //discView us = new discView(gvTitles.SelectedCells[0].Value.ToString());
+            //this.Parent.Controls.Add(us);
+            //this.Parent.Controls.Remove(this);
+        }
+
+        private void gvTitles_KeyDown(object sender, KeyEventArgs e)
+        {
+           // if (e.KeyCode == Keys.Enter)
+                
+        }
+    
 
 
     }

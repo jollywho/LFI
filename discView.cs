@@ -12,12 +12,19 @@ namespace LFI
 {
     public partial class discView : UserControl
     {
-        public discView()
+        static public bool active = false;
+
+        public discView(Panel parent, string sel_title)
         {
             InitializeComponent();
-            DataTable info = DB_Handle.GetDataTable("Select * from loc");
+            DataTable info = DB_Handle.GetDataTable(string.Format(
+                @"Select discs.disc_id AS 'Disc', disc_titles.range AS 'Range', 
+                discs.page_number AS 'Page Number', discs.location_id AS 'Location'
+                FROM discs natural join disc_titles WHERE title_id='{0}'
+                ORDER BY discs.disc_id ASC, disc_titles.range ASC",
+                sel_title));
             gvDisc.DataSource = info;
-            lblDisc.Text = info.TableName;
+            lblDisc.Text = sel_title;
         }
 
         private void btbCRC_Click(object sender, EventArgs e)
@@ -37,6 +44,16 @@ namespace LFI
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private void discView_ControlAdded(object sender, ControlEventArgs e)
+        {
+            active = true;
+        }
+
+        private void discView_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            active = false;
         }
     }
 }

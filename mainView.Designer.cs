@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtTitle = new System.Windows.Forms.TextBox();
@@ -43,14 +44,14 @@
             this.imgTitle = new System.Windows.Forms.PictureBox();
             this.txtYear = new System.Windows.Forms.MaskedTextBox();
             this.txtStatus = new System.Windows.Forms.TextBox();
-            this.ddLocation = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtIndex = new System.Windows.Forms.MaskedTextBox();
             this.txtEpisode = new System.Windows.Forms.MaskedTextBox();
             this.gvTitles = new System.Windows.Forms.DataGridView();
+            this.contextMenuDisc = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuItemDisc = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTitles)).BeginInit();
+            this.contextMenuDisc.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtTitle
@@ -60,7 +61,7 @@
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.ReadOnly = true;
             this.txtTitle.Size = new System.Drawing.Size(219, 22);
-            this.txtTitle.TabIndex = 4;
+            this.txtTitle.TabIndex = 2;
             // 
             // txtCategory
             // 
@@ -69,7 +70,7 @@
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.ReadOnly = true;
             this.txtCategory.Size = new System.Drawing.Size(219, 22);
-            this.txtCategory.TabIndex = 5;
+            this.txtCategory.TabIndex = 4;
             // 
             // label1
             // 
@@ -125,7 +126,7 @@
             this.txtSearch.Location = new System.Drawing.Point(6, 19);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(169, 22);
-            this.txtSearch.TabIndex = 14;
+            this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // groupBox1
@@ -135,7 +136,7 @@
             this.groupBox1.Location = new System.Drawing.Point(3, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(181, 53);
-            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter";
             // 
@@ -146,6 +147,7 @@
             this.btnImg.Name = "btnImg";
             this.btnImg.Size = new System.Drawing.Size(50, 20);
             this.btnImg.TabIndex = 18;
+            this.btnImg.TabStop = false;
             this.btnImg.Text = "...";
             this.btnImg.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnImg.UseVisualStyleBackColor = true;
@@ -170,7 +172,7 @@
             this.txtYear.Mask = "0000";
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(33, 22);
-            this.txtYear.TabIndex = 20;
+            this.txtYear.TabIndex = 5;
             // 
             // txtStatus
             // 
@@ -181,37 +183,6 @@
             this.txtStatus.Size = new System.Drawing.Size(219, 22);
             this.txtStatus.TabIndex = 6;
             // 
-            // ddLocation
-            // 
-            this.ddLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddLocation.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ddLocation.FormattingEnabled = true;
-            this.ddLocation.Location = new System.Drawing.Point(326, 417);
-            this.ddLocation.MaxDropDownItems = 15;
-            this.ddLocation.Name = "ddLocation";
-            this.ddLocation.Size = new System.Drawing.Size(93, 24);
-            this.ddLocation.TabIndex = 21;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(215, 417);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 16);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Location";
-            // 
-            // txtIndex
-            // 
-            this.txtIndex.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIndex.Location = new System.Drawing.Point(425, 417);
-            this.txtIndex.Mask = "L000";
-            this.txtIndex.Name = "txtIndex";
-            this.txtIndex.ReadOnly = true;
-            this.txtIndex.Size = new System.Drawing.Size(120, 22);
-            this.txtIndex.TabIndex = 23;
-            // 
             // txtEpisode
             // 
             this.txtEpisode.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -219,17 +190,21 @@
             this.txtEpisode.Mask = "000";
             this.txtEpisode.Name = "txtEpisode";
             this.txtEpisode.Size = new System.Drawing.Size(33, 22);
-            this.txtEpisode.TabIndex = 24;
+            this.txtEpisode.TabIndex = 3;
             // 
             // gvTitles
             // 
+            this.gvTitles.AllowUserToAddRows = false;
             this.gvTitles.AllowUserToDeleteRows = false;
+            this.gvTitles.AllowUserToResizeColumns = false;
+            this.gvTitles.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gvTitles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gvTitles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvTitles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvTitles.ColumnHeadersVisible = false;
+            this.gvTitles.ContextMenuStrip = this.contextMenuDisc;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -247,8 +222,24 @@
             this.gvTitles.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvTitles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gvTitles.Size = new System.Drawing.Size(184, 403);
-            this.gvTitles.TabIndex = 25;
+            this.gvTitles.TabIndex = 1;
             this.gvTitles.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvTitles_RowEnter);
+            this.gvTitles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gvTitles_KeyDown);
+            this.gvTitles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gvTitles_MouseDown);
+            // 
+            // contextMenuDisc
+            // 
+            this.contextMenuDisc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextMenuItemDisc});
+            this.contextMenuDisc.Name = "contextMenuDisc";
+            this.contextMenuDisc.Size = new System.Drawing.Size(153, 48);
+            // 
+            // contextMenuItemDisc
+            // 
+            this.contextMenuItemDisc.Name = "contextMenuItemDisc";
+            this.contextMenuItemDisc.Size = new System.Drawing.Size(152, 22);
+            this.contextMenuItemDisc.Text = "View Disc";
+            this.contextMenuItemDisc.Click += new System.EventHandler(this.contextMenuItemDisc_Click);
             // 
             // mainView
             // 
@@ -256,9 +247,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gvTitles);
             this.Controls.Add(this.txtEpisode);
-            this.Controls.Add(this.txtIndex);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.ddLocation);
             this.Controls.Add(this.txtYear);
             this.Controls.Add(this.btnImg);
             this.Controls.Add(this.imgTitle);
@@ -277,6 +265,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTitles)).EndInit();
+            this.contextMenuDisc.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,10 +286,9 @@
         private System.Windows.Forms.PictureBox imgTitle;
         private System.Windows.Forms.MaskedTextBox txtYear;
         private System.Windows.Forms.TextBox txtStatus;
-        private System.Windows.Forms.ComboBox ddLocation;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.MaskedTextBox txtIndex;
         private System.Windows.Forms.MaskedTextBox txtEpisode;
         private System.Windows.Forms.DataGridView gvTitles;
+        private System.Windows.Forms.ContextMenuStrip contextMenuDisc;
+        private System.Windows.Forms.ToolStripMenuItem contextMenuItemDisc;
     }
 }
