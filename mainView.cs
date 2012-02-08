@@ -17,7 +17,7 @@ namespace LFI
         DataTable sel;
         DataView dv;
 
-        public mainView(Panel parent) 
+        public mainView() 
         {
             InitializeComponent();
             populateList();
@@ -118,15 +118,15 @@ namespace LFI
 
         private void contextMenuItemDisc_Click(object sender, EventArgs e)
         {
-            //discView us = new discView(gvTitles.SelectedCells[0].Value.ToString());
-            //this.Parent.Controls.Add(us);
-            //this.Parent.Controls.Remove(this);
+            discView us = new discView(gvTitles.SelectedCells[0].Value.ToString());
+            this.Parent.Controls.Add(us);
+            this.Parent.Controls.Remove(this);
         }
 
         private void gvTitles_KeyDown(object sender, KeyEventArgs e)
         {
-           // if (e.KeyCode == Keys.Enter)
-                
+            if (e.KeyCode == Keys.Enter)
+                contextMenuItemDisc_Click(sender, e);
         }
     
 

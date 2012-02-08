@@ -14,7 +14,7 @@ namespace LFI
     {
         static public bool active = false;
 
-        public discView(Panel parent, string sel_title)
+        public discView(string sel_title)
         {
             InitializeComponent();
             DataTable info = DB_Handle.GetDataTable(string.Format(
@@ -54,6 +54,16 @@ namespace LFI
         private void discView_ControlRemoved(object sender, ControlEventArgs e)
         {
             active = false;
+        }
+
+        private void gvDisc_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Back)
+            {
+                mainView mv = new mainView();
+                this.Parent.Controls.Add(mv);
+                this.Parent.Controls.Remove(this);
+            }
         }
     }
 }

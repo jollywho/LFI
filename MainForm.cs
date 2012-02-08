@@ -10,7 +10,6 @@ namespace LFI
 {
     public partial class MainForm : Form
     {
-        discView dv;
         mainView mv;
 
         public MainForm()
@@ -19,7 +18,7 @@ namespace LFI
             InitializeComponent();
             AppDomain.CurrentDomain.SetData("DataDirectory", @"../../data");
             AppDomain.CurrentDomain.SetData("Image", @"../../image");
-            mv = new mainView(mainPanel);
+            mv = new mainView();
             mainPanel.Controls.Add(mv);   
         }
 
@@ -29,24 +28,6 @@ namespace LFI
             //mainPanel.Controls.Clear();
             //discView us = new discView();
             //mainPanel.Controls.Add(us);
-        }
-
-        private void mainToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            bump_menuItem(discToolStripMenuItem, mainToolStripMenuItem);
-            mainPanel.Controls.Clear();
-            mv = new mainView(mainPanel);
-            mainPanel.Controls.Add(mv);
-        }
-
-        private void jPJNToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            bump_menuItem(eNGToolStripMenuItem, jPJNToolStripMenuItem);
-        }
-
-        private void eNGToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            bump_menuItem(jPJNToolStripMenuItem, eNGToolStripMenuItem);
         }
 
         private void bump_menuItem(ToolStripMenuItem obj1, ToolStripMenuItem obj2)
@@ -60,20 +41,6 @@ namespace LFI
             {
                 obj1.Checked = true;
                 obj2.Checked = false;
-            }
-        }
-
-        public void switchPanel(Panel panel, Panel caller)
-        {
-            mainPanel.Controls.Remove(caller);
-            mainPanel.Controls.Add(panel);
-        }
-
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (discView.active && e.KeyCode == Keys.Back)
-            {
-
             }
         }
     }
