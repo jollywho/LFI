@@ -1,6 +1,6 @@
 ﻿namespace LFI
 {
-    partial class mainView
+    partial class discView
     {
         /// <summary> 
         /// Required designer variable.
@@ -39,16 +39,16 @@
             this.contextMenuDisc = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuItemDisc = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtYear = new System.Windows.Forms.MaskedTextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtEpisode = new System.Windows.Forms.MaskedTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtStatus = new System.Windows.Forms.TextBox();
-            this.txtCategory = new System.Windows.Forms.TextBox();
             this.txtTitle = new System.Windows.Forms.TextBox();
+            this.txtCategory = new System.Windows.Forms.TextBox();
+            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtEpisode = new System.Windows.Forms.MaskedTextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtYear = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTitles)).BeginInit();
@@ -67,7 +67,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtSearch);
-            this.groupBox1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(3, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(181, 53);
@@ -78,7 +78,8 @@
             // btnImg
             // 
             this.btnImg.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnImg.Location = new System.Drawing.Point(338, 209);
+            this.btnImg.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImg.Location = new System.Drawing.Point(338, 225);
             this.btnImg.Name = "btnImg";
             this.btnImg.Size = new System.Drawing.Size(50, 20);
             this.btnImg.TabIndex = 18;
@@ -93,7 +94,7 @@
             this.imgTitle.BackgroundImage = global::LFI.Properties.Resources.notfound;
             this.imgTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.imgTitle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.imgTitle.Location = new System.Drawing.Point(262, 3);
+            this.imgTitle.Location = new System.Drawing.Point(262, 19);
             this.imgTitle.Name = "imgTitle";
             this.imgTitle.Size = new System.Drawing.Size(200, 200);
             this.imgTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -162,121 +163,126 @@
             this.groupBox2.Controls.Add(this.txtYear);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(199, 262);
+            this.groupBox2.Location = new System.Drawing.Point(195, 263);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(318, 202);
-            this.groupBox2.TabIndex = 20;
+            this.groupBox2.Size = new System.Drawing.Size(319, 201);
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Details";
             // 
-            // label5
+            // txtTitle
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(247, 77);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(30, 16);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Year";
+            this.txtTitle.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTitle.Location = new System.Drawing.Point(9, 46);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.ReadOnly = true;
+            this.txtTitle.Size = new System.Drawing.Size(300, 22);
+            this.txtTitle.TabIndex = 30;
+            this.txtTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label2
+            // txtCategory
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 16);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Title";
+            this.txtCategory.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCategory.Location = new System.Drawing.Point(12, 99);
+            this.txtCategory.Name = "txtCategory";
+            this.txtCategory.ReadOnly = true;
+            this.txtCategory.Size = new System.Drawing.Size(135, 22);
+            this.txtCategory.TabIndex = 32;
+            this.txtCategory.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtYear
+            // txtStatus
             // 
-            this.txtYear.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtYear.Location = new System.Drawing.Point(249, 96);
-            this.txtYear.Mask = "0000";
-            this.txtYear.Name = "txtYear";
-            this.txtYear.ReadOnly = true;
-            this.txtYear.Size = new System.Drawing.Size(33, 22);
-            this.txtYear.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 128);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 16);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Status";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(60, 77);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 16);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Category";
-            // 
-            // txtEpisode
-            // 
-            this.txtEpisode.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEpisode.Location = new System.Drawing.Point(6, 96);
-            this.txtEpisode.Mask = "000";
-            this.txtEpisode.Name = "txtEpisode";
-            this.txtEpisode.ReadOnly = true;
-            this.txtEpisode.Size = new System.Drawing.Size(33, 22);
-            this.txtEpisode.TabIndex = 3;
+            this.txtStatus.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStatus.Location = new System.Drawing.Point(82, 152);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.ReadOnly = true;
+            this.txtStatus.Size = new System.Drawing.Size(138, 22);
+            this.txtStatus.TabIndex = 34;
+            this.txtStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 77);
+            this.label1.Location = new System.Drawing.Point(175, 80);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 16);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Eps";
+            this.label1.Size = new System.Drawing.Size(52, 16);
+            this.label1.TabIndex = 35;
+            this.label1.Text = "Episodes";
             // 
-            // txtStatus
+            // txtEpisode
             // 
-            this.txtStatus.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(6, 149);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(219, 22);
-            this.txtStatus.TabIndex = 6;
+            this.txtEpisode.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEpisode.Location = new System.Drawing.Point(178, 99);
+            this.txtEpisode.Mask = "000";
+            this.txtEpisode.Name = "txtEpisode";
+            this.txtEpisode.ReadOnly = true;
+            this.txtEpisode.Size = new System.Drawing.Size(52, 22);
+            this.txtEpisode.TabIndex = 31;
+            this.txtEpisode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtCategory
+            // label3
             // 
-            this.txtCategory.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCategory.Location = new System.Drawing.Point(63, 96);
-            this.txtCategory.Name = "txtCategory";
-            this.txtCategory.ReadOnly = true;
-            this.txtCategory.Size = new System.Drawing.Size(150, 22);
-            this.txtCategory.TabIndex = 4;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(9, 80);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 16);
+            this.label3.TabIndex = 37;
+            this.label3.Text = "Category";
             // 
-            // txtTitle
+            // label4
             // 
-            this.txtTitle.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTitle.Location = new System.Drawing.Point(6, 43);
-            this.txtTitle.Name = "txtTitle";
-            this.txtTitle.ReadOnly = true;
-            this.txtTitle.Size = new System.Drawing.Size(306, 22);
-            this.txtTitle.TabIndex = 2;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(131, 133);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 16);
+            this.label4.TabIndex = 38;
+            this.label4.Text = "Status";
+            // 
+            // txtYear
+            // 
+            this.txtYear.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtYear.Location = new System.Drawing.Point(257, 99);
+            this.txtYear.Mask = "0000";
+            this.txtYear.Name = "txtYear";
+            this.txtYear.ReadOnly = true;
+            this.txtYear.Size = new System.Drawing.Size(52, 22);
+            this.txtYear.TabIndex = 33;
+            this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(9, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 16);
+            this.label2.TabIndex = 36;
+            this.label2.Text = "Title";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(254, 80);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(30, 16);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "Year";
             // 
             // mainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gvTitles);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnImg);
             this.Controls.Add(this.imgTitle);
+            this.Controls.Add(this.btnImg);
             this.Name = "mainView";
             this.Size = new System.Drawing.Size(524, 467);
             this.groupBox1.ResumeLayout(false);
