@@ -11,13 +11,13 @@ using System.IO;
 
 namespace LFI
 {
-    public partial class discView : UserControl
+    public partial class mainView : UserControl
     {
         DataTable dt;
         DataTable sel;
         DataView dv;
 
-        public discView() 
+        public mainView() 
         {
             InitializeComponent();
             populateList();

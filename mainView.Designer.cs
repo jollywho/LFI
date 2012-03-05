@@ -1,6 +1,6 @@
 ﻿namespace LFI
 {
-    partial class discView
+    partial class mainView
     {
         /// <summary> 
         /// Required designer variable.

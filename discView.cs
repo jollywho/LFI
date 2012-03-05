@@ -12,9 +12,9 @@ namespace LFI
 {
     public partial class discView : UserControl
     {
-        discView caller;
+        mainView caller;
 
-        public discView Caller
+        public mainView Caller
         {
             get { return caller; }
             set { caller = value; }
