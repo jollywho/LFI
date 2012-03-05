@@ -70,6 +70,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="addView.Designer.cs">
+      <DependentUpon>addView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Crc32.cs" />
     <Compile Include="DB_Handle.cs" />
     <Compile Include="MainForm.cs">
@@ -97,6 +103,9 @@
     <Compile Include="discView.Designer.cs">
       <DependentUpon>discView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="addView.resx">
+      <DependentUpon>addView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

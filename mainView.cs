@@ -129,9 +129,5 @@ namespace LFI
             if (e.KeyCode == Keys.Enter)
                 contextMenuItemDisc_Click(sender, e);
         }
-
-    
-
-
     }
 }

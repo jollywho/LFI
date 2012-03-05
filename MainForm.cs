@@ -11,6 +11,7 @@ namespace LFI
     public partial class MainForm : Form
     {
         mainView mv;
+        addView av;
 
         public MainForm()
         {
@@ -42,6 +43,21 @@ namespace LFI
                 obj1.Checked = true;
                 obj2.Checked = false;
             }
+        }
+
+        private void menuAddItem_Click(object sender, EventArgs e)
+        {
+            mainPanel.Controls.Clear();
+            av = new addView();
+            mainPanel.Controls.Add(av); 
+        }
+
+        private void statusStripLabel_Click(object sender, EventArgs e)
+        {
+            if (statusStripLabel.Text == "JPN")
+                statusStripLabel.Text = "ENG";
+            else
+                statusStripLabel.Text = "JPN";
         }
     }
     
