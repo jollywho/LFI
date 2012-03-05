@@ -69,6 +69,7 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 577);
@@ -122,13 +123,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(524, 599);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.mainPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(610, 658);
+            this.MaximumSize = new System.Drawing.Size(540, 658);
             this.Menu = this.mainMenu1;
+            this.MinimumSize = new System.Drawing.Size(540, 658);
             this.Name = "MainForm";
             this.Text = "LFI 0.0.2";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

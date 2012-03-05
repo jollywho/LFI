@@ -12,7 +12,13 @@ namespace LFI
 {
     public partial class discView : UserControl
     {
-        static public bool active = false;
+        discView caller;
+
+        public discView Caller
+        {
+            get { return caller; }
+            set { caller = value; }
+        }
 
         public discView(string sel_title)
         {
@@ -46,24 +52,19 @@ namespace LFI
             }
         }
 
-        private void discView_ControlAdded(object sender, ControlEventArgs e)
-        {
-            active = true;
-        }
-
-        private void discView_ControlRemoved(object sender, ControlEventArgs e)
-        {
-            active = false;
-        }
-
         private void gvDisc_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Back)
             {
-                mainView mv = new mainView();
-                this.Parent.Controls.Add(mv);
+                caller.Show();
                 this.Parent.Controls.Remove(this);
             }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            caller.Show();
+            this.Parent.Controls.Remove(this);
         }
     }
 }

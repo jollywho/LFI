@@ -11,13 +11,13 @@ using System.IO;
 
 namespace LFI
 {
-    public partial class mainView : UserControl
+    public partial class discView : UserControl
     {
         DataTable dt;
         DataTable sel;
         DataView dv;
 
-        public mainView() 
+        public discView() 
         {
             InitializeComponent();
             populateList();
@@ -119,8 +119,9 @@ namespace LFI
         private void contextMenuItemDisc_Click(object sender, EventArgs e)
         {
             discView us = new discView(gvTitles.SelectedCells[0].Value.ToString());
+            us.Caller = this;
             this.Parent.Controls.Add(us);
-            this.Parent.Controls.Remove(this);
+            this.Hide();
         }
 
         private void gvTitles_KeyDown(object sender, KeyEventArgs e)
@@ -128,6 +129,7 @@ namespace LFI
             if (e.KeyCode == Keys.Enter)
                 contextMenuItemDisc_Click(sender, e);
         }
+
     
 
 

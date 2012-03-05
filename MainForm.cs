@@ -10,7 +10,7 @@ namespace LFI
 {
     public partial class MainForm : Form
     {
-        mainView mv;
+        discView mv;
 
         public MainForm()
         {
@@ -18,7 +18,7 @@ namespace LFI
             InitializeComponent();
             AppDomain.CurrentDomain.SetData("DataDirectory", @"../../data");
             AppDomain.CurrentDomain.SetData("Image", @"../../image");
-            mv = new mainView();
+            mv = new discView();
             mainPanel.Controls.Add(mv);   
         }
 
