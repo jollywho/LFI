@@ -49,7 +49,8 @@ namespace LFI
         {
             mainPanel.Controls.Clear();
             av = new addView();
-            mainPanel.Controls.Add(av); 
+            mainPanel.Controls.Add(av);
+            av.Focus();
         }
 
         private void statusStripLabel_Click(object sender, EventArgs e)

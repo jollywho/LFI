@@ -58,17 +58,20 @@
             // 
             // txtSearch
             // 
+            this.txtSearch.BackColor = System.Drawing.Color.Black;
+            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearch.ForeColor = System.Drawing.Color.Lime;
             this.txtSearch.Location = new System.Drawing.Point(6, 19);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(169, 22);
+            this.txtSearch.Size = new System.Drawing.Size(169, 24);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtSearch);
-            this.groupBox1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.Color.Lime;
+            this.groupBox1.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.groupBox1.Location = new System.Drawing.Point(3, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(181, 53);
@@ -84,7 +87,7 @@
             this.btnImg.Location = new System.Drawing.Point(338, 225);
             this.btnImg.Name = "btnImg";
             this.btnImg.Size = new System.Drawing.Size(50, 20);
-            this.btnImg.TabIndex = 18;
+            this.btnImg.TabIndex = 3;
             this.btnImg.TabStop = false;
             this.btnImg.Text = "...";
             this.btnImg.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -114,13 +117,14 @@
             this.gvTitles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gvTitles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvTitles.BackgroundColor = System.Drawing.Color.Black;
+            this.gvTitles.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.gvTitles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvTitles.ColumnHeadersVisible = false;
             this.gvTitles.ContextMenuStrip = this.contextMenuDisc;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Lime;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(83)))));
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -132,6 +136,7 @@
             this.gvTitles.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.gvTitles.RowHeadersVisible = false;
             this.gvTitles.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvTitles.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.gvTitles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gvTitles.Size = new System.Drawing.Size(184, 408);
             this.gvTitles.StandardTab = true;
@@ -166,8 +171,8 @@
             this.groupBox2.Controls.Add(this.txtYear);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.ForeColor = System.Drawing.Color.Lime;
+            this.groupBox2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.groupBox2.Location = new System.Drawing.Point(195, 263);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(319, 201);
@@ -177,32 +182,41 @@
             // 
             // txtTitle
             // 
+            this.txtTitle.BackColor = System.Drawing.Color.Black;
+            this.txtTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTitle.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(83)))));
             this.txtTitle.Location = new System.Drawing.Point(9, 46);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.ReadOnly = true;
             this.txtTitle.Size = new System.Drawing.Size(300, 22);
-            this.txtTitle.TabIndex = 30;
+            this.txtTitle.TabIndex = 0;
             this.txtTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCategory
             // 
+            this.txtCategory.BackColor = System.Drawing.Color.Black;
+            this.txtCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCategory.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(83)))));
             this.txtCategory.Location = new System.Drawing.Point(12, 99);
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.ReadOnly = true;
             this.txtCategory.Size = new System.Drawing.Size(135, 22);
-            this.txtCategory.TabIndex = 32;
+            this.txtCategory.TabIndex = 1;
             this.txtCategory.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtStatus
             // 
+            this.txtStatus.BackColor = System.Drawing.Color.Black;
+            this.txtStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtStatus.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(83)))));
             this.txtStatus.Location = new System.Drawing.Point(82, 152);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
             this.txtStatus.Size = new System.Drawing.Size(138, 22);
-            this.txtStatus.TabIndex = 34;
+            this.txtStatus.TabIndex = 4;
             this.txtStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
@@ -217,13 +231,16 @@
             // 
             // txtEpisode
             // 
+            this.txtEpisode.BackColor = System.Drawing.Color.Black;
+            this.txtEpisode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEpisode.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEpisode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(83)))));
             this.txtEpisode.Location = new System.Drawing.Point(178, 99);
             this.txtEpisode.Mask = "000";
             this.txtEpisode.Name = "txtEpisode";
             this.txtEpisode.ReadOnly = true;
             this.txtEpisode.Size = new System.Drawing.Size(52, 22);
-            this.txtEpisode.TabIndex = 31;
+            this.txtEpisode.TabIndex = 2;
             this.txtEpisode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
@@ -248,13 +265,16 @@
             // 
             // txtYear
             // 
+            this.txtYear.BackColor = System.Drawing.Color.Black;
+            this.txtYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtYear.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtYear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(83)))));
             this.txtYear.Location = new System.Drawing.Point(257, 99);
             this.txtYear.Mask = "0000";
             this.txtYear.Name = "txtYear";
             this.txtYear.ReadOnly = true;
             this.txtYear.Size = new System.Drawing.Size(52, 22);
-            this.txtYear.TabIndex = 33;
+            this.txtYear.TabIndex = 3;
             this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
@@ -281,7 +301,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
+            this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gvTitles);
             this.Controls.Add(this.groupBox1);

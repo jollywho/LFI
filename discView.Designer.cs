@@ -49,7 +49,8 @@
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gvDisc.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gvDisc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gvDisc.BackgroundColor = System.Drawing.Color.Black;
+            this.gvDisc.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.gvDisc.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -62,7 +63,7 @@
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Lime;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(83)))));
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -82,6 +83,7 @@
             this.gvDisc.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gvDisc.RowHeadersVisible = false;
             this.gvDisc.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvDisc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.gvDisc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gvDisc.Size = new System.Drawing.Size(524, 196);
             this.gvDisc.StandardTab = true;
