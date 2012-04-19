@@ -10,25 +10,14 @@ namespace LFI
 {
     public partial class MainForm : Form
     {
-        mainView mv;
-        addView av;
-
         public MainForm()
         {
             DoubleBuffered = true;
             InitializeComponent();
             AppDomain.CurrentDomain.SetData("DataDirectory", @"../../data");
             AppDomain.CurrentDomain.SetData("Image", @"../../image");
-            mv = new mainView();
+            mainView mv = new mainView();
             mainPanel.Controls.Add(mv);   
-        }
-
-        private void discToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //bump_menuItem(mainToolStripMenuItem, discToolStripMenuItem);
-            //mainPanel.Controls.Clear();
-            //discView us = new discView();
-            //mainPanel.Controls.Add(us);
         }
 
         private void bump_menuItem(ToolStripMenuItem obj1, ToolStripMenuItem obj2)
@@ -48,7 +37,7 @@ namespace LFI
         private void menuAddItem_Click(object sender, EventArgs e)
         {
             mainPanel.Controls.Clear();
-            av = new addView();
+            addView av = new addView();
             mainPanel.Controls.Add(av);
             av.Focus();
         }
@@ -59,6 +48,14 @@ namespace LFI
                 statusStripLabel.Text = "ENG";
             else
                 statusStripLabel.Text = "JPN";
+        }
+
+        private void menuFolderItem_Click(object sender, EventArgs e)
+        {
+            mainPanel.Controls.Clear();
+            folderView fv = new folderView();
+            mainPanel.Controls.Add(fv);
+            fv.Focus();
         }
     }
     

@@ -36,6 +36,7 @@
             this.statusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.menuFolderItem = new System.Windows.Forms.MenuItem();
             this.menuAddItem = new System.Windows.Forms.MenuItem();
             this.menuItem4 = new System.Windows.Forms.MenuItem();
             this.menuItem5 = new System.Windows.Forms.MenuItem();
@@ -95,25 +96,32 @@
             // 
             this.menuItem1.Index = 0;
             this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuFolderItem,
             this.menuAddItem,
             this.menuItem4,
             this.menuItem5});
             this.menuItem1.Text = "File";
             // 
+            // menuFolderItem
+            // 
+            this.menuFolderItem.Index = 0;
+            this.menuFolderItem.Text = "Organize Folder";
+            this.menuFolderItem.Click += new System.EventHandler(this.menuFolderItem_Click);
+            // 
             // menuAddItem
             // 
-            this.menuAddItem.Index = 0;
+            this.menuAddItem.Index = 1;
             this.menuAddItem.Text = "Add Disc";
             this.menuAddItem.Click += new System.EventHandler(this.menuAddItem_Click);
             // 
             // menuItem4
             // 
-            this.menuItem4.Index = 1;
+            this.menuItem4.Index = 2;
             this.menuItem4.Text = "-";
             // 
             // menuItem5
             // 
-            this.menuItem5.Index = 2;
+            this.menuItem5.Index = 3;
             this.menuItem5.Text = "Exit";
             // 
             // menuItem2
@@ -125,7 +133,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(40)))), ((int)(((byte)(31)))));
             this.ClientSize = new System.Drawing.Size(524, 620);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pictureBox2);
@@ -156,6 +164,7 @@
         private System.Windows.Forms.MenuItem menuAddItem;
         private System.Windows.Forms.MenuItem menuItem4;
         private System.Windows.Forms.MenuItem menuItem5;
+        private System.Windows.Forms.MenuItem menuFolderItem;
 
 
     }

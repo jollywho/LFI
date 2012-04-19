@@ -78,6 +78,13 @@
     </Compile>
     <Compile Include="Crc32.cs" />
     <Compile Include="DB_Handle.cs" />
+    <Compile Include="folderView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="folderView.Designer.cs">
+      <DependentUpon>folderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Folder_IO.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +112,9 @@
     </Compile>
     <EmbeddedResource Include="addView.resx">
       <DependentUpon>addView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="folderView.resx">
+      <DependentUpon>folderView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
