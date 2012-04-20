@@ -17,6 +17,9 @@ namespace LFI
             ddLocation.DataSource = DB_Handle.GetDataTable(string.Format(
                 @"Select location_id from locations"));
             ddLocation.DisplayMember = "location_id";
+            ddInsTitle.DataSource = DB_Handle.GetDataTable(string.Format(
+                @"Select title_id from titles"));
+            ddInsTitle.DisplayMember = "title_id";
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -28,26 +31,26 @@ namespace LFI
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            if (txtInsTitle.Text.Length > 0)
+            if (ddInsTitle.Text.Length > 0)
             {
                 if (ddInsRangeType.Text == "Item" && txtInsRangeStart.Text.Length > 0)
                 {
-                    lstContents.Items.Add(txtInsTitle.Text + ", " + txtInsRangeStart.Text);
+                    lstContents.Items.Add(ddInsTitle.Text + ", " + txtInsRangeStart.Text + "," + txtSeason.Text);
                 }
                 else if (ddInsRangeType.Text == "Range" && txtInsRangeStart.Text.Length > 0 &&
                     txtInsRangeEnd.Text.Length > 0)
                 {
-                    lstContents.Items.Add(txtInsTitle.Text + ", " + txtInsRangeStart.Text + 
-                        "-" + txtInsRangeEnd.Text);
+                    lstContents.Items.Add(ddInsTitle.Text + ", " + txtInsRangeStart.Text +
+                        "-" + txtInsRangeEnd.Text + "," + txtSeason.Text);
                 }
                 else if (ddInsRangeType.Text == "Full")
                 {
-                    lstContents.Items.Add(txtInsTitle.Text + ", " + "Full");
+                    lstContents.Items.Add(ddInsTitle.Text + ", " + "Full" + "," + txtSeason.Text);
                 }
                 else
                     return;
-                
-                txtInsTitle.Clear();
+                txtSeason.Clear();
+                ddInsTitle.SelectedText = "";
                 txtInsRangeStart.Clear();
                 txtInsRangeEnd.Clear();
             }

@@ -25,7 +25,8 @@ namespace LFI
             InitializeComponent();
             DataTable info = DB_Handle.GetDataTable(string.Format(
                 @"Select discs.disc_id AS 'Disc', disc_titles.range AS 'Range', 
-                discs.page_number AS 'Page Number', discs.location_id AS 'Location'
+                discs.page_number AS 'Page Number', discs.location_id AS 'Location',
+                disc_titles.season AS 'Season'
                 FROM discs natural join disc_titles WHERE title_id='{0}'
                 ORDER BY discs.disc_id ASC, disc_titles.range ASC",
                 sel_title));

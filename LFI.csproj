@@ -76,6 +76,7 @@
     <Compile Include="addView.Designer.cs">
       <DependentUpon>addView.cs</DependentUpon>
     </Compile>
+    <Compile Include="AlphanumComparator.cs" />
     <Compile Include="Crc32.cs" />
     <Compile Include="DB_Handle.cs" />
     <Compile Include="folderView.cs">
