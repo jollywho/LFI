@@ -14,13 +14,20 @@ namespace LFI
     public partial class mainView : UserControl
     {
         DataTable dt;
-        DataTable sel;
         DataView dv;
+        discPane discPane;
+        infoPane infoPane;
 
         public mainView() 
         {
             InitializeComponent();
             populateList();
+            infoPane = new infoPane();
+            discPane = new discPane();
+            panelMain.Controls.Add(infoPane);
+            panelMain.Controls.Add(discPane);
+            infoPane.enable();
+            discPane.disable();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -37,97 +44,59 @@ namespace LFI
                 populateList();
         }
 
-        private void populateList()
+        public void populateList()
         {
-            dt = DB_Handle.GetDataTable("SELECT title_id FROM titles ORDER BY title_id");
+            dt = DB_Handle.GetDataTable(string.Format(
+                @"SELECT title_id 
+                FROM titles WHERE language ='{0}' 
+                ORDER BY title_id", MainForm.Lmode));
             gvTitles.DataSource = dt;
         }
         
-        //todo: strip illegal chars OR prevent from the start
-        private void setImage(string str)
-        {
-            string path = Path.Combine(
-                Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
-                string.Format("..\\..\\image\\{0}.jpg", str));
-
-            if (System.IO.File.Exists(path))
-            {
-                imgTitle.ImageLocation = path;
-            }
-            else
-            {
-                imgTitle.ImageLocation = null;
-            }
-        }
-
-        //todo: commit img
-        private void btnImg_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dlg = new OpenFileDialog();
-            if (dlg.ShowDialog() != DialogResult.Cancel)
-            {
-                try
-                {
-                    imgTitle.ImageLocation = dlg.FileName;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
         private void gvTitles_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (gvTitles.SelectedCells.Count > 0)
             {
-
                 if (gvTitles.SelectedCells[0].Value != null)
                 {
-                    try
+                    lblTitle.Text = gvTitles.SelectedCells[0].Value.ToString();
+                    if (infoPane.active)
                     {
-                        sel = DB_Handle.GetDataTable(string.Format(
-                            @"SELECT * FROM titles WHERE title_id='{0}'",
-                            gvTitles.SelectedCells[0].Value.ToString()));
-
-                        txtTitle.Text = sel.Rows[0][0].ToString();
-                        txtEpisode.Text = sel.Rows[0][1].ToString();
-                        txtCategory.Text = sel.Rows[0][2].ToString();
-                        txtYear.Text = sel.Rows[0][3].ToString();
-                        txtStatus.Text = sel.Rows[0][4].ToString();
+                        infoPane.load_data(DB_Handle.GetDataTable(string.Format(
+                        @"SELECT * FROM titles WHERE title_id='{0}'",
+                        gvTitles.SelectedCells[0].Value.ToString())));
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.ToString());
+                        discPane.load_data(gvTitles.SelectedCells[0].Value.ToString());
                     }
-
-                    setImage(txtTitle.Text);
                 }
-            }
-        }
-
-        private void gvTitles_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                var hti = gvTitles.HitTest(e.X, e.Y);
-                gvTitles.ClearSelection();
-                gvTitles.Rows[hti.RowIndex].Cells[0].Selected = true;
             }
         }
 
         private void contextMenuItemDisc_Click(object sender, EventArgs e)
         {
-            discView us = new discView(gvTitles.SelectedCells[0].Value.ToString());
-            us.Caller = this;
-            this.Parent.Controls.Add(us);
-            this.Hide();
+            if (infoPane.active)
+            {
+                discPane.enable();
+                infoPane.disable();
+                discPane.load_data(gvTitles.SelectedCells[0].Value.ToString());
+            }
         }
 
         private void gvTitles_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
                 contextMenuItemDisc_Click(sender, e);
+        }
+
+        private void titleInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (discPane.active)
+            {
+                discPane.disable();
+                infoPane.enable();
+            }
         }
     }
 }

@@ -10,8 +10,11 @@ namespace LFI
 {
     public partial class MainForm : Form
     {
+        public static string Lmode;
+
         public MainForm()
         {
+            Lmode = "JPN";
             DoubleBuffered = true;
             InitializeComponent();
             AppDomain.CurrentDomain.SetData("DataDirectory", @"../../data");
@@ -44,10 +47,11 @@ namespace LFI
 
         private void statusStripLabel_Click(object sender, EventArgs e)
         {
-            if (statusStripLabel.Text == "JPN")
-                statusStripLabel.Text = "ENG";
+            if (Lmode == "JPN")
+                Lmode = "ENG";
             else
-                statusStripLabel.Text = "JPN";
+                Lmode = "JPN";
+            statusStripLabel.Text = Lmode;
         }
 
         private void menuFolderItem_Click(object sender, EventArgs e)

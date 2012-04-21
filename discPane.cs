@@ -10,30 +10,39 @@ using System.IO;
 
 namespace LFI
 {
-    public partial class discView : UserControl
+    public partial class discPane : UserControl
     {
-        mainView caller;
-
-        public mainView Caller
-        {
-            get { return caller; }
-            set { caller = value; }
-        }
-
-        public discView(string sel_title)
+        public bool active = false;
+        public discPane()
         {
             InitializeComponent();
+        }
+
+        public void disable()
+        {
+            active = false;
+            this.Hide();
+        }
+
+        public void enable()
+        {
+            active = true;
+            this.Show();
+        }
+
+        public void load_data(string sel)
+        { 
             DataTable info = DB_Handle.GetDataTable(string.Format(
                 @"Select discs.disc_id AS 'Disc', disc_titles.range AS 'Range', 
                 discs.page_number AS 'Page Number', discs.location_id AS 'Location',
                 disc_titles.season AS 'Season'
                 FROM discs natural join disc_titles WHERE title_id='{0}'
                 ORDER BY discs.disc_id ASC, disc_titles.range ASC",
-                sel_title));
+                sel));
             gvDisc.DataSource = info;
-            lblDisc.Text = sel_title;
         }
 
+        /*
         private void btbCRC_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
@@ -52,20 +61,6 @@ namespace LFI
                 }
             }
         }
-
-        private void gvDisc_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Back)
-            {
-                caller.Show();
-                this.Parent.Controls.Remove(this);
-            }
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            caller.Show();
-            this.Parent.Controls.Remove(this);
-        }
+         * */
     }
 }

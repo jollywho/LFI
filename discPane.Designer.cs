@@ -1,6 +1,6 @@
 ﻿namespace LFI
 {
-    partial class discView
+    partial class discPane
     {
         /// <summary> 
         /// Required designer variable.
@@ -33,8 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gvDisc = new System.Windows.Forms.DataGridView();
-            this.lblDisc = new System.Windows.Forms.Label();
-            this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvDisc)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +69,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gvDisc.DefaultCellStyle = dataGridViewCellStyle3;
             this.gvDisc.GridColor = System.Drawing.Color.White;
-            this.gvDisc.Location = new System.Drawing.Point(0, 41);
+            this.gvDisc.Location = new System.Drawing.Point(3, 3);
             this.gvDisc.MultiSelect = false;
             this.gvDisc.Name = "gvDisc";
             this.gvDisc.ReadOnly = true;
@@ -88,53 +86,27 @@
             this.gvDisc.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvDisc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.gvDisc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gvDisc.Size = new System.Drawing.Size(524, 426);
+            this.gvDisc.Size = new System.Drawing.Size(337, 433);
             this.gvDisc.StandardTab = true;
             this.gvDisc.TabIndex = 2;
-            this.gvDisc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gvDisc_KeyDown);
             // 
-            // lblDisc
-            // 
-            this.lblDisc.AutoSize = true;
-            this.lblDisc.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDisc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.lblDisc.Location = new System.Drawing.Point(3, 0);
-            this.lblDisc.Name = "lblDisc";
-            this.lblDisc.Size = new System.Drawing.Size(0, 28);
-            this.lblDisc.TabIndex = 0;
-            // 
-            // btnBack
-            // 
-            this.btnBack.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Location = new System.Drawing.Point(446, 12);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 1;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // discView
+            // discPane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.lblDisc);
             this.Controls.Add(this.gvDisc);
-            this.Name = "discView";
-            this.Size = new System.Drawing.Size(524, 467);
+            this.Name = "discPane";
+            this.Size = new System.Drawing.Size(340, 433);
             ((System.ComponentModel.ISupportInitialize)(this.gvDisc)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView gvDisc;
-        private System.Windows.Forms.Label lblDisc;
-        private System.Windows.Forms.Button btnBack;
+
 
 
 
