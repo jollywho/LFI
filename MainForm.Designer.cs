@@ -36,8 +36,8 @@
             this.statusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
-            this.menuFolderItem = new System.Windows.Forms.MenuItem();
             this.menuAddItem = new System.Windows.Forms.MenuItem();
+            this.menuFolderItem = new System.Windows.Forms.MenuItem();
             this.menuItem4 = new System.Windows.Forms.MenuItem();
             this.menuItem5 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
@@ -102,17 +102,17 @@
             this.menuItem5});
             this.menuItem1.Text = "File";
             // 
-            // menuFolderItem
-            // 
-            this.menuFolderItem.Index = 1;
-            this.menuFolderItem.Text = "Organize Folder";
-            this.menuFolderItem.Click += new System.EventHandler(this.menuFolderItem_Click);
-            // 
             // menuAddItem
             // 
             this.menuAddItem.Index = 0;
             this.menuAddItem.Text = "Add Disc";
             this.menuAddItem.Click += new System.EventHandler(this.menuAddItem_Click);
+            // 
+            // menuFolderItem
+            // 
+            this.menuFolderItem.Index = 1;
+            this.menuFolderItem.Text = "Organize Folder";
+            this.menuFolderItem.Click += new System.EventHandler(this.menuFolderItem_Click);
             // 
             // menuItem4
             // 
@@ -143,7 +143,7 @@
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(540, 658);
             this.Name = "MainForm";
-            this.Text = "LFI 0.1.2";
+            this.Text = "LFI 0.1.3";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

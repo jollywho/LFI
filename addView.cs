@@ -17,9 +17,12 @@ namespace LFI
             ddLocation.DataSource = DB_Handle.GetDataTable(string.Format(
                 @"Select location_id from locations"));
             ddLocation.DisplayMember = "location_id";
-            ddInsTitle.DataSource = DB_Handle.GetDataTable(string.Format(
+            DataTable titles = DB_Handle.GetDataTable(string.Format(
                 @"Select title_id from titles"));
+            ddInsTitle.DataSource = titles;
             ddInsTitle.DisplayMember = "title_id";
+            ddTitle.DataSource = titles;
+            ddTitle.DisplayMember = "title_id";
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -29,9 +32,11 @@ namespace LFI
             this.Controls.Add(mv);
         }
 
+        //todo: restructure for proper validation + errormsg
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            if (ddInsTitle.Text.Length > 0)
+            string error = "";
+            if (ddInsTitle.Text.Length > 0 && ddInsTitle.FindStringExact(ddTitle.Text) != -1)
             {
                 if (ddInsRangeType.Text == "Item" && txtInsRangeStart.Text.Length > 0)
                 {
@@ -48,7 +53,10 @@ namespace LFI
                     lstContents.Items.Add(ddInsTitle.Text + ", " + "Full" + "," + txtSeason.Text);
                 }
                 else
+                {
+                    MessageBox.Show("Validation Error : " + error);
                     return;
+                }
                 txtSeason.Clear();
                 ddInsTitle.SelectedText = "";
                 txtInsRangeStart.Clear();
@@ -86,6 +94,36 @@ namespace LFI
                 text.BackColor = System.Drawing.Color.Gainsboro;
             else
                 text.BackColor = System.Drawing.Color.Black; 
+        }
+
+        private void btnAddTitle_Click(object sender, EventArgs e)
+        {
+            string error = "";
+            try
+            {
+                if (ddTitle.Text.Length < 0)
+                    error = "Title required";
+                if (ddTitle.FindStringExact(ddTitle.Text) != -1)
+                    error = "Title already exists";
+
+                if (error.Length != 0)
+                {
+                    MessageBox.Show("Validation Error : " + error);
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error : " + ex.Message);
+            }
+            finally
+            {
+
+            }
+
         }
     }
 }

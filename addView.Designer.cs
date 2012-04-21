@@ -35,7 +35,6 @@
             this.btnAddTitle = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtTitle = new System.Windows.Forms.TextBox();
             this.txtCategory = new System.Windows.Forms.TextBox();
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,6 +47,7 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.ddInsTitle = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtSeason = new System.Windows.Forms.TextBox();
             this.lstContents = new System.Windows.Forms.ListBox();
@@ -67,7 +67,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtPage = new System.Windows.Forms.MaskedTextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.ddInsTitle = new System.Windows.Forms.ComboBox();
+            this.ddTitle = new System.Windows.Forms.ComboBox();
             this.contextMenuDisc.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -89,10 +89,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.ddTitle);
             this.groupBox2.Controls.Add(this.btnAddTitle);
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.txtTitle);
             this.groupBox2.Controls.Add(this.txtCategory);
             this.groupBox2.Controls.Add(this.txtStatus);
             this.groupBox2.Controls.Add(this.label1);
@@ -122,6 +122,7 @@
             this.btnAddTitle.TabIndex = 6;
             this.btnAddTitle.Text = "Add";
             this.btnAddTitle.UseVisualStyleBackColor = true;
+            this.btnAddTitle.Click += new System.EventHandler(this.btnAddTitle_Click);
             // 
             // textBox1
             // 
@@ -145,18 +146,6 @@
             this.label6.Size = new System.Drawing.Size(57, 16);
             this.label6.TabIndex = 41;
             this.label6.Text = "Language";
-            // 
-            // txtTitle
-            // 
-            this.txtTitle.BackColor = System.Drawing.Color.Black;
-            this.txtTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTitle.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.txtTitle.Location = new System.Drawing.Point(27, 43);
-            this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(300, 22);
-            this.txtTitle.TabIndex = 0;
-            this.txtTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCategory
             // 
@@ -322,6 +311,18 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Contents";
             // 
+            // ddInsTitle
+            // 
+            this.ddInsTitle.BackColor = System.Drawing.SystemColors.Control;
+            this.ddInsTitle.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ddInsTitle.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ddInsTitle.ForeColor = System.Drawing.Color.Black;
+            this.ddInsTitle.FormattingEnabled = true;
+            this.ddInsTitle.Location = new System.Drawing.Point(14, 54);
+            this.ddInsTitle.Name = "ddInsTitle";
+            this.ddInsTitle.Size = new System.Drawing.Size(220, 24);
+            this.ddInsTitle.TabIndex = 61;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -351,6 +352,7 @@
             this.lstContents.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstContents.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
             this.lstContents.FormattingEnabled = true;
+            this.lstContents.HorizontalScrollbar = true;
             this.lstContents.ItemHeight = 17;
             this.lstContents.Location = new System.Drawing.Point(248, 26);
             this.lstContents.Name = "lstContents";
@@ -553,17 +555,17 @@
             this.label11.TabIndex = 36;
             this.label11.Text = "Disc ID";
             // 
-            // ddInsTitle
+            // ddTitle
             // 
-            this.ddInsTitle.BackColor = System.Drawing.SystemColors.Control;
-            this.ddInsTitle.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ddInsTitle.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ddInsTitle.ForeColor = System.Drawing.Color.Black;
-            this.ddInsTitle.FormattingEnabled = true;
-            this.ddInsTitle.Location = new System.Drawing.Point(14, 54);
-            this.ddInsTitle.Name = "ddInsTitle";
-            this.ddInsTitle.Size = new System.Drawing.Size(220, 24);
-            this.ddInsTitle.TabIndex = 61;
+            this.ddTitle.BackColor = System.Drawing.SystemColors.Control;
+            this.ddTitle.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ddTitle.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ddTitle.ForeColor = System.Drawing.Color.Black;
+            this.ddTitle.FormattingEnabled = true;
+            this.ddTitle.Location = new System.Drawing.Point(27, 43);
+            this.ddTitle.Name = "ddTitle";
+            this.ddTitle.Size = new System.Drawing.Size(316, 24);
+            this.ddTitle.TabIndex = 62;
             // 
             // addView
             // 
@@ -591,7 +593,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuDisc;
         private System.Windows.Forms.ToolStripMenuItem contextMenuItemDisc;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.TextBox txtCategory;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Label label1;
@@ -627,5 +628,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtSeason;
         private System.Windows.Forms.ComboBox ddInsTitle;
+        private System.Windows.Forms.ComboBox ddTitle;
     }
 }
