@@ -11,6 +11,7 @@ namespace LFI
     public partial class MainForm : Form
     {
         public static string Lmode;
+        mainView mv;
 
         public MainForm()
         {
@@ -19,7 +20,7 @@ namespace LFI
             InitializeComponent();
             AppDomain.CurrentDomain.SetData("DataDirectory", @"../../data");
             AppDomain.CurrentDomain.SetData("Image", @"../../image");
-            mainView mv = new mainView();
+            mv = new mainView();
             mainPanel.Controls.Add(mv);   
         }
 
@@ -40,7 +41,7 @@ namespace LFI
         private void menuAddItem_Click(object sender, EventArgs e)
         {
             mainPanel.Controls.Clear();
-            addView av = new addView();
+            addView av = new addView(this);
             mainPanel.Controls.Add(av);
             av.Focus();
         }
@@ -52,12 +53,19 @@ namespace LFI
             else
                 Lmode = "JPN";
             statusStripLabel.Text = Lmode;
+            mv.populateList();
+        }
+
+        public void pushback_formView()
+        {
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(mv);
         }
 
         private void menuFolderItem_Click(object sender, EventArgs e)
         {
             mainPanel.Controls.Clear();
-            folderView fv = new folderView();
+            folderView fv = new folderView(this);
             mainPanel.Controls.Add(fv);
             fv.Focus();
         }

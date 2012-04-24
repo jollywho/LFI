@@ -14,17 +14,17 @@ namespace LFI
     {
         private Folder_IO folder;
         private string dirname;
+        private MainForm caller;
 
-        public folderView()
+        public folderView(MainForm main)
         {
             InitializeComponent();
+            caller = main;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            mainView mv = new mainView();
-            this.Controls.Clear();
-            this.Controls.Add(mv);
+            caller.pushback_formView();
         }
 
         private void btnOpen_Click(object sender, EventArgs e)

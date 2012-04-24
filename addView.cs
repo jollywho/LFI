@@ -11,9 +11,12 @@ namespace LFI
 {
     public partial class addView : UserControl
     {
-        public addView()
+        private MainForm caller;
+
+        public addView(MainForm main)
         {
             InitializeComponent();
+            caller = main;
             ddLocation.DataSource = DB_Handle.GetDataTable(string.Format(
                 @"Select location_id from locations order by location_id"));
             ddLocation.DisplayMember = "location_id";
@@ -27,9 +30,7 @@ namespace LFI
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            mainView mv = new mainView();
-            this.Controls.Clear();
-            this.Controls.Add(mv);
+            caller.pushback_formView();
         }
 
         //todo: restructure for proper validation + errormsg
