@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gvTitles = new System.Windows.Forms.DataGridView();
             this.contextMenuDisc = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.titleInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuItemDisc = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.titleInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTitles)).BeginInit();
             this.contextMenuDisc.SuspendLayout();
@@ -62,7 +62,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
             this.groupBox1.Location = new System.Drawing.Point(3, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(181, 53);
+            this.groupBox1.Size = new System.Drawing.Size(180, 53);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter";
@@ -73,27 +73,27 @@
             this.gvTitles.AllowUserToDeleteRows = false;
             this.gvTitles.AllowUserToResizeColumns = false;
             this.gvTitles.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(38)))), ((int)(((byte)(34)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.gvTitles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(38)))), ((int)(((byte)(34)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.gvTitles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gvTitles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvTitles.BackgroundColor = System.Drawing.Color.Black;
-            this.gvTitles.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gvTitles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.gvTitles.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.gvTitles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvTitles.ColumnHeadersVisible = false;
             this.gvTitles.ContextMenuStrip = this.contextMenuDisc;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gvTitles.DefaultCellStyle = dataGridViewCellStyle2;
-            this.gvTitles.Location = new System.Drawing.Point(0, 59);
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvTitles.DefaultCellStyle = dataGridViewCellStyle4;
+            this.gvTitles.Location = new System.Drawing.Point(2, 59);
             this.gvTitles.MultiSelect = false;
             this.gvTitles.Name = "gvTitles";
             this.gvTitles.ReadOnly = true;
@@ -102,7 +102,7 @@
             this.gvTitles.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvTitles.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.gvTitles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gvTitles.Size = new System.Drawing.Size(184, 408);
+            this.gvTitles.Size = new System.Drawing.Size(180, 408);
             this.gvTitles.StandardTab = true;
             this.gvTitles.TabIndex = 1;
             this.gvTitles.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvTitles_RowEnter);
@@ -115,6 +115,13 @@
             this.contextMenuItemDisc});
             this.contextMenuDisc.Name = "contextMenuDisc";
             this.contextMenuDisc.Size = new System.Drawing.Size(153, 70);
+            // 
+            // titleInfoToolStripMenuItem
+            // 
+            this.titleInfoToolStripMenuItem.Name = "titleInfoToolStripMenuItem";
+            this.titleInfoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.titleInfoToolStripMenuItem.Text = "Title Info";
+            this.titleInfoToolStripMenuItem.Click += new System.EventHandler(this.titleInfoToolStripMenuItem_Click);
             // 
             // contextMenuItemDisc
             // 
@@ -139,13 +146,6 @@
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(340, 433);
             this.panelMain.TabIndex = 21;
-            // 
-            // titleInfoToolStripMenuItem
-            // 
-            this.titleInfoToolStripMenuItem.Name = "titleInfoToolStripMenuItem";
-            this.titleInfoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.titleInfoToolStripMenuItem.Text = "Title Info";
-            this.titleInfoToolStripMenuItem.Click += new System.EventHandler(this.titleInfoToolStripMenuItem_Click);
             // 
             // mainView
             // 

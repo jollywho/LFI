@@ -15,10 +15,10 @@ namespace LFI
         {
             InitializeComponent();
             ddLocation.DataSource = DB_Handle.GetDataTable(string.Format(
-                @"Select location_id from locations"));
+                @"Select location_id from locations order by location_id"));
             ddLocation.DisplayMember = "location_id";
             DataTable titles = DB_Handle.GetDataTable(string.Format(
-                @"Select title_id from titles"));
+                @"Select title_id from titles order by title_id"));
             ddInsTitle.DataSource = titles;
             ddInsTitle.DisplayMember = "title_id";
             ddTitle.DataSource = titles;
@@ -54,7 +54,7 @@ namespace LFI
                 }
                 else
                 {
-                    MessageBox.Show("Validation Error : " + error);
+                    MessageBox.Show(error, "Validation Error");
                     return;
                 }
                 txtSeason.Clear();
@@ -102,28 +102,49 @@ namespace LFI
             try
             {
                 if (ddTitle.Text.Length < 0)
-                    error = "Title required";
+                    error += "Title required\n";
                 if (ddTitle.FindStringExact(ddTitle.Text) != -1)
-                    error = "Title already exists";
+                    error += "Title already exists\n";
+                if (ddCategory.Text.Length < 0)
+                    error += "Category required\n";
+                if (ddStatus.Text.Length < 0)
+                    error += "Status required\n";
+                if (txtYear.Text == "")
+                    error += "Year required\n";
+                if (ddLanguage.Text.Length < 0)
+                    error += "Language required\n";
+                if (txtEpisode.Text == "" || txtEpisode.Text.Length < 3)
+                    error += "Episode required ('###')\n";
 
                 if (error.Length != 0)
                 {
-                    MessageBox.Show("Validation Error : " + error);
+                    MessageBox.Show(error, "Validation Error");
                 }
                 else
                 {
-
+                    //add
+                    DB_Handle.UpdateTable(string.Format(@"INSERT INTO TITLES 
+                        (title_id, episodes, year, status, language)
+                        VALUES ('{0}','{1}','{2}','{3}','{4}');",
+                        ddTitle.Text, txtEpisode.Text, txtYear.Text,
+                        ddStatus.Text, ddLanguage.Text));
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error : " + ex.Message);
+                MessageBox.Show(ex.Message, "Error");
             }
             finally
             {
 
             }
 
+        }
+
+        private void numericTextbox_keydown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+                e.Handled = e.SuppressKeyPress = true;
         }
     }
 }

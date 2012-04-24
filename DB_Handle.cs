@@ -9,11 +9,12 @@ namespace LFI
 {
     class DB_Handle
     {
+        static string conn = @"Data Source=|DataDirectory|lfi.db";
+
         public static DataTable GetDataTable(string sql)
         {
             DataTable dt = new DataTable();
 
-            string conn = @"Data Source=|DataDirectory|lfi.db";
             try
             {
                 SQLiteConnection cnn = new SQLiteConnection(conn);
@@ -30,6 +31,24 @@ namespace LFI
                 throw ex;
             }
             return dt;
+        }
+
+        public static void UpdateTable(string sql)
+        {
+            try
+            {
+                SQLiteConnection cnn = new SQLiteConnection(conn);
+                cnn.Open();
+                SQLiteCommand mycommand = new SQLiteCommand(cnn);
+                mycommand.CommandText = sql;
+                SQLiteDataReader reader = mycommand.ExecuteReader();
+                reader.Close();
+                cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 

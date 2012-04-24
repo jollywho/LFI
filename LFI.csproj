@@ -86,6 +86,12 @@
       <DependentUpon>folderView.cs</DependentUpon>
     </Compile>
     <Compile Include="Folder_IO.cs" />
+    <Compile Include="infoPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="infoPane.Designer.cs">
+      <DependentUpon>infoPane.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,17 +111,20 @@
     <Compile Include="mainView.Designer.cs">
       <DependentUpon>mainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="discView.cs">
+    <Compile Include="discPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="discView.Designer.cs">
-      <DependentUpon>discView.cs</DependentUpon>
+    <Compile Include="discPane.Designer.cs">
+      <DependentUpon>discPane.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="addView.resx">
       <DependentUpon>addView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="folderView.resx">
       <DependentUpon>folderView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="infoPane.resx">
+      <DependentUpon>infoPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -128,8 +137,8 @@
     <EmbeddedResource Include="mainView.resx">
       <DependentUpon>mainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="discView.resx">
-      <DependentUpon>discView.cs</DependentUpon>
+    <EmbeddedResource Include="discPane.resx">
+      <DependentUpon>discPane.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
