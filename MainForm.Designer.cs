@@ -143,7 +143,7 @@
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(540, 658);
             this.Name = "MainForm";
-            this.Text = "LFI 0.1.7";
+            this.Text = "LFI 0.1.8";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

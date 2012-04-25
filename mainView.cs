@@ -17,6 +17,7 @@ namespace LFI
         DataView dv;
         discPane discPane;
         infoPane infoPane;
+        int[] sel = new int[2];
 
         public mainView() 
         {
@@ -59,6 +60,7 @@ namespace LFI
             {
                 if (gvTitles.SelectedCells[0].Value != null)
                 {
+                    Console.WriteLine(gvTitles[0, gvTitles.SelectedCells[0].RowIndex].Value);
                     lblTitle.Text = gvTitles.SelectedCells[0].Value.ToString();
                     if (infoPane.active)
                     {
@@ -98,5 +100,44 @@ namespace LFI
                 infoPane.enable();
             }
         }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dlg = MessageBox.Show("Delete?", "Confirm", MessageBoxButtons.YesNo);
+            if (dlg == DialogResult.Yes)
+            {
+                int row = gvTitles.SelectedCells[0].RowIndex;
+                DB_Handle.UpdateTable(string.Format(
+                    @"DELETE FROM TITLES WHERE
+                    title_id = '{0}'",
+                    gvTitles.SelectedCells[0].Value.ToString()));
+                populateList();
+                if (gvTitles.Rows.Count > 0)
+                    gvTitles[0, row].Selected = true;
+                if (txtSearch.Text.Length != 0)
+                    txtSearch_TextChanged(null, null);
+                gvTitles.Focus();
+            }
+        }
+
+        private void gvTitles_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            sel[0] = e.RowIndex;
+            sel[1] = e.ColumnIndex;
+        }
+
+        private void contextMenuDisc_Opened(object sender, EventArgs e)
+        {
+            if (gvTitles.Rows.Count > 0)
+            {
+                contextMenuDisc.Enabled = true;
+                if (gvTitles[sel[1], sel[0]].Value != null)
+                    gvTitles[sel[1], sel[0]].Selected = true;
+            }
+            else
+                contextMenuDisc.Enabled = false;
+        }
+
+
     }
 }

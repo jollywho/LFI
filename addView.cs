@@ -43,7 +43,8 @@ namespace LFI
                     error += "Range type required\n";
                 if (ddInsRangeType.Text == "Item" && txtInsRangeStart.Text.Length < 3)
                     error += "Item required\n";
-                if (ddInsRangeType.Text == "Range" && txtInsRangeStart.Text.Length < 3 && txtInsRangeEnd.Text.Length < 3)
+                if (ddInsRangeType.Text == "Range" &&
+                    txtInsRangeStart.Text.Length < 3 && txtInsRangeEnd.Text.Length < 3)
                     error += "range required\n";
                 if (txtSeason.Text.Length < 2)
                     error += "Season required\n";
@@ -58,14 +59,18 @@ namespace LFI
                     switch (ddInsRangeType.Text)
                     {
                         case "Item":
-                            lstContents.Items.Add(ddInsTitle.Text + "," + txtSeason.Text + "," + txtInsRangeStart.Text);
+                            lstContents.Items.Add(ddInsTitle.Text + "," +
+                                txtSeason.Text + "," + txtInsRangeStart.Text);
                             break;
                         case "Range":
-                            lstContents.Items.Add(ddInsTitle.Text + "," + txtSeason.Text + 
-                                "," + txtInsRangeStart.Text + "-" + txtInsRangeEnd.Text);
+                            lstContents.Items.Add(ddInsTitle.Text + "," +
+                                txtSeason.Text + "," + txtInsRangeStart.Text + 
+                                "-" + txtInsRangeEnd.Text);
+                                
                             break;
                         case "Full":
-                            lstContents.Items.Add(ddInsTitle.Text + "," + txtSeason.Text + "," + "Full");
+                            lstContents.Items.Add(ddInsTitle.Text + "," + 
+                                txtSeason.Text + "," + "Full");
                             break;
                     }
 
@@ -116,13 +121,13 @@ namespace LFI
             string error = "";
             try
             {
-                if (ddTitle.Text.Length < 3)
-                    error += "Title required\n";
+                if (ddTitle.Text.Length == 0)
+                    error += "Title required or too short\n";
                 if (ddTitle.Text.Contains(','))
                     error += "Illegal Char in title";
                 if (ddTitle.FindStringExact(ddTitle.Text) != -1)
                     error += "Title already exists\n";
-                if (ddCategory.Text.Length < 3)
+                if (ddCategory.Text.Length == 0)
                     error += "Category required\n";
                 if (ddStatus.Text.Length < 3)
                     error += "Status required\n";
@@ -207,7 +212,7 @@ namespace LFI
                     if (rollbackpos)
                         DB_Handle.UpdateTable(string.Format(
                         @"DELETE FROM DISCS WHERE
-                    disc_id = '{0:000}' AND location_id = '{1:000}'",
+                        disc_id = '{0:000}' AND location_id = '{1:000}'",
                         txtDisc.Text, ddLocation.Text));
                     MessageBox.Show(ex.Message, "Error");
                 }
