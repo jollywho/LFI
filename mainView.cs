@@ -63,8 +63,8 @@ namespace LFI
                     if (infoPane.active)
                     {
                         infoPane.load_data(DB_Handle.GetDataTable(string.Format(
-                        @"SELECT * FROM titles WHERE title_id='{0}'",
-                        gvTitles.SelectedCells[0].Value.ToString())));
+                            @"SELECT * FROM titles WHERE title_id='{0}'",
+                            gvTitles.SelectedCells[0].Value.ToString())));
                     }
                     else
                     {

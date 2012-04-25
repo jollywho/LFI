@@ -60,6 +60,15 @@ namespace LFI
         {
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(mv);
+            mv.populateList();
+        }
+
+        public void load_formView(object view)
+        {
+            if (view is folderView)
+                menuFolderItem_Click(null, null);
+            if (view is addView)
+                menuAddItem_Click(null, null);
         }
 
         private void menuFolderItem_Click(object sender, EventArgs e)

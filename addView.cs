@@ -26,6 +26,7 @@ namespace LFI
             ddInsTitle.DisplayMember = "title_id";
             ddTitle.DataSource = titles;
             ddTitle.DisplayMember = "title_id";
+            ddInsRangeType_SelectedValueChanged(null, null);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -33,35 +34,46 @@ namespace LFI
             caller.pushback_formView();
         }
 
-        //todo: restructure for proper validation + errormsg
         private void btnInsert_Click(object sender, EventArgs e)
         {
             string error = "";
             if (ddInsTitle.Text.Length > 0 && ddInsTitle.FindStringExact(ddTitle.Text) != -1)
             {
-                if (ddInsRangeType.Text == "Item" && txtInsRangeStart.Text.Length > 0)
-                {
-                    lstContents.Items.Add(ddInsTitle.Text + ", " + txtInsRangeStart.Text + "," + txtSeason.Text);
-                }
-                else if (ddInsRangeType.Text == "Range" && txtInsRangeStart.Text.Length > 0 &&
-                    txtInsRangeEnd.Text.Length > 0)
-                {
-                    lstContents.Items.Add(ddInsTitle.Text + ", " + txtInsRangeStart.Text +
-                        "-" + txtInsRangeEnd.Text + "," + txtSeason.Text);
-                }
-                else if (ddInsRangeType.Text == "Full")
-                {
-                    lstContents.Items.Add(ddInsTitle.Text + ", " + "Full" + "," + txtSeason.Text);
-                }
-                else
+                if (ddInsRangeType.Text == "")
+                    error += "Range type required\n";
+                if (ddInsRangeType.Text == "Item" && txtInsRangeStart.Text.Length < 3)
+                    error += "Item required\n";
+                if (ddInsRangeType.Text == "Range" && txtInsRangeStart.Text.Length < 3 && txtInsRangeEnd.Text.Length < 3)
+                    error += "range required\n";
+                if (txtSeason.Text.Length < 2)
+                    error += "Season required\n";
+
+                if (error != "")
                 {
                     MessageBox.Show(error, "Validation Error");
                     return;
                 }
-                txtSeason.Clear();
-                ddInsTitle.SelectedText = "";
-                txtInsRangeStart.Clear();
-                txtInsRangeEnd.Clear();
+                else
+                {
+                    switch (ddInsRangeType.Text)
+                    {
+                        case "Item":
+                            lstContents.Items.Add(ddInsTitle.Text + "," + txtSeason.Text + "," + txtInsRangeStart.Text);
+                            break;
+                        case "Range":
+                            lstContents.Items.Add(ddInsTitle.Text + "," + txtSeason.Text + 
+                                "," + txtInsRangeStart.Text + "-" + txtInsRangeEnd.Text);
+                            break;
+                        case "Full":
+                            lstContents.Items.Add(ddInsTitle.Text + "," + txtSeason.Text + "," + "Full");
+                            break;
+                    }
+
+                    txtSeason.Clear();
+                    ddInsTitle.SelectedText = "";
+                    txtInsRangeStart.Clear();
+                    txtInsRangeEnd.Clear();
+                }
             }
         }
 
@@ -73,28 +85,30 @@ namespace LFI
 
         private void ddInsRangeType_SelectedValueChanged(object sender, EventArgs e)
         {
-            txtInsRangeStart.ReadOnly = true;
-            txtInsRangeEnd.ReadOnly = true;
+            txtInsRangeStart.Hide();
+            txtInsRangeEnd.Hide();
+            lblStart.Hide();
+            lblEnd.Hide();
+            lblRange.Hide();
             txtInsRangeStart.Clear();
             txtInsRangeEnd.Clear();
 
             if (ddInsRangeType.Text == "Item")
-                txtInsRangeStart.ReadOnly = false;
+            {
+                txtInsRangeStart.Show();
+                lblStart.Show();
+                lblStart.Text = "Ep #";
+            }
             else if (ddInsRangeType.Text == "Range")
             {
-                txtInsRangeStart.ReadOnly = false;
-                txtInsRangeEnd.ReadOnly = false;
+                txtInsRangeStart.Show();
+                txtInsRangeEnd.Show();
+                lblStart.Text = "Start";
+                lblEnd.Text = "End";
+                lblRange.Show();
+                lblStart.Show();
+                lblEnd.Show();
             }
-        }
-
-        private void Change_Text_Color(object sender, EventArgs e)
-        {
-            TextBox text = new TextBox();
-            text = (TextBox)sender;
-            if (text.ReadOnly)
-                text.BackColor = System.Drawing.Color.Gainsboro;
-            else
-                text.BackColor = System.Drawing.Color.Black; 
         }
 
         private void btnAddTitle_Click(object sender, EventArgs e)
@@ -102,20 +116,22 @@ namespace LFI
             string error = "";
             try
             {
-                if (ddTitle.Text.Length < 0)
+                if (ddTitle.Text.Length < 3)
                     error += "Title required\n";
+                if (ddTitle.Text.Contains(','))
+                    error += "Illegal Char in title";
                 if (ddTitle.FindStringExact(ddTitle.Text) != -1)
                     error += "Title already exists\n";
-                if (ddCategory.Text.Length < 0)
+                if (ddCategory.Text.Length < 3)
                     error += "Category required\n";
-                if (ddStatus.Text.Length < 0)
+                if (ddStatus.Text.Length < 3)
                     error += "Status required\n";
-                if (txtYear.Text == "")
+                if (txtYear.Text.Length < 4)
                     error += "Year required\n";
-                if (ddLanguage.Text.Length < 0)
+                if (ddLanguage.Text.Length < 1)
                     error += "Language required\n";
-                if (txtEpisode.Text == "" || txtEpisode.Text.Length < 3)
-                    error += "Episode required ('###')\n";
+                if (txtEpisode.Text.Length < 3)
+                    error += "Episode # required\n";
 
                 if (error.Length != 0)
                 {
@@ -126,26 +142,96 @@ namespace LFI
                     //add
                     DB_Handle.UpdateTable(string.Format(@"INSERT INTO TITLES 
                         (title_id, episodes, year, status, language)
-                        VALUES ('{0}','{1}','{2}','{3}','{4}');",
+                        VALUES ('{0}','{1:000}','{2}','{3}','{4}');",
                         ddTitle.Text, txtEpisode.Text, txtYear.Text,
                         ddStatus.Text, ddLanguage.Text));
+                    MessageBox.Show("Saved", "Success");
+                    caller.load_formView(this);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error");
             }
-            finally
-            {
-
-            }
-
         }
 
         private void numericTextbox_keydown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space)
                 e.Handled = e.SuppressKeyPress = true;
+        }
+
+        private void btnAddDisc_Click(object sender, EventArgs e)
+        {
+            string error = "";
+            bool rollbackpos = false;
+
+            if (txtDisc.Text.Length < 1)
+                error += "Disc required\n";
+            if (txtPage.Text.Length < 3)
+                error += "Error required\n";
+            if (ddLocation.Text.Length < 1)
+                error += "Location required\n";
+            if (lstContents.Items.Count < 1)
+                error += "Content required\n";
+
+            if (error.Length != 0)
+            {
+                MessageBox.Show(error, "Validation Error");
+            }
+            else
+            {
+                try
+                {
+                    DB_Handle.UpdateTable(string.Format(
+                    @"INSERT INTO DISCS 
+                    (disc_id, page_number, location_id)
+                    VALUES ('{0:000}','{1:000}','{2:000}');",
+                    txtDisc.Text, txtPage.Text, ddLocation.Text));
+                    rollbackpos = true;
+
+                    foreach (string str in lstContents.Items)
+                    {
+                        string[] item = str.Split(',');
+                        DB_Handle.UpdateTable(string.Format(
+                        @"INSERT INTO DISC_CONTENTS 
+                        (disc_id, title_id, season, range)
+                        VALUES ('{0:000}','{1:000}','{2:000}','{3}');",
+                        txtDisc.Text, item[0], item[1], item[2]));
+                    }
+                    MessageBox.Show("Saved", "Success");
+                    caller.load_formView(this);
+                }
+                catch (Exception ex)
+                {
+                    if (rollbackpos)
+                        DB_Handle.UpdateTable(string.Format(
+                        @"DELETE FROM DISCS WHERE
+                    disc_id = '{0:000}' AND location_id = '{1:000}'",
+                        txtDisc.Text, ddLocation.Text));
+                    MessageBox.Show(ex.Message, "Error");
+                }
+            }
+        }
+
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt = DB_Handle.GetDataTable(string.Format(
+                @"select max(disc_id) from discs 
+                where location_id = '{0}'", ddLocation.Text));
+                txtDisc.Text = (Convert.ToInt32(dt.Rows[0][0])+1).ToString("000");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+        }
+
+        private void ddLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtDisc.Clear();
         }
     }
 }

@@ -105,7 +105,7 @@
             // menuAddItem
             // 
             this.menuAddItem.Index = 0;
-            this.menuAddItem.Text = "Add Disc";
+            this.menuAddItem.Text = "Add...";
             this.menuAddItem.Click += new System.EventHandler(this.menuAddItem_Click);
             // 
             // menuFolderItem
@@ -143,7 +143,7 @@
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(540, 658);
             this.Name = "MainForm";
-            this.Text = "LFI 0.1.6";
+            this.Text = "LFI 0.1.7";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

@@ -14,22 +14,14 @@ namespace LFI
         public static DataTable GetDataTable(string sql)
         {
             DataTable dt = new DataTable();
-
-            try
-            {
-                SQLiteConnection cnn = new SQLiteConnection(conn);
-                cnn.Open();
-                SQLiteCommand mycommand = new SQLiteCommand(cnn);
-                mycommand.CommandText = sql;
-                SQLiteDataReader reader = mycommand.ExecuteReader();
-                dt.Load(reader);
-                reader.Close();
-                cnn.Close();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            SQLiteConnection cnn = new SQLiteConnection(conn);
+            cnn.Open();
+            SQLiteCommand mycommand = new SQLiteCommand(cnn);
+            mycommand.CommandText = sql;
+            SQLiteDataReader reader = mycommand.ExecuteReader();
+            dt.Load(reader);
+            reader.Close();
+            cnn.Close();
             return dt;
         }
 

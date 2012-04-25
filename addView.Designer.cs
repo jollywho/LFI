@@ -48,26 +48,28 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.lblEnd = new System.Windows.Forms.Label();
+            this.lblStart = new System.Windows.Forms.Label();
             this.ddInsTitle = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtSeason = new System.Windows.Forms.TextBox();
             this.lstContents = new System.Windows.Forms.ListBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.txtInsRangeEnd = new System.Windows.Forms.TextBox();
-            this.txtInsRangeStart = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.ddInsRangeType = new System.Windows.Forms.ComboBox();
-            this.label19 = new System.Windows.Forms.Label();
+            this.lblRange = new System.Windows.Forms.Label();
             this.ddLocation = new System.Windows.Forms.ComboBox();
-            this.txtDisc = new System.Windows.Forms.MaskedTextBox();
             this.btnAddDisc = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.txtPage = new System.Windows.Forms.MaskedTextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.txtSeason = new System.Windows.Forms.MaskedTextBox();
+            this.txtInsRangeStart = new System.Windows.Forms.MaskedTextBox();
+            this.txtInsRangeEnd = new System.Windows.Forms.MaskedTextBox();
+            this.btnGenerate = new System.Windows.Forms.Button();
+            this.txtDisc = new System.Windows.Forms.MaskedTextBox();
             this.contextMenuDisc.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -296,14 +298,14 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.txtDisc);
+            this.groupBox1.Controls.Add(this.btnGenerate);
             this.groupBox1.Controls.Add(this.groupBox6);
             this.groupBox1.Controls.Add(this.ddLocation);
-            this.groupBox1.Controls.Add(this.txtDisc);
             this.groupBox1.Controls.Add(this.btnAddDisc);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.maskedTextBox1);
-            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtPage);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -319,18 +321,20 @@
             // groupBox6
             // 
             this.groupBox6.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox6.Controls.Add(this.txtInsRangeEnd);
+            this.groupBox6.Controls.Add(this.txtInsRangeStart);
+            this.groupBox6.Controls.Add(this.txtSeason);
+            this.groupBox6.Controls.Add(this.lblEnd);
+            this.groupBox6.Controls.Add(this.lblStart);
             this.groupBox6.Controls.Add(this.ddInsTitle);
             this.groupBox6.Controls.Add(this.label9);
-            this.groupBox6.Controls.Add(this.txtSeason);
             this.groupBox6.Controls.Add(this.lstContents);
             this.groupBox6.Controls.Add(this.button5);
             this.groupBox6.Controls.Add(this.button6);
-            this.groupBox6.Controls.Add(this.txtInsRangeEnd);
-            this.groupBox6.Controls.Add(this.txtInsRangeStart);
             this.groupBox6.Controls.Add(this.label20);
             this.groupBox6.Controls.Add(this.label21);
             this.groupBox6.Controls.Add(this.ddInsRangeType);
-            this.groupBox6.Controls.Add(this.label19);
+            this.groupBox6.Controls.Add(this.lblRange);
             this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
             this.groupBox6.Location = new System.Drawing.Point(27, 70);
@@ -339,6 +343,26 @@
             this.groupBox6.TabIndex = 3;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Contents";
+            // 
+            // lblEnd
+            // 
+            this.lblEnd.AutoSize = true;
+            this.lblEnd.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEnd.Location = new System.Drawing.Point(110, 136);
+            this.lblEnd.Name = "lblEnd";
+            this.lblEnd.Size = new System.Drawing.Size(40, 16);
+            this.lblEnd.TabIndex = 63;
+            this.lblEnd.Text = "Range";
+            // 
+            // lblStart
+            // 
+            this.lblStart.AutoSize = true;
+            this.lblStart.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStart.Location = new System.Drawing.Point(53, 136);
+            this.lblStart.Name = "lblStart";
+            this.lblStart.Size = new System.Drawing.Size(40, 16);
+            this.lblStart.TabIndex = 62;
+            this.lblStart.Text = "Range";
             // 
             // ddInsTitle
             // 
@@ -356,24 +380,11 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(168, 83);
+            this.label9.Location = new System.Drawing.Point(165, 83);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(44, 16);
             this.label9.TabIndex = 60;
             this.label9.Text = "Season";
-            // 
-            // txtSeason
-            // 
-            this.txtSeason.BackColor = System.Drawing.Color.Black;
-            this.txtSeason.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSeason.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSeason.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.txtSeason.Location = new System.Drawing.Point(166, 104);
-            this.txtSeason.Name = "txtSeason";
-            this.txtSeason.Size = new System.Drawing.Size(49, 22);
-            this.txtSeason.TabIndex = 59;
-            this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSeason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
             // lstContents
             // 
@@ -414,41 +425,11 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.btnInsert_Click);
             // 
-            // txtInsRangeEnd
-            // 
-            this.txtInsRangeEnd.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtInsRangeEnd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtInsRangeEnd.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInsRangeEnd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.txtInsRangeEnd.Location = new System.Drawing.Point(104, 140);
-            this.txtInsRangeEnd.Name = "txtInsRangeEnd";
-            this.txtInsRangeEnd.ReadOnly = true;
-            this.txtInsRangeEnd.Size = new System.Drawing.Size(49, 22);
-            this.txtInsRangeEnd.TabIndex = 3;
-            this.txtInsRangeEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtInsRangeEnd.ReadOnlyChanged += new System.EventHandler(this.Change_Text_Color);
-            this.txtInsRangeEnd.EnabledChanged += new System.EventHandler(this.Change_Text_Color);
-            // 
-            // txtInsRangeStart
-            // 
-            this.txtInsRangeStart.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtInsRangeStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtInsRangeStart.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInsRangeStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.txtInsRangeStart.Location = new System.Drawing.Point(45, 140);
-            this.txtInsRangeStart.Name = "txtInsRangeStart";
-            this.txtInsRangeStart.ReadOnly = true;
-            this.txtInsRangeStart.Size = new System.Drawing.Size(53, 22);
-            this.txtInsRangeStart.TabIndex = 2;
-            this.txtInsRangeStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtInsRangeStart.ReadOnlyChanged += new System.EventHandler(this.Change_Text_Color);
-            this.txtInsRangeStart.EnabledChanged += new System.EventHandler(this.Change_Text_Color);
-            // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(81, 83);
+            this.label20.Location = new System.Drawing.Point(81, 85);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(40, 16);
             this.label20.TabIndex = 52;
@@ -476,21 +457,21 @@
             "Item",
             "Full",
             "Range"});
-            this.ddInsRangeType.Location = new System.Drawing.Point(47, 102);
+            this.ddInsRangeType.Location = new System.Drawing.Point(47, 104);
             this.ddInsRangeType.Name = "ddInsRangeType";
             this.ddInsRangeType.Size = new System.Drawing.Size(108, 24);
             this.ddInsRangeType.TabIndex = 1;
             this.ddInsRangeType.SelectedValueChanged += new System.EventHandler(this.ddInsRangeType_SelectedValueChanged);
             // 
-            // label19
+            // lblRange
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(96, 140);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(12, 16);
-            this.label19.TabIndex = 58;
-            this.label19.Text = "-";
+            this.lblRange.AutoSize = true;
+            this.lblRange.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRange.Location = new System.Drawing.Point(98, 155);
+            this.lblRange.Name = "lblRange";
+            this.lblRange.Size = new System.Drawing.Size(12, 16);
+            this.lblRange.TabIndex = 58;
+            this.lblRange.Text = "-";
             // 
             // ddLocation
             // 
@@ -504,20 +485,7 @@
             this.ddLocation.Name = "ddLocation";
             this.ddLocation.Size = new System.Drawing.Size(136, 24);
             this.ddLocation.TabIndex = 2;
-            // 
-            // txtDisc
-            // 
-            this.txtDisc.BackColor = System.Drawing.Color.Black;
-            this.txtDisc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDisc.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDisc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.txtDisc.Location = new System.Drawing.Point(27, 39);
-            this.txtDisc.Mask = "L000";
-            this.txtDisc.Name = "txtDisc";
-            this.txtDisc.Size = new System.Drawing.Size(100, 22);
-            this.txtDisc.TabIndex = 0;
-            this.txtDisc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtDisc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            this.ddLocation.SelectedIndexChanged += new System.EventHandler(this.ddLocation_SelectedIndexChanged);
             // 
             // btnAddDisc
             // 
@@ -529,6 +497,7 @@
             this.btnAddDisc.TabIndex = 3;
             this.btnAddDisc.Text = "Add";
             this.btnAddDisc.UseVisualStyleBackColor = true;
+            this.btnAddDisc.Click += new System.EventHandler(this.btnAddDisc_Click);
             // 
             // label7
             // 
@@ -540,53 +509,109 @@
             this.label7.TabIndex = 41;
             this.label7.Text = "Location";
             // 
-            // maskedTextBox1
+            // txtPage
             // 
-            this.maskedTextBox1.BackColor = System.Drawing.Color.Black;
-            this.maskedTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.maskedTextBox1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.maskedTextBox1.Location = new System.Drawing.Point(196, 41);
-            this.maskedTextBox1.Mask = "000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(52, 22);
-            this.maskedTextBox1.TabIndex = 1;
-            this.maskedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.maskedTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            this.txtPage.BackColor = System.Drawing.Color.Black;
+            this.txtPage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPage.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.txtPage.Location = new System.Drawing.Point(275, 39);
+            this.txtPage.Mask = "000";
+            this.txtPage.Name = "txtPage";
+            this.txtPage.Size = new System.Drawing.Size(52, 22);
+            this.txtPage.TabIndex = 1;
+            this.txtPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label8.Location = new System.Drawing.Point(205, 22);
+            this.label8.Location = new System.Drawing.Point(284, 20);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(34, 16);
             this.label8.TabIndex = 35;
             this.label8.Text = "Page";
-            // 
-            // txtPage
-            // 
-            this.txtPage.BackColor = System.Drawing.Color.Black;
-            this.txtPage.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.txtPage.Location = new System.Drawing.Point(196, 41);
-            this.txtPage.Mask = "000";
-            this.txtPage.Name = "txtPage";
-            this.txtPage.Size = new System.Drawing.Size(52, 22);
-            this.txtPage.TabIndex = 3;
-            this.txtPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label11.Location = new System.Drawing.Point(54, 21);
+            this.label11.Location = new System.Drawing.Point(51, 21);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(46, 16);
             this.label11.TabIndex = 36;
             this.label11.Text = "Disc ID";
+            // 
+            // txtSeason
+            // 
+            this.txtSeason.BackColor = System.Drawing.Color.Black;
+            this.txtSeason.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSeason.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSeason.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.txtSeason.Location = new System.Drawing.Point(161, 104);
+            this.txtSeason.Mask = "00";
+            this.txtSeason.Name = "txtSeason";
+            this.txtSeason.Size = new System.Drawing.Size(52, 22);
+            this.txtSeason.TabIndex = 42;
+            this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSeason.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.txtSeason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            // 
+            // txtInsRangeStart
+            // 
+            this.txtInsRangeStart.BackColor = System.Drawing.Color.Black;
+            this.txtInsRangeStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtInsRangeStart.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInsRangeStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.txtInsRangeStart.Location = new System.Drawing.Point(48, 155);
+            this.txtInsRangeStart.Mask = "000";
+            this.txtInsRangeStart.Name = "txtInsRangeStart";
+            this.txtInsRangeStart.Size = new System.Drawing.Size(52, 22);
+            this.txtInsRangeStart.TabIndex = 43;
+            this.txtInsRangeStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtInsRangeStart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            // 
+            // txtInsRangeEnd
+            // 
+            this.txtInsRangeEnd.BackColor = System.Drawing.Color.Black;
+            this.txtInsRangeEnd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtInsRangeEnd.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInsRangeEnd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.txtInsRangeEnd.Location = new System.Drawing.Point(106, 155);
+            this.txtInsRangeEnd.Mask = "000";
+            this.txtInsRangeEnd.Name = "txtInsRangeEnd";
+            this.txtInsRangeEnd.Size = new System.Drawing.Size(52, 22);
+            this.txtInsRangeEnd.TabIndex = 64;
+            this.txtInsRangeEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtInsRangeEnd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            // 
+            // btnGenerate
+            // 
+            this.btnGenerate.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerate.ForeColor = System.Drawing.Color.Black;
+            this.btnGenerate.Location = new System.Drawing.Point(133, 38);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(75, 23);
+            this.btnGenerate.TabIndex = 42;
+            this.btnGenerate.Text = "Generate";
+            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            // 
+            // txtDisc
+            // 
+            this.txtDisc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(40)))), ((int)(((byte)(31)))));
+            this.txtDisc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDisc.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDisc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.txtDisc.Location = new System.Drawing.Point(30, 38);
+            this.txtDisc.Mask = "000";
+            this.txtDisc.Name = "txtDisc";
+            this.txtDisc.Size = new System.Drawing.Size(88, 22);
+            this.txtDisc.TabIndex = 43;
+            this.txtDisc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // addView
             // 
@@ -625,23 +650,18 @@
         private System.Windows.Forms.Button btnAddDisc;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.MaskedTextBox txtPage;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.MaskedTextBox txtDisc;
         private System.Windows.Forms.ComboBox ddLocation;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox txtPage;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lblRange;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox txtInsRangeEnd;
-        private System.Windows.Forms.TextBox txtInsRangeStart;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox ddInsRangeType;
         private System.Windows.Forms.ListBox lstContents;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtSeason;
         private System.Windows.Forms.ComboBox ddInsTitle;
         private System.Windows.Forms.ComboBox ddTitle;
         private System.Windows.Forms.ComboBox ddLanguage;
@@ -650,5 +670,12 @@
         private System.Windows.Forms.ComboBox ddStatus;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox ddCategory;
+        private System.Windows.Forms.Label lblEnd;
+        private System.Windows.Forms.Label lblStart;
+        private System.Windows.Forms.MaskedTextBox txtInsRangeEnd;
+        private System.Windows.Forms.MaskedTextBox txtInsRangeStart;
+        private System.Windows.Forms.MaskedTextBox txtSeason;
+        private System.Windows.Forms.Button btnGenerate;
+        private System.Windows.Forms.MaskedTextBox txtDisc;
     }
 }

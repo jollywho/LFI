@@ -31,15 +31,22 @@ namespace LFI
         }
 
         public void load_data(string sel)
-        { 
-            DataTable info = DB_Handle.GetDataTable(string.Format(
-                @"Select discs.disc_id AS 'Disc', disc_titles.range AS 'Range', 
+        {
+            try
+            {
+                DataTable info = DB_Handle.GetDataTable(string.Format(
+                    @"Select discs.disc_id AS 'Disc', disc_contents.range AS 'Range', 
                 discs.page_number AS 'Page Number', discs.location_id AS 'Location',
-                disc_titles.season AS 'Season'
-                FROM discs natural join disc_titles WHERE title_id='{0}'
-                ORDER BY discs.disc_id ASC, disc_titles.range ASC",
+                disc_contents.season AS 'Season'
+                FROM discs natural join disc_contents WHERE title_id='{0}'
+                ORDER BY discs.disc_id ASC, disc_contents.range ASC",
                 sel));
-            gvDisc.DataSource = info;
+                gvDisc.DataSource = info;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "DB Error");
+            }
         }
 
         /*
