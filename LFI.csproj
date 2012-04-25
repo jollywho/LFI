@@ -79,6 +79,12 @@
     <Compile Include="AlphanumComparator.cs" />
     <Compile Include="Crc32.cs" />
     <Compile Include="DB_Handle.cs" />
+    <Compile Include="editPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="editPane.Designer.cs">
+      <DependentUpon>editPane.cs</DependentUpon>
+    </Compile>
     <Compile Include="folderView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     </Compile>
     <EmbeddedResource Include="addView.resx">
       <DependentUpon>addView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="editPane.resx">
+      <DependentUpon>editPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="folderView.resx">
       <DependentUpon>folderView.cs</DependentUpon>

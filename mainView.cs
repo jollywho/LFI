@@ -15,9 +15,12 @@ namespace LFI
     {
         DataTable dt;
         DataView dv;
-        discPane discPane;
-        infoPane infoPane;
+        public discPane discPane;
+        public editPane editPane;
+        public infoPane infoPane;
         int[] sel = new int[2];
+        int savedRow = 0;
+        public bool enabled;
 
         public mainView() 
         {
@@ -25,10 +28,23 @@ namespace LFI
             populateList();
             infoPane = new infoPane();
             discPane = new discPane();
+            editPane = new editPane();
             panelMain.Controls.Add(infoPane);
             panelMain.Controls.Add(discPane);
+            panelMain.Controls.Add(editPane);
             infoPane.enable();
             discPane.disable();
+        }
+
+        public void disable()
+        {
+            enabled = false;
+        }
+
+        public void enable()
+        {
+            gvTitles[0, savedRow].Selected = true;
+            enabled = true;
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -60,7 +76,7 @@ namespace LFI
             {
                 if (gvTitles.SelectedCells[0].Value != null)
                 {
-                    Console.WriteLine(gvTitles[0, gvTitles.SelectedCells[0].RowIndex].Value);
+                    savedRow = gvTitles.SelectedCells[0].RowIndex;
                     lblTitle.Text = gvTitles.SelectedCells[0].Value.ToString();
                     if (infoPane.active)
                     {
@@ -97,8 +113,31 @@ namespace LFI
             if (discPane.active)
             {
                 discPane.disable();
-                infoPane.enable();
+                load_infoPane();
             }
+        }
+
+        public void load_infoPane()
+        {
+            infoPane.enable();
+            editPane.disable();
+            gvTitles.Enabled = true;
+            txtSearch.Enabled = true;
+            populateList();
+            enable();
+            gvTitles_RowEnter(null, null);
+        }
+
+        public void load_editPane()
+        {
+            discPane.disable();
+            infoPane.disable();
+            gvTitles.Enabled = false;
+            txtSearch.Enabled = false;
+            editPane.load_data(DB_Handle.GetDataTable(string.Format(
+                @"SELECT * FROM titles WHERE title_id='{0}'",
+                gvTitles.SelectedCells[0].Value.ToString())));
+            editPane.enable();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -137,7 +176,5 @@ namespace LFI
             else
                 contextMenuDisc.Enabled = false;
         }
-
-
     }
 }

@@ -21,7 +21,8 @@ namespace LFI
             AppDomain.CurrentDomain.SetData("DataDirectory", @"../../data");
             AppDomain.CurrentDomain.SetData("Image", @"../../image");
             mv = new mainView();
-            mainPanel.Controls.Add(mv);   
+            mainPanel.Controls.Add(mv);
+            mv.enable();
         }
 
         private void bump_menuItem(ToolStripMenuItem obj1, ToolStripMenuItem obj2)
@@ -41,6 +42,7 @@ namespace LFI
         private void menuAddItem_Click(object sender, EventArgs e)
         {
             mainPanel.Controls.Clear();
+            mv.disable();
             addView av = new addView(this);
             mainPanel.Controls.Add(av);
             av.Focus();
@@ -61,6 +63,7 @@ namespace LFI
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(mv);
             mv.populateList();
+            mv.enable();
         }
 
         public void load_formView(object view)
@@ -74,9 +77,61 @@ namespace LFI
         private void menuFolderItem_Click(object sender, EventArgs e)
         {
             mainPanel.Controls.Clear();
+            mv.disable();
             folderView fv = new folderView(this);
             mainPanel.Controls.Add(fv);
             fv.Focus();
+        }
+
+        private void titleEditItem_Click(object sender, EventArgs e)
+        {
+            mv.load_editPane();
+            titleEditItem.Checked = true;   
+        }
+
+        private void menuItem2_Popup(object sender, EventArgs e)
+        {
+            cancelItem.Enabled = false;
+            saveItem.Enabled = false;
+            titleEditItem.Enabled = false;
+            if (mv.enabled && mv.infoPane.active)
+            {
+                titleEditItem.Enabled = true;
+            }
+            if (mv.enabled && mv.editPane.active)
+            {
+                cancelItem.Enabled = true;
+                saveItem.Enabled = true;
+            }
+        }
+
+        private void menuItem1_Popup(object sender, EventArgs e)
+        {
+            if (titleEditItem.Checked == true)
+            {
+                menuAddItem.Enabled = false;
+                menuFolderItem.Enabled = false;
+            }
+            else
+            {
+                menuAddItem.Enabled = true;
+                menuFolderItem.Enabled = true;
+            }
+        }
+
+        private void saveItem_Click(object sender, EventArgs e)
+        {
+            if (mv.editPane.saveData())
+            {
+                titleEditItem.Checked = false;
+                mv.load_infoPane();
+            }
+        }
+
+        private void cancelItem_Click(object sender, EventArgs e)
+        {
+            titleEditItem.Checked = false;
+            mv.load_infoPane();
         }
     }
     

@@ -34,6 +34,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuAddItem = new System.Windows.Forms.MenuItem();
@@ -41,6 +42,9 @@
             this.menuItem4 = new System.Windows.Forms.MenuItem();
             this.menuItem5 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.titleEditItem = new System.Windows.Forms.MenuItem();
+            this.cancelItem = new System.Windows.Forms.MenuItem();
+            this.saveItem = new System.Windows.Forms.MenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -72,7 +76,8 @@
             // 
             this.statusStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusStripLabel});
+            this.statusStripLabel,
+            this.toolStripProgressBar1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 598);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(524, 22);
@@ -85,6 +90,11 @@
             this.statusStripLabel.Size = new System.Drawing.Size(27, 17);
             this.statusStripLabel.Text = "JPN";
             this.statusStripLabel.Click += new System.EventHandler(this.statusStripLabel_Click);
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
             // 
             // mainMenu1
             // 
@@ -101,6 +111,7 @@
             this.menuItem4,
             this.menuItem5});
             this.menuItem1.Text = "File";
+            this.menuItem1.Popup += new System.EventHandler(this.menuItem1_Popup);
             // 
             // menuAddItem
             // 
@@ -127,7 +138,30 @@
             // menuItem2
             // 
             this.menuItem2.Index = 1;
+            this.menuItem2.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.saveItem,
+            this.titleEditItem,
+            this.cancelItem});
             this.menuItem2.Text = "Edit";
+            this.menuItem2.Popup += new System.EventHandler(this.menuItem2_Popup);
+            // 
+            // titleEditItem
+            // 
+            this.titleEditItem.Index = 1;
+            this.titleEditItem.Text = "Title Info";
+            this.titleEditItem.Click += new System.EventHandler(this.titleEditItem_Click);
+            // 
+            // cancelItem
+            // 
+            this.cancelItem.Index = 2;
+            this.cancelItem.Text = "Cancel";
+            this.cancelItem.Click += new System.EventHandler(this.cancelItem_Click);
+            // 
+            // saveItem
+            // 
+            this.saveItem.Index = 0;
+            this.saveItem.Text = "Save";
+            this.saveItem.Click += new System.EventHandler(this.saveItem_Click);
             // 
             // MainForm
             // 
@@ -143,7 +177,7 @@
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(540, 658);
             this.Name = "MainForm";
-            this.Text = "LFI 0.1.8";
+            this.Text = "LFI 0.1.9";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -165,6 +199,10 @@
         private System.Windows.Forms.MenuItem menuItem4;
         private System.Windows.Forms.MenuItem menuItem5;
         private System.Windows.Forms.MenuItem menuFolderItem;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.MenuItem titleEditItem;
+        private System.Windows.Forms.MenuItem saveItem;
+        private System.Windows.Forms.MenuItem cancelItem;
 
 
     }
