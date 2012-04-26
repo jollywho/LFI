@@ -86,7 +86,7 @@
             this.gvDisc.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvDisc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.gvDisc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gvDisc.Size = new System.Drawing.Size(337, 433);
+            this.gvDisc.Size = new System.Drawing.Size(334, 433);
             this.gvDisc.StandardTab = true;
             this.gvDisc.TabIndex = 2;
             // 

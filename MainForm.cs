@@ -11,6 +11,8 @@ namespace LFI
     public partial class MainForm : Form
     {
         public static string Lmode;
+        public Size vertical = new Size(540, 700);
+        public Size horizontal = new Size(750, 700);
         mainView mv;
 
         public MainForm()
@@ -21,7 +23,7 @@ namespace LFI
             AppDomain.CurrentDomain.SetData("DataDirectory", @"data");
             AppDomain.CurrentDomain.SetData("Image", @"../../image");
             mv = new mainView();
-            mainPanel.Controls.Add(mv);
+            panel1.Controls.Add(mv);
             mv.enable();
         }
 
@@ -39,13 +41,15 @@ namespace LFI
             }
         }
 
-        private void menuAddItem_Click(object sender, EventArgs e)
+        private void menuDiscItem_Click(object sender, EventArgs e)
         {
-            mainPanel.Controls.Clear();
+            panel1.Controls.Clear();
             mv.disable();
-            addView av = new addView(this);
-            mainPanel.Controls.Add(av);
-            av.Focus();
+            discView dv = new discView();
+            panel1.Controls.Add(dv);
+            this.MaximumSize = horizontal;
+            this.MinimumSize = horizontal;
+            dv.Focus();
         }
 
         private void statusStripLabel_Click(object sender, EventArgs e)
@@ -60,10 +64,13 @@ namespace LFI
 
         public void pushback_formView()
         {
-            mainPanel.Controls.Clear();
-            mainPanel.Controls.Add(mv);
+            panel1.Controls.Clear();
+            panel1.Controls.Add(mv);
             mv.populateList();
             mv.enable();
+            this.MaximumSize = vertical;
+            this.MinimumSize = vertical;
+            mv.Focus();
         }
 
         public void load_formView(object view)
@@ -71,15 +78,17 @@ namespace LFI
             if (view is folderView)
                 menuFolderItem_Click(null, null);
             if (view is addView)
-                menuAddItem_Click(null, null);
+                menuDiscItem_Click(null, null);
         }
 
         private void menuFolderItem_Click(object sender, EventArgs e)
         {
-            mainPanel.Controls.Clear();
+            panel1.Controls.Clear();
             mv.disable();
             folderView fv = new folderView(this);
-            mainPanel.Controls.Add(fv);
+            panel1.Controls.Add(fv);
+            this.MaximumSize = vertical;
+            this.MinimumSize = vertical;
             fv.Focus();
         }
 
@@ -109,12 +118,12 @@ namespace LFI
         {
             if (titleEditItem.Checked == true)
             {
-                menuAddItem.Enabled = false;
+                menuDiscItem.Enabled = false;
                 menuFolderItem.Enabled = false;
             }
             else
             {
-                menuAddItem.Enabled = true;
+                menuDiscItem.Enabled = true;
                 menuFolderItem.Enabled = true;
             }
         }
@@ -136,6 +145,17 @@ namespace LFI
 
         public void start_progBar() { progBar.Style = ProgressBarStyle.Marquee; }
         public void stop_progBar() { progBar.Style = ProgressBarStyle.Blocks; }
+
+        private void menuTitleItem_Click(object sender, EventArgs e)
+        {
+            pushback_formView();
+        }
+
+        private void menuAddItem_Click(object sender, EventArgs e)
+        {
+            //check view
+            //addnew
+        }
     }
     
 }

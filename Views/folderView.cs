@@ -37,11 +37,11 @@ namespace LFI
         {
             try
             {
-                folder = new Folder_IO(txtURL.Text);
+                folder = new Folder_IO(ddUrl.Text);
                 countFolders();
                 btnDivide.Enabled = true;
                 btnClear.Enabled = true;
-                dirname = txtURL.Text;
+                dirname = ddUrl.Text;
                 lstFolders_Click(sender, e);
             }
             catch (Exception ex)
@@ -82,7 +82,7 @@ namespace LFI
         {
             folder = null;
             lblSize.Text = "0.00 GB";
-            txtURL.Clear();
+            ddUrl.Text = string.Empty;
             lstFiles.DataSource = null;
             lstFiles.Items.Clear();
             lstFolders.DataSource = null;

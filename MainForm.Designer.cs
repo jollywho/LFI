@@ -30,47 +30,25 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.mainPanel = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.progBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuAddItem = new System.Windows.Forms.MenuItem();
-            this.menuFolderItem = new System.Windows.Forms.MenuItem();
             this.menuItem4 = new System.Windows.Forms.MenuItem();
             this.menuItem5 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.saveItem = new System.Windows.Forms.MenuItem();
             this.titleEditItem = new System.Windows.Forms.MenuItem();
             this.cancelItem = new System.Windows.Forms.MenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.menuItem3 = new System.Windows.Forms.MenuItem();
+            this.menuTitleItem = new System.Windows.Forms.MenuItem();
+            this.menuFolderItem = new System.Windows.Forms.MenuItem();
+            this.menuDiscItem = new System.Windows.Forms.MenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // mainPanel
-            // 
-            this.mainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainPanel.AutoSize = true;
-            this.mainPanel.Location = new System.Drawing.Point(0, 107);
-            this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(524, 467);
-            this.mainPanel.TabIndex = 6;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Image = global::LFI.Properties.Resources.banner;
-            this.pictureBox2.Location = new System.Drawing.Point(-98, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(776, 102);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
             // 
             // statusStrip1
             // 
@@ -78,7 +56,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusStripLabel,
             this.progBar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 598);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 640);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(524, 22);
             this.statusStrip1.TabIndex = 8;
@@ -101,14 +79,14 @@
             // 
             this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem1,
-            this.menuItem2});
+            this.menuItem2,
+            this.menuItem3});
             // 
             // menuItem1
             // 
             this.menuItem1.Index = 0;
             this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuAddItem,
-            this.menuFolderItem,
             this.menuItem4,
             this.menuItem5});
             this.menuItem1.Text = "File";
@@ -117,23 +95,18 @@
             // menuAddItem
             // 
             this.menuAddItem.Index = 0;
+            this.menuAddItem.Shortcut = System.Windows.Forms.Shortcut.CtrlA;
             this.menuAddItem.Text = "Add...";
             this.menuAddItem.Click += new System.EventHandler(this.menuAddItem_Click);
             // 
-            // menuFolderItem
-            // 
-            this.menuFolderItem.Index = 1;
-            this.menuFolderItem.Text = "Organize Folder";
-            this.menuFolderItem.Click += new System.EventHandler(this.menuFolderItem_Click);
-            // 
             // menuItem4
             // 
-            this.menuItem4.Index = 2;
+            this.menuItem4.Index = 1;
             this.menuItem4.Text = "-";
             // 
             // menuItem5
             // 
-            this.menuItem5.Index = 3;
+            this.menuItem5.Index = 2;
             this.menuItem5.Text = "Exit";
             // 
             // menuItem2
@@ -149,37 +122,77 @@
             // saveItem
             // 
             this.saveItem.Index = 0;
+            this.saveItem.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
             this.saveItem.Text = "Save";
             this.saveItem.Click += new System.EventHandler(this.saveItem_Click);
             // 
             // titleEditItem
             // 
             this.titleEditItem.Index = 1;
-            this.titleEditItem.Text = "Title Info";
+            this.titleEditItem.Text = "Details";
             this.titleEditItem.Click += new System.EventHandler(this.titleEditItem_Click);
             // 
             // cancelItem
             // 
             this.cancelItem.Index = 2;
+            this.cancelItem.Shortcut = System.Windows.Forms.Shortcut.CtrlC;
             this.cancelItem.Text = "Cancel";
             this.cancelItem.Click += new System.EventHandler(this.cancelItem_Click);
+            // 
+            // menuItem3
+            // 
+            this.menuItem3.Index = 2;
+            this.menuItem3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuTitleItem,
+            this.menuFolderItem,
+            this.menuDiscItem});
+            this.menuItem3.Text = "Window";
+            // 
+            // menuTitleItem
+            // 
+            this.menuTitleItem.Index = 0;
+            this.menuTitleItem.Shortcut = System.Windows.Forms.Shortcut.Ctrl1;
+            this.menuTitleItem.Text = "Title";
+            this.menuTitleItem.Click += new System.EventHandler(this.menuTitleItem_Click);
+            // 
+            // menuFolderItem
+            // 
+            this.menuFolderItem.Index = 1;
+            this.menuFolderItem.Shortcut = System.Windows.Forms.Shortcut.Ctrl2;
+            this.menuFolderItem.Text = "Folder";
+            this.menuFolderItem.Click += new System.EventHandler(this.menuFolderItem_Click);
+            // 
+            // menuDiscItem
+            // 
+            this.menuDiscItem.Index = 2;
+            this.menuDiscItem.Shortcut = System.Windows.Forms.Shortcut.Ctrl3;
+            this.menuDiscItem.Text = "Disc";
+            this.menuDiscItem.Click += new System.EventHandler(this.menuDiscItem_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(750, 620);
+            this.panel1.TabIndex = 9;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(40)))), ((int)(((byte)(31)))));
-            this.ClientSize = new System.Drawing.Size(524, 620);
+            this.BackColor = System.Drawing.Color.Black;
+            this.BackgroundImage = global::LFI.Properties.Resources.bannerOrig;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(524, 662);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.mainPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(540, 658);
+            this.MaximumSize = new System.Drawing.Size(540, 700);
             this.Menu = this.mainMenu1;
-            this.MinimumSize = new System.Drawing.Size(540, 658);
+            this.MinimumSize = new System.Drawing.Size(540, 700);
             this.Name = "MainForm";
-            this.Text = "LFI 0.1.10";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.Text = "LFI 0.2.0";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -189,8 +202,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel mainPanel;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel statusStripLabel;
         private System.Windows.Forms.MainMenu mainMenu1;
@@ -199,11 +210,15 @@
         private System.Windows.Forms.MenuItem menuAddItem;
         private System.Windows.Forms.MenuItem menuItem4;
         private System.Windows.Forms.MenuItem menuItem5;
-        private System.Windows.Forms.MenuItem menuFolderItem;
         private System.Windows.Forms.MenuItem titleEditItem;
         private System.Windows.Forms.MenuItem saveItem;
         private System.Windows.Forms.MenuItem cancelItem;
         private System.Windows.Forms.ToolStripProgressBar progBar;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.MenuItem menuItem3;
+        private System.Windows.Forms.MenuItem menuTitleItem;
+        private System.Windows.Forms.MenuItem menuFolderItem;
+        private System.Windows.Forms.MenuItem menuDiscItem;
 
 
     }

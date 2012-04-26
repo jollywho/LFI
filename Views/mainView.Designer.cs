@@ -104,7 +104,7 @@
             this.gvTitles.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvTitles.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.gvTitles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gvTitles.Size = new System.Drawing.Size(180, 408);
+            this.gvTitles.Size = new System.Drawing.Size(180, 558);
             this.gvTitles.StandardTab = true;
             this.gvTitles.TabIndex = 1;
             this.gvTitles.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvTitles_CellMouseEnter);
@@ -119,50 +119,49 @@
             this.toolStripMenuItem1,
             this.deleteToolStripMenuItem});
             this.contextMenuDisc.Name = "contextMenuDisc";
-            this.contextMenuDisc.Size = new System.Drawing.Size(153, 98);
+            this.contextMenuDisc.Size = new System.Drawing.Size(136, 76);
             this.contextMenuDisc.Opened += new System.EventHandler(this.contextMenuDisc_Opened);
             // 
             // titleInfoToolStripMenuItem
             // 
             this.titleInfoToolStripMenuItem.Name = "titleInfoToolStripMenuItem";
-            this.titleInfoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.titleInfoToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.titleInfoToolStripMenuItem.Text = "Title Info";
             this.titleInfoToolStripMenuItem.Click += new System.EventHandler(this.titleInfoToolStripMenuItem_Click);
             // 
             // contextMenuItemDisc
             // 
             this.contextMenuItemDisc.Name = "contextMenuItemDisc";
-            this.contextMenuItemDisc.Size = new System.Drawing.Size(152, 22);
+            this.contextMenuItemDisc.Size = new System.Drawing.Size(135, 22);
             this.contextMenuItemDisc.Text = "Find Disc(s)";
             this.contextMenuItemDisc.Click += new System.EventHandler(this.contextMenuItemDisc_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(132, 6);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // lblTitle
             // 
-            this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.lblTitle.Location = new System.Drawing.Point(190, 0);
+            this.lblTitle.Location = new System.Drawing.Point(184, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(0, 26);
+            this.lblTitle.Size = new System.Drawing.Size(340, 56);
             this.lblTitle.TabIndex = 20;
             // 
             // panelMain
             // 
-            this.panelMain.Location = new System.Drawing.Point(184, 34);
+            this.panelMain.Location = new System.Drawing.Point(184, 59);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(340, 433);
+            this.panelMain.Size = new System.Drawing.Size(340, 558);
             this.panelMain.TabIndex = 21;
             // 
             // mainView
@@ -175,13 +174,12 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panelMain);
             this.Name = "mainView";
-            this.Size = new System.Drawing.Size(524, 467);
+            this.Size = new System.Drawing.Size(524, 617);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTitles)).EndInit();
             this.contextMenuDisc.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

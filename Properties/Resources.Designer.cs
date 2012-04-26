@@ -60,9 +60,23 @@ namespace LFI.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap banner {
+        internal static System.Drawing.Bitmap bannerOrig {
             get {
-                object obj = ResourceManager.GetObject("banner", resourceCulture);
+                object obj = ResourceManager.GetObject("bannerOrig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap border {
+            get {
+                object obj = ResourceManager.GetObject("border", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap borderBig {
+            get {
+                object obj = ResourceManager.GetObject("borderBig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
