@@ -48,26 +48,5 @@ namespace LFI
                 MessageBox.Show(ex.Message, "DB Error");
             }
         }
-
-        /*
-        private void btbCRC_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dlg = new OpenFileDialog();
-            if (dlg.ShowDialog() != DialogResult.Cancel)
-            {
-                try
-                {
-                    Crc32 crc32 = new Crc32();
-                    String hash = String.Empty;
-                    using (FileStream fs = File.Open(dlg.FileName, FileMode.Open))
-                        foreach (byte b in crc32.ComputeHash(fs)) hash += b.ToString("x2").ToLower();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-         * */
     }
 }

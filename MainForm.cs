@@ -18,7 +18,7 @@ namespace LFI
             Lmode = "JPN";
             DoubleBuffered = true;
             InitializeComponent();
-            AppDomain.CurrentDomain.SetData("DataDirectory", @"../../data");
+            AppDomain.CurrentDomain.SetData("DataDirectory", @"data");
             AppDomain.CurrentDomain.SetData("Image", @"../../image");
             mv = new mainView();
             mainPanel.Controls.Add(mv);
@@ -133,6 +133,9 @@ namespace LFI
             titleEditItem.Checked = false;
             mv.load_infoPane();
         }
+
+        public void start_progBar() { progBar.Style = ProgressBarStyle.Marquee; }
+        public void stop_progBar() { progBar.Style = ProgressBarStyle.Blocks; }
     }
     
 }

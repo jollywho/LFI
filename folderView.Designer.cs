@@ -136,6 +136,7 @@
             this.btnChecksum.TabIndex = 47;
             this.btnChecksum.Text = "Add CRC";
             this.btnChecksum.UseVisualStyleBackColor = true;
+            this.btnChecksum.Click += new System.EventHandler(this.btbCRC_Click);
             // 
             // btnFill
             // 

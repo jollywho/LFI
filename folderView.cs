@@ -12,6 +12,7 @@ namespace LFI
 {
     public partial class folderView : UserControl
     {
+        private BackgroundWorker worker = new BackgroundWorker();
         private Folder_IO folder;
         private string dirname;
         private MainForm caller;
@@ -20,6 +21,11 @@ namespace LFI
         {
             InitializeComponent();
             caller = main;
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
+            worker.DoWork += new DoWorkEventHandler(worker_DoWork);
+            worker.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -99,6 +105,51 @@ namespace LFI
             {
                 lblSize.Text = folder.Get_Folder_Size(sel, false) + " GB";
                 lstFiles.DataSource = folder.folderDivisions[sel - 1];
+            }
+        }
+
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            OpenFileDialog file = (OpenFileDialog)e.Argument;
+            try
+            {
+                Crc32 crc32 = new Crc32();
+                Crc32.worker = worker;
+                String hash = String.Empty;
+                using (FileStream fs = File.Open(file.FileName, FileMode.Open))
+                    foreach (byte b in crc32.ComputeHash(fs))
+                    {
+                        hash += b.ToString("x2").ToUpper();
+                    }
+                Console.WriteLine(hash);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+           
+        }
+
+        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            caller.stop_progBar();
+        }
+
+        private void btbCRC_Click(object sender, EventArgs e)
+        {
+            if (worker.IsBusy != true)
+            {
+                OpenFileDialog dlg = new OpenFileDialog();
+                if (dlg.ShowDialog() != DialogResult.Cancel)
+                {
+                    caller.start_progBar();
+                    worker.RunWorkerAsync(dlg);
+                }
             }
         }
     }

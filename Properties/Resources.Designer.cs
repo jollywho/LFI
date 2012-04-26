@@ -67,6 +67,13 @@ namespace LFI.Properties {
             }
         }
         
+        internal static byte[] LFI {
+            get {
+                object obj = ResourceManager.GetObject("LFI", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap notfound {
             get {
                 object obj = ResourceManager.GetObject("notfound", resourceCulture);
