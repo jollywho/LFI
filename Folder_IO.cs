@@ -12,8 +12,8 @@ namespace LFI
         const long DVD_SIZE = 4550000000;
         const long INCREMENT_VALUE = 10000000;
         private string dirname = "";
-        public List<string> files = new List<string>();
-        private List<string> folderItems = new List<string>();
+        public List<string> folderitems = new List<string>();
+        public List<string> filenames = new List<string>();
         public List<List<string>> folderDivisions = new List<List<string>>();
         private long folderSize = 0;
         private int itemCount = 0;
@@ -30,12 +30,12 @@ namespace LFI
                 Array.Sort(sorted, new AlphanumComparatorFast());
                 foreach (string item in sorted)
                 {
-                    files.Add(Path.GetFileName(item));
-                    folderItems.Add(item);
+                    folderitems.Add(Path.GetFileName(item));
+                    filenames.Add(item);
                     itemCount++;
                 }
                 
-                folderSize = DirSize(folderItems);
+                folderSize = DirSize(filenames);
             }
             catch (Exception ex)
             {
@@ -96,9 +96,9 @@ namespace LFI
             long sum = 0;
             int newpos = 0;
             List<string> temp = new List<string>();
-            for (int i=pos; i<=folderItems.Count - 1; i++)
+            for (int i=pos; i<=filenames.Count - 1; i++)
             {
-                FileInfo info = new FileInfo(folderItems[i]);
+                FileInfo info = new FileInfo(filenames[i]);
                 sum += info.Length;
                 if (sum < folderAverage)
                 {

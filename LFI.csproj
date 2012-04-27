@@ -90,32 +90,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="addView.cs">
+    <Compile Include="LFIDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LFIDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\VLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\addView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="addView.Designer.cs">
+    <Compile Include="Views\addView.Designer.cs">
       <DependentUpon>addView.cs</DependentUpon>
     </Compile>
     <Compile Include="AlphanumComparator.cs" />
     <Compile Include="Crc32.cs" />
     <Compile Include="DB_Handle.cs" />
-    <Compile Include="editPane.cs">
+    <Compile Include="Panes\editPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="editPane.Designer.cs">
+    <Compile Include="Panes\editPane.Designer.cs">
       <DependentUpon>editPane.cs</DependentUpon>
     </Compile>
-    <Compile Include="folderView.cs">
+    <Compile Include="Views\discView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="folderView.Designer.cs">
+    <Compile Include="Views\discView.Designer.cs">
+      <DependentUpon>discView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\folderView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\folderView.Designer.cs">
       <DependentUpon>folderView.cs</DependentUpon>
     </Compile>
     <Compile Include="Folder_IO.cs" />
-    <Compile Include="infoPane.cs">
+    <Compile Include="Panes\infoPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="infoPane.Designer.cs">
+    <Compile Include="Panes\infoPane.Designer.cs">
       <DependentUpon>infoPane.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -131,28 +145,53 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="mainView.cs">
+    <Compile Include="Views\mainView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="mainView.Designer.cs">
+    <Compile Include="Views\mainView.Designer.cs">
       <DependentUpon>mainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="discPane.cs">
+    <Compile Include="Panes\discPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="discPane.Designer.cs">
+    <Compile Include="Panes\discPane.Designer.cs">
       <DependentUpon>discPane.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="addView.resx">
+    <None Include="Resources\progress.gif" />
+    <None Include="Resources\error.png" />
+    <None Include="Resources\check.png" />
+    <None Include="Resources\empty.png" />
+    <None Include="app.config" />
+    <None Include="LFIDataSet.xsc">
+      <DependentUpon>LFIDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="LFIDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LFIDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="LFIDataSet.xss">
+      <DependentUpon>LFIDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\borderBig.png" />
+    <None Include="Resources\border.png" />
+    <None Include="Resources\bannerOrig.jpg" />
+    <EmbeddedResource Include="Panes\VLabel.resx">
+      <DependentUpon>VLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\addView.resx">
       <DependentUpon>addView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="editPane.resx">
+    <EmbeddedResource Include="Panes\editPane.resx">
       <DependentUpon>editPane.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="folderView.resx">
+    <EmbeddedResource Include="Views\discView.resx">
+      <DependentUpon>discView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\folderView.resx">
       <DependentUpon>folderView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="infoPane.resx">
+    <EmbeddedResource Include="Panes\infoPane.resx">
       <DependentUpon>infoPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
@@ -163,10 +202,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="mainView.resx">
+    <EmbeddedResource Include="Views\mainView.resx">
       <DependentUpon>mainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="discPane.resx">
+    <EmbeddedResource Include="Panes\discPane.resx">
       <DependentUpon>discPane.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="data\LFI.db">
@@ -182,9 +221,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\banner.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -219,8 +255,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
-    <None Include="Resources\Image1.bmp" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

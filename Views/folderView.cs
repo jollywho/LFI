@@ -16,6 +16,14 @@ namespace LFI
         private Folder_IO folder;
         private string dirname;
         private MainForm caller;
+        private string checksum;
+        PictureBox animation = new PictureBox();
+
+        public struct SimpleData
+        {
+            public string Text { get; set; }
+            public string Hidden { get; set; }
+        }
 
         public folderView(MainForm main)
         {
@@ -26,6 +34,13 @@ namespace LFI
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
             worker.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+            animation.Image = LFI.Properties.Resources.progress;
+            animation.Width = 16;
+            animation.Height = 16;
+            animation.BackColor = Color.Transparent;
+            animation.Hide();
+            gvFiles.Controls.Add(animation);
+            gvFiles.CellPainting += new DataGridViewCellPaintingEventHandler(gvFiles_CellPainting);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -71,9 +86,6 @@ namespace LFI
         private void btnDivide_Click(object sender, EventArgs e)
         {
             folder.Generate_Divisions();
-            lstFiles.DataSource = null;
-            lstFiles.Items.Clear();
-            lstFiles.DataSource = folder.files;
             countFolders();
             lstFolders_Click(sender, e);
         }
@@ -83,8 +95,7 @@ namespace LFI
             folder = null;
             lblSize.Text = "0.00 GB";
             ddUrl.Text = string.Empty;
-            lstFiles.DataSource = null;
-            lstFiles.Items.Clear();
+            gvFiles.DataSource = null;
             lstFolders.DataSource = null;
             lstFolders.Items.Clear();
             btnClear.Enabled = false;
@@ -94,40 +105,50 @@ namespace LFI
         private void lstFolders_Click(object sender, EventArgs e)
         {
             int sel = Convert.ToInt32(lstFolders.Text);
-            lstFiles.DataSource = null;
-            lstFiles.Items.Clear();
+            gvFiles.DataSource = null;
+            var bindingSource = new BindingSource();
             if (lstFolders.Text == "0")
             {
                 lblSize.Text = folder.Get_Folder_Size(sel, true) + " GB";
-                lstFiles.DataSource = folder.files;
+                for (int i=0; i<= folder.folderitems.Count - 1; i++)
+                {
+                    bindingSource.Add(new SimpleData
+                    {
+                        Text = Path.GetFileName(folder.folderitems[i]),
+                        Hidden = folder.folderitems[i]
+                    });
+                }
             }
             else
             {
                 lblSize.Text = folder.Get_Folder_Size(sel, false) + " GB";
-                lstFiles.DataSource = folder.folderDivisions[sel - 1];
+                for (int i = 0; i <= folder.folderDivisions[sel-1].Count - 1; i++)
+                {
+                    bindingSource.Add(new SimpleData
+                    {
+                        Text = Path.GetFileName(folder.folderDivisions[sel - 1][i]),
+                        Hidden = folder.folderDivisions[sel - 1][i]
+                    });
+                }  
             }
+            gvFiles.DataSource = bindingSource;
+            gvFiles.Columns[2].Visible = false;
         }
 
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-            OpenFileDialog file = (OpenFileDialog)e.Argument;
-            try
-            {
-                Crc32 crc32 = new Crc32();
-                Crc32.worker = worker;
-                String hash = String.Empty;
-                using (FileStream fs = File.Open(file.FileName, FileMode.Open))
-                    foreach (byte b in crc32.ComputeHash(fs))
-                    {
-                        hash += b.ToString("x2").ToUpper();
-                    }
-                Console.WriteLine(hash);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            string file = (string)e.Argument;
+
+            Crc32 crc32 = new Crc32();
+            Crc32.worker = worker;
+            String hash = String.Empty;
+            using (FileStream fs = File.Open(file, FileMode.Open))
+                foreach (byte b in crc32.ComputeHash(fs))
+                {
+                    hash += b.ToString("x2").ToUpper();
+                }
+            checksum = hash;
         }
 
         private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -137,19 +158,36 @@ namespace LFI
 
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            animation.Hide();
             caller.stop_progBar();
+            if (checksum == "7FB94658")
+                gvFiles.Rows[0].Cells[0].Value = LFI.Properties.Resources.check;
+            else
+                gvFiles.Rows[0].Cells[0].Value = LFI.Properties.Resources.error;
         }
 
-        private void btbCRC_Click(object sender, EventArgs e)
+        void gvFiles_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            animation.Location = gvFiles.GetCellDisplayRectangle(0, 5, true).Location;
+            animation.Width = gvFiles.GetCellDisplayRectangle(0, 0, true).Width;
+            animation.Height = gvFiles.GetCellDisplayRectangle(0, 0, true).Height;
+        }
+
+        private void btnCheckCRC_Click(object sender, EventArgs e)
         {
             if (worker.IsBusy != true)
             {
-                OpenFileDialog dlg = new OpenFileDialog();
-                if (dlg.ShowDialog() != DialogResult.Cancel)
-                {
-                    caller.start_progBar();
-                    worker.RunWorkerAsync(dlg);
-                }
+                animation.Show();
+                caller.start_progBar();
+                worker.RunWorkerAsync(gvFiles.Rows[0].Cells[2].Value);
+            }
+        }
+
+        private void gvFiles_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            for (int i = 0; i <= gvFiles.RowCount - 1; i++)
+            {
+                gvFiles.Rows[i].Cells[0].Value = LFI.Properties.Resources.empty;
             }
         }
     }
