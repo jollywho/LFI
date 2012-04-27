@@ -28,23 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnDivide = new System.Windows.Forms.Button();
-            this.btnAddCRC = new System.Windows.Forms.Button();
-            this.btnFill = new System.Windows.Forms.Button();
             this.lblSize = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnCheckCRC = new System.Windows.Forms.Button();
-            this.lstFolders = new System.Windows.Forms.ListBox();
+            this.lstDivs = new System.Windows.Forms.ListBox();
             this.gvFiles = new System.Windows.Forms.DataGridView();
             this.check = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnShowDiv = new System.Windows.Forms.Button();
             this.ddUrl = new System.Windows.Forms.ComboBox();
+            this.btnDivide = new System.Windows.Forms.Button();
+            this.btnShowDiv = new System.Windows.Forms.Button();
+            this.btnCheckCRC = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnAddCRC = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -58,41 +59,12 @@
             this.label1.TabIndex = 43;
             this.label1.Text = "Folder View";
             // 
-            // btnDivide
-            // 
-            this.btnDivide.Enabled = false;
-            this.btnDivide.Location = new System.Drawing.Point(430, 159);
-            this.btnDivide.Name = "btnDivide";
-            this.btnDivide.Size = new System.Drawing.Size(75, 31);
-            this.btnDivide.TabIndex = 46;
-            this.btnDivide.Text = "Divide";
-            this.btnDivide.UseVisualStyleBackColor = true;
-            this.btnDivide.Click += new System.EventHandler(this.btnDivide_Click);
-            // 
-            // btnAddCRC
-            // 
-            this.btnAddCRC.Location = new System.Drawing.Point(171, 119);
-            this.btnAddCRC.Name = "btnAddCRC";
-            this.btnAddCRC.Size = new System.Drawing.Size(75, 31);
-            this.btnAddCRC.TabIndex = 47;
-            this.btnAddCRC.Text = "Add CRC";
-            this.btnAddCRC.UseVisualStyleBackColor = true;
-            // 
-            // btnFill
-            // 
-            this.btnFill.Location = new System.Drawing.Point(252, 156);
-            this.btnFill.Name = "btnFill";
-            this.btnFill.Size = new System.Drawing.Size(75, 31);
-            this.btnFill.TabIndex = 48;
-            this.btnFill.Text = "Add Disc";
-            this.btnFill.UseVisualStyleBackColor = true;
-            // 
             // lblSize
             // 
             this.lblSize.AutoSize = true;
             this.lblSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.lblSize.Location = new System.Drawing.Point(98, 102);
+            this.lblSize.Location = new System.Drawing.Point(102, 24);
             this.lblSize.Name = "lblSize";
             this.lblSize.Size = new System.Drawing.Size(53, 13);
             this.lblSize.TabIndex = 49;
@@ -103,48 +75,27 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label3.Location = new System.Drawing.Point(98, 86);
+            this.label3.Location = new System.Drawing.Point(102, 8);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 50;
             this.label3.Text = "Size";
             // 
-            // btnClear
+            // lstDivs
             // 
-            this.btnClear.Enabled = false;
-            this.btnClear.Location = new System.Drawing.Point(349, 84);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 31);
-            this.btnClear.TabIndex = 51;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // btnCheckCRC
-            // 
-            this.btnCheckCRC.Location = new System.Drawing.Point(171, 156);
-            this.btnCheckCRC.Name = "btnCheckCRC";
-            this.btnCheckCRC.Size = new System.Drawing.Size(75, 31);
-            this.btnCheckCRC.TabIndex = 54;
-            this.btnCheckCRC.Text = "Check CRC";
-            this.btnCheckCRC.UseVisualStyleBackColor = true;
-            this.btnCheckCRC.Click += new System.EventHandler(this.btnCheckCRC_Click);
-            // 
-            // lstFolders
-            // 
-            this.lstFolders.BackColor = System.Drawing.Color.White;
-            this.lstFolders.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lstFolders.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstFolders.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.lstFolders.FormattingEnabled = true;
-            this.lstFolders.HorizontalScrollbar = true;
-            this.lstFolders.ItemHeight = 17;
-            this.lstFolders.Location = new System.Drawing.Point(3, 85);
-            this.lstFolders.Name = "lstFolders";
-            this.lstFolders.ScrollAlwaysVisible = true;
-            this.lstFolders.Size = new System.Drawing.Size(89, 102);
-            this.lstFolders.TabIndex = 55;
-            this.lstFolders.Click += new System.EventHandler(this.lstFolders_Click);
+            this.lstDivs.BackColor = System.Drawing.Color.White;
+            this.lstDivs.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lstDivs.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstDivs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.lstDivs.FormattingEnabled = true;
+            this.lstDivs.HorizontalScrollbar = true;
+            this.lstDivs.ItemHeight = 17;
+            this.lstDivs.Location = new System.Drawing.Point(7, 8);
+            this.lstDivs.Name = "lstDivs";
+            this.lstDivs.ScrollAlwaysVisible = true;
+            this.lstDivs.Size = new System.Drawing.Size(89, 119);
+            this.lstDivs.TabIndex = 55;
+            this.lstDivs.Click += new System.EventHandler(this.lstDivs_Click);
             // 
             // gvFiles
             // 
@@ -152,11 +103,11 @@
             this.gvFiles.AllowUserToDeleteRows = false;
             this.gvFiles.AllowUserToResizeColumns = false;
             this.gvFiles.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.gvFiles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.gvFiles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.gvFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvFiles.BackgroundColor = System.Drawing.Color.White;
             this.gvFiles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -165,14 +116,14 @@
             this.gvFiles.ColumnHeadersVisible = false;
             this.gvFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.check});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvFiles.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvFiles.DefaultCellStyle = dataGridViewCellStyle10;
             this.gvFiles.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.gvFiles.Location = new System.Drawing.Point(0, 193);
             this.gvFiles.MultiSelect = false;
@@ -198,17 +149,6 @@
             this.check.ReadOnly = true;
             this.check.Width = 5;
             // 
-            // btnShowDiv
-            // 
-            this.btnShowDiv.Enabled = false;
-            this.btnShowDiv.Location = new System.Drawing.Point(430, 122);
-            this.btnShowDiv.Name = "btnShowDiv";
-            this.btnShowDiv.Size = new System.Drawing.Size(75, 31);
-            this.btnShowDiv.TabIndex = 57;
-            this.btnShowDiv.Text = "Show Divs";
-            this.btnShowDiv.UseVisualStyleBackColor = true;
-            this.btnShowDiv.Click += new System.EventHandler(this.btnShowDiv_Click);
-            // 
             // ddUrl
             // 
             this.ddUrl.FormattingEnabled = true;
@@ -217,8 +157,87 @@
             this.ddUrl.Size = new System.Drawing.Size(499, 21);
             this.ddUrl.TabIndex = 52;
             this.ddUrl.Text = "C:\\Users\\Jollyrancher\\Videos\\[BURN]\\Bakuman";
-            this.ddUrl.SelectedIndexChanged += new System.EventHandler(this.ddUrl_SelectedIndexChanged);
+            this.ddUrl.SelectedValueChanged += new System.EventHandler(this.ddUrl_SelectedValueChanged);
             this.ddUrl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ddUrl_KeyDown);
+            // 
+            // btnDivide
+            // 
+            this.btnDivide.BackgroundImage = global::LFI.Properties.Resources.divide;
+            this.btnDivide.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDivide.FlatAppearance.BorderSize = 0;
+            this.btnDivide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDivide.ForeColor = System.Drawing.Color.Transparent;
+            this.btnDivide.Location = new System.Drawing.Point(260, 70);
+            this.btnDivide.Name = "btnDivide";
+            this.btnDivide.Size = new System.Drawing.Size(48, 48);
+            this.btnDivide.TabIndex = 64;
+            this.btnDivide.UseVisualStyleBackColor = true;
+            this.btnDivide.Click += new System.EventHandler(this.btnDivide_Click);
+            this.btnDivide.MouseEnter += new System.EventHandler(this.btnBack_MouseEnter);
+            this.btnDivide.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
+            // 
+            // btnShowDiv
+            // 
+            this.btnShowDiv.BackgroundImage = global::LFI.Properties.Resources.showdiv;
+            this.btnShowDiv.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnShowDiv.FlatAppearance.BorderSize = 0;
+            this.btnShowDiv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowDiv.ForeColor = System.Drawing.Color.Transparent;
+            this.btnShowDiv.Location = new System.Drawing.Point(260, 8);
+            this.btnShowDiv.Name = "btnShowDiv";
+            this.btnShowDiv.Size = new System.Drawing.Size(48, 48);
+            this.btnShowDiv.TabIndex = 63;
+            this.btnShowDiv.UseVisualStyleBackColor = true;
+            this.btnShowDiv.Click += new System.EventHandler(this.btnShowDiv_Click);
+            this.btnShowDiv.MouseEnter += new System.EventHandler(this.btnBack_MouseEnter);
+            this.btnShowDiv.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
+            // 
+            // btnCheckCRC
+            // 
+            this.btnCheckCRC.BackgroundImage = global::LFI.Properties.Resources.checksum;
+            this.btnCheckCRC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCheckCRC.FlatAppearance.BorderSize = 0;
+            this.btnCheckCRC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCheckCRC.ForeColor = System.Drawing.Color.Transparent;
+            this.btnCheckCRC.Location = new System.Drawing.Point(140, 78);
+            this.btnCheckCRC.Name = "btnCheckCRC";
+            this.btnCheckCRC.Size = new System.Drawing.Size(32, 32);
+            this.btnCheckCRC.TabIndex = 62;
+            this.btnCheckCRC.UseVisualStyleBackColor = true;
+            this.btnCheckCRC.Click += new System.EventHandler(this.btnCheckCRC_Click);
+            this.btnCheckCRC.MouseEnter += new System.EventHandler(this.btnBack_MouseEnter);
+            this.btnCheckCRC.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
+            // 
+            // btnClear
+            // 
+            this.btnClear.BackgroundImage = global::LFI.Properties.Resources.clear;
+            this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnClear.FlatAppearance.BorderSize = 0;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.ForeColor = System.Drawing.Color.Transparent;
+            this.btnClear.Location = new System.Drawing.Point(197, 14);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(32, 32);
+            this.btnClear.TabIndex = 61;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnClear.MouseEnter += new System.EventHandler(this.btnBack_MouseEnter);
+            this.btnClear.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
+            // 
+            // btnAddCRC
+            // 
+            this.btnAddCRC.BackgroundImage = global::LFI.Properties.Resources.addchecksum;
+            this.btnAddCRC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddCRC.FlatAppearance.BorderSize = 0;
+            this.btnAddCRC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddCRC.ForeColor = System.Drawing.Color.Transparent;
+            this.btnAddCRC.Location = new System.Drawing.Point(102, 78);
+            this.btnAddCRC.Name = "btnAddCRC";
+            this.btnAddCRC.Size = new System.Drawing.Size(32, 32);
+            this.btnAddCRC.TabIndex = 60;
+            this.btnAddCRC.UseVisualStyleBackColor = true;
+            this.btnAddCRC.MouseEnter += new System.EventHandler(this.btnBack_MouseEnter);
+            this.btnAddCRC.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
             // 
             // btnBack
             // 
@@ -236,27 +255,38 @@
             this.btnBack.MouseEnter += new System.EventHandler(this.btnBack_MouseEnter);
             this.btnBack.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
             // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::LFI.Properties.Resources.border;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.btnShowDiv);
+            this.panel1.Controls.Add(this.btnClear);
+            this.panel1.Controls.Add(this.btnCheckCRC);
+            this.panel1.Controls.Add(this.lstDivs);
+            this.panel1.Controls.Add(this.btnDivide);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.btnAddCRC);
+            this.panel1.Controls.Add(this.lblSize);
+            this.panel1.Location = new System.Drawing.Point(107, 52);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(320, 135);
+            this.panel1.TabIndex = 65;
+            // 
             // folderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.btnShowDiv);
             this.Controls.Add(this.gvFiles);
-            this.Controls.Add(this.lstFolders);
-            this.Controls.Add(this.btnCheckCRC);
             this.Controls.Add(this.ddUrl);
-            this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.lblSize);
-            this.Controls.Add(this.btnFill);
-            this.Controls.Add(this.btnAddCRC);
-            this.Controls.Add(this.btnDivide);
             this.Controls.Add(this.label1);
             this.Name = "folderView";
             this.Size = new System.Drawing.Size(524, 620);
             ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,18 +295,18 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnDivide;
-        private System.Windows.Forms.Button btnAddCRC;
-        private System.Windows.Forms.Button btnFill;
         private System.Windows.Forms.Label lblSize;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button btnCheckCRC;
-        private System.Windows.Forms.ListBox lstFolders;
+        private System.Windows.Forms.ListBox lstDivs;
         private System.Windows.Forms.DataGridView gvFiles;
         private System.Windows.Forms.DataGridViewImageColumn check;
-        private System.Windows.Forms.Button btnShowDiv;
         private System.Windows.Forms.ComboBox ddUrl;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnAddCRC;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnCheckCRC;
+        private System.Windows.Forms.Button btnShowDiv;
+        private System.Windows.Forms.Button btnDivide;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -34,7 +34,6 @@ namespace LFI
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
-            worker.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
             animation.Image = LFI.Properties.Resources.progress;
             animation.Width = 16;
@@ -57,7 +56,7 @@ namespace LFI
                 btnShowDiv.Enabled = true;
                 btnClear.Enabled = true;
                 dirname = ddUrl.Text;
-                lstFolders_Click(null, null);
+                lstDivs_Click(null, null);
             }
             catch (Exception ex)
             {
@@ -67,8 +66,8 @@ namespace LFI
 
         private void countFolders()
         {
-            lstFolders.DataSource = null;
-            lstFolders.Items.Clear();
+            lstDivs.DataSource = null;
+            lstDivs.Items.Clear();
             List<string> folder_list = new List<string>();
 
             if (folder.dsCount == 0)
@@ -80,7 +79,7 @@ namespace LFI
                     folder_list.Add(i.ToString());
                 }
             }
-            lstFolders.DataSource = folder_list;
+            lstDivs.DataSource = folder_list;
         }
 
         private void btnShowDiv_Click(object sender, EventArgs e)
@@ -88,7 +87,7 @@ namespace LFI
             folder.Generate_Divisions();
             countFolders();
             btnDivide.Enabled = true;
-            lstFolders_Click(sender, e);
+            lstDivs_Click(sender, e);
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -97,21 +96,21 @@ namespace LFI
             lblSize.Text = "0.00 GB";
             ddUrl.Text = string.Empty;
             gvFiles.DataSource = null;
-            lstFolders.DataSource = null;
-            lstFolders.Items.Clear();
+            lstDivs.DataSource = null;
+            lstDivs.Items.Clear();
             btnClear.Enabled = false;
             btnDivide.Enabled = false;
             btnShowDiv.Enabled = false;
         }
 
-        private void lstFolders_Click(object sender, EventArgs e)
+        private void lstDivs_Click(object sender, EventArgs e)
         {
             if (!worker.IsBusy && folder.filenames.Count > 0)
             {
-                int sel = Convert.ToInt32(lstFolders.Text);
+                int sel = Convert.ToInt32(lstDivs.Text);
                 gvFiles.DataSource = null;
                 var bindingSource = new BindingSource();
-                if (lstFolders.Text == "0")
+                if (lstDivs.Text == "0")
                 {
                     lblSize.Text = folder.Get_Folder_Size(sel, true) + " GB";
                     for (int i = 0; i <= folder.folderitems.Count - 1; i++)
@@ -164,18 +163,14 @@ namespace LFI
             }
         }
 
-        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-           
-        }
-
-        //todo: method for cutting crc from filename
         //todo: remove .part option
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             animation.Hide();
             caller.stop_progBar();
-            if (checksum == Folder_IO.ScanCRC(gvFiles.Rows[workingRow].Cells[2].Value.ToString()))
+            string newfilename = string.Empty;
+            if (checksum == Folder_IO.ScanCRC(gvFiles.Rows[workingRow].Cells[2].Value.ToString(),
+                    out newfilename))
                 gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
             else
                 gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.error;
@@ -219,26 +214,43 @@ namespace LFI
             btnShowDiv.Enabled = false;
             if (folder.folderDivisions.Count > 1)
             {
-                for (int i = 0; i <= folder.folderDivisions.Count - 1; i++)
+                try
                 {
-                    System.IO.Directory.CreateDirectory(folder.dirname + "\\" + i + 1);
-                    for (int j = 0; j <= folder.folderDivisions[i].Count - 1; j++)
+                    for (int i = 0; i <= folder.folderDivisions.Count - 1; i++)
                     {
-                        Console.WriteLine(folder.folderDivisions[i][j]);
+                        System.IO.Directory.CreateDirectory(folder.dirname + "\\" + (i + 1));
+                        for (int j = 0; j <= folder.folderDivisions[i].Count - 1; j++)
+                        {
+                            FileInfo ff = new FileInfo(folder.folderDivisions[i][j]);
+                            ff.MoveTo(folder.dirname + "\\" + (i + 1) + "\\" + ff.Name);
+                        }
                     }
+                    btnDivide.Enabled = false;
+                    MessageBox.Show("No Errors Detected", "Move Complete");
+                    ddUrl_SelectedValueChanged(null, null);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
                 }
             }
+           
         }
 
-        private void ddUrl_SelectedIndexChanged(object sender, EventArgs e)
+        private void ddUrl_SelectedValueChanged(object sender, EventArgs e)
         {
             if (System.IO.Directory.GetDirectories(ddUrl.Text).Count<string>() > 1)
             {
-                ddUrl.DataSource = System.IO.Directory.GetDirectories(
-                    ddUrl.Text);
+                rebind_ddUrl();
             }
-            else
-                open_Folder();
+            open_Folder();
+        }
+
+        private void rebind_ddUrl()
+        {
+            ddUrl.DataSource = System.IO.Directory.GetDirectories(
+                ddUrl.Text);
+            open_Folder();
         }
 
         private void ddUrl_KeyDown(object sender, KeyEventArgs e)
@@ -249,18 +261,20 @@ namespace LFI
 
         private void btnBack_MouseEnter(object sender, EventArgs e)
         {
-            btnBack.FlatStyle = FlatStyle.Popup;
+            Button btn = (Button)sender;
+            btn.FlatStyle = FlatStyle.Popup;
         }
 
         private void btnBack_MouseLeave(object sender, EventArgs e)
         {
-            btnBack.FlatStyle = FlatStyle.Flat;
+            Button btn = (Button)sender;
+            btn.FlatStyle = FlatStyle.Flat;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            ddUrl.Text = Path.GetDirectoryName(ddUrl.Text);
-            open_Folder();
+            ddUrl.Text = Path.GetDirectoryName(Path.GetDirectoryName(ddUrl.Text));
+            rebind_ddUrl();
         }
     }
 }

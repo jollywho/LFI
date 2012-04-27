@@ -129,6 +129,7 @@
             // titleEditItem
             // 
             this.titleEditItem.Index = 1;
+            this.titleEditItem.Shortcut = System.Windows.Forms.Shortcut.CtrlE;
             this.titleEditItem.Text = "Details";
             this.titleEditItem.Click += new System.EventHandler(this.titleEditItem_Click);
             // 
@@ -192,7 +193,7 @@
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(540, 700);
             this.Name = "MainForm";
-            this.Text = "LFI 0.2.2";
+            this.Text = "LFI 0.2.3";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

@@ -116,14 +116,20 @@ namespace LFI
             return newpos;
         }
 
-        public static string ScanCRC(string filename)
+        public static string ScanCRC(string filename, out string newfilename)
         {
-            string crcStr = Path.GetFileName(filename);
-            string ext = new FileInfo(filename).Extension;
+            FileInfo file = new FileInfo(filename);
+            string ext = file.Extension;
+            if (ext.Contains(".part"))
+            {
+                file.MoveTo(filename.Replace(".part", ""));
+            }
+            string crcStr = Path.GetFileName(file.Name);
+            ext = file.Extension;
 
             crcStr = crcStr.Substring(crcStr.Length - (CRC_STRLEN + ext.Length - 1), CRC_STRLEN - 2);
             Console.WriteLine(crcStr);
-
+            newfilename = Path.GetFileName(file.Name);
             return crcStr;
         }
     }
