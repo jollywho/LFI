@@ -9,9 +9,10 @@ namespace LFI
 {
     class Folder_IO
     {
+        const int CRC_STRLEN = 10; //square brackets inclusive
         const long DVD_SIZE = 4550000000;
         const long INCREMENT_VALUE = 10000000;
-        private string dirname = "";
+        public string dirname = "";
         public List<string> folderitems = new List<string>();
         public List<string> filenames = new List<string>();
         public List<List<string>> folderDivisions = new List<List<string>>();
@@ -113,6 +114,17 @@ namespace LFI
             }
             folderDivisions.Add(temp);
             return newpos;
+        }
+
+        public static string ScanCRC(string filename)
+        {
+            string crcStr = Path.GetFileName(filename);
+            string ext = new FileInfo(filename).Extension;
+
+            crcStr = crcStr.Substring(crcStr.Length - (CRC_STRLEN + ext.Length - 1), CRC_STRLEN - 2);
+            Console.WriteLine(crcStr);
+
+            return crcStr;
         }
     }
 }

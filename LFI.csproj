@@ -157,6 +157,7 @@
     <Compile Include="Panes\discPane.Designer.cs">
       <DependentUpon>discPane.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\back.png" />
     <None Include="Resources\progress.gif" />
     <None Include="Resources\error.png" />
     <None Include="Resources\check.png" />
@@ -208,6 +209,7 @@
     <EmbeddedResource Include="Panes\discPane.resx">
       <DependentUpon>discPane.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="back.png" />
     <Content Include="data\LFI.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

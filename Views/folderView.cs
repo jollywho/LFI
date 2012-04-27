@@ -43,23 +43,21 @@ namespace LFI
             animation.Hide();
             gvFiles.Controls.Add(animation);
             gvFiles.CellPainting += new DataGridViewCellPaintingEventHandler(gvFiles_CellPainting);
+            string[] folders = System.IO.Directory.GetDirectories(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyVideos));
+            ddUrl.DataSource = folders;
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            caller.pushback_formView();
-        }
-
-        private void btnOpen_Click(object sender, EventArgs e)
+        private void open_Folder()
         {
             try
             {
                 folder = new Folder_IO(ddUrl.Text);
                 countFolders();
-                btnDivide.Enabled = true;
+                btnShowDiv.Enabled = true;
                 btnClear.Enabled = true;
                 dirname = ddUrl.Text;
-                lstFolders_Click(sender, e);
+                lstFolders_Click(null, null);
             }
             catch (Exception ex)
             {
@@ -85,10 +83,11 @@ namespace LFI
             lstFolders.DataSource = folder_list;
         }
 
-        private void btnDivide_Click(object sender, EventArgs e)
+        private void btnShowDiv_Click(object sender, EventArgs e)
         {
             folder.Generate_Divisions();
             countFolders();
+            btnDivide.Enabled = true;
             lstFolders_Click(sender, e);
         }
 
@@ -102,11 +101,12 @@ namespace LFI
             lstFolders.Items.Clear();
             btnClear.Enabled = false;
             btnDivide.Enabled = false;
+            btnShowDiv.Enabled = false;
         }
 
         private void lstFolders_Click(object sender, EventArgs e)
         {
-            if (!worker.IsBusy)
+            if (!worker.IsBusy && folder.filenames.Count > 0)
             {
                 int sel = Convert.ToInt32(lstFolders.Text);
                 gvFiles.DataSource = null;
@@ -170,11 +170,12 @@ namespace LFI
         }
 
         //todo: method for cutting crc from filename
+        //todo: remove .part option
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             animation.Hide();
             caller.stop_progBar();
-            if (checksum == "7FB94658")
+            if (checksum == Folder_IO.ScanCRC(gvFiles.Rows[workingRow].Cells[2].Value.ToString()))
                 gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
             else
                 gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.error;
@@ -211,7 +212,55 @@ namespace LFI
             if (gvFiles.SelectedCells.Count > 0)
                 if (gvFiles.SelectedCells[0].Value != null)
                     savedRow = gvFiles.SelectedCells[0].RowIndex;
+        }
 
+        private void btnDivide_Click(object sender, EventArgs e)
+        {
+            btnShowDiv.Enabled = false;
+            if (folder.folderDivisions.Count > 1)
+            {
+                for (int i = 0; i <= folder.folderDivisions.Count - 1; i++)
+                {
+                    System.IO.Directory.CreateDirectory(folder.dirname + "\\" + i + 1);
+                    for (int j = 0; j <= folder.folderDivisions[i].Count - 1; j++)
+                    {
+                        Console.WriteLine(folder.folderDivisions[i][j]);
+                    }
+                }
+            }
+        }
+
+        private void ddUrl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (System.IO.Directory.GetDirectories(ddUrl.Text).Count<string>() > 1)
+            {
+                ddUrl.DataSource = System.IO.Directory.GetDirectories(
+                    ddUrl.Text);
+            }
+            else
+                open_Folder();
+        }
+
+        private void ddUrl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                open_Folder();
+        }
+
+        private void btnBack_MouseEnter(object sender, EventArgs e)
+        {
+            btnBack.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void btnBack_MouseLeave(object sender, EventArgs e)
+        {
+            btnBack.FlatStyle = FlatStyle.Flat;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            ddUrl.Text = Path.GetDirectoryName(ddUrl.Text);
+            open_Folder();
         }
     }
 }
