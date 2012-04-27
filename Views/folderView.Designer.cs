@@ -199,18 +199,21 @@
             this.gvFiles.RowHeadersVisible = false;
             this.gvFiles.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvFiles.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.gvFiles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.gvFiles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvFiles.Size = new System.Drawing.Size(524, 427);
             this.gvFiles.StandardTab = true;
             this.gvFiles.TabIndex = 56;
             this.gvFiles.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.gvFiles_DataBindingComplete);
+            this.gvFiles.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFiles_RowEnter);
             // 
             // check
             // 
+            this.check.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.check.FillWeight = 10F;
             this.check.HeaderText = "check";
             this.check.Name = "check";
             this.check.ReadOnly = true;
+            this.check.Width = 5;
             // 
             // folderView
             // 

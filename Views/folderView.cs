@@ -18,6 +18,8 @@ namespace LFI
         private MainForm caller;
         private string checksum;
         PictureBox animation = new PictureBox();
+        int savedRow = 0;
+        int workingRow = 0;
 
         public struct SimpleData
         {
@@ -104,35 +106,39 @@ namespace LFI
 
         private void lstFolders_Click(object sender, EventArgs e)
         {
-            int sel = Convert.ToInt32(lstFolders.Text);
-            gvFiles.DataSource = null;
-            var bindingSource = new BindingSource();
-            if (lstFolders.Text == "0")
+            if (!worker.IsBusy)
             {
-                lblSize.Text = folder.Get_Folder_Size(sel, true) + " GB";
-                for (int i=0; i<= folder.folderitems.Count - 1; i++)
+                int sel = Convert.ToInt32(lstFolders.Text);
+                gvFiles.DataSource = null;
+                var bindingSource = new BindingSource();
+                if (lstFolders.Text == "0")
                 {
-                    bindingSource.Add(new SimpleData
+                    lblSize.Text = folder.Get_Folder_Size(sel, true) + " GB";
+                    for (int i = 0; i <= folder.folderitems.Count - 1; i++)
                     {
-                        Text = Path.GetFileName(folder.folderitems[i]),
-                        Hidden = folder.folderitems[i]
-                    });
+                        bindingSource.Add(new SimpleData
+                        {
+                            Text = Path.GetFileName(folder.folderitems[i]),
+                            Hidden = folder.filenames[i]
+                        });
+                    }
                 }
-            }
-            else
-            {
-                lblSize.Text = folder.Get_Folder_Size(sel, false) + " GB";
-                for (int i = 0; i <= folder.folderDivisions[sel-1].Count - 1; i++)
+                else
                 {
-                    bindingSource.Add(new SimpleData
+                    lblSize.Text = folder.Get_Folder_Size(sel, false) + " GB";
+                    for (int i = 0; i <= folder.folderDivisions[sel - 1].Count - 1; i++)
                     {
-                        Text = Path.GetFileName(folder.folderDivisions[sel - 1][i]),
-                        Hidden = folder.folderDivisions[sel - 1][i]
-                    });
-                }  
+                        bindingSource.Add(new SimpleData
+                        {
+                            Text = Path.GetFileName(folder.folderDivisions[sel - 1][i]),
+                            Hidden = folder.folderDivisions[sel - 1][i]
+                        });
+                    }
+                }
+                gvFiles.DataSource = bindingSource;
+                gvFiles.Columns[2].Visible = false;
+                gvFiles_RowEnter(null, null);
             }
-            gvFiles.DataSource = bindingSource;
-            gvFiles.Columns[2].Visible = false;
         }
 
         private void worker_DoWork(object sender, DoWorkEventArgs e)
@@ -140,15 +146,22 @@ namespace LFI
             BackgroundWorker worker = sender as BackgroundWorker;
             string file = (string)e.Argument;
 
-            Crc32 crc32 = new Crc32();
-            Crc32.worker = worker;
-            String hash = String.Empty;
-            using (FileStream fs = File.Open(file, FileMode.Open))
-                foreach (byte b in crc32.ComputeHash(fs))
-                {
-                    hash += b.ToString("x2").ToUpper();
-                }
-            checksum = hash;
+            try
+            {
+                Crc32 crc32 = new Crc32();
+                Crc32.worker = worker;
+                String hash = String.Empty;
+                using (FileStream fs = File.Open(file, FileMode.Open))
+                    foreach (byte b in crc32.ComputeHash(fs))
+                    {
+                        hash += b.ToString("x2").ToUpper();
+                    }
+                checksum = hash;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -156,21 +169,22 @@ namespace LFI
            
         }
 
+        //todo: method for cutting crc from filename
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             animation.Hide();
             caller.stop_progBar();
             if (checksum == "7FB94658")
-                gvFiles.Rows[0].Cells[0].Value = LFI.Properties.Resources.check;
+                gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
             else
-                gvFiles.Rows[0].Cells[0].Value = LFI.Properties.Resources.error;
+                gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.error;
         }
 
         void gvFiles_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            animation.Location = gvFiles.GetCellDisplayRectangle(0, 5, true).Location;
-            animation.Width = gvFiles.GetCellDisplayRectangle(0, 0, true).Width;
-            animation.Height = gvFiles.GetCellDisplayRectangle(0, 0, true).Height;
+            animation.Location = gvFiles.GetCellDisplayRectangle(0, workingRow, true).Location;
+            animation.Width = gvFiles.GetCellDisplayRectangle(0, workingRow, true).Width;
+            animation.Height = gvFiles.GetCellDisplayRectangle(0, workingRow, true).Height;
         }
 
         private void btnCheckCRC_Click(object sender, EventArgs e)
@@ -179,7 +193,8 @@ namespace LFI
             {
                 animation.Show();
                 caller.start_progBar();
-                worker.RunWorkerAsync(gvFiles.Rows[0].Cells[2].Value);
+                workingRow = savedRow;
+                worker.RunWorkerAsync(gvFiles.Rows[savedRow].Cells[2].Value);
             }
         }
 
@@ -189,6 +204,14 @@ namespace LFI
             {
                 gvFiles.Rows[i].Cells[0].Value = LFI.Properties.Resources.empty;
             }
+        }
+
+        private void gvFiles_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gvFiles.SelectedCells.Count > 0)
+                if (gvFiles.SelectedCells[0].Value != null)
+                    savedRow = gvFiles.SelectedCells[0].RowIndex;
+
         }
     }
 }
