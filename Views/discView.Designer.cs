@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
-            this.btn1 = new System.Windows.Forms.Button();
-            this.btn3 = new System.Windows.Forms.Button();
+            this.scrlPage = new System.Windows.Forms.HScrollBar();
             this.btn2 = new System.Windows.Forms.Button();
+            this.btn3 = new System.Windows.Forms.Button();
+            this.btn1 = new System.Windows.Forms.Button();
             this.btn4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtPageNo = new System.Windows.Forms.TextBox();
             this.btn8 = new System.Windows.Forms.Button();
             this.btn5 = new System.Windows.Forms.Button();
             this.btn7 = new System.Windows.Forms.Button();
@@ -42,7 +42,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.imgTitle = new System.Windows.Forms.PictureBox();
             this.copyLabel = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.txtSlot = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtDisc = new System.Windows.Forms.MaskedTextBox();
             this.btnGenerate = new System.Windows.Forms.Button();
@@ -72,26 +72,29 @@
             this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
-            // hScrollBar1
+            // scrlPage
             // 
-            this.hScrollBar1.Location = new System.Drawing.Point(0, 354);
-            this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(737, 20);
-            this.hScrollBar1.TabIndex = 82;
+            this.scrlPage.Location = new System.Drawing.Point(0, 354);
+            this.scrlPage.Minimum = 1;
+            this.scrlPage.Name = "scrlPage";
+            this.scrlPage.Size = new System.Drawing.Size(734, 20);
+            this.scrlPage.TabIndex = 82;
+            this.scrlPage.Value = 1;
+            this.scrlPage.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrlPage_Scroll);
             // 
-            // btn1
+            // btn2
             // 
-            this.btn1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btn1.FlatAppearance.BorderSize = 0;
-            this.btn1.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
-            this.btn1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn1.Location = new System.Drawing.Point(200, 6);
-            this.btn1.Name = "btn1";
-            this.btn1.Size = new System.Drawing.Size(150, 150);
-            this.btn1.TabIndex = 83;
-            this.btn1.TabStop = false;
-            this.btn1.UseVisualStyleBackColor = true;
-            this.btn1.Click += new System.EventHandler(this.btn_Click);
+            this.btn2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btn2.FlatAppearance.BorderSize = 0;
+            this.btn2.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
+            this.btn2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn2.Location = new System.Drawing.Point(200, 6);
+            this.btn2.Name = "btn2";
+            this.btn2.Size = new System.Drawing.Size(150, 150);
+            this.btn2.TabIndex = 83;
+            this.btn2.TabStop = false;
+            this.btn2.UseVisualStyleBackColor = true;
+            this.btn2.Click += new System.EventHandler(this.btn_Click);
             // 
             // btn3
             // 
@@ -107,19 +110,19 @@
             this.btn3.UseVisualStyleBackColor = true;
             this.btn3.Click += new System.EventHandler(this.btn_Click);
             // 
-            // btn2
+            // btn1
             // 
-            this.btn2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btn2.FlatAppearance.BorderSize = 0;
-            this.btn2.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
-            this.btn2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn2.Location = new System.Drawing.Point(24, 6);
-            this.btn2.Name = "btn2";
-            this.btn2.Size = new System.Drawing.Size(150, 150);
-            this.btn2.TabIndex = 85;
-            this.btn2.TabStop = false;
-            this.btn2.UseVisualStyleBackColor = true;
-            this.btn2.Click += new System.EventHandler(this.btn_Click);
+            this.btn1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btn1.FlatAppearance.BorderSize = 0;
+            this.btn1.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
+            this.btn1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn1.Location = new System.Drawing.Point(24, 6);
+            this.btn1.Name = "btn1";
+            this.btn1.Size = new System.Drawing.Size(150, 150);
+            this.btn1.TabIndex = 85;
+            this.btn1.TabStop = false;
+            this.btn1.UseVisualStyleBackColor = true;
+            this.btn1.Click += new System.EventHandler(this.btn_Click);
             // 
             // btn4
             // 
@@ -146,14 +149,14 @@
             this.label2.TabIndex = 91;
             this.label2.Text = "Page #";
             // 
-            // textBox1
+            // txtPageNo
             // 
-            this.textBox1.Location = new System.Drawing.Point(333, 328);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(74, 20);
-            this.textBox1.TabIndex = 92;
-            this.textBox1.Text = "1";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPageNo.Location = new System.Drawing.Point(333, 328);
+            this.txtPageNo.Name = "txtPageNo";
+            this.txtPageNo.Size = new System.Drawing.Size(74, 20);
+            this.txtPageNo.TabIndex = 92;
+            this.txtPageNo.Text = "1";
+            this.txtPageNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btn8
             // 
@@ -214,7 +217,7 @@
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.imgTitle);
             this.panel1.Controls.Add(this.copyLabel);
-            this.panel1.Controls.Add(this.maskedTextBox1);
+            this.panel1.Controls.Add(this.txtSlot);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtDisc);
             this.panel1.Controls.Add(this.btnGenerate);
@@ -251,18 +254,19 @@
             this.copyLabel.Size = new System.Drawing.Size(0, 22);
             this.copyLabel.TabIndex = 91;
             // 
-            // maskedTextBox1
+            // txtSlot
             // 
-            this.maskedTextBox1.BackColor = System.Drawing.Color.Black;
-            this.maskedTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.maskedTextBox1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.maskedTextBox1.Location = new System.Drawing.Point(272, 26);
-            this.maskedTextBox1.Mask = "000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(52, 22);
-            this.maskedTextBox1.TabIndex = 89;
-            this.maskedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSlot.BackColor = System.Drawing.Color.Black;
+            this.txtSlot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSlot.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSlot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.txtSlot.Location = new System.Drawing.Point(272, 26);
+            this.txtSlot.Mask = "000";
+            this.txtSlot.Name = "txtSlot";
+            this.txtSlot.Size = new System.Drawing.Size(52, 22);
+            this.txtSlot.TabIndex = 89;
+            this.txtSlot.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSlot.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
             // label1
             // 
@@ -299,6 +303,7 @@
             this.btnGenerate.TabIndex = 87;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // groupBox6
             // 
@@ -339,6 +344,7 @@
             this.txtInsRangeEnd.Size = new System.Drawing.Size(50, 22);
             this.txtInsRangeEnd.TabIndex = 75;
             this.txtInsRangeEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtInsRangeEnd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
             // lstContents
             // 
@@ -367,6 +373,7 @@
             this.txtInsRangeStart.Size = new System.Drawing.Size(52, 22);
             this.txtInsRangeStart.TabIndex = 68;
             this.txtInsRangeStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtInsRangeStart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
             // button5
             // 
@@ -378,6 +385,7 @@
             this.button5.TabIndex = 5;
             this.button5.Text = "Remove";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnAddDisc
             // 
@@ -389,6 +397,7 @@
             this.btnAddDisc.TabIndex = 46;
             this.btnAddDisc.Text = "Save";
             this.btnAddDisc.UseVisualStyleBackColor = true;
+            this.btnAddDisc.Click += new System.EventHandler(this.btnSaveClick);
             // 
             // button6
             // 
@@ -400,6 +409,7 @@
             this.button6.TabIndex = 4;
             this.button6.Text = "Insert";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // ddInsTitle
             // 
@@ -436,6 +446,7 @@
             this.txtSeason.TabIndex = 67;
             this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSeason.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.txtSeason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
             // label21
             // 
@@ -483,6 +494,7 @@
             this.ddInsRangeType.Name = "ddInsRangeType";
             this.ddInsRangeType.Size = new System.Drawing.Size(108, 24);
             this.ddInsRangeType.TabIndex = 65;
+            this.ddInsRangeType.SelectedValueChanged += new System.EventHandler(this.ddInsRangeType_SelectedValueChanged);
             // 
             // label20
             // 
@@ -516,6 +528,8 @@
             this.ddLocation.Name = "ddLocation";
             this.ddLocation.Size = new System.Drawing.Size(136, 24);
             this.ddLocation.TabIndex = 82;
+            this.ddLocation.SelectedIndexChanged += new System.EventHandler(this.ddLocation_SelectedIndexChanged);
+            this.ddLocation.SelectedValueChanged += new System.EventHandler(this.ddLocation_SelectedValueChanged);
             // 
             // label7
             // 
@@ -541,6 +555,7 @@
             this.txtPage.Size = new System.Drawing.Size(52, 22);
             this.txtPage.TabIndex = 81;
             this.txtPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
             // label8
             // 
@@ -575,13 +590,13 @@
             this.Controls.Add(this.btn5);
             this.Controls.Add(this.btn7);
             this.Controls.Add(this.btn6);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtPageNo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btn4);
-            this.Controls.Add(this.btn2);
-            this.Controls.Add(this.btn3);
             this.Controls.Add(this.btn1);
-            this.Controls.Add(this.hScrollBar1);
+            this.Controls.Add(this.btn3);
+            this.Controls.Add(this.btn2);
+            this.Controls.Add(this.scrlPage);
             this.Controls.Add(this.panel1);
             this.Name = "discView";
             this.Size = new System.Drawing.Size(737, 620);
@@ -597,13 +612,13 @@
 
         #endregion
 
-        private System.Windows.Forms.HScrollBar hScrollBar1;
-        private System.Windows.Forms.Button btn1;
-        private System.Windows.Forms.Button btn3;
+        private System.Windows.Forms.HScrollBar scrlPage;
         private System.Windows.Forms.Button btn2;
+        private System.Windows.Forms.Button btn3;
+        private System.Windows.Forms.Button btn1;
         private System.Windows.Forms.Button btn4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtPageNo;
         private System.Windows.Forms.Button btn8;
         private System.Windows.Forms.Button btn5;
         private System.Windows.Forms.Button btn7;
@@ -611,7 +626,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox imgTitle;
         private System.Windows.Forms.Label copyLabel;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox txtSlot;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox txtDisc;
         private System.Windows.Forms.Button btnGenerate;

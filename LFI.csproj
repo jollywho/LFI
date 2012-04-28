@@ -157,6 +157,10 @@
     <Compile Include="Panes\discPane.Designer.cs">
       <DependentUpon>discPane.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\showdiv.png" />
+    <None Include="Resources\divide.png" />
+    <None Include="Resources\addchecksum.png" />
+    <None Include="Resources\clear.png" />
     <None Include="Resources\checksum.png" />
     <None Include="Resources\back.png" />
     <None Include="Resources\progress.gif" />
@@ -210,8 +214,6 @@
     <EmbeddedResource Include="Panes\discPane.resx">
       <DependentUpon>discPane.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="back.png" />
-    <None Include="checksum.png" />
     <Content Include="data\LFI.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
