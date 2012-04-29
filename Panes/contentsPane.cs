@@ -32,16 +32,22 @@ namespace LFI
 
         public void load_data(string sel)
         {
+            gvDisc.Rows.Clear();
             try
             {
-                DataTable info = DB_Handle.GetDataTable(string.Format(
-                    @"Select discs.disc_id AS 'Disc', disc_contents.range AS 'Range', 
-                    discs.page_number AS 'Page Number', discs.location_id AS 'Location',
-                    disc_contents.season AS 'Season'
-                    FROM discs natural join disc_contents WHERE title_id='{0}'
-                    ORDER BY discs.disc_id ASC, disc_contents.range ASC",
-                    sel));
-                gvDisc.DataSource = info;
+                DataTable temp = DB_Handle.GetDataTable(string.Format(
+                    @"Select * from discs natural join disc_contents where
+                    title_id='{0}' order by title_id", sel));
+
+                if (temp.Rows.Count > 0)
+                {
+                    for (int i = 0; i <= temp.Rows.Count - 1; i++)
+                    {
+                        gvDisc.Rows.Add(temp.Rows[i][3],
+                            temp.Rows[i][0], temp.Rows[i][1], temp.Rows[i][2],
+                            temp.Rows[i][5], temp.Rows[i][6], temp.Rows[i][7]);
+                    }
+                }
             }
             catch (Exception ex)
             {

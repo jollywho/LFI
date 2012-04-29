@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtSeasons = new System.Windows.Forms.MaskedTextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.txtCategory = new System.Windows.Forms.TextBox();
             this.txtStatus = new System.Windows.Forms.TextBox();
@@ -40,8 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.imgTitle = new System.Windows.Forms.PictureBox();
-            this.txtSeasons = new System.Windows.Forms.MaskedTextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
             this.SuspendLayout();
@@ -65,6 +65,31 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(320, 200);
             this.panel1.TabIndex = 29;
+            // 
+            // txtSeasons
+            // 
+            this.txtSeasons.BackColor = System.Drawing.SystemColors.Control;
+            this.txtSeasons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSeasons.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSeasons.ForeColor = System.Drawing.Color.Black;
+            this.txtSeasons.Location = new System.Drawing.Point(61, 95);
+            this.txtSeasons.Mask = "000";
+            this.txtSeasons.Name = "txtSeasons";
+            this.txtSeasons.ReadOnly = true;
+            this.txtSeasons.Size = new System.Drawing.Size(52, 22);
+            this.txtSeasons.TabIndex = 78;
+            this.txtSeasons.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.label7.Location = new System.Drawing.Point(61, 75);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 16);
+            this.label7.TabIndex = 77;
+            this.label7.Text = "Seasons";
             // 
             // txtTitle
             // 
@@ -199,31 +224,6 @@
             this.imgTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgTitle.TabIndex = 28;
             this.imgTitle.TabStop = false;
-            // 
-            // txtSeasons
-            // 
-            this.txtSeasons.BackColor = System.Drawing.SystemColors.Control;
-            this.txtSeasons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSeasons.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSeasons.ForeColor = System.Drawing.Color.Black;
-            this.txtSeasons.Location = new System.Drawing.Point(61, 95);
-            this.txtSeasons.Mask = "000";
-            this.txtSeasons.Name = "txtSeasons";
-            this.txtSeasons.ReadOnly = true;
-            this.txtSeasons.Size = new System.Drawing.Size(52, 22);
-            this.txtSeasons.TabIndex = 78;
-            this.txtSeasons.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label7.Location = new System.Drawing.Point(61, 75);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 16);
-            this.label7.TabIndex = 77;
-            this.label7.Text = "Seasons";
             // 
             // infoPane
             // 

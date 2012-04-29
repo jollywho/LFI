@@ -33,6 +33,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gvDisc = new System.Windows.Forms.DataGridView();
+            this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Disc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Page = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Slot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Season = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Start = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.End = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gvDisc)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +58,7 @@
             this.gvDisc.BackgroundColor = System.Drawing.Color.White;
             this.gvDisc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gvDisc.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.gvDisc.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -60,6 +68,14 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gvDisc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gvDisc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvDisc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Location,
+            this.Disc,
+            this.Page,
+            this.Slot,
+            this.Season,
+            this.Start,
+            this.End});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -90,6 +106,68 @@
             this.gvDisc.StandardTab = true;
             this.gvDisc.TabIndex = 2;
             // 
+            // Location
+            // 
+            this.Location.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Location.HeaderText = "Location";
+            this.Location.Name = "Location";
+            this.Location.ReadOnly = true;
+            this.Location.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Disc
+            // 
+            this.Disc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Disc.HeaderText = "Disc";
+            this.Disc.Name = "Disc";
+            this.Disc.ReadOnly = true;
+            this.Disc.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Disc.Width = 37;
+            // 
+            // Page
+            // 
+            this.Page.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Page.HeaderText = "Page";
+            this.Page.Name = "Page";
+            this.Page.ReadOnly = true;
+            this.Page.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Page.Width = 41;
+            // 
+            // Slot
+            // 
+            this.Slot.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Slot.HeaderText = "Slot";
+            this.Slot.Name = "Slot";
+            this.Slot.ReadOnly = true;
+            this.Slot.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Slot.Width = 35;
+            // 
+            // Season
+            // 
+            this.Season.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Season.HeaderText = "Season";
+            this.Season.Name = "Season";
+            this.Season.ReadOnly = true;
+            this.Season.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Season.Width = 52;
+            // 
+            // Start
+            // 
+            this.Start.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Start.HeaderText = "Start";
+            this.Start.Name = "Start";
+            this.Start.ReadOnly = true;
+            this.Start.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Start.Width = 40;
+            // 
+            // End
+            // 
+            this.End.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.End.HeaderText = "End";
+            this.End.Name = "End";
+            this.End.ReadOnly = true;
+            this.End.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.End.Width = 35;
+            // 
             // contentsPane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -106,6 +184,13 @@
         #endregion
 
         private System.Windows.Forms.DataGridView gvDisc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Location;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Disc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Page;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Slot;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Season;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Start;
+        private System.Windows.Forms.DataGridViewTextBoxColumn End;
 
 
 

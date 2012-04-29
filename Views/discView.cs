@@ -13,6 +13,7 @@ namespace LFI
     public partial class discView : UserControl
     {
         private BackgroundWorker worker = new BackgroundWorker();
+        bool isNewRecord = false;
         private int currentPage = 1;
         const int DISCS_PER_PAGE = 8;
         private int max_pages = 0;
@@ -171,19 +172,21 @@ namespace LFI
                 try
                 {
                     DB_Handle.UpdateTable(string.Format(
-                        @"INSERT INTO DISCS 
-                        (disc_id, page_number, location_id)
-                        VALUES ('{0:000}','{1:000}','{2:000}');",
-                        txtDisc.Text, txtPage.Text, ddLocation.Text));
-                    rollbackpos = true;
+                        @"INSERT OR REPLACE INTO DISCS 
+                        VALUES ('{0}','{1}','{2}','{3}');",
+                        txtDisc.Text, txtPage.Text, txtSlot.Text, ddLocation.Text));
+                    if (isNewRecord)
+                        rollbackpos = true;
 
-                    foreach (string str in gvContents.Rows)
+                    for (int i = 0; i <= gvContents.Rows.Count - 1; i++)
                     {
                         DB_Handle.UpdateTable(string.Format(
-                            @"INSERT INTO DISC_CONTENTS 
-                            (disc_id, title_id, season, range)
-                            VALUES ('{0:000}','{1:000}','{2:000}','{3}');",
-                            txtDisc.Text, str[0], str[1], str[2]));
+                            @"INSERT OR REPLACE INTO DISC_CONTENTS 
+                            (disc_id, title_id, season, rangeStart, rangeEnd)
+                            VALUES ('{0}','{1}','{2}','{3}','{4}');",
+                            txtDisc.Text, gvContents.Rows[i].Cells[0].Value,
+                            gvContents.Rows[i].Cells[1].Value, gvContents.Rows[i].Cells[2].Value,
+                            gvContents.Rows[i].Cells[3].Value));
                     }
                     MessageBox.Show("Saved", "Success");
                 }
@@ -192,7 +195,7 @@ namespace LFI
                     if (rollbackpos)
                         DB_Handle.UpdateTable(string.Format(
                             @"DELETE FROM DISCS WHERE
-                            disc_id = '{0:000}' AND location_id = '{1:000}'",
+                            disc_id = '{0}' AND location_id = '{1}'",
                             txtDisc.Text, ddLocation.Text));
                     MessageBox.Show(ex.Message, "Error");
                 }
@@ -272,6 +275,7 @@ namespace LFI
 
             if (temp.Rows.Count > 0)
             {
+                isNewRecord = false;
                 txtDisc.Text = temp.Rows[0][0].ToString();
                 txtPage.Text = temp.Rows[0][1].ToString();
                 txtSlot.Text = temp.Rows[0][2].ToString();
@@ -282,6 +286,7 @@ namespace LFI
             }
             else
             {
+                isNewRecord = true;
                 txtDisc.Clear();
                 txtPage.Text = txtPageNo.Text;
                 txtSlot.Text = (Convert.ToInt32(btn.Name.Substring(btn.Name.Length - 1, 1))).ToString();
