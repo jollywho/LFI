@@ -11,6 +11,26 @@ namespace LFI
 {
     class Image_IO
     {
+
+        public static Image createMergedImage(List<string> titleStrs, Button btn)
+        {
+            List<Image> imgLst = new List<Image>();
+            for (int i = 0; i <= titleStrs.Count - 1; i++)
+            {
+                if (System.IO.File.Exists(string.Format("image\\{0}.jpg", titleStrs[i])))
+                {
+                    imgLst.Add(resize_Image(Image.FromFile(string.Format("image\\{0}.jpg",
+                        titleStrs[i])), btn.Width, btn.Height / titleStrs.Count));
+                }
+                else
+                    imgLst.Add(resize_Image(LFI.Properties.Resources.notfound,
+                        btn.Width, btn.Height / titleStrs.Count));
+            }
+            Image finalImage = merge_Images(imgLst, btn.Width, btn.Height, titleStrs.Count);
+            return finalImage;
+        }
+
+
         public static Image resize_Image(Image srcImage, int newWidth, int newHeight)
         {
             Bitmap newImage = new Bitmap(newWidth, newHeight);
@@ -24,15 +44,17 @@ namespace LFI
             }
         }
 
-        public static Image merge_Images(Image image1, Image image2, int newWidth, int newHeight)
+        public static Image merge_Images(List<Image> imgLst, int newWidth, int newHeight, int items)
         {
             Image newImage = new Bitmap(newWidth, newHeight);
             using (Graphics grfx = Graphics.FromImage(newImage))
             {
-                grfx.DrawImage(image1, new Rectangle(0, 0, newWidth, newHeight / 2));
-
-                grfx.DrawImage(image1, new Rectangle(0, newHeight / 2, newWidth, newHeight / 2));
-                grfx.DrawLine(new Pen(Color.Black), 0, newHeight / 2, newWidth, newHeight / 2);
+                for (int i = 0; i <= imgLst.Count - 1; i++)
+                {
+                    grfx.DrawImage(imgLst[i], new Rectangle(0, (newHeight / items) * i, newWidth, newHeight / items));
+                    if (i > 0 && i != imgLst.Count)
+                        grfx.DrawLine(new Pen(Color.Black), 0, (newHeight / items) * i, newWidth, (newHeight / items) * i);
+                }
                 return newImage;
             }
         }

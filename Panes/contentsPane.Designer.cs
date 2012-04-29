@@ -1,6 +1,6 @@
 ﻿namespace LFI
 {
-    partial class discPane
+    partial class contentsPane
     {
         /// <summary> 
         /// Required designer variable.

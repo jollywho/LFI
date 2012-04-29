@@ -116,7 +116,7 @@
             // 
             // btn1
             // 
-            this.btn1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btn1.FlatAppearance.BorderSize = 0;
             this.btn1.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
@@ -250,6 +250,7 @@
             // 
             // imgTitle
             // 
+            this.imgTitle.BackColor = System.Drawing.Color.Transparent;
             this.imgTitle.BackgroundImage = global::LFI.Properties.Resources.notfound;
             this.imgTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.imgTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -263,7 +264,7 @@
             // copyLabel
             // 
             this.copyLabel.AutoSize = true;
-            this.copyLabel.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.copyLabel.Font = new System.Drawing.Font("Palatino Linotype", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.copyLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
             this.copyLabel.Location = new System.Drawing.Point(342, 5);
             this.copyLabel.Name = "copyLabel";

@@ -15,7 +15,7 @@ namespace LFI
     {
         DataTable dt;
         DataView dv;
-        public discPane discPane;
+        public contentsPane discPane;
         public editPane editPane;
         public infoPane infoPane;
         int[] sel = new int[2];
@@ -27,7 +27,7 @@ namespace LFI
             InitializeComponent();
             populateList();
             infoPane = new infoPane();
-            discPane = new discPane();
+            discPane = new contentsPane();
             editPane = new editPane();
             panelMain.Controls.Add(infoPane);
             panelMain.Controls.Add(discPane);

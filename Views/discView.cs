@@ -32,20 +32,9 @@ namespace LFI
             ddInsTitle.DataSource = titles;
             ddInsTitle.DisplayMember = "title_id";
 
-            //Rectangle cropRect = new Rectangle();
-            //Bitmap src = Image.FromFile("image\\Air TV.jpg") as Bitmap;
-            //Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
-            //using (Graphics g = Graphics.FromImage(target))
-            //{
-            //    g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height),
-            //        cropRect,
-            //        GraphicsUnit.Pixel);
-            //}
 
-            Image src = Image_IO.resize_Image(Image.FromFile("image\\Air TV.jpg"), btn1.Width, btn1.Height/2);
-            Image src2 = Image_IO.resize_Image(Image.FromFile("image\\Air TV.jpg"), btn1.Width, btn1.Height / 2);
 
-            btn1.BackgroundImage = Image_IO.merge_Images(src, src2, btn1.Width, btn1.Height);
+            btn1.BackgroundImage = Image_IO.createMergedImage(new List<string>() { "Air TV", "Air TV" }, btn1);
 
             for (int i = 1; i <= DISCS_PER_PAGE; i++)
             {
@@ -80,6 +69,7 @@ namespace LFI
                     dLabels[i-1].Text = temp.Rows[0][0].ToString();
                 else
                     dLabels[i-1].Text = "Empty";
+                Controls[("btn" + i).ToString()].BackgroundImage = generateDiscImage(dLabels[i - 1].Text);
             }
         }
 
@@ -261,8 +251,6 @@ namespace LFI
 
         }
 
-
-
         private void ddLocation_SelectedValueChanged(object sender, EventArgs e)
         {
             //reload
@@ -275,8 +263,40 @@ namespace LFI
             loadPage();
         }
 
+        private Image generateDiscImage(string discid)
+        {
+            Image img = LFI.Properties.Resources.notfound;
+            DataTable temp = DB_Handle.GetDataTable(string.Format(
+                @"Select * from discs natural join disc_contents where
+                disc_id='{0}' order by title_id", discid));
+
+            if (temp.Rows.Count > 0)
+            {
+                List<string> disc_titles = new List<string>();
+                if (temp.Rows.Count > 0)
+                {
+                    for (int i = 0; i <= temp.Rows.Count - 1; i++)
+                    {
+                        disc_titles.Add(temp.Rows[i][4].ToString());
+                    }
+                }
+                img = Image_IO.createMergedImage(disc_titles, btn1);
+            }
+            return img;
+        }
+
         private void disc_btn_Click(object sender, EventArgs e)
         {
+            imgTitle.BackgroundImage = null;
+            Button btn = (Button)sender;
+            string discid = dLabels[Convert.ToInt32(btn.Name.Substring(btn.Name.Length-1, 1))-1].Text;
+
+            DataTable temp = DB_Handle.GetDataTable(string.Format(
+                @"Select * from discs natural join disc_contents where
+                disc_id='{0}' order by title_id",
+                discid));
+
+            imgTitle.BackgroundImage = generateDiscImage(discid);
         }
     }
 }

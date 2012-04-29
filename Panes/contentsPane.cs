@@ -10,10 +10,10 @@ using System.IO;
 
 namespace LFI
 {
-    public partial class discPane : UserControl
+    public partial class contentsPane : UserControl
     {
         public bool active = false;
-        public discPane()
+        public contentsPane()
         {
             InitializeComponent();
         }
@@ -36,11 +36,11 @@ namespace LFI
             {
                 DataTable info = DB_Handle.GetDataTable(string.Format(
                     @"Select discs.disc_id AS 'Disc', disc_contents.range AS 'Range', 
-                discs.page_number AS 'Page Number', discs.location_id AS 'Location',
-                disc_contents.season AS 'Season'
-                FROM discs natural join disc_contents WHERE title_id='{0}'
-                ORDER BY discs.disc_id ASC, disc_contents.range ASC",
-                sel));
+                    discs.page_number AS 'Page Number', discs.location_id AS 'Location',
+                    disc_contents.season AS 'Season'
+                    FROM discs natural join disc_contents WHERE title_id='{0}'
+                    ORDER BY discs.disc_id ASC, disc_contents.range ASC",
+                    sel));
                 gvDisc.DataSource = info;
             }
             catch (Exception ex)

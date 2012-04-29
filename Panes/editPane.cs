@@ -40,10 +40,14 @@ namespace LFI
         private void btnImg_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
-            if (dlg.ShowDialog() != DialogResult.Cancel)
+            if (dlg.ShowDialog() != DialogResult.Cancel && ddTitle.Text.Length > 0)
             {
                 try
                 {
+                    Image img = Image.FromFile(dlg.FileName);
+                    img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
+                    img.Save(string.Format("image\\{0}.jpg", ddTitle.Text), 
+                        System.Drawing.Imaging.ImageFormat.Jpeg);
                     imgTitle.ImageLocation = dlg.FileName;
                 }
                 catch (Exception ex)
