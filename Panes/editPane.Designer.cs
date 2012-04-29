@@ -211,6 +211,7 @@
             this.btnImg.Text = "...";
             this.btnImg.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnImg.UseVisualStyleBackColor = true;
+            this.btnImg.Click += new System.EventHandler(this.btnImg_Click);
             // 
             // imgTitle
             // 

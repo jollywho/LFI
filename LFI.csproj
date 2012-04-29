@@ -157,6 +157,7 @@
     <Compile Include="Panes\discPane.Designer.cs">
       <DependentUpon>discPane.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\borderBigg.png" />
     <None Include="Resources\showdiv.png" />
     <None Include="Resources\divide.png" />
     <None Include="Resources\addchecksum.png" />
@@ -179,7 +180,6 @@
     <None Include="LFIDataSet.xss">
       <DependentUpon>LFIDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Resources\borderBig.png" />
     <None Include="Resources\border.png" />
     <None Include="Resources\bannerOrig.jpg" />
     <EmbeddedResource Include="Panes\VLabel.resx">

@@ -53,7 +53,7 @@ namespace LFI
         {
             string path = Path.Combine(
                 Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
-                string.Format("..\\..\\image\\{0}.jpg", str));
+                string.Format("image\\{0}.jpg", str));
 
             if (System.IO.File.Exists(path))
             {
@@ -62,23 +62,6 @@ namespace LFI
             else
             {
                 imgTitle.ImageLocation = null;
-            }
-        }
-
-        //todo: commit img
-        private void btnImg_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dlg = new OpenFileDialog();
-            if (dlg.ShowDialog() != DialogResult.Cancel)
-            {
-                try
-                {
-                    imgTitle.ImageLocation = dlg.FileName;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
             }
         }
     }

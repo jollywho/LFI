@@ -77,13 +77,16 @@
             this.scrlPage.Location = new System.Drawing.Point(0, 354);
             this.scrlPage.Minimum = 1;
             this.scrlPage.Name = "scrlPage";
+            this.scrlPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.scrlPage.Size = new System.Drawing.Size(734, 20);
             this.scrlPage.TabIndex = 82;
+            this.scrlPage.TabStop = true;
             this.scrlPage.Value = 1;
             this.scrlPage.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrlPage_Scroll);
             // 
             // btn2
             // 
+            this.btn2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btn2.FlatAppearance.BorderSize = 0;
             this.btn2.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
@@ -94,10 +97,11 @@
             this.btn2.TabIndex = 83;
             this.btn2.TabStop = false;
             this.btn2.UseVisualStyleBackColor = true;
-            this.btn2.Click += new System.EventHandler(this.btn_Click);
+            this.btn2.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn3
             // 
+            this.btn3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btn3.FlatAppearance.BorderSize = 0;
             this.btn3.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
@@ -108,24 +112,28 @@
             this.btn3.TabIndex = 84;
             this.btn3.TabStop = false;
             this.btn3.UseVisualStyleBackColor = true;
-            this.btn3.Click += new System.EventHandler(this.btn_Click);
+            this.btn3.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn1
             // 
+            this.btn1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btn1.FlatAppearance.BorderSize = 0;
             this.btn1.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
             this.btn1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btn1.Location = new System.Drawing.Point(24, 6);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(150, 150);
             this.btn1.TabIndex = 85;
             this.btn1.TabStop = false;
+            this.btn1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btn1.UseVisualStyleBackColor = true;
-            this.btn1.Click += new System.EventHandler(this.btn_Click);
+            this.btn1.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn4
             // 
+            this.btn4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btn4.FlatAppearance.BorderSize = 0;
             this.btn4.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
@@ -136,7 +144,7 @@
             this.btn4.TabIndex = 86;
             this.btn4.TabStop = false;
             this.btn4.UseVisualStyleBackColor = true;
-            this.btn4.Click += new System.EventHandler(this.btn_Click);
+            this.btn4.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // label2
             // 
@@ -160,6 +168,7 @@
             // 
             // btn8
             // 
+            this.btn8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn8.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btn8.FlatAppearance.BorderSize = 0;
             this.btn8.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
@@ -170,9 +179,11 @@
             this.btn8.TabIndex = 96;
             this.btn8.TabStop = false;
             this.btn8.UseVisualStyleBackColor = true;
+            this.btn8.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn5
             // 
+            this.btn5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btn5.FlatAppearance.BorderSize = 0;
             this.btn5.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
@@ -183,9 +194,11 @@
             this.btn5.TabIndex = 95;
             this.btn5.TabStop = false;
             this.btn5.UseVisualStyleBackColor = true;
+            this.btn5.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn7
             // 
+            this.btn7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn7.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btn7.FlatAppearance.BorderSize = 0;
             this.btn7.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
@@ -196,9 +209,11 @@
             this.btn7.TabIndex = 94;
             this.btn7.TabStop = false;
             this.btn7.UseVisualStyleBackColor = true;
+            this.btn7.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn6
             // 
+            this.btn6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn6.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btn6.FlatAppearance.BorderSize = 0;
             this.btn6.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
@@ -209,11 +224,12 @@
             this.btn6.TabIndex = 93;
             this.btn6.TabStop = false;
             this.btn6.UseVisualStyleBackColor = true;
+            this.btn6.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.panel1.BackgroundImage = global::LFI.Properties.Resources.borderBig;
+            this.panel1.BackgroundImage = global::LFI.Properties.Resources.borderBigg;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.imgTitle);
             this.panel1.Controls.Add(this.copyLabel);
@@ -227,9 +243,9 @@
             this.panel1.Controls.Add(this.txtPage);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label11);
-            this.panel1.Location = new System.Drawing.Point(0, 374);
+            this.panel1.Location = new System.Drawing.Point(-10, 374);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(737, 246);
+            this.panel1.Size = new System.Drawing.Size(750, 246);
             this.panel1.TabIndex = 97;
             // 
             // imgTitle
@@ -237,7 +253,7 @@
             this.imgTitle.BackgroundImage = global::LFI.Properties.Resources.notfound;
             this.imgTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.imgTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.imgTitle.Location = new System.Drawing.Point(522, 24);
+            this.imgTitle.Location = new System.Drawing.Point(534, 24);
             this.imgTitle.Name = "imgTitle";
             this.imgTitle.Size = new System.Drawing.Size(200, 217);
             this.imgTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -249,7 +265,7 @@
             this.copyLabel.AutoSize = true;
             this.copyLabel.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.copyLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.copyLabel.Location = new System.Drawing.Point(330, 5);
+            this.copyLabel.Location = new System.Drawing.Point(342, 5);
             this.copyLabel.Name = "copyLabel";
             this.copyLabel.Size = new System.Drawing.Size(0, 22);
             this.copyLabel.TabIndex = 91;
@@ -260,7 +276,7 @@
             this.txtSlot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSlot.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSlot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.txtSlot.Location = new System.Drawing.Point(272, 26);
+            this.txtSlot.Location = new System.Drawing.Point(284, 26);
             this.txtSlot.Mask = "000";
             this.txtSlot.Name = "txtSlot";
             this.txtSlot.Size = new System.Drawing.Size(52, 22);
@@ -274,7 +290,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label1.Location = new System.Drawing.Point(281, 9);
+            this.label1.Location = new System.Drawing.Point(293, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 16);
             this.label1.TabIndex = 90;
@@ -286,7 +302,7 @@
             this.txtDisc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDisc.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDisc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.txtDisc.Location = new System.Drawing.Point(9, 26);
+            this.txtDisc.Location = new System.Drawing.Point(21, 26);
             this.txtDisc.Mask = "000";
             this.txtDisc.Name = "txtDisc";
             this.txtDisc.Size = new System.Drawing.Size(88, 22);
@@ -297,7 +313,7 @@
             // 
             this.btnGenerate.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate.ForeColor = System.Drawing.Color.Black;
-            this.btnGenerate.Location = new System.Drawing.Point(112, 26);
+            this.btnGenerate.Location = new System.Drawing.Point(124, 26);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(75, 23);
             this.btnGenerate.TabIndex = 87;
@@ -325,7 +341,7 @@
             this.groupBox6.Controls.Add(this.lblRange);
             this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.groupBox6.Location = new System.Drawing.Point(6, 58);
+            this.groupBox6.Location = new System.Drawing.Point(18, 58);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(510, 183);
             this.groupBox6.TabIndex = 83;
@@ -524,7 +540,7 @@
             this.ddLocation.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddLocation.ForeColor = System.Drawing.Color.Black;
             this.ddLocation.FormattingEnabled = true;
-            this.ddLocation.Location = new System.Drawing.Point(380, 24);
+            this.ddLocation.Location = new System.Drawing.Point(392, 24);
             this.ddLocation.Name = "ddLocation";
             this.ddLocation.Size = new System.Drawing.Size(136, 24);
             this.ddLocation.TabIndex = 82;
@@ -537,7 +553,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label7.Location = new System.Drawing.Point(423, 5);
+            this.label7.Location = new System.Drawing.Point(435, 5);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(51, 16);
             this.label7.TabIndex = 86;
@@ -549,7 +565,7 @@
             this.txtPage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPage.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.txtPage.Location = new System.Drawing.Point(203, 26);
+            this.txtPage.Location = new System.Drawing.Point(215, 26);
             this.txtPage.Mask = "000";
             this.txtPage.Name = "txtPage";
             this.txtPage.Size = new System.Drawing.Size(52, 22);
@@ -563,7 +579,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label8.Location = new System.Drawing.Point(212, 7);
+            this.label8.Location = new System.Drawing.Point(224, 7);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(34, 16);
             this.label8.TabIndex = 84;
@@ -575,7 +591,7 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label11.Location = new System.Drawing.Point(30, 9);
+            this.label11.Location = new System.Drawing.Point(42, 9);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(46, 16);
             this.label11.TabIndex = 85;

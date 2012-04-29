@@ -81,7 +81,7 @@ namespace LFI
         {
             string path = Path.Combine(
                 Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
-                string.Format("..\\..\\image\\{0}.jpg", str));
+                string.Format("image\\{0}.jpg", str));
 
             if (System.IO.File.Exists(path))
             {

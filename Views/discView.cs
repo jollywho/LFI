@@ -7,7 +7,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.IO;
 
 namespace LFI
 {
@@ -33,14 +32,20 @@ namespace LFI
             ddInsTitle.DataSource = titles;
             ddInsTitle.DisplayMember = "title_id";
 
-            Image image = ResizeImage("..\\..\\image\\Air TV.jpg", ImageFormat.Jpeg, 0);
-            Image newimage = Image.FromFile("..\\..\\image\\Air TV.jpg");
-            using (Graphics grfx = Graphics.FromImage(image))
-            {
-                //grfx.DrawImage(newimage, newimage.Width / 2, newimage.Height / 2);
-            }
-            //btn1.Image = image;
+            //Rectangle cropRect = new Rectangle();
+            //Bitmap src = Image.FromFile("image\\Air TV.jpg") as Bitmap;
+            //Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
+            //using (Graphics g = Graphics.FromImage(target))
+            //{
+            //    g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height),
+            //        cropRect,
+            //        GraphicsUnit.Pixel);
+            //}
 
+            Image src = Image_IO.resize_Image(Image.FromFile("image\\Air TV.jpg"), btn1.Width, btn1.Height/2);
+            Image src2 = Image_IO.resize_Image(Image.FromFile("image\\Air TV.jpg"), btn1.Width, btn1.Height / 2);
+
+            btn1.BackgroundImage = Image_IO.merge_Images(src, src2, btn1.Width, btn1.Height);
 
             for (int i = 1; i <= DISCS_PER_PAGE; i++)
             {
@@ -89,31 +94,6 @@ namespace LFI
             point.X -= lbl.Size.Width;
             lbl.Location = point;
             return lbl;
-        }
-
-
-        public Image ResizeImage(string fileName,
-            ImageFormat format, int percent)
-        {
-            try
-            {
-                Image thumbNail;
-                using (Image img = Image.FromFile(fileName))
-                {
-                    int width = 150;
-                    int height = 150;
-                    thumbNail = new Bitmap(width, height, img.PixelFormat);
-                    Graphics g = Graphics.FromImage(thumbNail);
-                    Rectangle rect = new Rectangle(0, 0, width, height);
-                    g.DrawImage(img, rect);
-                    //thumbNail.Save(imgFileName, format);
-                }
-                return thumbNail;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
         }
 
         private void numericTextbox_keydown(object sender, KeyEventArgs e)
@@ -278,34 +258,10 @@ namespace LFI
 
         private void btn_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            //setImage(ddInsTitle.Text);
-            //setImage("Air TV");
-            if (btn.FlatAppearance.BorderColor == Color.Red)
-            {
-                btn.FlatAppearance.BorderColor = Color.Silver;
-            }
-            else
-            {
-                btn.FlatAppearance.BorderColor = Color.Red;
-            }
+
         }
 
-        private void setImage(string str)
-        {
-            string path = Path.Combine(
-                Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
-                string.Format("..\\..\\image\\{0}.jpg", str));
 
-            if (System.IO.File.Exists(path))
-            {
-                imgTitle.ImageLocation = path;
-            }
-            else
-            {
-                imgTitle.ImageLocation = null;
-            }
-        }
 
         private void ddLocation_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -317,6 +273,10 @@ namespace LFI
             currentPage = e.NewValue;
             txtPageNo.Text = e.NewValue.ToString();
             loadPage();
+        }
+
+        private void disc_btn_Click(object sender, EventArgs e)
+        {
         }
     }
 }

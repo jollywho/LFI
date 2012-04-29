@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnImg = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.txtCategory = new System.Windows.Forms.TextBox();
@@ -44,20 +43,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnImg
-            // 
-            this.btnImg.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnImg.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImg.ForeColor = System.Drawing.Color.Lime;
-            this.btnImg.Location = new System.Drawing.Point(145, 208);
-            this.btnImg.Name = "btnImg";
-            this.btnImg.Size = new System.Drawing.Size(50, 20);
-            this.btnImg.TabIndex = 27;
-            this.btnImg.TabStop = false;
-            this.btnImg.Text = "...";
-            this.btnImg.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnImg.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -213,7 +198,6 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.imgTitle);
-            this.Controls.Add(this.btnImg);
             this.Name = "infoPane";
             this.Size = new System.Drawing.Size(340, 482);
             this.panel1.ResumeLayout(false);
@@ -226,7 +210,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox imgTitle;
-        private System.Windows.Forms.Button btnImg;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.TextBox txtCategory;

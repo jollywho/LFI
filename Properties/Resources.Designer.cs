@@ -88,9 +88,9 @@ namespace LFI.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap borderBig {
+        internal static System.Drawing.Bitmap borderBigg {
             get {
-                object obj = ResourceManager.GetObject("borderBig", resourceCulture);
+                object obj = ResourceManager.GetObject("borderBigg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
