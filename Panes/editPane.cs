@@ -113,13 +113,13 @@ namespace LFI
                     error += "Title already exists\n";
                 if (ddCategory.Text.Length == 0)
                     error += "Category required\n";
-                if (ddStatus.Text.Length < 3)
+                if (ddStatus.Text.Length < 1)
                     error += "Status required\n";
                 if (ddLanguage.Text.Length < 1)
                     error += "Language required\n";
                 if (txtYear.Text.Length < 4)
                     error += "Year required\n";
-                if (txtEpisode.Text.Length < 3)
+                if (txtEpisode.Text.Length < 1)
                     error += "Episode # required\n";
 
                 if (error.Length != 0)
@@ -132,8 +132,8 @@ namespace LFI
                     DB_Handle.UpdateTable(string.Format(
                         @"INSERT OR REPLACE INTO TITLES
                         (title_id, episodes, category, year, status, language)
-                        VALUES ('{0}','{1:000}','{2}','{3}','{4}','{5}');",
-                        ddTitle.Text, txtEpisode.Text, ddCategory.Text,
+                        VALUES ('{0}','{1}','{2}','{3}','{4}','{5}');",
+                        ddTitle.Text, txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
                         txtYear.Text, ddStatus.Text, ddLanguage.Text));
                     MessageBox.Show("Saved", "Success");
                     status = true;

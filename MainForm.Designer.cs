@@ -95,7 +95,7 @@
             // menuAddItem
             // 
             this.menuAddItem.Index = 0;
-            this.menuAddItem.Shortcut = System.Windows.Forms.Shortcut.CtrlA;
+            this.menuAddItem.Shortcut = System.Windows.Forms.Shortcut.CtrlN;
             this.menuAddItem.Text = "Add...";
             this.menuAddItem.Click += new System.EventHandler(this.menuAddItem_Click);
             // 
@@ -194,7 +194,7 @@
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(540, 700);
             this.Name = "MainForm";
-            this.Text = "LFI 0.2.7";
+            this.Text = "LFI 0.2.8";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

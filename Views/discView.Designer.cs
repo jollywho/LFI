@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.scrlPage = new System.Windows.Forms.HScrollBar();
             this.btn2 = new System.Windows.Forms.Button();
             this.btn3 = new System.Windows.Forms.Button();
@@ -47,8 +49,13 @@
             this.txtDisc = new System.Windows.Forms.MaskedTextBox();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.gvContents = new System.Windows.Forms.DataGridView();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Season = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Start = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.End = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtInsRangeEnd = new System.Windows.Forms.MaskedTextBox();
-            this.lstContents = new System.Windows.Forms.ListBox();
             this.txtInsRangeStart = new System.Windows.Forms.MaskedTextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.btnAddDisc = new System.Windows.Forms.Button();
@@ -59,8 +66,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.lblStart = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.ddInsRangeType = new System.Windows.Forms.ComboBox();
-            this.label20 = new System.Windows.Forms.Label();
             this.lblRange = new System.Windows.Forms.Label();
             this.ddLocation = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -70,6 +75,7 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvContents)).BeginInit();
             this.SuspendLayout();
             // 
             // scrlPage
@@ -80,7 +86,6 @@
             this.scrlPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.scrlPage.Size = new System.Drawing.Size(734, 20);
             this.scrlPage.TabIndex = 82;
-            this.scrlPage.TabStop = true;
             this.scrlPage.Value = 1;
             this.scrlPage.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrlPage_Scroll);
             // 
@@ -163,8 +168,10 @@
             this.txtPageNo.Name = "txtPageNo";
             this.txtPageNo.Size = new System.Drawing.Size(74, 20);
             this.txtPageNo.TabIndex = 92;
+            this.txtPageNo.TabStop = false;
             this.txtPageNo.Text = "1";
             this.txtPageNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPageNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPageNo_KeyDown);
             // 
             // btn8
             // 
@@ -243,6 +250,7 @@
             this.panel1.Controls.Add(this.txtPage);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label11);
+            this.panel1.Enabled = false;
             this.panel1.Location = new System.Drawing.Point(-10, 374);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 246);
@@ -273,13 +281,14 @@
             // 
             // txtSlot
             // 
-            this.txtSlot.BackColor = System.Drawing.Color.Black;
+            this.txtSlot.BackColor = System.Drawing.SystemColors.Control;
             this.txtSlot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSlot.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSlot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.txtSlot.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSlot.ForeColor = System.Drawing.Color.Black;
             this.txtSlot.Location = new System.Drawing.Point(284, 26);
             this.txtSlot.Mask = "000";
             this.txtSlot.Name = "txtSlot";
+            this.txtSlot.ReadOnly = true;
             this.txtSlot.Size = new System.Drawing.Size(52, 22);
             this.txtSlot.TabIndex = 89;
             this.txtSlot.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -299,13 +308,14 @@
             // 
             // txtDisc
             // 
-            this.txtDisc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(40)))), ((int)(((byte)(31)))));
+            this.txtDisc.BackColor = System.Drawing.SystemColors.Control;
             this.txtDisc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDisc.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDisc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.txtDisc.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDisc.ForeColor = System.Drawing.Color.Black;
             this.txtDisc.Location = new System.Drawing.Point(21, 26);
             this.txtDisc.Mask = "000";
             this.txtDisc.Name = "txtDisc";
+            this.txtDisc.ReadOnly = true;
             this.txtDisc.Size = new System.Drawing.Size(88, 22);
             this.txtDisc.TabIndex = 88;
             this.txtDisc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -325,8 +335,9 @@
             // groupBox6
             // 
             this.groupBox6.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox6.Controls.Add(this.gvContents);
+            this.groupBox6.Controls.Add(this.label3);
             this.groupBox6.Controls.Add(this.txtInsRangeEnd);
-            this.groupBox6.Controls.Add(this.lstContents);
             this.groupBox6.Controls.Add(this.txtInsRangeStart);
             this.groupBox6.Controls.Add(this.button5);
             this.groupBox6.Controls.Add(this.btnAddDisc);
@@ -337,10 +348,9 @@
             this.groupBox6.Controls.Add(this.label21);
             this.groupBox6.Controls.Add(this.lblStart);
             this.groupBox6.Controls.Add(this.label9);
-            this.groupBox6.Controls.Add(this.ddInsRangeType);
-            this.groupBox6.Controls.Add(this.label20);
             this.groupBox6.Controls.Add(this.lblRange);
             this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
             this.groupBox6.Location = new System.Drawing.Point(18, 58);
             this.groupBox6.Name = "groupBox6";
@@ -349,54 +359,135 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Contents";
             // 
+            // gvContents
+            // 
+            this.gvContents.AllowUserToAddRows = false;
+            this.gvContents.AllowUserToDeleteRows = false;
+            this.gvContents.AllowUserToResizeColumns = false;
+            this.gvContents.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.gvContents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gvContents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gvContents.BackgroundColor = System.Drawing.Color.White;
+            this.gvContents.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.gvContents.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.gvContents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.gvContents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvContents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Title,
+            this.Season,
+            this.Start,
+            this.End});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvContents.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gvContents.Location = new System.Drawing.Point(6, 60);
+            this.gvContents.MultiSelect = false;
+            this.gvContents.Name = "gvContents";
+            this.gvContents.ReadOnly = true;
+            this.gvContents.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.gvContents.RowHeadersVisible = false;
+            this.gvContents.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvContents.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.gvContents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gvContents.Size = new System.Drawing.Size(381, 112);
+            this.gvContents.StandardTab = true;
+            this.gvContents.TabIndex = 77;
+            // 
+            // Title
+            // 
+            this.Title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Title.FillWeight = 65F;
+            this.Title.HeaderText = "Title";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            this.Title.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Season
+            // 
+            this.Season.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Season.FillWeight = 25.60142F;
+            this.Season.HeaderText = "Season";
+            this.Season.Name = "Season";
+            this.Season.ReadOnly = true;
+            this.Season.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Season.Width = 55;
+            // 
+            // Start
+            // 
+            this.Start.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Start.FillWeight = 75.52417F;
+            this.Start.HeaderText = "Start";
+            this.Start.Name = "Start";
+            this.Start.ReadOnly = true;
+            this.Start.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Start.Width = 40;
+            // 
+            // End
+            // 
+            this.End.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.End.FillWeight = 75.52417F;
+            this.End.HeaderText = "End";
+            this.End.Name = "End";
+            this.End.ReadOnly = true;
+            this.End.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.End.Width = 35;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(428, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 16);
+            this.label3.TabIndex = 76;
+            this.label3.Text = "Range";
+            // 
             // txtInsRangeEnd
             // 
-            this.txtInsRangeEnd.BackColor = System.Drawing.Color.Black;
+            this.txtInsRangeEnd.BackColor = System.Drawing.SystemColors.Control;
             this.txtInsRangeEnd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtInsRangeEnd.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInsRangeEnd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.txtInsRangeEnd.Location = new System.Drawing.Point(451, 92);
+            this.txtInsRangeEnd.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInsRangeEnd.ForeColor = System.Drawing.Color.Black;
+            this.txtInsRangeEnd.Location = new System.Drawing.Point(451, 33);
             this.txtInsRangeEnd.Mask = "000";
             this.txtInsRangeEnd.Name = "txtInsRangeEnd";
+            this.txtInsRangeEnd.PromptChar = ' ';
             this.txtInsRangeEnd.Size = new System.Drawing.Size(50, 22);
             this.txtInsRangeEnd.TabIndex = 75;
             this.txtInsRangeEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtInsRangeEnd.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.txtInsRangeEnd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
-            // 
-            // lstContents
-            // 
-            this.lstContents.BackColor = System.Drawing.Color.Black;
-            this.lstContents.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lstContents.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstContents.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.lstContents.FormattingEnabled = true;
-            this.lstContents.HorizontalScrollbar = true;
-            this.lstContents.ItemHeight = 17;
-            this.lstContents.Location = new System.Drawing.Point(6, 92);
-            this.lstContents.Name = "lstContents";
-            this.lstContents.ScrollAlwaysVisible = true;
-            this.lstContents.Size = new System.Drawing.Size(381, 85);
-            this.lstContents.TabIndex = 6;
             // 
             // txtInsRangeStart
             // 
-            this.txtInsRangeStart.BackColor = System.Drawing.Color.Black;
+            this.txtInsRangeStart.BackColor = System.Drawing.SystemColors.Control;
             this.txtInsRangeStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtInsRangeStart.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInsRangeStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.txtInsRangeStart.Location = new System.Drawing.Point(393, 92);
+            this.txtInsRangeStart.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInsRangeStart.ForeColor = System.Drawing.Color.Black;
+            this.txtInsRangeStart.Location = new System.Drawing.Point(393, 33);
             this.txtInsRangeStart.Mask = "000";
             this.txtInsRangeStart.Name = "txtInsRangeStart";
+            this.txtInsRangeStart.PromptChar = ' ';
             this.txtInsRangeStart.Size = new System.Drawing.Size(52, 22);
             this.txtInsRangeStart.TabIndex = 68;
             this.txtInsRangeStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtInsRangeStart.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.txtInsRangeStart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.Black;
-            this.button5.Location = new System.Drawing.Point(87, 63);
+            this.button5.Location = new System.Drawing.Point(411, 119);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 5;
@@ -408,9 +499,9 @@
             // 
             this.btnAddDisc.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddDisc.ForeColor = System.Drawing.Color.Black;
-            this.btnAddDisc.Location = new System.Drawing.Point(393, 130);
+            this.btnAddDisc.Location = new System.Drawing.Point(411, 148);
             this.btnAddDisc.Name = "btnAddDisc";
-            this.btnAddDisc.Size = new System.Drawing.Size(108, 35);
+            this.btnAddDisc.Size = new System.Drawing.Size(75, 23);
             this.btnAddDisc.TabIndex = 46;
             this.btnAddDisc.Text = "Save";
             this.btnAddDisc.UseVisualStyleBackColor = true;
@@ -420,7 +511,7 @@
             // 
             this.button6.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.Black;
-            this.button6.Location = new System.Drawing.Point(6, 63);
+            this.button6.Location = new System.Drawing.Point(411, 90);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 4;
@@ -431,8 +522,8 @@
             // ddInsTitle
             // 
             this.ddInsTitle.BackColor = System.Drawing.SystemColors.Control;
-            this.ddInsTitle.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ddInsTitle.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ddInsTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ddInsTitle.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddInsTitle.ForeColor = System.Drawing.Color.Black;
             this.ddInsTitle.FormattingEnabled = true;
             this.ddInsTitle.Location = new System.Drawing.Point(6, 33);
@@ -444,21 +535,22 @@
             // 
             this.lblEnd.AutoSize = true;
             this.lblEnd.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEnd.Location = new System.Drawing.Point(455, 73);
+            this.lblEnd.Location = new System.Drawing.Point(459, 58);
             this.lblEnd.Name = "lblEnd";
-            this.lblEnd.Size = new System.Drawing.Size(40, 16);
+            this.lblEnd.Size = new System.Drawing.Size(35, 16);
             this.lblEnd.TabIndex = 74;
-            this.lblEnd.Text = "Range";
+            this.lblEnd.Text = "(End)";
             // 
             // txtSeason
             // 
-            this.txtSeason.BackColor = System.Drawing.Color.Black;
+            this.txtSeason.BackColor = System.Drawing.SystemColors.Control;
             this.txtSeason.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSeason.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSeason.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.txtSeason.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSeason.ForeColor = System.Drawing.Color.Black;
             this.txtSeason.Location = new System.Drawing.Point(335, 33);
             this.txtSeason.Mask = "00";
             this.txtSeason.Name = "txtSeason";
+            this.txtSeason.PromptChar = ' ';
             this.txtSeason.Size = new System.Drawing.Size(52, 22);
             this.txtSeason.TabIndex = 67;
             this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -479,11 +571,11 @@
             // 
             this.lblStart.AutoSize = true;
             this.lblStart.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStart.Location = new System.Drawing.Point(398, 73);
+            this.lblStart.Location = new System.Drawing.Point(399, 58);
             this.lblStart.Name = "lblStart";
-            this.lblStart.Size = new System.Drawing.Size(40, 16);
+            this.lblStart.Size = new System.Drawing.Size(41, 16);
             this.lblStart.TabIndex = 73;
-            this.lblStart.Text = "Range";
+            this.lblStart.Text = "(Start)";
             // 
             // label9
             // 
@@ -495,39 +587,11 @@
             this.label9.TabIndex = 71;
             this.label9.Text = "Season";
             // 
-            // ddInsRangeType
-            // 
-            this.ddInsRangeType.BackColor = System.Drawing.SystemColors.Control;
-            this.ddInsRangeType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddInsRangeType.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ddInsRangeType.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ddInsRangeType.ForeColor = System.Drawing.Color.Black;
-            this.ddInsRangeType.FormattingEnabled = true;
-            this.ddInsRangeType.Items.AddRange(new object[] {
-            "Item",
-            "Full",
-            "Range"});
-            this.ddInsRangeType.Location = new System.Drawing.Point(393, 31);
-            this.ddInsRangeType.Name = "ddInsRangeType";
-            this.ddInsRangeType.Size = new System.Drawing.Size(108, 24);
-            this.ddInsRangeType.TabIndex = 65;
-            this.ddInsRangeType.SelectedValueChanged += new System.EventHandler(this.ddInsRangeType_SelectedValueChanged);
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(427, 14);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(40, 16);
-            this.label20.TabIndex = 69;
-            this.label20.Text = "Range";
-            // 
             // lblRange
             // 
             this.lblRange.AutoSize = true;
             this.lblRange.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRange.Location = new System.Drawing.Point(443, 92);
+            this.lblRange.Location = new System.Drawing.Point(443, 33);
             this.lblRange.Name = "lblRange";
             this.lblRange.Size = new System.Drawing.Size(12, 16);
             this.lblRange.TabIndex = 70;
@@ -538,7 +602,7 @@
             this.ddLocation.BackColor = System.Drawing.SystemColors.Control;
             this.ddLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddLocation.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ddLocation.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ddLocation.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddLocation.ForeColor = System.Drawing.Color.Black;
             this.ddLocation.FormattingEnabled = true;
             this.ddLocation.Location = new System.Drawing.Point(392, 24);
@@ -562,13 +626,14 @@
             // 
             // txtPage
             // 
-            this.txtPage.BackColor = System.Drawing.Color.Black;
+            this.txtPage.BackColor = System.Drawing.SystemColors.Control;
             this.txtPage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPage.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.txtPage.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPage.ForeColor = System.Drawing.Color.Black;
             this.txtPage.Location = new System.Drawing.Point(215, 26);
             this.txtPage.Mask = "000";
             this.txtPage.Name = "txtPage";
+            this.txtPage.ReadOnly = true;
             this.txtPage.Size = new System.Drawing.Size(52, 22);
             this.txtPage.TabIndex = 81;
             this.txtPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -622,6 +687,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvContents)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -649,7 +715,6 @@
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.MaskedTextBox txtInsRangeEnd;
-        private System.Windows.Forms.ListBox lstContents;
         private System.Windows.Forms.MaskedTextBox txtInsRangeStart;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button btnAddDisc;
@@ -660,13 +725,17 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label lblStart;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox ddInsRangeType;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label lblRange;
         private System.Windows.Forms.ComboBox ddLocation;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.MaskedTextBox txtPage;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView gvContents;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Season;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Start;
+        private System.Windows.Forms.DataGridViewTextBoxColumn End;
     }
 }

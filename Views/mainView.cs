@@ -98,6 +98,7 @@ namespace LFI
             {
                 discPane.enable();
                 infoPane.disable();
+                editPane.disable();
                 discPane.load_data(gvTitles.SelectedCells[0].Value.ToString());
             }
         }
@@ -113,6 +114,7 @@ namespace LFI
             if (discPane.active)
             {
                 discPane.disable();
+                editPane.disable();
                 load_infoPane();
             }
         }
@@ -121,6 +123,7 @@ namespace LFI
         {
             infoPane.enable();
             editPane.disable();
+            discPane.disable();
             gvTitles.Enabled = true;
             txtSearch.Enabled = true;
             populateList();

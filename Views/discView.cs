@@ -109,47 +109,16 @@ namespace LFI
                 e.Handled = e.SuppressKeyPress = true;
         }
 
-        private void ddInsRangeType_SelectedValueChanged(object sender, EventArgs e)
-        {
-            txtInsRangeStart.Hide();
-            txtInsRangeEnd.Hide();
-            lblStart.Hide();
-            lblEnd.Hide();
-            lblRange.Hide();
-            txtInsRangeStart.Clear();
-            txtInsRangeEnd.Clear();
-
-            if (ddInsRangeType.Text == "Item")
-            {
-                txtInsRangeStart.Show();
-                lblStart.Show();
-                lblStart.Text = "Ep #";
-            }
-            else if (ddInsRangeType.Text == "Range")
-            {
-                txtInsRangeStart.Show();
-                txtInsRangeEnd.Show();
-                lblStart.Text = "Start";
-                lblEnd.Text = "End";
-                lblRange.Show();
-                lblStart.Show();
-                lblEnd.Show();
-            }
-        }
-
         private void btnInsert_Click(object sender, EventArgs e)
         {
             string error = "";
             if (ddInsTitle.Text.Length > 0 && ddInsTitle.FindStringExact(ddInsTitle.Text) != -1)
             {
-                if (ddInsRangeType.Text == "")
-                    error += "Range type required\n";
-                if (ddInsRangeType.Text == "Item" && txtInsRangeStart.Text.Length < 3)
-                    error += "Item required\n";
-                if (ddInsRangeType.Text == "Range" &&
-                    txtInsRangeStart.Text.Length < 3 && txtInsRangeEnd.Text.Length < 3)
-                    error += "range required\n";
-                if (txtSeason.Text.Length < 2)
+                if (txtInsRangeStart.Text.Length < 1)
+                    error += "Start range required\n";
+                if (txtInsRangeEnd.Text.Length < 1)
+                    error += "End range required\n";
+                if (txtSeason.Text.Length < 1)
                     error += "Season required\n";
 
                 if (error != "")
@@ -159,23 +128,11 @@ namespace LFI
                 }
                 else
                 {
-                    switch (ddInsRangeType.Text)
-                    {
-                        case "Item":
-                            lstContents.Items.Add(ddInsTitle.Text + "," +
-                                txtSeason.Text + "," + txtInsRangeStart.Text);
-                            break;
-                        case "Range":
-                            lstContents.Items.Add(ddInsTitle.Text + "," +
-                                txtSeason.Text + "," + txtInsRangeStart.Text +
-                                "-" + txtInsRangeEnd.Text);
-
-                            break;
-                        case "Full":
-                            lstContents.Items.Add(ddInsTitle.Text + "," +
-                                txtSeason.Text + "," + "Full");
-                            break;
-                    }
+                    DataGridViewRow gvr = new DataGridViewRow();
+                    gvr.CreateCells(gvContents, ddInsTitle.Text, txtSeason.Text,
+                        txtInsRangeStart.Text.Replace(" ", ""),
+                        txtInsRangeEnd.Text.Replace(" ", ""));
+                    gvContents.Rows.Add(gvr);
 
                     txtSeason.Clear();
                     ddInsTitle.SelectedText = "";
@@ -187,8 +144,8 @@ namespace LFI
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            if (lstContents.Items.Count > 0)
-                lstContents.Items.RemoveAt(lstContents.SelectedIndex);
+            if (gvContents.Rows.Count > 0)
+                gvContents.Rows.Remove(gvContents.Rows[gvContents.SelectedCells[0].RowIndex]);
         }
 
         private void btnSaveClick(object sender, EventArgs e)
@@ -198,11 +155,11 @@ namespace LFI
 
             if (txtDisc.Text.Length < 1)
                 error += "Disc required\n";
-            if (txtPage.Text.Length < 3)
+            if (txtPage.Text.Length < 1)
                 error += "Page required\n";
             if (ddLocation.Text.Length < 1)
                 error += "Location required\n";
-            if (lstContents.Items.Count < 1)
+            if (gvContents.Rows.Count < 1)
                 error += "Content required\n";
 
             if (error.Length != 0)
@@ -220,14 +177,13 @@ namespace LFI
                         txtDisc.Text, txtPage.Text, ddLocation.Text));
                     rollbackpos = true;
 
-                    foreach (string str in lstContents.Items)
+                    foreach (string str in gvContents.Rows)
                     {
-                        string[] item = str.Split(',');
                         DB_Handle.UpdateTable(string.Format(
                             @"INSERT INTO DISC_CONTENTS 
                             (disc_id, title_id, season, range)
                             VALUES ('{0:000}','{1:000}','{2:000}','{3}');",
-                            txtDisc.Text, item[0], item[1], item[2]));
+                            txtDisc.Text, str[0], str[1], str[2]));
                     }
                     MessageBox.Show("Saved", "Success");
                 }
@@ -304,16 +260,39 @@ namespace LFI
 
         private void disc_btn_Click(object sender, EventArgs e)
         {
+            panel1.Enabled = true;
+            gvContents.Rows.Clear();
             imgTitle.BackgroundImage = null;
             Button btn = (Button)sender;
             string discid = dLabels[Convert.ToInt32(btn.Name.Substring(btn.Name.Length-1, 1))-1].Text;
 
             DataTable temp = DB_Handle.GetDataTable(string.Format(
                 @"Select * from discs natural join disc_contents where
-                disc_id='{0}' order by title_id",
-                discid));
+                disc_id='{0}' order by title_id", discid));
 
+            if (temp.Rows.Count > 0)
+            {
+                txtDisc.Text = temp.Rows[0][0].ToString();
+                txtPage.Text = temp.Rows[0][1].ToString();
+                txtSlot.Text = temp.Rows[0][2].ToString();
+                for (int i=0; i<=temp.Rows.Count -1; i++)
+                {
+                    gvContents.Rows.Add(temp.Rows[i][4], temp.Rows[i][5], temp.Rows[i][6], temp.Rows[i][7]);
+                }
+            }
+            else
+            {
+                txtDisc.Clear();
+                txtPage.Text = txtPageNo.Text;
+                txtSlot.Text = (Convert.ToInt32(btn.Name.Substring(btn.Name.Length - 1, 1))).ToString();
+            }
             imgTitle.BackgroundImage = generateDiscImage(discid);
+        }
+
+        private void txtPageNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                loadPage();
         }
     }
 }
