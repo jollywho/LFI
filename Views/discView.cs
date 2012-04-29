@@ -12,6 +12,7 @@ namespace LFI
 {
     public partial class discView : UserControl
     {
+        private BackgroundWorker worker = new BackgroundWorker();
         private int currentPage = 1;
         const int DISCS_PER_PAGE = 8;
         private int max_pages = 0;
@@ -21,6 +22,11 @@ namespace LFI
         public discView()
         {
             InitializeComponent();
+
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
+            worker.DoWork += new DoWorkEventHandler(worker_DoWork);
+
             DataTable locations = DB_Handle.GetDataTable(string.Format(
                 @"Select location_id from locations order by location_id"));
             ddLocation.DisplayMember = "location_id";
@@ -31,10 +37,6 @@ namespace LFI
                 @"Select title_id from titles order by title_id"));
             ddInsTitle.DataSource = titles;
             ddInsTitle.DisplayMember = "title_id";
-
-
-
-            btn1.BackgroundImage = Image_IO.createMergedImage(new List<string>() { "Air TV", "Air TV" }, btn1);
 
             for (int i = 1; i <= DISCS_PER_PAGE; i++)
             {
@@ -60,15 +62,30 @@ namespace LFI
 
         private void loadPage()
         {
+            DataTable temp = new DataTable();
             for (int i = 1; i <= DISCS_PER_PAGE; i++)
             {
-                DataTable temp = DB_Handle.GetDataTable(string.Format(@"select * from discs
+                temp = DB_Handle.GetDataTable(string.Format(@"select * from discs
                     where location_id='{0}' and page_number='{1}' and slot_number='{2}'",
                      ddLocation.Text, txtPageNo.Text, i.ToString()));
                 if (temp.Rows.Count != 0)
                     dLabels[i-1].Text = temp.Rows[0][0].ToString();
                 else
                     dLabels[i-1].Text = "Empty";
+                //Controls[("btn" + i).ToString()].BackgroundImage = generateDiscImage(dLabels[i - 1].Text);
+            }
+            if (!worker.IsBusy)
+                worker.RunWorkerAsync(temp);
+            
+        }
+
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            DataTable temp = (DataTable)e.Argument;
+
+            for (int i = 1; i <= DISCS_PER_PAGE; i++)
+            {
                 Controls[("btn" + i).ToString()].BackgroundImage = generateDiscImage(dLabels[i - 1].Text);
             }
         }

@@ -57,11 +57,11 @@ namespace LFI
 
             if (System.IO.File.Exists(path))
             {
-                imgTitle.ImageLocation = path;
+                imgTitle.BackgroundImage = Image.FromFile(path);
             }
             else
             {
-                imgTitle.ImageLocation = null;
+                imgTitle.BackgroundImage = LFI.Properties.Resources.notfound;
             }
         }
     }

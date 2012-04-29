@@ -25,7 +25,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -90,6 +90,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Image_IO.cs" />
     <Compile Include="LFIDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -151,11 +152,11 @@
     <Compile Include="Views\mainView.Designer.cs">
       <DependentUpon>mainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Panes\discPane.cs">
+    <Compile Include="Panes\contentsPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Panes\discPane.Designer.cs">
-      <DependentUpon>discPane.cs</DependentUpon>
+    <Compile Include="Panes\contentsPane.Designer.cs">
+      <DependentUpon>contentsPane.cs</DependentUpon>
     </Compile>
     <None Include="Resources\borderBigg.png" />
     <None Include="Resources\showdiv.png" />
@@ -211,11 +212,11 @@
     <EmbeddedResource Include="Views\mainView.resx">
       <DependentUpon>mainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Panes\discPane.resx">
-      <DependentUpon>discPane.cs</DependentUpon>
+    <EmbeddedResource Include="Panes\contentsPane.resx">
+      <DependentUpon>contentsPane.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="data\LFI.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="LFI_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">

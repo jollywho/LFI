@@ -185,7 +185,7 @@ namespace LFI
 
         private void btnCheckCRC_Click(object sender, EventArgs e)
         {
-            if (worker.IsBusy != true)
+            if (!worker.IsBusy)
             {
                 animation.Show();
                 caller.start_progBar();

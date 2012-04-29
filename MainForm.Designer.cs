@@ -189,11 +189,13 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(540, 700);
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(540, 700);
             this.Name = "MainForm";
-            this.Text = "LFI 0.2.6";
+            this.Text = "LFI 0.2.7";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

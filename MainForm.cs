@@ -95,7 +95,7 @@ namespace LFI
         private void titleEditItem_Click(object sender, EventArgs e)
         {
             mv.load_editPane();
-            titleEditItem.Checked = true;   
+            titleEditItem.Checked = true;
         }
 
         private void menuItem2_Popup(object sender, EventArgs e)
@@ -155,6 +155,12 @@ namespace LFI
         {
             //check view
             //addnew
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape && titleEditItem.Checked)
+                cancelItem_Click(null, null);
         }
     }
     

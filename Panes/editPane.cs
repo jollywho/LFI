@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace LFI
 {
     public partial class editPane : UserControl
     {
+        char[] invalid_chars = { '\\',';','@',',','.','#','$','%','^','*','~','`',':' };
         public bool active = false;
         public editPane()
         {
@@ -48,7 +50,7 @@ namespace LFI
                     img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
                     img.Save(string.Format("image\\{0}.jpg", ddTitle.Text), 
                         System.Drawing.Imaging.ImageFormat.Jpeg);
-                    imgTitle.ImageLocation = dlg.FileName;
+                    imgTitle.BackgroundImage = img;
                 }
                 catch (Exception ex)
                 {
@@ -142,6 +144,24 @@ namespace LFI
                 MessageBox.Show(ex.Message, "Error");
             }
             return status;
+        }
+
+        private void ddTitle_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ddTitle_TextChanged(object sender, EventArgs e)
+        {
+            if (ddTitle.Text.IndexOfAny(invalid_chars) > 0)
+                imgError.Visible = true;
+            else
+                imgError.Visible = false;
+        }
+
+        private void imgError_MouseHover(object sender, EventArgs e)
+        {
+            toolTip.Show("Invalid Chars", imgError);
         }
     }
 }
