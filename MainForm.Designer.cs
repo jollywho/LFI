@@ -90,7 +90,6 @@
             this.menuItem4,
             this.menuItem5});
             this.menuItem1.Text = "File";
-            this.menuItem1.Popup += new System.EventHandler(this.menuItem1_Popup);
             // 
             // menuAddItem
             // 
@@ -117,7 +116,6 @@
             this.titleEditItem,
             this.cancelItem});
             this.menuItem2.Text = "Edit";
-            this.menuItem2.Popup += new System.EventHandler(this.menuItem2_Popup);
             // 
             // saveItem
             // 
@@ -194,7 +192,7 @@
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(540, 700);
             this.Name = "MainForm";
-            this.Text = "LFI 0.2.10";
+            this.Text = "LFI 0.2.11";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

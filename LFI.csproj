@@ -90,6 +90,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Error_Handle.cs" />
     <Compile Include="Image_IO.cs" />
     <Compile Include="LFIDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -98,12 +99,6 @@
     </Compile>
     <Compile Include="Panes\VLabel.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Views\addView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\addView.Designer.cs">
-      <DependentUpon>addView.cs</DependentUpon>
     </Compile>
     <Compile Include="AlphanumComparator.cs" />
     <Compile Include="Crc32.cs" />
@@ -158,6 +153,7 @@
     <Compile Include="Panes\contentsPane.Designer.cs">
       <DependentUpon>contentsPane.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\notavailable.png" />
     <None Include="Resources\borderBigg.png" />
     <None Include="Resources\showdiv.png" />
     <None Include="Resources\divide.png" />
@@ -185,9 +181,6 @@
     <None Include="Resources\bannerOrig.jpg" />
     <EmbeddedResource Include="Panes\VLabel.resx">
       <DependentUpon>VLabel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\addView.resx">
-      <DependentUpon>addView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panes\editPane.resx">
       <DependentUpon>editPane.cs</DependentUpon>

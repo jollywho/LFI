@@ -12,7 +12,7 @@ namespace LFI
     class Image_IO
     {
 
-        public static Image createMergedImage(List<string> titleStrs, Button btn)
+        public static Image createMergedImage(List<string> titleStrs, Control btn)
         {
             List<Image> imgLst = new List<Image>();
             for (int i = 0; i <= titleStrs.Count - 1; i++)

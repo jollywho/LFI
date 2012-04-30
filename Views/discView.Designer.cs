@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.scrlPage = new System.Windows.Forms.HScrollBar();
             this.btn2 = new System.Windows.Forms.Button();
             this.btn3 = new System.Windows.Forms.Button();
@@ -50,20 +50,19 @@
             this.txtDisc = new System.Windows.Forms.MaskedTextBox();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtRangeEnd = new System.Windows.Forms.TextBox();
+            this.txtRangeStart = new System.Windows.Forms.TextBox();
             this.gvContents = new System.Windows.Forms.DataGridView();
             this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Season = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Start = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.End = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtInsRangeEnd = new System.Windows.Forms.MaskedTextBox();
-            this.txtInsRangeStart = new System.Windows.Forms.MaskedTextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.btnAddDisc = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.ddInsTitle = new System.Windows.Forms.ComboBox();
             this.lblEnd = new System.Windows.Forms.Label();
-            this.txtSeason = new System.Windows.Forms.MaskedTextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.lblStart = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -74,6 +73,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.txtSeason = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
             this.groupBox6.SuspendLayout();
@@ -337,22 +337,22 @@
             // groupBox6
             // 
             this.groupBox6.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox6.Controls.Add(this.txtSeason);
+            this.groupBox6.Controls.Add(this.txtRangeEnd);
+            this.groupBox6.Controls.Add(this.txtRangeStart);
             this.groupBox6.Controls.Add(this.gvContents);
             this.groupBox6.Controls.Add(this.label3);
-            this.groupBox6.Controls.Add(this.txtInsRangeEnd);
-            this.groupBox6.Controls.Add(this.txtInsRangeStart);
             this.groupBox6.Controls.Add(this.button5);
             this.groupBox6.Controls.Add(this.btnAddDisc);
             this.groupBox6.Controls.Add(this.button6);
             this.groupBox6.Controls.Add(this.ddInsTitle);
             this.groupBox6.Controls.Add(this.lblEnd);
-            this.groupBox6.Controls.Add(this.txtSeason);
             this.groupBox6.Controls.Add(this.label21);
             this.groupBox6.Controls.Add(this.lblStart);
             this.groupBox6.Controls.Add(this.label9);
             this.groupBox6.Controls.Add(this.lblRange);
             this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
             this.groupBox6.Location = new System.Drawing.Point(18, 58);
             this.groupBox6.Name = "groupBox6";
@@ -361,17 +361,45 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Contents";
             // 
+            // txtRangeEnd
+            // 
+            this.txtRangeEnd.BackColor = System.Drawing.SystemColors.Control;
+            this.txtRangeEnd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRangeEnd.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtRangeEnd.Location = new System.Drawing.Point(452, 33);
+            this.txtRangeEnd.MaxLength = 3;
+            this.txtRangeEnd.Name = "txtRangeEnd";
+            this.txtRangeEnd.Size = new System.Drawing.Size(52, 22);
+            this.txtRangeEnd.TabIndex = 94;
+            this.txtRangeEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtRangeEnd.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
+            this.txtRangeEnd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            // 
+            // txtRangeStart
+            // 
+            this.txtRangeStart.BackColor = System.Drawing.SystemColors.Control;
+            this.txtRangeStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRangeStart.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtRangeStart.Location = new System.Drawing.Point(393, 33);
+            this.txtRangeStart.MaxLength = 3;
+            this.txtRangeStart.Name = "txtRangeStart";
+            this.txtRangeStart.Size = new System.Drawing.Size(52, 22);
+            this.txtRangeStart.TabIndex = 93;
+            this.txtRangeStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtRangeStart.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
+            this.txtRangeStart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            // 
             // gvContents
             // 
             this.gvContents.AllowUserToAddRows = false;
             this.gvContents.AllowUserToDeleteRows = false;
             this.gvContents.AllowUserToResizeColumns = false;
             this.gvContents.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.gvContents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.gvContents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gvContents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvContents.BackgroundColor = System.Drawing.Color.White;
             this.gvContents.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -383,14 +411,14 @@
             this.Season,
             this.Start,
             this.End});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvContents.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvContents.DefaultCellStyle = dataGridViewCellStyle2;
             this.gvContents.Location = new System.Drawing.Point(6, 60);
             this.gvContents.MultiSelect = false;
             this.gvContents.Name = "gvContents";
@@ -421,7 +449,7 @@
             this.Season.Name = "Season";
             this.Season.ReadOnly = true;
             this.Season.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Season.Width = 55;
+            this.Season.Width = 49;
             // 
             // Start
             // 
@@ -431,7 +459,7 @@
             this.Start.Name = "Start";
             this.Start.ReadOnly = true;
             this.Start.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Start.Width = 40;
+            this.Start.Width = 35;
             // 
             // End
             // 
@@ -441,7 +469,7 @@
             this.End.Name = "End";
             this.End.ReadOnly = true;
             this.End.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.End.Width = 35;
+            this.End.Width = 32;
             // 
             // label3
             // 
@@ -452,38 +480,6 @@
             this.label3.Size = new System.Drawing.Size(40, 16);
             this.label3.TabIndex = 76;
             this.label3.Text = "Range";
-            // 
-            // txtInsRangeEnd
-            // 
-            this.txtInsRangeEnd.BackColor = System.Drawing.SystemColors.Control;
-            this.txtInsRangeEnd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtInsRangeEnd.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInsRangeEnd.ForeColor = System.Drawing.Color.Black;
-            this.txtInsRangeEnd.Location = new System.Drawing.Point(451, 33);
-            this.txtInsRangeEnd.Mask = "000";
-            this.txtInsRangeEnd.Name = "txtInsRangeEnd";
-            this.txtInsRangeEnd.PromptChar = ' ';
-            this.txtInsRangeEnd.Size = new System.Drawing.Size(50, 22);
-            this.txtInsRangeEnd.TabIndex = 75;
-            this.txtInsRangeEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtInsRangeEnd.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.txtInsRangeEnd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
-            // 
-            // txtInsRangeStart
-            // 
-            this.txtInsRangeStart.BackColor = System.Drawing.SystemColors.Control;
-            this.txtInsRangeStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtInsRangeStart.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInsRangeStart.ForeColor = System.Drawing.Color.Black;
-            this.txtInsRangeStart.Location = new System.Drawing.Point(393, 33);
-            this.txtInsRangeStart.Mask = "000";
-            this.txtInsRangeStart.Name = "txtInsRangeStart";
-            this.txtInsRangeStart.PromptChar = ' ';
-            this.txtInsRangeStart.Size = new System.Drawing.Size(52, 22);
-            this.txtInsRangeStart.TabIndex = 68;
-            this.txtInsRangeStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtInsRangeStart.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.txtInsRangeStart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
             // button5
             // 
@@ -542,22 +538,6 @@
             this.lblEnd.Size = new System.Drawing.Size(35, 16);
             this.lblEnd.TabIndex = 74;
             this.lblEnd.Text = "(End)";
-            // 
-            // txtSeason
-            // 
-            this.txtSeason.BackColor = System.Drawing.SystemColors.Control;
-            this.txtSeason.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSeason.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSeason.ForeColor = System.Drawing.Color.Black;
-            this.txtSeason.Location = new System.Drawing.Point(335, 33);
-            this.txtSeason.Mask = "00";
-            this.txtSeason.Name = "txtSeason";
-            this.txtSeason.PromptChar = ' ';
-            this.txtSeason.Size = new System.Drawing.Size(52, 22);
-            this.txtSeason.TabIndex = 67;
-            this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSeason.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.txtSeason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
             // label21
             // 
@@ -673,6 +653,20 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 100;
             // 
+            // txtSeason
+            // 
+            this.txtSeason.BackColor = System.Drawing.SystemColors.Control;
+            this.txtSeason.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSeason.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtSeason.Location = new System.Drawing.Point(335, 33);
+            this.txtSeason.MaxLength = 2;
+            this.txtSeason.Name = "txtSeason";
+            this.txtSeason.Size = new System.Drawing.Size(52, 22);
+            this.txtSeason.TabIndex = 95;
+            this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSeason.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
+            this.txtSeason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPageNo_KeyDown);
+            // 
             // discView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -724,14 +718,11 @@
         private System.Windows.Forms.MaskedTextBox txtDisc;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.MaskedTextBox txtInsRangeEnd;
-        private System.Windows.Forms.MaskedTextBox txtInsRangeStart;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button btnAddDisc;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ComboBox ddInsTitle;
         private System.Windows.Forms.Label lblEnd;
-        private System.Windows.Forms.MaskedTextBox txtSeason;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label lblStart;
         private System.Windows.Forms.Label label9;
@@ -748,5 +739,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Start;
         private System.Windows.Forms.DataGridViewTextBoxColumn End;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.TextBox txtRangeStart;
+        private System.Windows.Forms.TextBox txtRangeEnd;
+        private System.Windows.Forms.TextBox txtSeason;
     }
 }

@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace LFI
 {
@@ -88,7 +89,8 @@ namespace LFI
 
             for (int i = 1; i <= DISCS_PER_PAGE; i++)
             {
-                Controls[("btn" + i).ToString()].BackgroundImage = generateDiscImage(dLabels[i - 1].Text);
+                Controls[("btn" + i).ToString()].BackgroundImage = 
+                    generateDiscImage(dLabels[i - 1].Text, btn1);
             }
         }
 
@@ -117,24 +119,26 @@ namespace LFI
             {
                 if (txtSeason.Text.Length < 1)
                     Error_Handle.TipError("Season required\n", toolTip, txtSeason);
-                else if (txtInsRangeStart.Text.Length < 1)
-                    Error_Handle.TipError("Start range required\n", toolTip, txtInsRangeStart);
-                else if (txtInsRangeEnd.Text.Length < 1)
-                    Error_Handle.TipError("End range required\n", toolTip, txtInsRangeEnd);
+                else if (txtRangeStart.Text.Length < 1)
+                    Error_Handle.TipError("Start range required\n", toolTip, txtRangeStart);
+                else if (txtRangeEnd.Text.Length < 1)
+                    Error_Handle.TipError("End range required\n", toolTip, txtRangeEnd);
                 else
                 {
                     DataGridViewRow gvr = new DataGridViewRow();
                     gvr.CreateCells(gvContents, ddInsTitle.Text, txtSeason.Text,
-                        txtInsRangeStart.Text.Replace(" ", ""),
-                        txtInsRangeEnd.Text.Replace(" ", ""));
+                        txtRangeStart.Text.Replace(" ", ""),
+                        txtRangeEnd.Text.Replace(" ", ""));
                     gvContents.Rows.Add(gvr);
 
                     txtSeason.Clear();
                     ddInsTitle.SelectedText = "";
-                    txtInsRangeStart.Clear();
-                    txtInsRangeEnd.Clear();
+                    txtRangeStart.Clear();
+                    txtRangeEnd.Clear();
                 }
             }
+            else
+                Error_Handle.TipError("Invalid title\n", toolTip, ddInsTitle);
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -229,7 +233,7 @@ namespace LFI
             loadPage();
         }
 
-        private Image generateDiscImage(string discid)
+        private Image generateDiscImage(string discid, Control btn)
         {
             Image img = LFI.Properties.Resources.border;
             DataTable temp = DB_Handle.GetDataTable(string.Format(
@@ -246,7 +250,7 @@ namespace LFI
                         disc_titles.Add(temp.Rows[i][4].ToString());
                     }
                 }
-                img = Image_IO.createMergedImage(disc_titles, btn1);
+                img = Image_IO.createMergedImage(disc_titles, btn);
             }
             return img;
         }
@@ -281,13 +285,20 @@ namespace LFI
                 txtPage.Text = txtPageNo.Text;
                 txtSlot.Text = (Convert.ToInt32(btn.Name.Substring(btn.Name.Length - 1, 1))).ToString();
             }
-            imgTitle.BackgroundImage = generateDiscImage(discid);
+            imgTitle.BackgroundImage = generateDiscImage(discid, imgTitle);
         }
 
         private void txtPageNo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
                 loadPage();
+        }
+
+        private void numericTextbox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            Regex reg = new Regex("[^0-9]");
+            txt.Text = reg.Replace(txt.Text, "");
         }
     }
 }

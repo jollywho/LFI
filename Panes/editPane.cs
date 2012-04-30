@@ -40,6 +40,18 @@ namespace LFI
                 e.Handled = e.SuppressKeyPress = true;
         }
 
+        private void numericTextbox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            if (txt != null)
+            {
+                Regex reg = new Regex("[^0-9]");
+                int pos = txt.SelectionStart;
+                txt.Text = reg.Replace(txt.Text, "");
+                txt.Select(pos, 0);
+            }
+        }
+
         //todo: commit img
         private void btnImg_Click(object sender, EventArgs e)
         {

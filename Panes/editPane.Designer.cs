@@ -32,22 +32,22 @@
             this.btnImg = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtSeasons = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.imgError = new System.Windows.Forms.PictureBox();
             this.ddLanguage = new System.Windows.Forms.ComboBox();
-            this.txtEpisode = new System.Windows.Forms.MaskedTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.ddStatus = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtYear = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ddTitle = new System.Windows.Forms.ComboBox();
             this.ddCategory = new System.Windows.Forms.ComboBox();
             this.imgTitle = new System.Windows.Forms.PictureBox();
+            this.txtSeason = new System.Windows.Forms.TextBox();
+            this.txtEpisode = new System.Windows.Forms.TextBox();
+            this.txtYear = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgError)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
@@ -76,18 +76,18 @@
             // panel1
             // 
             this.panel1.BackgroundImage = global::LFI.Properties.Resources.border;
-            this.panel1.Controls.Add(this.txtSeasons);
+            this.panel1.Controls.Add(this.txtYear);
+            this.panel1.Controls.Add(this.txtEpisode);
+            this.panel1.Controls.Add(this.txtSeason);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.imgError);
             this.panel1.Controls.Add(this.ddLanguage);
-            this.panel1.Controls.Add(this.txtEpisode);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.ddStatus);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.txtYear);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.ddTitle);
             this.panel1.Controls.Add(this.ddCategory);
@@ -95,21 +95,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(320, 200);
             this.panel1.TabIndex = 74;
-            // 
-            // txtSeasons
-            // 
-            this.txtSeasons.BackColor = System.Drawing.SystemColors.Control;
-            this.txtSeasons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSeasons.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSeasons.ForeColor = System.Drawing.Color.Black;
-            this.txtSeasons.Location = new System.Drawing.Point(32, 99);
-            this.txtSeasons.Mask = "000";
-            this.txtSeasons.Name = "txtSeasons";
-            this.txtSeasons.PromptChar = ' ';
-            this.txtSeasons.Size = new System.Drawing.Size(52, 22);
-            this.txtSeasons.TabIndex = 76;
-            this.txtSeasons.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSeasons.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // label7
             // 
@@ -148,21 +133,6 @@
             this.ddLanguage.Name = "ddLanguage";
             this.ddLanguage.Size = new System.Drawing.Size(59, 24);
             this.ddLanguage.TabIndex = 73;
-            // 
-            // txtEpisode
-            // 
-            this.txtEpisode.BackColor = System.Drawing.SystemColors.Control;
-            this.txtEpisode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEpisode.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEpisode.ForeColor = System.Drawing.Color.Black;
-            this.txtEpisode.Location = new System.Drawing.Point(90, 99);
-            this.txtEpisode.Mask = "000";
-            this.txtEpisode.Name = "txtEpisode";
-            this.txtEpisode.PromptChar = ' ';
-            this.txtEpisode.Size = new System.Drawing.Size(52, 22);
-            this.txtEpisode.TabIndex = 68;
-            this.txtEpisode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtEpisode.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // label6
             // 
@@ -237,21 +207,6 @@
             this.label3.TabIndex = 37;
             this.label3.Text = "Category";
             // 
-            // txtYear
-            // 
-            this.txtYear.BackColor = System.Drawing.SystemColors.Control;
-            this.txtYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtYear.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtYear.ForeColor = System.Drawing.Color.Black;
-            this.txtYear.Location = new System.Drawing.Point(148, 99);
-            this.txtYear.Mask = "0000";
-            this.txtYear.Name = "txtYear";
-            this.txtYear.PromptChar = ' ';
-            this.txtYear.Size = new System.Drawing.Size(75, 22);
-            this.txtYear.TabIndex = 69;
-            this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtYear.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -305,6 +260,48 @@
             this.imgTitle.TabIndex = 31;
             this.imgTitle.TabStop = false;
             // 
+            // txtSeason
+            // 
+            this.txtSeason.BackColor = System.Drawing.SystemColors.Control;
+            this.txtSeason.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSeason.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtSeason.Location = new System.Drawing.Point(32, 99);
+            this.txtSeason.MaxLength = 2;
+            this.txtSeason.Name = "txtSeason";
+            this.txtSeason.Size = new System.Drawing.Size(52, 22);
+            this.txtSeason.TabIndex = 94;
+            this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSeason.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
+            this.txtSeason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            // 
+            // txtEpisode
+            // 
+            this.txtEpisode.BackColor = System.Drawing.SystemColors.Control;
+            this.txtEpisode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEpisode.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtEpisode.Location = new System.Drawing.Point(90, 99);
+            this.txtEpisode.MaxLength = 3;
+            this.txtEpisode.Name = "txtEpisode";
+            this.txtEpisode.Size = new System.Drawing.Size(52, 22);
+            this.txtEpisode.TabIndex = 95;
+            this.txtEpisode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtEpisode.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
+            this.txtEpisode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            // 
+            // txtYear
+            // 
+            this.txtYear.BackColor = System.Drawing.SystemColors.Control;
+            this.txtYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtYear.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtYear.Location = new System.Drawing.Point(148, 99);
+            this.txtYear.MaxLength = 4;
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Size = new System.Drawing.Size(75, 22);
+            this.txtYear.TabIndex = 96;
+            this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtYear.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
+            this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            // 
             // editPane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -333,8 +330,6 @@
         private System.Windows.Forms.Button btnImg;
         private System.Windows.Forms.ComboBox ddTitle;
         private System.Windows.Forms.ComboBox ddCategory;
-        private System.Windows.Forms.MaskedTextBox txtEpisode;
-        private System.Windows.Forms.MaskedTextBox txtYear;
         private System.Windows.Forms.ComboBox ddStatus;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox ddLanguage;
@@ -342,7 +337,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox imgError;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.MaskedTextBox txtSeasons;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtYear;
+        private System.Windows.Forms.TextBox txtEpisode;
+        private System.Windows.Forms.TextBox txtSeason;
     }
 }
