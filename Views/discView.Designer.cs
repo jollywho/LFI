@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.scrlPage = new System.Windows.Forms.HScrollBar();
             this.btn2 = new System.Windows.Forms.Button();
             this.btn3 = new System.Windows.Forms.Button();
@@ -72,6 +73,7 @@
             this.txtPage = new System.Windows.Forms.MaskedTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
             this.groupBox6.SuspendLayout();
@@ -259,7 +261,7 @@
             // imgTitle
             // 
             this.imgTitle.BackColor = System.Drawing.Color.Transparent;
-            this.imgTitle.BackgroundImage = global::LFI.Properties.Resources.notfound;
+            this.imgTitle.BackgroundImage = global::LFI.Properties.Resources.notavailable;
             this.imgTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.imgTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imgTitle.Location = new System.Drawing.Point(534, 24);
@@ -365,11 +367,11 @@
             this.gvContents.AllowUserToDeleteRows = false;
             this.gvContents.AllowUserToResizeColumns = false;
             this.gvContents.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.gvContents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.gvContents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.gvContents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvContents.BackgroundColor = System.Drawing.Color.White;
             this.gvContents.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -381,14 +383,14 @@
             this.Season,
             this.Start,
             this.End});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvContents.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvContents.DefaultCellStyle = dataGridViewCellStyle6;
             this.gvContents.Location = new System.Drawing.Point(6, 60);
             this.gvContents.MultiSelect = false;
             this.gvContents.Name = "gvContents";
@@ -663,6 +665,14 @@
             this.label11.TabIndex = 85;
             this.label11.Text = "Disc ID";
             // 
+            // toolTip
+            // 
+            this.toolTip.AutoPopDelay = 50;
+            this.toolTip.BackColor = System.Drawing.Color.Transparent;
+            this.toolTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 100;
+            // 
             // discView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -737,5 +747,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Season;
         private System.Windows.Forms.DataGridViewTextBoxColumn Start;
         private System.Windows.Forms.DataGridViewTextBoxColumn End;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

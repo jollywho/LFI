@@ -18,13 +18,13 @@ namespace LFI
             InitializeComponent();
         }
 
-        public void disable()
+        public void Disable()
         {
             active = false;
             this.Hide();
         }
 
-        public void enable()
+        public void Enable()
         {
             active = true;
             this.Show();

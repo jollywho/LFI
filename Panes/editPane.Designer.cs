@@ -132,7 +132,6 @@
             this.imgError.TabIndex = 74;
             this.imgError.TabStop = false;
             this.imgError.Visible = false;
-            this.imgError.MouseHover += new System.EventHandler(this.imgError_MouseHover);
             // 
             // ddLanguage
             // 

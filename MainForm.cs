@@ -24,7 +24,7 @@ namespace LFI
             AppDomain.CurrentDomain.SetData("Image", @"../../image");
             mv = new mainView();
             panel1.Controls.Add(mv);
-            mv.enable();
+            mv.Enable();
         }
 
         private void bump_menuItem(ToolStripMenuItem obj1, ToolStripMenuItem obj2)
@@ -44,7 +44,7 @@ namespace LFI
         private void menuDiscItem_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
-            mv.disable();
+            mv.Disable();
             discView dv = new discView();
             panel1.Controls.Add(dv);
             this.MaximumSize = horizontal;
@@ -67,24 +67,21 @@ namespace LFI
             panel1.Controls.Clear();
             panel1.Controls.Add(mv);
             mv.populateList();
-            mv.enable();
+            mv.Enable();
             this.MaximumSize = vertical;
             this.MinimumSize = vertical;
             mv.Focus();
         }
 
-        public void load_formView(object view)
+        private void popView(View view)
         {
-            if (view is folderView)
-                menuFolderItem_Click(null, null);
-            if (view is addView)
-                menuDiscItem_Click(null, null);
+
         }
 
         private void menuFolderItem_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
-            mv.disable();
+            mv.Disable();
             folderView fv = new folderView(this);
             panel1.Controls.Add(fv);
             this.MaximumSize = vertical;

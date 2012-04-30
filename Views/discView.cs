@@ -13,6 +13,7 @@ namespace LFI
     public partial class discView : UserControl
     {
         private BackgroundWorker worker = new BackgroundWorker();
+        const int MAX_TOOLTIP = 500;
         bool isNewRecord = false;
         private int currentPage = 1;
         const int DISCS_PER_PAGE = 8;
@@ -112,21 +113,14 @@ namespace LFI
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            string error = "";
             if (ddInsTitle.Text.Length > 0 && ddInsTitle.FindStringExact(ddInsTitle.Text) != -1)
             {
-                if (txtInsRangeStart.Text.Length < 1)
-                    error += "Start range required\n";
-                if (txtInsRangeEnd.Text.Length < 1)
-                    error += "End range required\n";
                 if (txtSeason.Text.Length < 1)
-                    error += "Season required\n";
-
-                if (error != "")
-                {
-                    MessageBox.Show(error, "Validation Error");
-                    return;
-                }
+                    Error_Handle.TipError("Season required\n", toolTip, txtSeason);
+                else if (txtInsRangeStart.Text.Length < 1)
+                    Error_Handle.TipError("Start range required\n", toolTip, txtInsRangeStart);
+                else if (txtInsRangeEnd.Text.Length < 1)
+                    Error_Handle.TipError("End range required\n", toolTip, txtInsRangeEnd);
                 else
                 {
                     DataGridViewRow gvr = new DataGridViewRow();
@@ -151,22 +145,18 @@ namespace LFI
 
         private void btnSaveClick(object sender, EventArgs e)
         {
-            string error = "";
             bool rollbackpos = false;
 
             if (txtDisc.Text.Length < 1)
-                error += "Disc required\n";
-            if (txtPage.Text.Length < 1)
-                error += "Page required\n";
-            if (ddLocation.Text.Length < 1)
-                error += "Location required\n";
-            if (gvContents.Rows.Count < 1)
-                error += "Content required\n";
-
-            if (error.Length != 0)
-            {
-                MessageBox.Show(error, "Validation Error");
-            }
+                Error_Handle.TipError("Disc required\n", toolTip, txtDisc);
+            else if (txtPage.Text.Length < 1)
+                Error_Handle.TipError("Page required\n", toolTip, txtPage);
+            else if (txtSlot.Text.Length < 1)
+                Error_Handle.TipError("Slot required\n", toolTip, txtSlot);
+            else if (ddLocation.Text.Length < 1)
+                Error_Handle.TipError("Location required\n", toolTip, ddLocation);
+            else if (gvContents.Rows.Count < 1)
+                Error_Handle.TipError("Content required\n", toolTip, gvContents);
             else
             {
                 try
@@ -197,7 +187,7 @@ namespace LFI
                             @"DELETE FROM DISCS WHERE
                             disc_id = '{0}' AND location_id = '{1}'",
                             txtDisc.Text, ddLocation.Text));
-                    MessageBox.Show(ex.Message, "Error");
+                    Error_Handle.TipError(ex.Message, toolTip, btnAddDisc);
                 }
             }
         }
@@ -241,7 +231,7 @@ namespace LFI
 
         private Image generateDiscImage(string discid)
         {
-            Image img = LFI.Properties.Resources.notfound;
+            Image img = LFI.Properties.Resources.border;
             DataTable temp = DB_Handle.GetDataTable(string.Format(
                 @"Select * from discs natural join disc_contents where
                 disc_id='{0}' order by title_id", discid));

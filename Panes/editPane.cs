@@ -20,13 +20,15 @@ namespace LFI
             InitializeComponent();
         }
 
-        public void disable()
+        public void Disable()
         {
+            toolTip.SetToolTip(this, "");
+            toolTip.Hide(this);
             active = false;
             this.Hide();
         }
 
-        public void enable()
+        public void Enable()
         {
             active = true;
             this.Show();
@@ -54,7 +56,7 @@ namespace LFI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    toolTip.Show(ex.Message, txtEpisode);
                 }
             }
         }
@@ -76,7 +78,7 @@ namespace LFI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                toolTip.Show(ex.Message, txtEpisode);
             }
 
             setImage(ddTitle.Text);
@@ -101,34 +103,25 @@ namespace LFI
 
         public bool saveData()
         {
-            string error = "";
             bool status = false;
             try
             {
                 if (ddTitle.Text.Length == 0)
-                    error += "Title required or too short\n";
-                if (ddTitle.Text.Contains(','))
-                    error += "Illegal Char in title";
-                if (ddTitle.FindStringExact(ddTitle.Text) != ddTitle.SelectedIndex)
-                    error += "Title already exists\n";
-                if (ddCategory.Text.Length == 0)
-                    error += "Category required\n";
-                if (ddStatus.Text.Length < 1)
-                    error += "Status required\n";
-                if (ddLanguage.Text.Length < 1)
-                    error += "Language required\n";
-                if (txtYear.Text.Length < 4)
-                    error += "Year required\n";
-                if (txtEpisode.Text.Length < 1)
-                    error += "Episode # required\n";
-
-                if (error.Length != 0)
-                {
-                    MessageBox.Show(error, "Validation Error");
-                }
+                    Error_Handle.TipError("Title required\n", toolTip, ddTitle);
+                else if (ddTitle.FindStringExact(ddTitle.Text) != ddTitle.SelectedIndex)
+                    Error_Handle.TipError("Title already exists\n", toolTip, ddTitle);
+                else if (ddCategory.Text.Length == 0)
+                    Error_Handle.TipError("Category required\n", toolTip, ddCategory);
+                else if (ddStatus.Text.Length < 1)
+                    Error_Handle.TipError("Status required\n", toolTip, ddStatus);
+                else if (ddLanguage.Text.Length < 1)
+                    Error_Handle.TipError("Language required\n", toolTip, ddLanguage);
+                else if (txtYear.Text.Length < 4)
+                    Error_Handle.TipError("Year required\n", toolTip, txtYear);
+                else if (txtEpisode.Text.Length < 1)
+                    Error_Handle.TipError("Episode required\n", toolTip, txtEpisode);
                 else
                 {
-                    //add
                     DB_Handle.UpdateTable(string.Format(
                         @"INSERT OR REPLACE INTO TITLES
                         (title_id, episodes, category, year, status, language)
@@ -141,27 +134,17 @@ namespace LFI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                Error_Handle.TipError(ex.Message, toolTip, imgError);
             }
             return status;
-        }
-
-        private void ddTitle_SelectedValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void ddTitle_TextChanged(object sender, EventArgs e)
         {
             if (ddTitle.Text.IndexOfAny(invalid_chars) > 0)
-                imgError.Visible = true;
+                toolTip.Show("Invalid Chars", imgError);
             else
-                imgError.Visible = false;
-        }
-
-        private void imgError_MouseHover(object sender, EventArgs e)
-        {
-            toolTip.Show("Invalid Chars", imgError);
+                toolTip.Hide(imgError);
         }
     }
 }

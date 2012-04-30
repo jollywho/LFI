@@ -23,7 +23,7 @@ namespace LFI
                         titleStrs[i])), btn.Width, btn.Height / titleStrs.Count));
                 }
                 else
-                    imgLst.Add(resize_Image(LFI.Properties.Resources.notfound,
+                    imgLst.Add(resize_Image(LFI.Properties.Resources.notavailable,
                         btn.Width, btn.Height / titleStrs.Count));
             }
             Image finalImage = merge_Images(imgLst, btn.Width, btn.Height, titleStrs.Count);

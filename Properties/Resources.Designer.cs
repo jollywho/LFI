@@ -144,6 +144,13 @@ namespace LFI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap notavailable {
+            get {
+                object obj = ResourceManager.GetObject("notavailable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap notfound {
             get {
                 object obj = ResourceManager.GetObject("notfound", resourceCulture);
