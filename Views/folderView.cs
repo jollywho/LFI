@@ -32,10 +32,6 @@ namespace LFI
             InitializeComponent();
             DoubleBuffered = true;
             caller = main;
-            worker.WorkerReportsProgress = true;
-            worker.WorkerSupportsCancellation = true;
-            worker.DoWork += new DoWorkEventHandler(worker_DoWork);
-            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
             animation.Image = LFI.Properties.Resources.progress;
             animation.Width = 16;
             animation.Height = 16;
@@ -110,17 +106,15 @@ namespace LFI
             {
                 int sel = Convert.ToInt32(lstDivs.Text);
                 gvFiles.DataSource = null;
-                var bindingSource = new BindingSource();
+                gvFiles.Rows.Clear();
                 if (lstDivs.Text == "0")
                 {
                     lblSize.Text = folder.Get_Folder_Size(sel, true) + " GB";
                     for (int i = 0; i <= folder.folderitems.Count - 1; i++)
                     {
-                        bindingSource.Add(new SimpleData
-                        {
-                            Text = Path.GetFileName(folder.folderitems[i]),
-                            Hidden = folder.filenames[i]
-                        });
+                        gvFiles.Rows.Add(LFI.Properties.Resources.empty,
+                            Path.GetFileName(folder.folderitems[i]),
+                            folder.filenames[i]);
                     }
                 }
                 else
@@ -128,20 +122,18 @@ namespace LFI
                     lblSize.Text = folder.Get_Folder_Size(sel, false) + " GB";
                     for (int i = 0; i <= folder.folderDivisions[sel - 1].Count - 1; i++)
                     {
-                        bindingSource.Add(new SimpleData
-                        {
-                            Text = Path.GetFileName(folder.folderDivisions[sel - 1][i]),
-                            Hidden = folder.folderDivisions[sel - 1][i]
-                        });
+                        gvFiles.Rows.Add(LFI.Properties.Resources.empty,
+
+                             Path.GetFileName(folder.folderDivisions[sel - 1][i]),
+                             folder.folderDivisions[sel - 1][i]
+                        );
                     }
                 }
-                gvFiles.DataSource = bindingSource;
-                gvFiles.Columns[2].Visible = false;
                 gvFiles_RowEnter(null, null);
             }
         }
 
-        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        private void worker_ComputeCRC(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
             string file = (string)e.Argument;
@@ -164,8 +156,7 @@ namespace LFI
             }
         }
 
-        //todo: remove .part option
-        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void bw_CheckCRCCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             animation.Hide();
             caller.stop_progBar();
@@ -175,6 +166,19 @@ namespace LFI
                 gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
             else
                 gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.error;
+            gvFiles.Rows[workingRow].Cells[1].Value = newfilename;
+        }
+
+        private void bw_AddCRCCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            animation.Hide();
+            caller.stop_progBar();
+            string newfilename = string.Empty;
+            gvFiles.Rows[workingRow].Cells[2].Value = 
+                Folder_IO.AddCRC(gvFiles.Rows[workingRow].Cells[2].Value.ToString(),
+                checksum, out newfilename);
+            gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
+            gvFiles.Rows[workingRow].Cells[1].Value = newfilename;
         }
 
         void gvFiles_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -184,22 +188,40 @@ namespace LFI
             animation.Height = gvFiles.GetCellDisplayRectangle(0, workingRow, true).Height;
         }
 
+        private void btnAddCRC_Click(object sender, EventArgs e)
+        {
+            if (!worker.IsBusy)
+            {
+                if (!Folder_IO.IsCRC(gvFiles.Rows[workingRow].Cells[2].Value.ToString()))
+                {
+                    gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.empty;
+                    animation.Show();
+                    worker = new BackgroundWorker();
+                    worker.WorkerReportsProgress = true;
+                    worker.WorkerSupportsCancellation = true;
+                    worker.DoWork += new DoWorkEventHandler(worker_ComputeCRC);
+                    worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_AddCRCCompleted);
+                    workingRow = savedRow;
+                    caller.start_progBar();
+                    worker.RunWorkerAsync(gvFiles.Rows[savedRow].Cells[2].Value);
+                }
+            }
+        }
+
         private void btnCheckCRC_Click(object sender, EventArgs e)
         {
             if (!worker.IsBusy)
             {
+                gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.empty;
                 animation.Show();
-                caller.start_progBar();
+                worker = new BackgroundWorker();
+                worker.WorkerReportsProgress = true;
+                worker.WorkerSupportsCancellation = true;
+                worker.DoWork += new DoWorkEventHandler(worker_ComputeCRC);
+                worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_CheckCRCCompleted);
                 workingRow = savedRow;
+                caller.start_progBar();
                 worker.RunWorkerAsync(gvFiles.Rows[savedRow].Cells[2].Value);
-            }
-        }
-
-        private void gvFiles_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            for (int i = 0; i <= gvFiles.RowCount - 1; i++)
-            {
-                gvFiles.Rows[i].Cells[0].Value = LFI.Properties.Resources.empty;
             }
         }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.IO;
 using System.Windows.Forms;
 
@@ -9,6 +9,7 @@ namespace LFI
 {
     class Folder_IO
     {
+        static Regex reg = new Regex(@"(?<=(?:\[))[a-fA-F0-9]{8}(?=(?:\]))(?x)");
         const int CRC_STRLEN = 10; //square brackets inclusive
         const long DVD_SIZE = 4550000000;
         const long INCREMENT_VALUE = 10000000;
@@ -119,18 +120,38 @@ namespace LFI
         public static string ScanCRC(string filename, out string newfilename)
         {
             FileInfo file = new FileInfo(filename);
-            string ext = file.Extension;
-            if (ext.Contains(".part"))
-            {
-                file.MoveTo(filename.Replace(".part", ""));
-            }
-            string crcStr = Path.GetFileName(file.Name);
-            ext = file.Extension;
+            FixExtension(file);
 
-            crcStr = crcStr.Substring(crcStr.Length - (CRC_STRLEN + ext.Length - 1), CRC_STRLEN - 2);
+            string crcStr = reg.Match(filename).Groups[0].Value;
+
             Console.WriteLine(crcStr);
             newfilename = Path.GetFileName(file.Name);
             return crcStr;
+        }
+
+        public static string AddCRC(string filename, string crc, out string newfilename)
+        {
+            FileInfo file = new FileInfo(filename);
+            FixExtension(file);
+            file.Refresh();
+
+            file.MoveTo(file.FullName.Insert(file.FullName.Length - (file.Extension.Length), "[" + crc + "]"));
+            file.Refresh();
+            newfilename = Path.GetFileName(file.Name);
+            return file.FullName;
+        }
+
+        public static void FixExtension(FileInfo file)
+        {
+            if (file.Extension.Contains(".part"))
+            {
+                file.MoveTo(file.FullName.Replace(".part", ""));
+            }
+        }
+
+        public static bool IsCRC(string str)
+        {
+            return reg.IsMatch(str);
         }
     }
 }

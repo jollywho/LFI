@@ -35,7 +35,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lstDivs = new System.Windows.Forms.ListBox();
             this.gvFiles = new System.Windows.Forms.DataGridView();
-            this.check = new System.Windows.Forms.DataGridViewImageColumn();
             this.ddUrl = new System.Windows.Forms.ComboBox();
             this.btnDivide = new System.Windows.Forms.Button();
             this.btnShowDiv = new System.Windows.Forms.Button();
@@ -44,6 +43,9 @@
             this.btnAddCRC = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.check = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Text = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hidden = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -115,7 +117,9 @@
             this.gvFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvFiles.ColumnHeadersVisible = false;
             this.gvFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.check});
+            this.check,
+            this.Text,
+            this.Hidden});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -137,17 +141,7 @@
             this.gvFiles.Size = new System.Drawing.Size(524, 427);
             this.gvFiles.StandardTab = true;
             this.gvFiles.TabIndex = 56;
-            this.gvFiles.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.gvFiles_DataBindingComplete);
             this.gvFiles.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFiles_RowEnter);
-            // 
-            // check
-            // 
-            this.check.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.check.FillWeight = 10F;
-            this.check.HeaderText = "check";
-            this.check.Name = "check";
-            this.check.ReadOnly = true;
-            this.check.Width = 5;
             // 
             // ddUrl
             // 
@@ -236,6 +230,7 @@
             this.btnAddCRC.Size = new System.Drawing.Size(32, 32);
             this.btnAddCRC.TabIndex = 60;
             this.btnAddCRC.UseVisualStyleBackColor = true;
+            this.btnAddCRC.Click += new System.EventHandler(this.btnAddCRC_Click);
             this.btnAddCRC.MouseEnter += new System.EventHandler(this.btnBack_MouseEnter);
             this.btnAddCRC.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
             // 
@@ -272,6 +267,28 @@
             this.panel1.Size = new System.Drawing.Size(320, 135);
             this.panel1.TabIndex = 65;
             // 
+            // check
+            // 
+            this.check.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.check.FillWeight = 10F;
+            this.check.HeaderText = "check";
+            this.check.Name = "check";
+            this.check.ReadOnly = true;
+            this.check.Width = 5;
+            // 
+            // Text
+            // 
+            this.Text.HeaderText = "Text";
+            this.Text.Name = "Text";
+            this.Text.ReadOnly = true;
+            // 
+            // Hidden
+            // 
+            this.Hidden.HeaderText = "Hidden";
+            this.Hidden.Name = "Hidden";
+            this.Hidden.ReadOnly = true;
+            this.Hidden.Visible = false;
+            // 
             // folderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -299,7 +316,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox lstDivs;
         private System.Windows.Forms.DataGridView gvFiles;
-        private System.Windows.Forms.DataGridViewImageColumn check;
         private System.Windows.Forms.ComboBox ddUrl;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnAddCRC;
@@ -308,5 +324,8 @@
         private System.Windows.Forms.Button btnShowDiv;
         private System.Windows.Forms.Button btnDivide;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridViewImageColumn check;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Text;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hidden;
     }
 }
