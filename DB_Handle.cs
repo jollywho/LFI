@@ -10,6 +10,7 @@ namespace LFI
     class DB_Handle
     {
         static string conn = @"Data Source=|DataDirectory|lfi.db";
+        static SQLiteConnection manual_cnn;
 
         public static DataTable GetDataTable(string sql)
         {
@@ -41,6 +42,38 @@ namespace LFI
             {
                 throw ex;
             }
+        }
+
+        public static void OpenConnection()
+        {
+            try
+            {
+                manual_cnn = new SQLiteConnection(conn);
+                manual_cnn.Open();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void ScalarUpdate(string sql)
+        {
+            try
+            {
+                SQLiteCommand mycommmand = new SQLiteCommand(manual_cnn);
+                mycommmand.CommandText = sql;
+                mycommmand.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void CloseConnection()
+        {
+            manual_cnn.Close();
         }
     }
 

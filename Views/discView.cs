@@ -178,7 +178,7 @@ namespace LFI
                     DataGridViewRow gvr = new DataGridViewRow();
                     gvr.CreateCells(gvContents, ddInsTitle.Text, txtSeason.Text,
                         txtRangeStart.Text.Replace(" ", ""),
-                        txtRangeEnd.Text.Replace(" ", ""));
+                        txtRangeEnd.Text.Replace(" ", ""), "null");
                     gvContents.Rows.Add(gvr);
 
                     txtSeason.Clear();
@@ -221,16 +221,24 @@ namespace LFI
                         txtDisc.Text, txtPage.Text, txtSlot.Text, ddLocation.Text));
                     if (isNewRecord)
                         rollbackpos = true;
-
+                    DB_Handle.OpenConnection();
                     for (int i = 0; i <= gvContents.Rows.Count - 1; i++)
                     {
-                        DB_Handle.UpdateTable(string.Format(
-                            @"INSERT OR REPLACE INTO DISC_CONTENTS 
-                            (disc_id, title_id, season, rangeStart, rangeEnd)
-                            VALUES ('{0}',{1},'{2}','{3}','{4}');",
-                            txtDisc.Text, "\"" + gvContents.Rows[i].Cells[0].Value + "\"",
-                            gvContents.Rows[i].Cells[1].Value, gvContents.Rows[i].Cells[2].Value,
+                        DB_Handle.ScalarUpdate(string.Format(
+                            @"INSERT OR REPLACE INTO CONTENTS 
+                            (content_id, title_id, season, rangeStart, rangeEnd)
+                            VALUES ({0},{1},'{2}','{3}','{4}');",
+                            gvContents.Rows[i].Cells[4].Value,
+                            "\"" + gvContents.Rows[i].Cells[0].Value + "\"",
+                            gvContents.Rows[i].Cells[1].Value,
+                            gvContents.Rows[i].Cells[2].Value,
                             gvContents.Rows[i].Cells[3].Value));
+
+                        DB_Handle.ScalarUpdate(string.Format(
+                            @"INSERT OR REPLACE INTO DISC_CONTENTS
+                            (content_id, disc_id, location_id)
+                            VALUES (last_insert_rowid(),'{0}','{1}');",
+                            txtDisc.Text, ddLocation.Text));
                     }
                     MessageBox.Show("Saved", "Success");
                 }
@@ -242,6 +250,11 @@ namespace LFI
                             disc_id = '{0}' AND location_id = '{1}'",
                             txtDisc.Text, ddLocation.Text));
                     Error_Handle.TipError(ex.Message, toolTip, btnAddDisc);
+                }
+                finally
+                {
+                    DB_Handle.CloseConnection();
+                    loadPage();
                 }
             }
         }
@@ -342,7 +355,8 @@ namespace LFI
                 txtSlot.Text = temp.Rows[0][2].ToString();
                 for (int i=0; i<=temp.Rows.Count -1; i++)
                 {
-                    gvContents.Rows.Add(temp.Rows[i][3], temp.Rows[i][4], temp.Rows[i][5], temp.Rows[i][6]);
+                    gvContents.Rows.Add(temp.Rows[i][3], temp.Rows[i][4],
+                        temp.Rows[i][5], temp.Rows[i][6],  temp.Rows[i][7]);
                 }
             }
             else
