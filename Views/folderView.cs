@@ -30,6 +30,7 @@ namespace LFI
         public folderView(MainForm main)
         {
             InitializeComponent();
+            DoubleBuffered = true;
             caller = main;
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;

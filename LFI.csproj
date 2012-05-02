@@ -209,7 +209,7 @@
       <DependentUpon>contentsPane.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="data\LFI.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="LFI_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">

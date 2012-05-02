@@ -145,7 +145,7 @@
             this.gvTitles.RowHeadersVisible = false;
             this.gvTitles.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvTitles.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.gvTitles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.gvTitles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvTitles.Size = new System.Drawing.Size(180, 563);
             this.gvTitles.StandardTab = true;
             this.gvTitles.TabIndex = 3;

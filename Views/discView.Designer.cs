@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.scrlPage = new System.Windows.Forms.HScrollBar();
             this.btn2 = new System.Windows.Forms.Button();
             this.btn3 = new System.Windows.Forms.Button();
             this.btn1 = new System.Windows.Forms.Button();
             this.btn4 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtPageNo = new System.Windows.Forms.TextBox();
+            this.txtJump = new System.Windows.Forms.TextBox();
             this.btn8 = new System.Windows.Forms.Button();
             this.btn5 = new System.Windows.Forms.Button();
             this.btn7 = new System.Windows.Forms.Button();
             this.btn6 = new System.Windows.Forms.Button();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.imgTitle = new System.Windows.Forms.PictureBox();
             this.copyLabel = new System.Windows.Forms.Label();
@@ -50,6 +50,7 @@
             this.txtDisc = new System.Windows.Forms.MaskedTextBox();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtSeason = new System.Windows.Forms.TextBox();
             this.txtRangeEnd = new System.Windows.Forms.TextBox();
             this.txtRangeStart = new System.Windows.Forms.TextBox();
             this.gvContents = new System.Windows.Forms.DataGridView();
@@ -72,8 +73,8 @@
             this.txtPage = new System.Windows.Forms.MaskedTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.txtSeason = new System.Windows.Forms.TextBox();
+            this.lblPageLeft = new System.Windows.Forms.Label();
+            this.lblPageRight = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
             this.groupBox6.SuspendLayout();
@@ -83,6 +84,7 @@
             // scrlPage
             // 
             this.scrlPage.Location = new System.Drawing.Point(0, 354);
+            this.scrlPage.Maximum = 99;
             this.scrlPage.Minimum = 1;
             this.scrlPage.Name = "scrlPage";
             this.scrlPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -90,6 +92,7 @@
             this.scrlPage.TabIndex = 82;
             this.scrlPage.Value = 1;
             this.scrlPage.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrlPage_Scroll);
+            this.scrlPage.ValueChanged += new System.EventHandler(this.scrlPage_ValueChanged);
             // 
             // btn2
             // 
@@ -104,6 +107,7 @@
             this.btn2.TabIndex = 83;
             this.btn2.TabStop = false;
             this.btn2.UseVisualStyleBackColor = true;
+            this.btn2.Visible = false;
             this.btn2.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn3
@@ -119,6 +123,7 @@
             this.btn3.TabIndex = 84;
             this.btn3.TabStop = false;
             this.btn3.UseVisualStyleBackColor = true;
+            this.btn3.Visible = false;
             this.btn3.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn1
@@ -136,6 +141,7 @@
             this.btn1.TabStop = false;
             this.btn1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btn1.UseVisualStyleBackColor = true;
+            this.btn1.Visible = false;
             this.btn1.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn4
@@ -151,29 +157,20 @@
             this.btn4.TabIndex = 86;
             this.btn4.TabStop = false;
             this.btn4.UseVisualStyleBackColor = true;
+            this.btn4.Visible = false;
             this.btn4.Click += new System.EventHandler(this.disc_btn_Click);
             // 
-            // label2
+            // txtJump
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label2.Location = new System.Drawing.Point(285, 328);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 16);
-            this.label2.TabIndex = 91;
-            this.label2.Text = "Page #";
-            // 
-            // txtPageNo
-            // 
-            this.txtPageNo.Location = new System.Drawing.Point(333, 328);
-            this.txtPageNo.Name = "txtPageNo";
-            this.txtPageNo.Size = new System.Drawing.Size(74, 20);
-            this.txtPageNo.TabIndex = 92;
-            this.txtPageNo.TabStop = false;
-            this.txtPageNo.Text = "1";
-            this.txtPageNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPageNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPageNo_KeyDown);
+            this.txtJump.Location = new System.Drawing.Point(351, 326);
+            this.txtJump.Name = "txtJump";
+            this.txtJump.Size = new System.Drawing.Size(35, 20);
+            this.txtJump.TabIndex = 92;
+            this.txtJump.TabStop = false;
+            this.txtJump.Text = "1";
+            this.txtJump.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtJump.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
+            this.txtJump.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPageNo_KeyDown);
             // 
             // btn8
             // 
@@ -188,6 +185,7 @@
             this.btn8.TabIndex = 96;
             this.btn8.TabStop = false;
             this.btn8.UseVisualStyleBackColor = true;
+            this.btn8.Visible = false;
             this.btn8.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn5
@@ -203,6 +201,7 @@
             this.btn5.TabIndex = 95;
             this.btn5.TabStop = false;
             this.btn5.UseVisualStyleBackColor = true;
+            this.btn5.Visible = false;
             this.btn5.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn7
@@ -218,6 +217,7 @@
             this.btn7.TabIndex = 94;
             this.btn7.TabStop = false;
             this.btn7.UseVisualStyleBackColor = true;
+            this.btn7.Visible = false;
             this.btn7.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn6
@@ -233,7 +233,16 @@
             this.btn6.TabIndex = 93;
             this.btn6.TabStop = false;
             this.btn6.UseVisualStyleBackColor = true;
+            this.btn6.Visible = false;
             this.btn6.Click += new System.EventHandler(this.disc_btn_Click);
+            // 
+            // toolTip
+            // 
+            this.toolTip.AutoPopDelay = 50;
+            this.toolTip.BackColor = System.Drawing.Color.Transparent;
+            this.toolTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 100;
             // 
             // panel1
             // 
@@ -361,6 +370,20 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Contents";
             // 
+            // txtSeason
+            // 
+            this.txtSeason.BackColor = System.Drawing.SystemColors.Control;
+            this.txtSeason.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSeason.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtSeason.Location = new System.Drawing.Point(335, 33);
+            this.txtSeason.MaxLength = 2;
+            this.txtSeason.Name = "txtSeason";
+            this.txtSeason.Size = new System.Drawing.Size(52, 22);
+            this.txtSeason.TabIndex = 95;
+            this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSeason.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
+            this.txtSeason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPageNo_KeyDown);
+            // 
             // txtRangeEnd
             // 
             this.txtRangeEnd.BackColor = System.Drawing.SystemColors.Control;
@@ -395,11 +418,11 @@
             this.gvContents.AllowUserToDeleteRows = false;
             this.gvContents.AllowUserToResizeColumns = false;
             this.gvContents.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.gvContents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.gvContents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gvContents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvContents.BackgroundColor = System.Drawing.Color.White;
             this.gvContents.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -411,14 +434,14 @@
             this.Season,
             this.Start,
             this.End});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvContents.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvContents.DefaultCellStyle = dataGridViewCellStyle4;
             this.gvContents.Location = new System.Drawing.Point(6, 60);
             this.gvContents.MultiSelect = false;
             this.gvContents.Name = "gvContents";
@@ -645,39 +668,44 @@
             this.label11.TabIndex = 85;
             this.label11.Text = "Disc ID";
             // 
-            // toolTip
+            // lblPageLeft
             // 
-            this.toolTip.AutoPopDelay = 50;
-            this.toolTip.BackColor = System.Drawing.Color.Transparent;
-            this.toolTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.toolTip.InitialDelay = 500;
-            this.toolTip.ReshowDelay = 100;
+            this.lblPageLeft.AutoSize = true;
+            this.lblPageLeft.BackColor = System.Drawing.Color.Transparent;
+            this.lblPageLeft.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPageLeft.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.lblPageLeft.Location = new System.Drawing.Point(175, 326);
+            this.lblPageLeft.Name = "lblPageLeft";
+            this.lblPageLeft.Size = new System.Drawing.Size(54, 26);
+            this.lblPageLeft.TabIndex = 98;
+            this.lblPageLeft.Text = "Page";
+            this.lblPageLeft.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtSeason
+            // lblPageRight
             // 
-            this.txtSeason.BackColor = System.Drawing.SystemColors.Control;
-            this.txtSeason.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSeason.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
-            this.txtSeason.Location = new System.Drawing.Point(335, 33);
-            this.txtSeason.MaxLength = 2;
-            this.txtSeason.Name = "txtSeason";
-            this.txtSeason.Size = new System.Drawing.Size(52, 22);
-            this.txtSeason.TabIndex = 95;
-            this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSeason.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
-            this.txtSeason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPageNo_KeyDown);
+            this.lblPageRight.AutoSize = true;
+            this.lblPageRight.BackColor = System.Drawing.Color.Transparent;
+            this.lblPageRight.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPageRight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.lblPageRight.Location = new System.Drawing.Point(537, 326);
+            this.lblPageRight.Name = "lblPageRight";
+            this.lblPageRight.Size = new System.Drawing.Size(54, 26);
+            this.lblPageRight.TabIndex = 99;
+            this.lblPageRight.Text = "Page";
+            this.lblPageRight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // discView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.lblPageRight);
+            this.Controls.Add(this.lblPageLeft);
             this.Controls.Add(this.btn8);
             this.Controls.Add(this.btn5);
             this.Controls.Add(this.btn7);
             this.Controls.Add(this.btn6);
-            this.Controls.Add(this.txtPageNo);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtJump);
             this.Controls.Add(this.btn4);
             this.Controls.Add(this.btn1);
             this.Controls.Add(this.btn3);
@@ -704,8 +732,7 @@
         private System.Windows.Forms.Button btn3;
         private System.Windows.Forms.Button btn1;
         private System.Windows.Forms.Button btn4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtPageNo;
+        private System.Windows.Forms.TextBox txtJump;
         private System.Windows.Forms.Button btn8;
         private System.Windows.Forms.Button btn5;
         private System.Windows.Forms.Button btn7;
@@ -742,5 +769,7 @@
         private System.Windows.Forms.TextBox txtRangeStart;
         private System.Windows.Forms.TextBox txtRangeEnd;
         private System.Windows.Forms.TextBox txtSeason;
+        private System.Windows.Forms.Label lblPageLeft;
+        private System.Windows.Forms.Label lblPageRight;
     }
 }

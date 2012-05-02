@@ -41,12 +41,10 @@ namespace LFI
         {
             panel1.Controls.Clear();
             panel1.Controls.Add(mv);
-            mv.populateList();
-            mv.Enable();
             this.MaximumSize = vertical;
             this.MinimumSize = vertical;
             pushBackMenuStates();
-            mv.Focus();
+            mv.Enable();
         }
 
         private void menuTitleItem_Click(object sender, EventArgs e)

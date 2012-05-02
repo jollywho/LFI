@@ -13,8 +13,8 @@ namespace LFI
 {
     public partial class mainView : UserControl
     {
-        DataTable dt;
-        DataView dv;
+        DataTable dvTitles;
+        DataView dvSearch;
         public contentsPane discPane;
         public editPane editPane;
         public infoPane infoPane;
@@ -25,6 +25,7 @@ namespace LFI
         public mainView() 
         {
             InitializeComponent();
+            DoubleBuffered = true;
             populateList();
             infoPane = new infoPane();
             discPane = new contentsPane();
@@ -44,20 +45,24 @@ namespace LFI
 
         public void Enable()
         {
-            gvTitles[0, savedRow].Selected = true;
+            
             enabled = true;
             this.Show();
+            txtSearch_TextChanged(null, null);
+            
+            gvTitles.Rows[savedRow].Selected = true;
+            gvTitles.Focus();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             if (txtSearch.Text.Length > 0)
             {
-                dv = new DataView(dt);
-                dv.RowFilter = string.Format("title_id like '%{0}*'", txtSearch.Text);
+                dvSearch = new DataView(dvTitles);
+                dvSearch.RowFilter = string.Format(@"title_id like '%{0}*'",
+                    txtSearch.Text.Replace("'", "''"));
                 
-                gvTitles.DataSource = dv;
-
+                gvTitles.DataSource = dvSearch;
             }
             else
                 populateList();
@@ -65,11 +70,11 @@ namespace LFI
 
         public void populateList()
         {
-            dt = DB_Handle.GetDataTable(string.Format(
+            dvTitles = DB_Handle.GetDataTable(string.Format(
                 @"SELECT title_id 
                 FROM titles WHERE language ='{0}' 
                 ORDER BY title_id", MainForm.Lmode));
-            gvTitles.DataSource = dt;
+            gvTitles.DataSource = dvTitles;
         }
         
         private void gvTitles_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -83,8 +88,8 @@ namespace LFI
                     if (infoPane.active)
                     {
                         infoPane.load_data(DB_Handle.GetDataTable(string.Format(
-                            @"SELECT * FROM titles WHERE title_id='{0}'",
-                            gvTitles.SelectedCells[0].Value.ToString())));
+                            @"SELECT * FROM titles WHERE title_id={0}",
+                            "\"" + gvTitles.SelectedCells[0].Value.ToString() + "\"")));
                     }
                     else
                     {
@@ -140,8 +145,8 @@ namespace LFI
             gvTitles.Enabled = false;
             txtSearch.Enabled = false;
             editPane.load_data(DB_Handle.GetDataTable(string.Format(
-                @"SELECT * FROM titles WHERE title_id='{0}'",
-                gvTitles.SelectedCells[0].Value.ToString())));
+                @"SELECT * FROM titles WHERE title_id={0}",
+                "\"" + gvTitles.SelectedCells[0].Value.ToString() + "\"")));
             editPane.Enable();
         }
 
@@ -152,9 +157,8 @@ namespace LFI
             {
                 int row = gvTitles.SelectedCells[0].RowIndex;
                 DB_Handle.UpdateTable(string.Format(
-                    @"DELETE FROM TITLES WHERE
-                    title_id = '{0}'",
-                    gvTitles.SelectedCells[0].Value.ToString()));
+                    @"DELETE FROM TITLES WHERE title_id={0}",
+                    "\"" + gvTitles.SelectedCells[0].Value.ToString() + "\""));
                 populateList();
                 if (gvTitles.Rows.Count > 0)
                     gvTitles[0, row].Selected = true;

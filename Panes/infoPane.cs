@@ -61,7 +61,7 @@ namespace LFI
             }
             else
             {
-                imgTitle.BackgroundImage = LFI.Properties.Resources.notfound;
+                imgTitle.BackgroundImage = LFI.Properties.Resources.notavailable;
             }
         }
     }

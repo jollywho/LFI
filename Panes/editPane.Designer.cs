@@ -32,6 +32,9 @@
             this.btnImg = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtYear = new System.Windows.Forms.TextBox();
+            this.txtEpisode = new System.Windows.Forms.TextBox();
+            this.txtSeason = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.imgError = new System.Windows.Forms.PictureBox();
             this.ddLanguage = new System.Windows.Forms.ComboBox();
@@ -45,9 +48,6 @@
             this.ddTitle = new System.Windows.Forms.ComboBox();
             this.ddCategory = new System.Windows.Forms.ComboBox();
             this.imgTitle = new System.Windows.Forms.PictureBox();
-            this.txtSeason = new System.Windows.Forms.TextBox();
-            this.txtEpisode = new System.Windows.Forms.TextBox();
-            this.txtYear = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgError)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
@@ -95,6 +95,48 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(320, 200);
             this.panel1.TabIndex = 74;
+            // 
+            // txtYear
+            // 
+            this.txtYear.BackColor = System.Drawing.SystemColors.Control;
+            this.txtYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtYear.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtYear.Location = new System.Drawing.Point(148, 99);
+            this.txtYear.MaxLength = 4;
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Size = new System.Drawing.Size(75, 22);
+            this.txtYear.TabIndex = 96;
+            this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtYear.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
+            this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            // 
+            // txtEpisode
+            // 
+            this.txtEpisode.BackColor = System.Drawing.SystemColors.Control;
+            this.txtEpisode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEpisode.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtEpisode.Location = new System.Drawing.Point(90, 99);
+            this.txtEpisode.MaxLength = 3;
+            this.txtEpisode.Name = "txtEpisode";
+            this.txtEpisode.Size = new System.Drawing.Size(52, 22);
+            this.txtEpisode.TabIndex = 95;
+            this.txtEpisode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtEpisode.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
+            this.txtEpisode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            // 
+            // txtSeason
+            // 
+            this.txtSeason.BackColor = System.Drawing.SystemColors.Control;
+            this.txtSeason.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSeason.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtSeason.Location = new System.Drawing.Point(32, 99);
+            this.txtSeason.MaxLength = 2;
+            this.txtSeason.Name = "txtSeason";
+            this.txtSeason.Size = new System.Drawing.Size(52, 22);
+            this.txtSeason.TabIndex = 94;
+            this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSeason.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
+            this.txtSeason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
             // label7
             // 
@@ -168,6 +210,7 @@
             "Unaired",
             "Started",
             "Finished",
+            "Dropped",
             "Unknown"});
             this.ddStatus.Location = new System.Drawing.Point(173, 150);
             this.ddStatus.Name = "ddStatus";
@@ -259,48 +302,6 @@
             this.imgTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgTitle.TabIndex = 31;
             this.imgTitle.TabStop = false;
-            // 
-            // txtSeason
-            // 
-            this.txtSeason.BackColor = System.Drawing.SystemColors.Control;
-            this.txtSeason.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSeason.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
-            this.txtSeason.Location = new System.Drawing.Point(32, 99);
-            this.txtSeason.MaxLength = 2;
-            this.txtSeason.Name = "txtSeason";
-            this.txtSeason.Size = new System.Drawing.Size(52, 22);
-            this.txtSeason.TabIndex = 94;
-            this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSeason.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
-            this.txtSeason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
-            // 
-            // txtEpisode
-            // 
-            this.txtEpisode.BackColor = System.Drawing.SystemColors.Control;
-            this.txtEpisode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEpisode.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
-            this.txtEpisode.Location = new System.Drawing.Point(90, 99);
-            this.txtEpisode.MaxLength = 3;
-            this.txtEpisode.Name = "txtEpisode";
-            this.txtEpisode.Size = new System.Drawing.Size(52, 22);
-            this.txtEpisode.TabIndex = 95;
-            this.txtEpisode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtEpisode.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
-            this.txtEpisode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
-            // 
-            // txtYear
-            // 
-            this.txtYear.BackColor = System.Drawing.SystemColors.Control;
-            this.txtYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtYear.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
-            this.txtYear.Location = new System.Drawing.Point(148, 99);
-            this.txtYear.MaxLength = 4;
-            this.txtYear.Name = "txtYear";
-            this.txtYear.Size = new System.Drawing.Size(75, 22);
-            this.txtYear.TabIndex = 96;
-            this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtYear.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
-            this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
             // editPane
             // 

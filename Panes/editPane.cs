@@ -13,7 +13,7 @@ namespace LFI
 {
     public partial class editPane : UserControl
     {
-        char[] invalid_chars = { '\\',';','@',',','.','#','$','%','^','*','~','`',':' };
+        char[] invalid_chars = { '\\',';','@',',','.','#','$','^','*','~','`',':' };
         public bool active = false;
         public editPane()
         {
@@ -137,8 +137,8 @@ namespace LFI
                     DB_Handle.UpdateTable(string.Format(
                         @"INSERT OR REPLACE INTO TITLES
                         (title_id, episodes, category, year, status, language)
-                        VALUES ('{0}','{1}','{2}','{3}','{4}','{5}');",
-                        ddTitle.Text, txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
+                        VALUES ({0},'{1}','{2}','{3}','{4}','{5}');",
+                        "\"" + ddTitle.Text + "\"", txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
                         txtYear.Text, ddStatus.Text, ddLanguage.Text));
                     MessageBox.Show("Saved", "Success");
                     status = true;
