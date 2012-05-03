@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtSeasons = new System.Windows.Forms.MaskedTextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.txtCategory = new System.Windows.Forms.TextBox();
             this.txtStatus = new System.Windows.Forms.TextBox();
@@ -49,8 +47,6 @@
             // panel1
             // 
             this.panel1.BackgroundImage = global::LFI.Properties.Resources.border;
-            this.panel1.Controls.Add(this.txtSeasons);
-            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.txtTitle);
             this.panel1.Controls.Add(this.txtCategory);
             this.panel1.Controls.Add(this.txtStatus);
@@ -65,31 +61,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(320, 200);
             this.panel1.TabIndex = 29;
-            // 
-            // txtSeasons
-            // 
-            this.txtSeasons.BackColor = System.Drawing.SystemColors.Control;
-            this.txtSeasons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSeasons.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSeasons.ForeColor = System.Drawing.Color.Black;
-            this.txtSeasons.Location = new System.Drawing.Point(61, 95);
-            this.txtSeasons.Mask = "000";
-            this.txtSeasons.Name = "txtSeasons";
-            this.txtSeasons.ReadOnly = true;
-            this.txtSeasons.Size = new System.Drawing.Size(52, 22);
-            this.txtSeasons.TabIndex = 78;
-            this.txtSeasons.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label7.Location = new System.Drawing.Point(61, 75);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 16);
-            this.label7.TabIndex = 77;
-            this.label7.Text = "Seasons";
             // 
             // txtTitle
             // 
@@ -135,7 +106,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label1.Location = new System.Drawing.Point(126, 75);
+            this.label1.Location = new System.Drawing.Point(94, 75);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 16);
             this.label1.TabIndex = 45;
@@ -147,7 +118,7 @@
             this.txtEpisode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEpisode.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEpisode.ForeColor = System.Drawing.Color.Black;
-            this.txtEpisode.Location = new System.Drawing.Point(126, 95);
+            this.txtEpisode.Location = new System.Drawing.Point(94, 95);
             this.txtEpisode.Mask = "000";
             this.txtEpisode.Name = "txtEpisode";
             this.txtEpisode.ReadOnly = true;
@@ -183,7 +154,7 @@
             this.txtYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtYear.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtYear.ForeColor = System.Drawing.Color.Black;
-            this.txtYear.Location = new System.Drawing.Point(184, 95);
+            this.txtYear.Location = new System.Drawing.Point(152, 95);
             this.txtYear.Mask = "0000";
             this.txtYear.Name = "txtYear";
             this.txtYear.ReadOnly = true;
@@ -207,7 +178,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label5.Location = new System.Drawing.Point(206, 75);
+            this.label5.Location = new System.Drawing.Point(174, 75);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 16);
             this.label5.TabIndex = 49;
@@ -255,8 +226,6 @@
         private System.Windows.Forms.MaskedTextBox txtYear;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.MaskedTextBox txtSeasons;
-        private System.Windows.Forms.Label label7;
 
     }
 }

@@ -123,9 +123,8 @@ namespace LFI
                     for (int i = 0; i <= folder.folderDivisions[sel - 1].Count - 1; i++)
                     {
                         gvFiles.Rows.Add(LFI.Properties.Resources.empty,
-
-                             Path.GetFileName(folder.folderDivisions[sel - 1][i]),
-                             folder.folderDivisions[sel - 1][i]
+                            Path.GetFileName(folder.folderDivisions[sel - 1][i]),
+                            folder.folderDivisions[sel - 1][i]
                         );
                     }
                 }
@@ -192,7 +191,7 @@ namespace LFI
         {
             if (!worker.IsBusy)
             {
-                if (!Folder_IO.IsCRC(gvFiles.Rows[workingRow].Cells[2].Value.ToString()))
+                if (!Folder_IO.IsCRC(gvFiles.Rows[savedRow].Cells[1].Value.ToString()))
                 {
                     gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.empty;
                     animation.Show();
@@ -203,7 +202,7 @@ namespace LFI
                     worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_AddCRCCompleted);
                     workingRow = savedRow;
                     caller.start_progBar();
-                    worker.RunWorkerAsync(gvFiles.Rows[savedRow].Cells[2].Value);
+                    worker.RunWorkerAsync(gvFiles.Rows[workingRow].Cells[2].Value);
                 }
             }
         }
@@ -212,7 +211,7 @@ namespace LFI
         {
             if (!worker.IsBusy)
             {
-                gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.empty;
+                gvFiles.Rows[savedRow].Cells[0].Value = LFI.Properties.Resources.empty;
                 animation.Show();
                 worker = new BackgroundWorker();
                 worker.WorkerReportsProgress = true;
@@ -221,7 +220,7 @@ namespace LFI
                 worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_CheckCRCCompleted);
                 workingRow = savedRow;
                 caller.start_progBar();
-                worker.RunWorkerAsync(gvFiles.Rows[savedRow].Cells[2].Value);
+                worker.RunWorkerAsync(gvFiles.Rows[workingRow].Cells[2].Value);
             }
         }
 

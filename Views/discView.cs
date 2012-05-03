@@ -266,7 +266,11 @@ namespace LFI
                 DataTable dt = DB_Handle.GetDataTable(string.Format(
                     @"select max(disc_id) from discs 
                     where location_id = '{0}'", ddLocation.Text));
+                if (dt.Rows[0][0] is DBNull)
+                    txtDisc.Text = "001";
+                else
                     txtDisc.Text = (Convert.ToInt32(dt.Rows[0][0]) + 1).ToString("000");
+                    
             }
             catch (Exception ex)
             {

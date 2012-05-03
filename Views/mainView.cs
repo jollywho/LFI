@@ -50,7 +50,8 @@ namespace LFI
             this.Show();
             txtSearch_TextChanged(null, null);
             
-            gvTitles.Rows[savedRow].Selected = true;
+            if (gvTitles.Rows.Count > 0)
+                gvTitles.Rows[savedRow].Selected = true;
             gvTitles.Focus();
         }
 
@@ -75,6 +76,7 @@ namespace LFI
                 FROM titles WHERE language ='{0}' 
                 ORDER BY title_id", MainForm.Lmode));
             gvTitles.DataSource = dvTitles;
+
         }
         
         private void gvTitles_RowEnter(object sender, DataGridViewCellEventArgs e)
