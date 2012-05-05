@@ -90,6 +90,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\DButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DButton.Designer.cs">
+      <DependentUpon>DButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Error_Handle.cs" />
     <Compile Include="Image_IO.cs" />
     <Compile Include="LFIDataSet.Designer.cs">
@@ -97,16 +103,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LFIDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Panes\VLabel.cs">
+    <Compile Include="Controls\VLabel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="AlphanumComparator.cs" />
     <Compile Include="Crc32.cs" />
     <Compile Include="DB_Handle.cs" />
-    <Compile Include="Panes\editPane.cs">
+    <Compile Include="Controls\editPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Panes\editPane.Designer.cs">
+    <Compile Include="Controls\editPane.Designer.cs">
       <DependentUpon>editPane.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\discView.cs">
@@ -122,10 +128,10 @@
       <DependentUpon>folderView.cs</DependentUpon>
     </Compile>
     <Compile Include="Folder_IO.cs" />
-    <Compile Include="Panes\infoPane.cs">
+    <Compile Include="Controls\infoPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Panes\infoPane.Designer.cs">
+    <Compile Include="Controls\infoPane.Designer.cs">
       <DependentUpon>infoPane.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -147,10 +153,10 @@
     <Compile Include="Views\mainView.Designer.cs">
       <DependentUpon>mainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Panes\contentsPane.cs">
+    <Compile Include="Controls\contentsPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Panes\contentsPane.Designer.cs">
+    <Compile Include="Controls\contentsPane.Designer.cs">
       <DependentUpon>contentsPane.cs</DependentUpon>
     </Compile>
     <None Include="Resources\notavailable.png" />
@@ -179,10 +185,10 @@
     </None>
     <None Include="Resources\border.png" />
     <None Include="Resources\bannerOrig.jpg" />
-    <EmbeddedResource Include="Panes\VLabel.resx">
+    <EmbeddedResource Include="Controls\VLabel.resx">
       <DependentUpon>VLabel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Panes\editPane.resx">
+    <EmbeddedResource Include="Controls\editPane.resx">
       <DependentUpon>editPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\discView.resx">
@@ -191,7 +197,7 @@
     <EmbeddedResource Include="Views\folderView.resx">
       <DependentUpon>folderView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Panes\infoPane.resx">
+    <EmbeddedResource Include="Controls\infoPane.resx">
       <DependentUpon>infoPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
@@ -205,7 +211,7 @@
     <EmbeddedResource Include="Views\mainView.resx">
       <DependentUpon>mainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Panes\contentsPane.resx">
+    <EmbeddedResource Include="Controls\contentsPane.resx">
       <DependentUpon>contentsPane.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="data\LFI.db">

@@ -54,6 +54,11 @@
             this.txtRangeEnd = new System.Windows.Forms.TextBox();
             this.txtRangeStart = new System.Windows.Forms.TextBox();
             this.gvContents = new System.Windows.Forms.DataGridView();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Season = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Start = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.End = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.content = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.btnAddDisc = new System.Windows.Forms.Button();
@@ -71,11 +76,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.lblPageLeft = new System.Windows.Forms.Label();
             this.lblPageRight = new System.Windows.Forms.Label();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Season = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Start = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.End = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.content = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
             this.groupBox6.SuspendLayout();
@@ -90,6 +90,7 @@
             this.scrlPage.Name = "scrlPage";
             this.scrlPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.scrlPage.Size = new System.Drawing.Size(734, 20);
+            this.scrlPage.SmallChange = 2;
             this.scrlPage.TabIndex = 82;
             this.scrlPage.Value = 1;
             this.scrlPage.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrlPage_Scroll);
@@ -104,12 +105,11 @@
             this.btn2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn2.Location = new System.Drawing.Point(200, 6);
             this.btn2.Name = "btn2";
-            this.btn2.Size = new System.Drawing.Size(150, 150);
+            this.btn2.Size = new System.Drawing.Size(1, 1);
             this.btn2.TabIndex = 83;
             this.btn2.TabStop = false;
             this.btn2.UseVisualStyleBackColor = true;
             this.btn2.Visible = false;
-            this.btn2.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn3
             // 
@@ -120,12 +120,11 @@
             this.btn3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn3.Location = new System.Drawing.Point(25, 167);
             this.btn3.Name = "btn3";
-            this.btn3.Size = new System.Drawing.Size(150, 150);
+            this.btn3.Size = new System.Drawing.Size(1, 1);
             this.btn3.TabIndex = 84;
             this.btn3.TabStop = false;
             this.btn3.UseVisualStyleBackColor = true;
             this.btn3.Visible = false;
-            this.btn3.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn1
             // 
@@ -137,13 +136,12 @@
             this.btn1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btn1.Location = new System.Drawing.Point(24, 6);
             this.btn1.Name = "btn1";
-            this.btn1.Size = new System.Drawing.Size(150, 150);
+            this.btn1.Size = new System.Drawing.Size(1, 1);
             this.btn1.TabIndex = 85;
             this.btn1.TabStop = false;
             this.btn1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btn1.UseVisualStyleBackColor = true;
             this.btn1.Visible = false;
-            this.btn1.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn4
             // 
@@ -154,12 +152,11 @@
             this.btn4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn4.Location = new System.Drawing.Point(200, 167);
             this.btn4.Name = "btn4";
-            this.btn4.Size = new System.Drawing.Size(150, 150);
+            this.btn4.Size = new System.Drawing.Size(1, 1);
             this.btn4.TabIndex = 86;
             this.btn4.TabStop = false;
             this.btn4.UseVisualStyleBackColor = true;
             this.btn4.Visible = false;
-            this.btn4.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // txtJump
             // 
@@ -182,12 +179,11 @@
             this.btn8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn8.Location = new System.Drawing.Point(563, 167);
             this.btn8.Name = "btn8";
-            this.btn8.Size = new System.Drawing.Size(150, 150);
+            this.btn8.Size = new System.Drawing.Size(1, 1);
             this.btn8.TabIndex = 96;
             this.btn8.TabStop = false;
             this.btn8.UseVisualStyleBackColor = true;
             this.btn8.Visible = false;
-            this.btn8.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn5
             // 
@@ -198,12 +194,11 @@
             this.btn5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn5.Location = new System.Drawing.Point(387, 6);
             this.btn5.Name = "btn5";
-            this.btn5.Size = new System.Drawing.Size(150, 150);
+            this.btn5.Size = new System.Drawing.Size(1, 1);
             this.btn5.TabIndex = 95;
             this.btn5.TabStop = false;
             this.btn5.UseVisualStyleBackColor = true;
             this.btn5.Visible = false;
-            this.btn5.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn7
             // 
@@ -214,12 +209,11 @@
             this.btn7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn7.Location = new System.Drawing.Point(387, 167);
             this.btn7.Name = "btn7";
-            this.btn7.Size = new System.Drawing.Size(150, 150);
+            this.btn7.Size = new System.Drawing.Size(1, 1);
             this.btn7.TabIndex = 94;
             this.btn7.TabStop = false;
             this.btn7.UseVisualStyleBackColor = true;
             this.btn7.Visible = false;
-            this.btn7.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // btn6
             // 
@@ -230,12 +224,11 @@
             this.btn6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn6.Location = new System.Drawing.Point(563, 6);
             this.btn6.Name = "btn6";
-            this.btn6.Size = new System.Drawing.Size(150, 150);
+            this.btn6.Size = new System.Drawing.Size(1, 1);
             this.btn6.TabIndex = 93;
             this.btn6.TabStop = false;
             this.btn6.UseVisualStyleBackColor = true;
             this.btn6.Visible = false;
-            this.btn6.Click += new System.EventHandler(this.disc_btn_Click);
             // 
             // toolTip
             // 
@@ -457,6 +450,52 @@
             this.gvContents.StandardTab = true;
             this.gvContents.TabIndex = 77;
             // 
+            // Title
+            // 
+            this.Title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Title.FillWeight = 65F;
+            this.Title.HeaderText = "Title";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            this.Title.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Season
+            // 
+            this.Season.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Season.FillWeight = 25.60142F;
+            this.Season.HeaderText = "Season";
+            this.Season.Name = "Season";
+            this.Season.ReadOnly = true;
+            this.Season.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Season.Width = 49;
+            // 
+            // Start
+            // 
+            this.Start.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Start.FillWeight = 75.52417F;
+            this.Start.HeaderText = "Start";
+            this.Start.Name = "Start";
+            this.Start.ReadOnly = true;
+            this.Start.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Start.Width = 35;
+            // 
+            // End
+            // 
+            this.End.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.End.FillWeight = 75.52417F;
+            this.End.HeaderText = "End";
+            this.End.Name = "End";
+            this.End.ReadOnly = true;
+            this.End.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.End.Width = 32;
+            // 
+            // content
+            // 
+            this.content.HeaderText = "content";
+            this.content.Name = "content";
+            this.content.ReadOnly = true;
+            this.content.Visible = false;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -656,52 +695,6 @@
             this.lblPageRight.TabIndex = 99;
             this.lblPageRight.Text = "Page";
             this.lblPageRight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Title
-            // 
-            this.Title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Title.FillWeight = 65F;
-            this.Title.HeaderText = "Title";
-            this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
-            this.Title.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Season
-            // 
-            this.Season.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Season.FillWeight = 25.60142F;
-            this.Season.HeaderText = "Season";
-            this.Season.Name = "Season";
-            this.Season.ReadOnly = true;
-            this.Season.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Season.Width = 49;
-            // 
-            // Start
-            // 
-            this.Start.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Start.FillWeight = 75.52417F;
-            this.Start.HeaderText = "Start";
-            this.Start.Name = "Start";
-            this.Start.ReadOnly = true;
-            this.Start.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Start.Width = 35;
-            // 
-            // End
-            // 
-            this.End.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.End.FillWeight = 75.52417F;
-            this.End.HeaderText = "End";
-            this.End.Name = "End";
-            this.End.ReadOnly = true;
-            this.End.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.End.Width = 32;
-            // 
-            // content
-            // 
-            this.content.HeaderText = "content";
-            this.content.Name = "content";
-            this.content.ReadOnly = true;
-            this.content.Visible = false;
             // 
             // discView
             // 

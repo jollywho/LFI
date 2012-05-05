@@ -6,6 +6,7 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.Data;
 
 namespace LFI
 {
@@ -73,6 +74,33 @@ namespace LFI
             {
                 bx.ImageLocation = null;
             }
+        }
+
+        public static Image generateDiscImage(string discid, Control btn)
+        {
+            Image img = LFI.Properties.Resources.border;
+            DataTable temp = DB_Handle.GetDataTable(string.Format(
+                @"Select discs.disc_id, discs.page_number, discs.slot_number,
+                contents.title_id, contents.season, contents.rangeStart,
+                contents.rangeEnd, disc_contents.content_id from discs
+                INNER JOIN disc_contents ON discs.disc_id = 
+                disc_contents.disc_id INNER JOIN contents on
+                disc_contents.content_id = contents.content_id WHERE
+                discs.disc_id='{0}'", discid));
+
+            if (temp.Rows.Count > 0)
+            {
+                List<string> disc_titles = new List<string>();
+                if (temp.Rows.Count > 0)
+                {
+                    for (int i = 0; i <= temp.Rows.Count - 1; i++)
+                    {
+                        disc_titles.Add(temp.Rows[i][3].ToString());
+                    }
+                }
+                img = Image_IO.createMergedImage(disc_titles, btn);
+            }
+            return img;
         }
     }
 }

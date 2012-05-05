@@ -15,12 +15,12 @@ namespace LFI
     {
         private BackgroundWorker worker = new BackgroundWorker();
         const int MAX_TOOLTIP = 500;
-        bool isNewRecord = false;
+        public bool isNewRecord = false;
         const int DISCS_PER_PAGE = 4;
         const int PAGES_PER_VIEW = 2;
         private int max_pages = 0;
         private DataTable dtView;
-        VLabel[][] dLabels = new VLabel[PAGES_PER_VIEW][];
+        List<DButton> dbuttons = new List<DButton>();
 
         public discView()
         {
@@ -41,16 +41,11 @@ namespace LFI
             ddInsTitle.DataSource = titles;
             ddInsTitle.DisplayMember = "title_id";
 
-            for (int j = 1; j <= PAGES_PER_VIEW; j++)
+            for (int i = 0; i <= (PAGES_PER_VIEW * DISCS_PER_PAGE) - 1; i++)
             {
-                dLabels[j - 1] = new VLabel[DISCS_PER_PAGE];
-                for (int i = 1; i <= DISCS_PER_PAGE; i++)
-                {
-                    Button btn = (Button)this.Controls[("btn" + (i + (DISCS_PER_PAGE * (j - 1))).ToString())];
-                    btn.Visible = true;
-                    dLabels[j - 1][i - 1] = createVertLabel(btn, copyLabel, "");
-                    Controls.Add(dLabels[j-1][i - 1]);
-                }
+                dbuttons.Add(new DButton(copyLabel, Controls["btn" + (i+1)].Location, this));
+                Controls.Add(dbuttons[i]);
+                Controls.Add(dbuttons[i].vlbl);
             }
             loadView();
         }
@@ -76,33 +71,29 @@ namespace LFI
 
         private void loadPage()
         {
-            DataTable temp = new DataTable();
-            int jump = jumpPage();
-            hidePage(1, true, 2);
-            for (int j = 1; j <= PAGES_PER_VIEW; j++)
-            {
-                int page = jump + j - 1;
+            int page = jumpPage();
 
-                for (int i = 1; i <= DISCS_PER_PAGE; i++)
-                {
-                    temp = DB_Handle.GetDataTable(string.Format(@"select * from discs
-                        where location_id='{0}' and page_number='{1}' and slot_number='{2}'",
-                         ddLocation.Text, page, i.ToString()));
-                    if (temp.Rows.Count != 0)
-                        dLabels[j - 1][i - 1].Text = temp.Rows[0][0].ToString();
-                    else if (jump == 0 || page - 1 == max_pages)
-                        dLabels[j - 1][i - 1].Text = "";
-                    else
-                        dLabels[j - 1][i - 1].Text = "Empty";
-                }
-            }
-            if (jump == 0)
+            hidePage(1, true, 2);
+            if (page == 0)
                 hidePage(1, false);
-            else if (jump == max_pages)
+            else if (page == max_pages)
                 hidePage(DISCS_PER_PAGE + 1, false);
 
+            int slot = 1;
+            for (int i = 0; i <= PAGES_PER_VIEW * DISCS_PER_PAGE - 1; i++, slot++)
+            {
+                if (slot > DISCS_PER_PAGE)
+                {
+                    page++;
+                    slot = 1;
+                }
+                dbuttons[i].load(DB_Handle.GetDataTable(string.Format(@"select * from discs
+                    where location_id='{0}' and page_number='{1}' and slot_number='{2}'",
+                        ddLocation.Text, page, slot)));
+            }
+
             if (!worker.IsBusy)
-                worker.RunWorkerAsync(temp);
+                worker.RunWorkerAsync();
         }
 
         private void hidePage(int start, bool vis, int all=1)
@@ -117,8 +108,7 @@ namespace LFI
 
             for (int i = start; i <= start + (DISCS_PER_PAGE * all) -1; i++)
             {
-                Button btn = (Button)this.Controls[("btn" + i.ToString())];
-                btn.Visible = vis;
+                dbuttons[i - 1].setVisibility(vis);
             }
         }
 
@@ -130,31 +120,11 @@ namespace LFI
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-            DataTable temp = (DataTable)e.Argument;
 
-            for (int j = 1; j <= PAGES_PER_VIEW; j++)
+            for (int i = 0; i <= PAGES_PER_VIEW * DISCS_PER_PAGE - 1; i++)
             {
-                int page = Convert.ToInt32(txtJump.Text) + j;
-                for (int i = 1; i <= DISCS_PER_PAGE; i++)
-                {
-                    Button btn = (Button)Controls[("btn" + (i + (DISCS_PER_PAGE * (j - 1))).ToString())];
-                    btn.BackgroundImage = generateDiscImage(dLabels[j - 1][i - 1].Text, btn1);
-                }
+                dbuttons[i].BackgroundImage = Image_IO.generateDiscImage(dbuttons[i].Disc, dbuttons[i]);
             }
-        }
-
-        private VLabel createVertLabel(Button btn, Label copylabel, string text)
-        {
-            VLabel lbl = new VLabel();
-            lbl.Name = btn.Name.Replace("btn", "lbl");
-            lbl.Text = text;
-            lbl.Font = copylabel.Font;
-            lbl.ForeColor = copylabel.ForeColor;
-            lbl.Size = new System.Drawing.Size(18, btn.Height);
-            Point point = btn.Location;
-            point.X -= lbl.Size.Width;
-            lbl.Location = point;
-            return lbl;
         }
 
         private void numericTextbox_keydown(object sender, KeyEventArgs e)
@@ -283,94 +253,15 @@ namespace LFI
             txtDisc.Clear();
         }
 
-        private void btn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ddLocation_SelectedValueChanged(object sender, EventArgs e)
         {
-            //reload
+            loadView();
         }
 
         private void scrlPage_Scroll(object sender, ScrollEventArgs e)
         {
             txtJump.Text = e.NewValue.ToString();
             loadPage();
-        }
-
-        private Image generateDiscImage(string discid, Control btn)
-        {
-            Image img = LFI.Properties.Resources.border;
-            DataTable temp = DB_Handle.GetDataTable(string.Format(
-                @"Select discs.disc_id, discs.page_number, discs.slot_number,
-                contents.title_id, contents.season, contents.rangeStart,
-                contents.rangeEnd, disc_contents.content_id from discs
-                INNER JOIN disc_contents ON discs.disc_id = 
-                disc_contents.disc_id INNER JOIN contents on
-                disc_contents.content_id = contents.content_id WHERE
-                discs.disc_id='{0}'", discid));
-
-            if (temp.Rows.Count > 0)
-            {
-                List<string> disc_titles = new List<string>();
-                if (temp.Rows.Count > 0)
-                {
-                    for (int i = 0; i <= temp.Rows.Count - 1; i++)
-                    {
-                        disc_titles.Add(temp.Rows[i][3].ToString());
-                    }
-                }
-                img = Image_IO.createMergedImage(disc_titles, btn);
-            }
-            return img;
-        }
-
-        private void disc_btn_Click(object sender, EventArgs e)
-        {
-            panel1.Enabled = true;
-            gvContents.Rows.Clear();
-            imgTitle.BackgroundImage = null;
-            Button btn = (Button)sender;
-            int pos = Convert.ToInt32(btn.Name.Substring(btn.Name.Length-1, 1));
-            int page = 0;
-            if (pos > DISCS_PER_PAGE)
-            {
-                pos -= DISCS_PER_PAGE;
-                page = 1;
-            }
-            
-            string discid = dLabels[page][pos-1].Text;
-
-            DataTable temp = DB_Handle.GetDataTable(string.Format(
-                @"Select discs.disc_id, discs.page_number, discs.slot_number,
-                contents.title_id, contents.season, contents.rangeStart,
-                contents.rangeEnd, disc_contents.content_id from discs
-                INNER JOIN disc_contents ON discs.disc_id = 
-                disc_contents.disc_id INNER JOIN contents on
-                disc_contents.content_id = contents.content_id WHERE
-                discs.disc_id='{0}'", discid));
-
-            if (temp.Rows.Count > 0)
-            {
-                isNewRecord = false;
-                txtDisc.Text = temp.Rows[0][0].ToString();
-                txtPage.Text = temp.Rows[0][1].ToString();
-                txtSlot.Text = temp.Rows[0][2].ToString();
-                for (int i=0; i<=temp.Rows.Count -1; i++)
-                {
-                    gvContents.Rows.Add(temp.Rows[i][3], temp.Rows[i][4],
-                        temp.Rows[i][5], temp.Rows[i][6],  temp.Rows[i][7]);
-                }
-            }
-            else
-            {
-                isNewRecord = true;
-                txtDisc.Clear();
-                txtPage.Text = txtJump.Text;
-                txtSlot.Text = (Convert.ToInt32(btn.Name.Substring(btn.Name.Length - 1, 1))).ToString();
-            }
-            imgTitle.BackgroundImage = generateDiscImage(discid, imgTitle);
         }
 
         private void txtPageNo_KeyDown(object sender, KeyEventArgs e)
@@ -398,5 +289,30 @@ namespace LFI
                 txt.Select(pos, 0);
             }
         }
+
+        #region INTERFACE
+        public void popContentPane()
+        {
+            panel1.Enabled = true;
+            gvContents.Rows.Clear();
+        }
+
+        public DataGridView getContentsGrid()
+        {
+            return gvContents;
+        }
+
+        public void setImagebox(Image img)
+        {
+            imgTitle.BackgroundImage = img;
+        }
+
+        public void setData(object disc, object page, object slot)
+        {
+            txtDisc.Text = disc.ToString();
+            txtPage.Text = page.ToString();
+            txtSlot.Text = slot.ToString();
+        }
+        #endregion INTERFACE
     }
 }
