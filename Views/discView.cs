@@ -30,6 +30,16 @@ namespace LFI
             worker.WorkerSupportsCancellation = true;
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
 
+
+            for (int i = 0, slot = 1; i <= (PAGES_PER_VIEW * DISCS_PER_PAGE) - 1; i++, slot++)
+            {
+                if (slot > DISCS_PER_PAGE)
+                    slot = 1;
+                dbuttons.Add(new DButton(slot, copyLabel, Controls["btn" + (i + 1)].Location, this));
+                Controls.Add(dbuttons[i]);
+                Controls.Add(dbuttons[i].vlbl);
+            }
+
             DataTable locations = DB_Handle.GetDataTable(string.Format(
                 @"Select location_id from locations order by location_id"));
             ddLocation.DisplayMember = "location_id";
@@ -41,13 +51,17 @@ namespace LFI
             ddInsTitle.DataSource = titles;
             ddInsTitle.DisplayMember = "title_id";
 
-            for (int i = 0; i <= (PAGES_PER_VIEW * DISCS_PER_PAGE) - 1; i++)
-            {
-                dbuttons.Add(new DButton(copyLabel, Controls["btn" + (i+1)].Location, this));
-                Controls.Add(dbuttons[i]);
-                Controls.Add(dbuttons[i].vlbl);
-            }
             loadView();
+        }
+
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+            base.OnMouseWheel(e);
+            scrlPage.Focus();
+            if (e.Delta < 0)
+                txtJump.Text = (Convert.ToInt32(txtJump.Text) + 1).ToString();
+            else
+                txtJump.Text = (Convert.ToInt32(txtJump.Text) - 1).ToString();
         }
 
         private void loadView()
@@ -56,6 +70,7 @@ namespace LFI
                 where location_id='{0}'", ddLocation.Text));
             max_pages = Convert.ToInt32(dtView.Rows[0][0].ToString());
             scrlPage.Maximum = max_pages + scrlPage.LargeChange-1;
+            DButton.Location_ID = ddLocation.Text;
             loadPage();
         }
 
@@ -87,9 +102,7 @@ namespace LFI
                     page++;
                     slot = 1;
                 }
-                dbuttons[i].load(DB_Handle.GetDataTable(string.Format(@"select * from discs
-                    where location_id='{0}' and page_number='{1}' and slot_number='{2}'",
-                        ddLocation.Text, page, slot)));
+                dbuttons[i].load(page);
             }
 
             if (!worker.IsBusy)
@@ -112,18 +125,14 @@ namespace LFI
             }
         }
 
-        private void scrlPage_ValueChanged(object sender, EventArgs e)
-        {
-            loadPage();
-        }
-
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
 
             for (int i = 0; i <= PAGES_PER_VIEW * DISCS_PER_PAGE - 1; i++)
             {
-                dbuttons[i].BackgroundImage = Image_IO.generateDiscImage(dbuttons[i].Disc, dbuttons[i]);
+                dbuttons[i].BackgroundImage = Image_IO.generateDiscImage(
+                    dbuttons[i].Disc, DButton.Location_ID,  dbuttons[i]);
             }
         }
 
@@ -164,7 +173,20 @@ namespace LFI
         private void btnRemove_Click(object sender, EventArgs e)
         {
             if (gvContents.Rows.Count > 0)
-                gvContents.Rows.Remove(gvContents.Rows[gvContents.SelectedCells[0].RowIndex]);
+            {
+                if (MessageBox.Show(this, "Remove record?", "Record will be deleted",
+                    MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (gvContents.Rows[gvContents.SelectedCells[0].RowIndex].Cells[4].ToString() != "null")
+                    {
+                        DB_Handle.UpdateTable(string.Format(
+                            @"DELETE FROM CONTENTS WHERE
+                            content_id = '{0}'",
+                            gvContents.Rows[gvContents.SelectedCells[0].RowIndex].Cells[4].Value));
+                    }
+                    gvContents.Rows.Remove(gvContents.Rows[gvContents.SelectedCells[0].RowIndex]);
+                }
+            }
         }
 
         private void btnSaveClick(object sender, EventArgs e)
@@ -255,12 +277,19 @@ namespace LFI
 
         private void ddLocation_SelectedValueChanged(object sender, EventArgs e)
         {
+            panel1.Enabled = false;
+            gvContents.Rows.Clear();
             loadView();
         }
 
         private void scrlPage_Scroll(object sender, ScrollEventArgs e)
         {
             txtJump.Text = e.NewValue.ToString();
+            loadPage();
+        }
+
+        private void scrlPage_ValueChanged(object sender, EventArgs e)
+        {
             loadPage();
         }
 

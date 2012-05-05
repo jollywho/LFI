@@ -76,17 +76,13 @@ namespace LFI
             }
         }
 
-        public static Image generateDiscImage(string discid, Control btn)
+        public static Image generateDiscImage(string discid, string locationid,  Control btn)
         {
             Image img = LFI.Properties.Resources.border;
             DataTable temp = DB_Handle.GetDataTable(string.Format(
-                @"Select discs.disc_id, discs.page_number, discs.slot_number,
-                contents.title_id, contents.season, contents.rangeStart,
-                contents.rangeEnd, disc_contents.content_id from discs
-                INNER JOIN disc_contents ON discs.disc_id = 
-                disc_contents.disc_id INNER JOIN contents on
-                disc_contents.content_id = contents.content_id WHERE
-                discs.disc_id='{0}'", discid));
+                @"SELECT * FROM contents WHERE content_id=(SELECT content_id
+                from disc_contents where disc_id='{0}' and location_id='{1}');",
+                discid, locationid));
 
             if (temp.Rows.Count > 0)
             {
@@ -95,7 +91,7 @@ namespace LFI
                 {
                     for (int i = 0; i <= temp.Rows.Count - 1; i++)
                     {
-                        disc_titles.Add(temp.Rows[i][3].ToString());
+                        disc_titles.Add(temp.Rows[i][1].ToString());
                     }
                 }
                 img = Image_IO.createMergedImage(disc_titles, btn);

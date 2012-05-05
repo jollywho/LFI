@@ -14,14 +14,15 @@ namespace LFI
     {
         public VLabel vlbl = new VLabel();
         public string Disc = string.Empty;
+        public static string Location_ID = string.Empty;
         public int Page = 0;
         public int Slot = 0;
         discView Caller;
 
-        public DButton(Label copyLabel, Point loc, discView caller) 
+        public DButton(int slot, Label copyLabel, Point loc, discView caller) 
         {
             InitializeComponent();
-
+            Slot = slot;
             BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             FlatAppearance.BorderSize = 0;
@@ -38,12 +39,15 @@ namespace LFI
             Caller = caller;
         }
 
-        public void load(DataTable dt)
+        public void load(int page)
         {
+            DataTable dt = DB_Handle.GetDataTable(string.Format(@"select * from discs
+                where location_id='{0}' and page_number='{1}' and slot_number='{2}'",
+                Location_ID, page, Slot));
             if (dt.Rows.Count != 0)
-                setData(dt.Rows[0][0], dt.Rows[0][1], dt.Rows[0][2]);
+                setData(dt.Rows[0][0], dt.Rows[0][1]);
             else
-                setData(0, 0, 0);
+                setData(string.Empty, page);
         }
 
         public void setVisibility(bool vis)
@@ -52,11 +56,10 @@ namespace LFI
             vlbl.Visible = vis;
         }
 
-        private void setData(object disc, object page, object slot)
+        private void setData(object disc, object page)
         {
             Disc = disc.ToString();
             Page = Convert.ToInt32(page);
-            Slot = Convert.ToInt32(slot);
             vlbl.Text = Disc;
         }
 
@@ -78,31 +81,27 @@ namespace LFI
             Caller.popContentPane();
 
             DataTable temp = DB_Handle.GetDataTable(string.Format(
-                @"Select discs.disc_id, discs.page_number, discs.slot_number,
-                contents.title_id, contents.season, contents.rangeStart,
-                contents.rangeEnd, disc_contents.content_id from discs
-                INNER JOIN disc_contents ON discs.disc_id = 
-                disc_contents.disc_id INNER JOIN contents on
-                disc_contents.content_id = contents.content_id WHERE
-                discs.disc_id='{0}'", Disc));
+                @"SELECT * FROM contents WHERE content_id=(SELECT content_id
+                from disc_contents where disc_id='{0}' and location_id='{1}');",
+                Disc, Location_ID));
 
             if (temp.Rows.Count > 0)
             {
                 Caller.isNewRecord = false;
-                Caller.setData(temp.Rows[0][0], temp.Rows[0][1], temp.Rows[0][2]);
+                Caller.setData(Disc, Page, Slot);
                 for (int i = 0; i <= temp.Rows.Count - 1; i++)
                 {
-                    Caller.getContentsGrid().Rows.Add(temp.Rows[i][3], temp.Rows[i][4],
-                        temp.Rows[i][5], temp.Rows[i][6], temp.Rows[i][7]);
+                    Caller.getContentsGrid().Rows.Add(temp.Rows[i][1], temp.Rows[i][2],
+                        temp.Rows[i][3], temp.Rows[i][4], temp.Rows[i][0]);
                 }
             }
             else
             {
                 Caller.isNewRecord = true;
-                Caller.setData(string.Empty, string.Empty, string.Empty);
+                Caller.setData(string.Empty, Page, Slot);
             }
 
-            Caller.setImagebox(Image_IO.generateDiscImage(Disc, this));
+            Caller.setImagebox(Image_IO.generateDiscImage(Disc, Location_ID, this));
         }
 
     }
