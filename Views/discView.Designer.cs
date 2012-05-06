@@ -49,6 +49,11 @@
             this.txtRangeEnd = new System.Windows.Forms.TextBox();
             this.txtRangeStart = new System.Windows.Forms.TextBox();
             this.gvContents = new System.Windows.Forms.DataGridView();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Season = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Start = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.End = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.content = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.btnAddDisc = new System.Windows.Forms.Button();
@@ -66,16 +71,12 @@
             this.label11 = new System.Windows.Forms.Label();
             this.lblPageLeft = new System.Windows.Forms.Label();
             this.lblPageRight = new System.Windows.Forms.Label();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Season = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Start = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.End = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.content = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn2 = new System.Windows.Forms.Button();
             this.btn3 = new System.Windows.Forms.Button();
             this.btn1 = new System.Windows.Forms.Button();
             this.btn4 = new System.Windows.Forms.Button();
             this.txtJump = new System.Windows.Forms.TextBox();
+            this.buttonMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
             this.groupBox6.SuspendLayout();
@@ -375,6 +376,48 @@
             this.gvContents.StandardTab = true;
             this.gvContents.TabIndex = 77;
             // 
+            // Title
+            // 
+            this.Title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Title.FillWeight = 65F;
+            this.Title.HeaderText = "Title";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            this.Title.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Season
+            // 
+            this.Season.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Season.FillWeight = 25.60142F;
+            this.Season.HeaderText = "Season";
+            this.Season.Name = "Season";
+            this.Season.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Season.Width = 49;
+            // 
+            // Start
+            // 
+            this.Start.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Start.FillWeight = 75.52417F;
+            this.Start.HeaderText = "Start";
+            this.Start.Name = "Start";
+            this.Start.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Start.Width = 35;
+            // 
+            // End
+            // 
+            this.End.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.End.FillWeight = 75.52417F;
+            this.End.HeaderText = "End";
+            this.End.Name = "End";
+            this.End.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.End.Width = 32;
+            // 
+            // content
+            // 
+            this.content.HeaderText = "content";
+            this.content.Name = "content";
+            this.content.Visible = false;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -575,48 +618,6 @@
             this.lblPageRight.Text = "Page";
             this.lblPageRight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Title
-            // 
-            this.Title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Title.FillWeight = 65F;
-            this.Title.HeaderText = "Title";
-            this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
-            this.Title.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Season
-            // 
-            this.Season.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Season.FillWeight = 25.60142F;
-            this.Season.HeaderText = "Season";
-            this.Season.Name = "Season";
-            this.Season.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Season.Width = 49;
-            // 
-            // Start
-            // 
-            this.Start.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Start.FillWeight = 75.52417F;
-            this.Start.HeaderText = "Start";
-            this.Start.Name = "Start";
-            this.Start.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Start.Width = 35;
-            // 
-            // End
-            // 
-            this.End.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.End.FillWeight = 75.52417F;
-            this.End.HeaderText = "End";
-            this.End.Name = "End";
-            this.End.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.End.Width = 32;
-            // 
-            // content
-            // 
-            this.content.HeaderText = "content";
-            this.content.Name = "content";
-            this.content.Visible = false;
-            // 
             // btn2
             // 
             this.btn2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -690,6 +691,11 @@
             this.txtJump.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtJump.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
             this.txtJump.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPageNo_KeyDown);
+            // 
+            // buttonMenu
+            // 
+            this.buttonMenu.Name = "buttonMenu";
+            this.buttonMenu.Size = new System.Drawing.Size(61, 4);
             // 
             // discView
             // 
@@ -769,5 +775,6 @@
         private System.Windows.Forms.Button btn1;
         private System.Windows.Forms.Button btn4;
         private System.Windows.Forms.TextBox txtJump;
+        private System.Windows.Forms.ContextMenuStrip buttonMenu;
     }
 }

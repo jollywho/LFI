@@ -192,7 +192,7 @@
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(540, 700);
             this.Name = "MainForm";
-            this.Text = "LFI 0.3.5";
+            this.Text = "LFI 0.3.6";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

@@ -35,7 +35,8 @@ namespace LFI
             {
                 if (slot > DISCS_PER_PAGE)
                     slot = 1;
-                dbuttons.Add(new DButton(slot, copyLabel, Controls["btn" + (i + 1)].Location, this));
+                dbuttons.Add(new DButton(slot, copyLabel,
+                    Controls["btn" + (i + 1)].Location, this));
                 Controls.Add(dbuttons[i]);
                 Controls.Add(dbuttons[i].vlbl);
             }
@@ -84,7 +85,7 @@ namespace LFI
             return pg;
         }
 
-        private void loadPage()
+        public void loadPage()
         {
             int page = jumpPage();
 
@@ -329,6 +330,11 @@ namespace LFI
         public DataGridView getContentsGrid()
         {
             return gvContents;
+        }
+
+        public List<string> getSelData()
+        {
+            return new List<string>() {txtDisc.Text, txtPage.Text,  txtSlot.Text};
         }
 
         public void setImagebox(Image img)

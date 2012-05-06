@@ -14,6 +14,7 @@ namespace LFI
     {
         public VLabel vlbl = new VLabel();
         public string Disc = string.Empty;
+        List<string> selData;
         public static string Location_ID = string.Empty;
         public int Page = 0;
         public int Slot = 0;
@@ -34,7 +35,11 @@ namespace LFI
             TabStop = false;
             UseVisualStyleBackColor = true;
             Visible = true;
-
+            ContextMenuStrip menu = new ContextMenuStrip();
+            menu.Items.Add("Swap Here");
+            menu.Items[0].Click += new EventHandler(this.swapMenuItem_Click);
+            menu.Opening += new CancelEventHandler(swapMenu_Opening);
+            this.ContextMenuStrip = menu;
             createVertLabel(copyLabel, "");
             Caller = caller;
         }
@@ -48,6 +53,36 @@ namespace LFI
                 setData(dt.Rows[0][0], dt.Rows[0][1]);
             else
                 setData(string.Empty, page);
+        }
+
+        private void swapMenu_Opening(object sender, CancelEventArgs e)
+        {
+            selData = Caller.getSelData();
+            if (selData[0] != string.Empty)
+                this.ContextMenuStrip.Items[0].Text = "Swap " + selData[0] + " Here";
+            else
+                e.Cancel = true;
+        }
+
+        private void swapMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DB_Handle.UpdateTable(string.Format(
+                    @"INSERT OR REPLACE INTO DISCS 
+                    VALUES ('{0}','{1}','{2}','{3}');",
+                    selData[0], Page, Slot, Location_ID));
+                DB_Handle.UpdateTable(string.Format(
+                    @"INSERT OR REPLACE INTO DISCS 
+                    VALUES ('{0}','{1}','{2}','{3}');",
+                    Disc, selData[1], selData[2], Location_ID));
+                Caller.loadPage();
+                OnClick(null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Error Moving Disc");
+            }
         }
 
         public void setVisibility(bool vis)
