@@ -14,6 +14,7 @@ namespace LFI
         public Size vertical = new Size(540, 700);
         public Size horizontal = new Size(750, 700);
         mainView mv;
+        folderView fv;
 
         public MainForm()
         {
@@ -54,34 +55,40 @@ namespace LFI
 
         private void menuFolderItem_Click(object sender, EventArgs e)
         {
+            pushBackMenuStates();
             panel1.Controls.Clear();
             mv.Disable();
-            folderView fv = new folderView(this);
+            fv = new folderView(this);
             panel1.Controls.Add(fv);
             this.MaximumSize = vertical;
             this.MinimumSize = vertical;
-            pushBackMenuStates();
+            
             fv.Focus();
         }
 
         private void menuDiscItem_Click(object sender, EventArgs e)
         {
+            pushBackMenuStates();
             panel1.Controls.Clear();
             mv.Disable();
             discView dv = new discView();
             panel1.Controls.Add(dv);
             this.MaximumSize = horizontal;
             this.MinimumSize = horizontal;
-            pushBackMenuStates();
+            
             dv.Focus();
         }
-
 
         private void pushBackMenuStates()
         {
             cancelItem.Enabled = false;
             saveItem.Enabled = false;
             titleEditItem.Enabled = false;
+
+            if (fv != null)
+            {
+                fv.Cancel_MultiRun();
+            }
             if (mv.enabled && mv.infoPane.active)
             {
                 titleEditItem.Enabled = true;

@@ -26,6 +26,15 @@ namespace LFI
         public Folder_IO(string dir)
         {
             dirname = dir;
+            Set_Folder_Items();
+            folderSize = DirSize(filenames);
+        }
+
+        public void Set_Folder_Items()
+        {
+            folderitems.Clear();
+            filenames.Clear();
+            itemCount = 0;
             try
             {
                 var sorted = Directory.GetFiles(dirname);
@@ -36,12 +45,10 @@ namespace LFI
                     filenames.Add(item);
                     itemCount++;
                 }
-                
-                folderSize = DirSize(filenames);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error : " + ex.Message);   
+                MessageBox.Show("Error : " + ex.Message);
             }
         }
 
@@ -124,7 +131,7 @@ namespace LFI
 
             string crcStr = reg.Match(filename).Groups[0].Value;
 
-            Console.WriteLine(crcStr);
+            Console.WriteLine("Detected CRC : " + crcStr);
             newfilename = Path.GetFileName(file.Name);
             return crcStr;
         }

@@ -67,6 +67,13 @@ namespace LFI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap arrow_divide {
+            get {
+                object obj = ResourceManager.GetObject("arrow_divide", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap back {
             get {
                 object obj = ResourceManager.GetObject("back", resourceCulture);

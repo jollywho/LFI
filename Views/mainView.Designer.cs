@@ -109,7 +109,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(179, 624);
-            this.panel1.TabIndex = 22;
+            this.panel1.TabIndex = 0;
             // 
             // gvTitles
             // 

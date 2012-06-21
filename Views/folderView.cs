@@ -12,7 +12,6 @@ namespace LFI
 {
     public partial class folderView : UserControl
     {
-        private BackgroundWorker worker = new BackgroundWorker();
         private Folder_IO folder;
         private string dirname;
         private MainForm caller;
@@ -20,6 +19,8 @@ namespace LFI
         PictureBox animation = new PictureBox();
         int savedRow = 0;
         int workingRow = 0;
+        private bool multiRun = false;
+        private bool cancel = false;
 
         public struct SimpleData
         {
@@ -51,6 +52,7 @@ namespace LFI
                 folder = new Folder_IO(ddUrl.Text);
                 countFolders();
                 btnShowDiv.Enabled = true;
+                btnDivide.Enabled = false;
                 btnClear.Enabled = true;
                 dirname = ddUrl.Text;
                 lstDivs_Click(null, null);
@@ -81,6 +83,7 @@ namespace LFI
 
         private void btnShowDiv_Click(object sender, EventArgs e)
         {
+            open_Folder();
             folder.Generate_Divisions();
             countFolders();
             btnDivide.Enabled = true;
@@ -100,13 +103,15 @@ namespace LFI
             btnShowDiv.Enabled = false;
         }
 
+        //populate gvFiles with items from selected folder#
         private void lstDivs_Click(object sender, EventArgs e)
         {
-            if (!worker.IsBusy && folder.filenames.Count > 0)
+            if (!Crc32.worker.IsBusy && folder.filenames.Count > 0)
             {
                 int sel = Convert.ToInt32(lstDivs.Text);
                 gvFiles.DataSource = null;
                 gvFiles.Rows.Clear();
+
                 if (lstDivs.Text == "0")
                 {
                     lblSize.Text = folder.Get_Folder_Size(sel, true) + " GB";
@@ -135,30 +140,27 @@ namespace LFI
         private void worker_ComputeCRC(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
+
             string file = (string)e.Argument;
 
-            try
-            {
                 Crc32 crc32 = new Crc32();
                 Crc32.worker = worker;
                 String hash = String.Empty;
+                
                 using (FileStream fs = File.Open(file, FileMode.Open))
                     foreach (byte b in crc32.ComputeHash(fs))
                     {
                         hash += b.ToString("x2").ToUpper();
                     }
                 checksum = hash;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
         }
 
         private void bw_CheckCRCCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            Console.WriteLine(checksum);
             animation.Hide();
             caller.stop_progBar();
+
             string newfilename = string.Empty;
             if (checksum == Folder_IO.ScanCRC(gvFiles.Rows[workingRow].Cells[2].Value.ToString(),
                     out newfilename))
@@ -166,6 +168,14 @@ namespace LFI
             else
                 gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.error;
             gvFiles.Rows[workingRow].Cells[1].Value = newfilename;
+
+            DisableRunButtons();
+            Check_MultiRunIncrement();
+        }
+
+        public void Cancel_MultiRun()
+        {
+            cancel = true;
         }
 
         private void bw_AddCRCCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -173,11 +183,47 @@ namespace LFI
             animation.Hide();
             caller.stop_progBar();
             string newfilename = string.Empty;
-            gvFiles.Rows[workingRow].Cells[2].Value = 
+            gvFiles.Rows[workingRow].Cells[2].Value =
                 Folder_IO.AddCRC(gvFiles.Rows[workingRow].Cells[2].Value.ToString(),
                 checksum, out newfilename);
             gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
             gvFiles.Rows[workingRow].Cells[1].Value = newfilename;
+
+            folder.folderDivisions[Convert.ToInt32(lstDivs.Text) - 1][workingRow] =
+                ddUrl.Text + "\\" + newfilename;
+
+            DisableRunButtons();
+            Add_MultiRunIncrement();
+        }
+
+        private void Add_MultiRunIncrement()
+        {
+            if (multiRun && workingRow < gvFiles.Rows.Count - 1 && !cancel)
+            {
+                workingRow++;
+                AddCRC();
+            }
+            else
+            {
+                workingRow = 0;
+                cancel = false;
+                multiRun = false;
+            }
+        }
+
+        private void Check_MultiRunIncrement()
+        {
+            if (multiRun && workingRow < gvFiles.Rows.Count - 1 && !cancel)
+            {
+                workingRow++;
+                CheckCRC();
+            }
+            else
+            {
+                workingRow = 0;
+                cancel = false;
+                multiRun = false;
+            }
         }
 
         void gvFiles_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -187,47 +233,57 @@ namespace LFI
             animation.Height = gvFiles.GetCellDisplayRectangle(0, workingRow, true).Height;
         }
 
-        private void btnAddCRC_Click(object sender, EventArgs e)
+        private void EnableRunButtons()
         {
-            if (!worker.IsBusy)
-            {
-                if (!Folder_IO.IsCRC(gvFiles.Rows[savedRow].Cells[1].Value.ToString()))
-                {
-                    gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.empty;
-                    animation.Show();
-                    worker = new BackgroundWorker();
-                    worker.WorkerReportsProgress = true;
-                    worker.WorkerSupportsCancellation = true;
-                    worker.DoWork += new DoWorkEventHandler(worker_ComputeCRC);
-                    worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_AddCRCCompleted);
-                    workingRow = savedRow;
-                    caller.start_progBar();
-                    worker.RunWorkerAsync(gvFiles.Rows[workingRow].Cells[2].Value);
-                }
-            }
+            btnCheckCRC.Enabled = false;
+            btnAddCRC.Enabled = false;
+            btnCancel.Enabled = true;
         }
 
-        private void btnCheckCRC_Click(object sender, EventArgs e)
+        private void DisableRunButtons()
         {
-            if (!worker.IsBusy)
+            btnCheckCRC.Enabled = true;
+            btnAddCRC.Enabled = true;
+            btnCancel.Enabled = false;
+        }
+
+        private void CheckCRC()
+        {
+            gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.empty;
+            animation.Show();
+            Crc32.worker = new BackgroundWorker();
+            Crc32.worker.WorkerReportsProgress = true;
+            Crc32.worker.WorkerSupportsCancellation = true;
+            Crc32.worker.DoWork += new DoWorkEventHandler(worker_ComputeCRC);
+            Crc32.worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_CheckCRCCompleted);
+            EnableRunButtons();
+            caller.start_progBar();
+            Crc32.worker.RunWorkerAsync(gvFiles.Rows[workingRow].Cells[2].Value);
+        }
+
+        private void AddCRC()
+        {
+            if (!Folder_IO.IsCRC(gvFiles.Rows[workingRow].Cells[1].Value.ToString()))
             {
-                gvFiles.Rows[savedRow].Cells[0].Value = LFI.Properties.Resources.empty;
+                gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.empty;
                 animation.Show();
-                worker = new BackgroundWorker();
-                worker.WorkerReportsProgress = true;
-                worker.WorkerSupportsCancellation = true;
-                worker.DoWork += new DoWorkEventHandler(worker_ComputeCRC);
-                worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_CheckCRCCompleted);
-                workingRow = savedRow;
+                Crc32.worker = new BackgroundWorker();
+                Crc32.worker.WorkerReportsProgress = true;
+                Crc32.worker.WorkerSupportsCancellation = true;
+                Crc32.worker.DoWork += new DoWorkEventHandler(worker_ComputeCRC);
+                Crc32.worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_AddCRCCompleted);
+                EnableRunButtons();
                 caller.start_progBar();
-                worker.RunWorkerAsync(gvFiles.Rows[workingRow].Cells[2].Value);
+                Crc32.worker.RunWorkerAsync(gvFiles.Rows[workingRow].Cells[2].Value);
             }
+            else
+                Add_MultiRunIncrement();
         }
 
         private void gvFiles_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (gvFiles.SelectedCells.Count > 0)
-                if (gvFiles.SelectedCells[0].Value != null)
+                if (gvFiles.SelectedCells[0].Value != null && !multiRun)
                     savedRow = gvFiles.SelectedCells[0].RowIndex;
         }
 
@@ -256,7 +312,6 @@ namespace LFI
                     MessageBox.Show(ex.Message, "Error");
                 }
             }
-           
         }
 
         private void ddUrl_SelectedValueChanged(object sender, EventArgs e)
@@ -297,6 +352,35 @@ namespace LFI
         {
             ddUrl.Text = Path.GetDirectoryName(Path.GetDirectoryName(ddUrl.Text));
             rebind_ddUrl();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Cancel_MultiRun();
+        }
+
+        private void btnAddCRC_Click(object sender, EventArgs e)
+        {
+            if (!Crc32.worker.IsBusy)
+            {
+                if (radCheckAll.Checked)
+                    multiRun = true;
+                else
+                    workingRow = savedRow;
+                AddCRC();
+            }
+        }
+
+        private void btnCheckCRC_Click(object sender, EventArgs e)
+        {
+            if (!Crc32.worker.IsBusy)
+            {
+                if (radCheckAll.Checked)
+                    multiRun = true;
+                else
+                    workingRow = savedRow;
+                CheckCRC();
+            }
         }
     }
 }

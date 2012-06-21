@@ -60,7 +60,7 @@
             this.panel1.Location = new System.Drawing.Point(10, 265);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(320, 200);
-            this.panel1.TabIndex = 29;
+            this.panel1.TabIndex = 0;
             // 
             // txtTitle
             // 
@@ -72,7 +72,7 @@
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.ReadOnly = true;
             this.txtTitle.Size = new System.Drawing.Size(300, 22);
-            this.txtTitle.TabIndex = 40;
+            this.txtTitle.TabIndex = 1;
             this.txtTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCategory
@@ -85,7 +85,7 @@
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.ReadOnly = true;
             this.txtCategory.Size = new System.Drawing.Size(126, 22);
-            this.txtCategory.TabIndex = 41;
+            this.txtCategory.TabIndex = 7;
             this.txtCategory.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtStatus
@@ -98,7 +98,7 @@
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
             this.txtStatus.Size = new System.Drawing.Size(128, 22);
-            this.txtStatus.TabIndex = 44;
+            this.txtStatus.TabIndex = 9;
             this.txtStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
@@ -109,7 +109,7 @@
             this.label1.Location = new System.Drawing.Point(94, 75);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 16);
-            this.label1.TabIndex = 45;
+            this.label1.TabIndex = 2;
             this.label1.Text = "Episodes";
             // 
             // txtEpisode
@@ -123,7 +123,7 @@
             this.txtEpisode.Name = "txtEpisode";
             this.txtEpisode.ReadOnly = true;
             this.txtEpisode.Size = new System.Drawing.Size(52, 22);
-            this.txtEpisode.TabIndex = 42;
+            this.txtEpisode.TabIndex = 3;
             this.txtEpisode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
@@ -134,7 +134,7 @@
             this.label3.Location = new System.Drawing.Point(66, 127);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 16);
-            this.label3.TabIndex = 47;
+            this.label3.TabIndex = 6;
             this.label3.Text = "Category";
             // 
             // label4
@@ -145,7 +145,7 @@
             this.label4.Location = new System.Drawing.Point(207, 127);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 16);
-            this.label4.TabIndex = 48;
+            this.label4.TabIndex = 8;
             this.label4.Text = "Status";
             // 
             // txtYear
@@ -159,7 +159,7 @@
             this.txtYear.Name = "txtYear";
             this.txtYear.ReadOnly = true;
             this.txtYear.Size = new System.Drawing.Size(75, 22);
-            this.txtYear.TabIndex = 43;
+            this.txtYear.TabIndex = 5;
             this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
@@ -170,7 +170,7 @@
             this.label2.Location = new System.Drawing.Point(144, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 16);
-            this.label2.TabIndex = 46;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Title";
             // 
             // label5
@@ -181,7 +181,7 @@
             this.label5.Location = new System.Drawing.Point(174, 75);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 16);
-            this.label5.TabIndex = 49;
+            this.label5.TabIndex = 4;
             this.label5.Text = "Year";
             // 
             // imgTitle

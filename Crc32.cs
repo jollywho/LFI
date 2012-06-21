@@ -7,7 +7,7 @@ public class Crc32 : HashAlgorithm
 {
     public const UInt32 DefaultPolynomial = 0xedb88320;
     public const UInt32 DefaultSeed = 0xFFFFFFFF;
-    public static BackgroundWorker worker;
+    public static BackgroundWorker worker = new BackgroundWorker();
     
     private UInt32 hash;
     private UInt32 seed;
@@ -88,17 +88,17 @@ public class Crc32 : HashAlgorithm
         return createTable;
     }
 
-
     private static UInt32 CalculateHash(UInt32[] table, UInt32 seed, byte[] buffer, int start, int size)
     {
         UInt32 crc = seed;
-        //caller.set_progBar(size);
+
         for (int i = start; i < size; i++)
+        {
             unchecked
             {
                 crc = (crc >> 8) ^ table[buffer[i] ^ crc & 0xff];
-
             }
+        }
         return crc;
     }
 

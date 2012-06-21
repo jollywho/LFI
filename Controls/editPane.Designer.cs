@@ -59,7 +59,7 @@
             this.btnImg.Location = new System.Drawing.Point(145, 223);
             this.btnImg.Name = "btnImg";
             this.btnImg.Size = new System.Drawing.Size(50, 20);
-            this.btnImg.TabIndex = 30;
+            this.btnImg.TabIndex = 1;
             this.btnImg.TabStop = false;
             this.btnImg.Text = "...";
             this.btnImg.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -90,7 +90,7 @@
             this.panel1.Location = new System.Drawing.Point(10, 265);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(320, 200);
-            this.panel1.TabIndex = 74;
+            this.panel1.TabIndex = 0;
             // 
             // txtYear
             // 
@@ -101,7 +101,7 @@
             this.txtYear.MaxLength = 4;
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(75, 22);
-            this.txtYear.TabIndex = 96;
+            this.txtYear.TabIndex = 5;
             this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtYear.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
             this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
@@ -115,7 +115,7 @@
             this.txtEpisode.MaxLength = 3;
             this.txtEpisode.Name = "txtEpisode";
             this.txtEpisode.Size = new System.Drawing.Size(52, 22);
-            this.txtEpisode.TabIndex = 95;
+            this.txtEpisode.TabIndex = 3;
             this.txtEpisode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtEpisode.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
             this.txtEpisode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
@@ -145,7 +145,7 @@
             this.ddLanguage.Location = new System.Drawing.Point(200, 97);
             this.ddLanguage.Name = "ddLanguage";
             this.ddLanguage.Size = new System.Drawing.Size(59, 24);
-            this.ddLanguage.TabIndex = 73;
+            this.ddLanguage.TabIndex = 7;
             // 
             // label6
             // 
@@ -155,7 +155,7 @@
             this.label6.Location = new System.Drawing.Point(201, 78);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(57, 16);
-            this.label6.TabIndex = 72;
+            this.label6.TabIndex = 6;
             this.label6.Text = "Language";
             // 
             // label5
@@ -166,7 +166,7 @@
             this.label5.Location = new System.Drawing.Point(141, 79);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 16);
-            this.label5.TabIndex = 39;
+            this.label5.TabIndex = 4;
             this.label5.Text = "Year";
             // 
             // ddStatus
@@ -187,7 +187,7 @@
             this.ddStatus.Location = new System.Drawing.Point(173, 150);
             this.ddStatus.Name = "ddStatus";
             this.ddStatus.Size = new System.Drawing.Size(137, 24);
-            this.ddStatus.TabIndex = 71;
+            this.ddStatus.TabIndex = 11;
             // 
             // label2
             // 
@@ -197,7 +197,7 @@
             this.label2.Location = new System.Drawing.Point(144, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 16);
-            this.label2.TabIndex = 36;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Title";
             // 
             // label4
@@ -208,7 +208,7 @@
             this.label4.Location = new System.Drawing.Point(221, 131);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 16);
-            this.label4.TabIndex = 70;
+            this.label4.TabIndex = 10;
             this.label4.Text = "Status";
             // 
             // label3
@@ -219,7 +219,7 @@
             this.label3.Location = new System.Drawing.Point(51, 131);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 16);
-            this.label3.TabIndex = 37;
+            this.label3.TabIndex = 8;
             this.label3.Text = "Category";
             // 
             // label1
@@ -230,7 +230,7 @@
             this.label1.Location = new System.Drawing.Point(61, 79);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 16);
-            this.label1.TabIndex = 35;
+            this.label1.TabIndex = 2;
             this.label1.Text = "Episodes";
             // 
             // ddTitle
@@ -243,7 +243,7 @@
             this.ddTitle.Location = new System.Drawing.Point(10, 46);
             this.ddTitle.Name = "ddTitle";
             this.ddTitle.Size = new System.Drawing.Size(300, 24);
-            this.ddTitle.TabIndex = 63;
+            this.ddTitle.TabIndex = 1;
             this.ddTitle.TextChanged += new System.EventHandler(this.ddTitle_TextChanged);
             // 
             // ddCategory
@@ -261,7 +261,7 @@
             this.ddCategory.Location = new System.Drawing.Point(10, 150);
             this.ddCategory.Name = "ddCategory";
             this.ddCategory.Size = new System.Drawing.Size(126, 24);
-            this.ddCategory.TabIndex = 67;
+            this.ddCategory.TabIndex = 9;
             // 
             // imgTitle
             // 

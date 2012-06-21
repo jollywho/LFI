@@ -92,7 +92,7 @@
             this.scrlPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.scrlPage.Size = new System.Drawing.Size(734, 20);
             this.scrlPage.SmallChange = 2;
-            this.scrlPage.TabIndex = 82;
+            this.scrlPage.TabIndex = 0;
             this.scrlPage.Value = 1;
             this.scrlPage.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrlPage_Scroll);
             this.scrlPage.ValueChanged += new System.EventHandler(this.scrlPage_ValueChanged);
@@ -186,7 +186,7 @@
             this.panel1.Location = new System.Drawing.Point(-10, 374);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 246);
-            this.panel1.TabIndex = 97;
+            this.panel1.TabIndex = 1;
             // 
             // imgTitle
             // 
@@ -209,7 +209,7 @@
             this.copyLabel.Location = new System.Drawing.Point(342, 5);
             this.copyLabel.Name = "copyLabel";
             this.copyLabel.Size = new System.Drawing.Size(0, 22);
-            this.copyLabel.TabIndex = 91;
+            this.copyLabel.TabIndex = 7;
             // 
             // txtSlot
             // 
@@ -222,7 +222,7 @@
             this.txtSlot.Name = "txtSlot";
             this.txtSlot.ReadOnly = true;
             this.txtSlot.Size = new System.Drawing.Size(52, 22);
-            this.txtSlot.TabIndex = 89;
+            this.txtSlot.TabIndex = 6;
             this.txtSlot.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSlot.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
@@ -235,7 +235,7 @@
             this.label1.Location = new System.Drawing.Point(293, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 16);
-            this.label1.TabIndex = 90;
+            this.label1.TabIndex = 5;
             this.label1.Text = "Slot";
             // 
             // txtDisc
@@ -249,7 +249,7 @@
             this.txtDisc.Name = "txtDisc";
             this.txtDisc.ReadOnly = true;
             this.txtDisc.Size = new System.Drawing.Size(88, 22);
-            this.txtDisc.TabIndex = 88;
+            this.txtDisc.TabIndex = 1;
             this.txtDisc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnGenerate
@@ -259,7 +259,7 @@
             this.btnGenerate.Location = new System.Drawing.Point(124, 26);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(75, 23);
-            this.btnGenerate.TabIndex = 87;
+            this.btnGenerate.TabIndex = 2;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
@@ -287,7 +287,7 @@
             this.groupBox6.Location = new System.Drawing.Point(18, 58);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(510, 183);
-            this.groupBox6.TabIndex = 83;
+            this.groupBox6.TabIndex = 10;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Contents";
             // 
@@ -300,7 +300,7 @@
             this.txtSeason.MaxLength = 2;
             this.txtSeason.Name = "txtSeason";
             this.txtSeason.Size = new System.Drawing.Size(52, 22);
-            this.txtSeason.TabIndex = 95;
+            this.txtSeason.TabIndex = 3;
             this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSeason.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
             this.txtSeason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPageNo_KeyDown);
@@ -314,7 +314,7 @@
             this.txtRangeEnd.MaxLength = 3;
             this.txtRangeEnd.Name = "txtRangeEnd";
             this.txtRangeEnd.Size = new System.Drawing.Size(52, 22);
-            this.txtRangeEnd.TabIndex = 94;
+            this.txtRangeEnd.TabIndex = 6;
             this.txtRangeEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtRangeEnd.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
             this.txtRangeEnd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
@@ -328,7 +328,7 @@
             this.txtRangeStart.MaxLength = 3;
             this.txtRangeStart.Name = "txtRangeStart";
             this.txtRangeStart.Size = new System.Drawing.Size(52, 22);
-            this.txtRangeStart.TabIndex = 93;
+            this.txtRangeStart.TabIndex = 5;
             this.txtRangeStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtRangeStart.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
             this.txtRangeStart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
@@ -374,7 +374,7 @@
             this.gvContents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvContents.Size = new System.Drawing.Size(381, 112);
             this.gvContents.StandardTab = true;
-            this.gvContents.TabIndex = 77;
+            this.gvContents.TabIndex = 10;
             // 
             // Title
             // 
@@ -425,7 +425,7 @@
             this.label3.Location = new System.Drawing.Point(428, 14);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 16);
-            this.label3.TabIndex = 76;
+            this.label3.TabIndex = 4;
             this.label3.Text = "Range";
             // 
             // button5
@@ -435,7 +435,7 @@
             this.button5.Location = new System.Drawing.Point(411, 119);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 5;
+            this.button5.TabIndex = 12;
             this.button5.Text = "Remove";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.btnRemove_Click);
@@ -447,7 +447,7 @@
             this.btnAddDisc.Location = new System.Drawing.Point(411, 148);
             this.btnAddDisc.Name = "btnAddDisc";
             this.btnAddDisc.Size = new System.Drawing.Size(75, 23);
-            this.btnAddDisc.TabIndex = 46;
+            this.btnAddDisc.TabIndex = 11;
             this.btnAddDisc.Text = "Save";
             this.btnAddDisc.UseVisualStyleBackColor = true;
             this.btnAddDisc.Click += new System.EventHandler(this.btnSaveClick);
@@ -459,7 +459,7 @@
             this.button6.Location = new System.Drawing.Point(411, 90);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 4;
+            this.button6.TabIndex = 13;
             this.button6.Text = "Insert";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.btnInsert_Click);
@@ -474,7 +474,7 @@
             this.ddInsTitle.Location = new System.Drawing.Point(6, 33);
             this.ddInsTitle.Name = "ddInsTitle";
             this.ddInsTitle.Size = new System.Drawing.Size(323, 24);
-            this.ddInsTitle.TabIndex = 72;
+            this.ddInsTitle.TabIndex = 1;
             // 
             // lblEnd
             // 
@@ -483,7 +483,7 @@
             this.lblEnd.Location = new System.Drawing.Point(459, 58);
             this.lblEnd.Name = "lblEnd";
             this.lblEnd.Size = new System.Drawing.Size(35, 16);
-            this.lblEnd.TabIndex = 74;
+            this.lblEnd.TabIndex = 9;
             this.lblEnd.Text = "(End)";
             // 
             // label21
@@ -493,7 +493,7 @@
             this.label21.Location = new System.Drawing.Point(151, 14);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(32, 16);
-            this.label21.TabIndex = 66;
+            this.label21.TabIndex = 0;
             this.label21.Text = "Title";
             // 
             // lblStart
@@ -503,7 +503,7 @@
             this.lblStart.Location = new System.Drawing.Point(399, 58);
             this.lblStart.Name = "lblStart";
             this.lblStart.Size = new System.Drawing.Size(41, 16);
-            this.lblStart.TabIndex = 73;
+            this.lblStart.TabIndex = 8;
             this.lblStart.Text = "(Start)";
             // 
             // label9
@@ -513,7 +513,7 @@
             this.label9.Location = new System.Drawing.Point(339, 14);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(44, 16);
-            this.label9.TabIndex = 71;
+            this.label9.TabIndex = 2;
             this.label9.Text = "Season";
             // 
             // lblRange
@@ -537,7 +537,7 @@
             this.ddLocation.Location = new System.Drawing.Point(392, 24);
             this.ddLocation.Name = "ddLocation";
             this.ddLocation.Size = new System.Drawing.Size(136, 24);
-            this.ddLocation.TabIndex = 82;
+            this.ddLocation.TabIndex = 9;
             this.ddLocation.SelectedIndexChanged += new System.EventHandler(this.ddLocation_SelectedIndexChanged);
             this.ddLocation.SelectedValueChanged += new System.EventHandler(this.ddLocation_SelectedValueChanged);
             // 
@@ -550,7 +550,7 @@
             this.label7.Location = new System.Drawing.Point(435, 5);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(51, 16);
-            this.label7.TabIndex = 86;
+            this.label7.TabIndex = 8;
             this.label7.Text = "Location";
             // 
             // txtPage
@@ -564,7 +564,7 @@
             this.txtPage.Name = "txtPage";
             this.txtPage.ReadOnly = true;
             this.txtPage.Size = new System.Drawing.Size(52, 22);
-            this.txtPage.TabIndex = 81;
+            this.txtPage.TabIndex = 4;
             this.txtPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
@@ -577,7 +577,7 @@
             this.label8.Location = new System.Drawing.Point(224, 7);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(34, 16);
-            this.label8.TabIndex = 84;
+            this.label8.TabIndex = 3;
             this.label8.Text = "Page";
             // 
             // label11
@@ -589,7 +589,7 @@
             this.label11.Location = new System.Drawing.Point(42, 9);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(46, 16);
-            this.label11.TabIndex = 85;
+            this.label11.TabIndex = 0;
             this.label11.Text = "Disc ID";
             // 
             // lblPageLeft
