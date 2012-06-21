@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace LFI
 {
@@ -21,6 +22,7 @@ namespace LFI
         int workingRow = 0;
         private bool multiRun = false;
         private bool cancel = false;
+        int[] cellHover = new int[2];
 
         public struct SimpleData
         {
@@ -189,8 +191,11 @@ namespace LFI
             gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
             gvFiles.Rows[workingRow].Cells[1].Value = newfilename;
 
-            folder.folderDivisions[Convert.ToInt32(lstDivs.Text) - 1][workingRow] =
-                ddUrl.Text + "\\" + newfilename;
+            if (lstDivs.Text == "0")
+                folder.folderitems[workingRow] = ddUrl.Text + "\\" + newfilename;
+            else
+                folder.folderDivisions[Convert.ToInt32(lstDivs.Text) - 1][workingRow] =
+                    ddUrl.Text + "\\" + newfilename;    
 
             DisableRunButtons();
             Add_MultiRunIncrement();
@@ -381,6 +386,29 @@ namespace LFI
                     workingRow = savedRow;
                 CheckCRC();
             }
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(gvFiles.SelectedCells[2].Value.ToString());
+        }
+
+        private void gvFiles_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            cellHover[0] = e.RowIndex;
+            cellHover[1] = e.ColumnIndex;
+        }
+
+        private void contextMenuFile_Opened(object sender, EventArgs e)
+        {
+            if (gvFiles.Rows.Count > 0)
+            {
+                contextMenuFile.Enabled = true;
+                if (gvFiles[cellHover[1], cellHover[0]].Value != null)
+                    gvFiles[cellHover[1], cellHover[0]].Selected = true;
+            }
+            else
+                contextMenuFile.Enabled = false;
         }
     }
 }

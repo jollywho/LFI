@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -51,9 +52,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblSize = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
+            this.contextMenuFile = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.contextMenuFile.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -88,6 +92,7 @@
             this.check,
             this.Text,
             this.Hidden});
+            this.gvFiles.ContextMenuStrip = this.contextMenuFile;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -109,6 +114,7 @@
             this.gvFiles.Size = new System.Drawing.Size(524, 427);
             this.gvFiles.StandardTab = true;
             this.gvFiles.TabIndex = 0;
+            this.gvFiles.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFiles_CellMouseEnter);
             this.gvFiles.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFiles_RowEnter);
             // 
             // check
@@ -350,6 +356,21 @@
             this.btnBack.MouseEnter += new System.EventHandler(this.btnBack_MouseEnter);
             this.btnBack.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
             // 
+            // contextMenuFile
+            // 
+            this.contextMenuFile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem});
+            this.contextMenuFile.Name = "contextMenuFile";
+            this.contextMenuFile.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuFile.Opened += new System.EventHandler(this.contextMenuFile_Opened);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
             // folderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -367,6 +388,7 @@
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.contextMenuFile.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -394,5 +416,7 @@
         private System.Windows.Forms.DataGridViewImageColumn check;
         private System.Windows.Forms.DataGridViewTextBoxColumn Text;
         private System.Windows.Forms.DataGridViewTextBoxColumn Hidden;
+        private System.Windows.Forms.ContextMenuStrip contextMenuFile;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
     }
 }

@@ -30,7 +30,6 @@ namespace LFI
             worker.WorkerSupportsCancellation = true;
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
 
-
             for (int i = 0, slot = 1; i <= (PAGES_PER_VIEW * DISCS_PER_PAGE) - 1; i++, slot++)
             {
                 if (slot > DISCS_PER_PAGE)
@@ -45,7 +44,6 @@ namespace LFI
                 @"Select location_id from locations order by location_id"));
             ddLocation.DisplayMember = "location_id";
             ddLocation.DataSource = locations;
-            
             
             DataTable titles = DB_Handle.GetDataTable(string.Format(
                 @"Select title_id from titles order by title_id"));

@@ -18,7 +18,7 @@ namespace LFI
         public contentsPane discPane;
         public editPane editPane;
         public infoPane infoPane;
-        int[] sel = new int[2];
+        int[] cellHover = new int[2];
         int savedRow = 0;
         public bool enabled;
 
@@ -172,8 +172,8 @@ namespace LFI
 
         private void gvTitles_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            sel[0] = e.RowIndex;
-            sel[1] = e.ColumnIndex;
+            cellHover[0] = e.RowIndex;
+            cellHover[1] = e.ColumnIndex;
         }
 
         private void contextMenuDisc_Opened(object sender, EventArgs e)
@@ -181,8 +181,8 @@ namespace LFI
             if (gvTitles.Rows.Count > 0)
             {
                 contextMenuDisc.Enabled = true;
-                if (gvTitles[sel[1], sel[0]].Value != null)
-                    gvTitles[sel[1], sel[0]].Selected = true;
+                if (gvTitles[cellHover[1], cellHover[0]].Value != null)
+                    gvTitles[cellHover[1], cellHover[0]].Selected = true;
             }
             else
                 contextMenuDisc.Enabled = false;
