@@ -56,7 +56,7 @@ namespace LFI
                 countFolders();
                 btnShowDiv.Enabled = true;
                 btnDivide.Enabled = false;
-                btnClear.Enabled = true;
+                btnRefresh.Enabled = true;
                 dirname = ddUrl.Text;
                 lstDivs_Click(null, null);
             }
@@ -93,20 +93,12 @@ namespace LFI
             lstDivs_Click(sender, e);
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
-            folder = null;
-            lblSize.Text = "0.00 GB";
-            ddUrl.Text = string.Empty;
-            gvFiles.DataSource = null;
-            lstDivs.DataSource = null;
-            lstDivs.Items.Clear();
-            btnClear.Enabled = false;
-            btnDivide.Enabled = false;
-            btnShowDiv.Enabled = false;
+            open_Folder();
         }
 
-        //populate gvFiles with items from selected folder#
+        //populate gvFiles with items from selected divison
         private void lstDivs_Click(object sender, EventArgs e)
         {
             if (!Crc32.worker.IsBusy && folder.filenames.Count > 0)

@@ -123,6 +123,13 @@ namespace LFI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap database_process {
+            get {
+                object obj = ResourceManager.GetObject("database_process", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap divide {
             get {
                 object obj = ResourceManager.GetObject("divide", resourceCulture);

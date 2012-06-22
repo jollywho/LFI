@@ -57,7 +57,7 @@
             this.panel1.Controls.Add(this.txtYear);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(10, 265);
+            this.panel1.Location = new System.Drawing.Point(15, 265);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(320, 200);
             this.panel1.TabIndex = 0;
@@ -189,7 +189,7 @@
             this.imgTitle.BackgroundImage = global::LFI.Properties.Resources.notfound;
             this.imgTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.imgTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.imgTitle.Location = new System.Drawing.Point(68, 17);
+            this.imgTitle.Location = new System.Drawing.Point(73, 17);
             this.imgTitle.Name = "imgTitle";
             this.imgTitle.Size = new System.Drawing.Size(200, 200);
             this.imgTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -204,7 +204,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.imgTitle);
             this.Name = "infoPane";
-            this.Size = new System.Drawing.Size(340, 482);
+            this.Size = new System.Drawing.Size(350, 482);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).EndInit();

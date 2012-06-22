@@ -56,7 +56,7 @@
             this.btnImg.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnImg.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImg.ForeColor = System.Drawing.Color.Lime;
-            this.btnImg.Location = new System.Drawing.Point(145, 223);
+            this.btnImg.Location = new System.Drawing.Point(152, 223);
             this.btnImg.Name = "btnImg";
             this.btnImg.Size = new System.Drawing.Size(50, 20);
             this.btnImg.TabIndex = 1;
@@ -87,7 +87,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.ddTitle);
             this.panel1.Controls.Add(this.ddCategory);
-            this.panel1.Location = new System.Drawing.Point(10, 265);
+            this.panel1.Location = new System.Drawing.Point(15, 265);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(320, 200);
             this.panel1.TabIndex = 0;
@@ -268,7 +268,7 @@
             this.imgTitle.BackgroundImage = global::LFI.Properties.Resources.notfound;
             this.imgTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.imgTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.imgTitle.Location = new System.Drawing.Point(68, 17);
+            this.imgTitle.Location = new System.Drawing.Point(75, 17);
             this.imgTitle.Name = "imgTitle";
             this.imgTitle.Size = new System.Drawing.Size(200, 200);
             this.imgTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -284,7 +284,7 @@
             this.Controls.Add(this.imgTitle);
             this.Controls.Add(this.btnImg);
             this.Name = "editPane";
-            this.Size = new System.Drawing.Size(340, 482);
+            this.Size = new System.Drawing.Size(350, 482);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgError)).EndInit();

@@ -37,6 +37,8 @@
             this.check = new System.Windows.Forms.DataGridViewImageColumn();
             this.Text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Hidden = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuFile = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ddUrl = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -46,18 +48,16 @@
             this.btnAddCRC = new System.Windows.Forms.Button();
             this.radCheckAll = new System.Windows.Forms.RadioButton();
             this.btnShowDiv = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.lstDivs = new System.Windows.Forms.ListBox();
             this.btnDivide = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.lblSize = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
-            this.contextMenuFile = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).BeginInit();
+            this.contextMenuFile.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.contextMenuFile.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -102,7 +102,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gvFiles.DefaultCellStyle = dataGridViewCellStyle3;
             this.gvFiles.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gvFiles.Location = new System.Drawing.Point(0, 193);
+            this.gvFiles.Location = new System.Drawing.Point(0, 203);
             this.gvFiles.MultiSelect = false;
             this.gvFiles.Name = "gvFiles";
             this.gvFiles.ReadOnly = true;
@@ -111,7 +111,7 @@
             this.gvFiles.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvFiles.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.gvFiles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvFiles.Size = new System.Drawing.Size(524, 427);
+            this.gvFiles.Size = new System.Drawing.Size(533, 427);
             this.gvFiles.StandardTab = true;
             this.gvFiles.TabIndex = 0;
             this.gvFiles.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFiles_CellMouseEnter);
@@ -142,6 +142,21 @@
             this.Hidden.ReadOnly = true;
             this.Hidden.Visible = false;
             // 
+            // contextMenuFile
+            // 
+            this.contextMenuFile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem});
+            this.contextMenuFile.Name = "contextMenuFile";
+            this.contextMenuFile.Size = new System.Drawing.Size(104, 26);
+            this.contextMenuFile.Opened += new System.EventHandler(this.contextMenuFile_Opened);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
             // ddUrl
             // 
             this.ddUrl.FormattingEnabled = true;
@@ -159,7 +174,7 @@
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.btnShowDiv);
-            this.panel1.Controls.Add(this.btnClear);
+            this.panel1.Controls.Add(this.btnRefresh);
             this.panel1.Controls.Add(this.lstDivs);
             this.panel1.Controls.Add(this.btnDivide);
             this.panel1.Controls.Add(this.label3);
@@ -268,21 +283,21 @@
             this.btnShowDiv.MouseEnter += new System.EventHandler(this.btnBack_MouseEnter);
             this.btnShowDiv.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
             // 
-            // btnClear
+            // btnRefresh
             // 
-            this.btnClear.BackgroundImage = global::LFI.Properties.Resources.clear;
-            this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnClear.FlatAppearance.BorderSize = 0;
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.ForeColor = System.Drawing.Color.Transparent;
-            this.btnClear.Location = new System.Drawing.Point(224, 24);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(24, 24);
-            this.btnClear.TabIndex = 3;
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            this.btnClear.MouseEnter += new System.EventHandler(this.btnBack_MouseEnter);
-            this.btnClear.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
+            this.btnRefresh.BackgroundImage = global::LFI.Properties.Resources.clear;
+            this.btnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.ForeColor = System.Drawing.Color.Transparent;
+            this.btnRefresh.Location = new System.Drawing.Point(224, 24);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(24, 24);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.btnRefresh.MouseEnter += new System.EventHandler(this.btnBack_MouseEnter);
+            this.btnRefresh.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
             // 
             // lstDivs
             // 
@@ -356,21 +371,6 @@
             this.btnBack.MouseEnter += new System.EventHandler(this.btnBack_MouseEnter);
             this.btnBack.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
             // 
-            // contextMenuFile
-            // 
-            this.contextMenuFile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem});
-            this.contextMenuFile.Name = "contextMenuFile";
-            this.contextMenuFile.Size = new System.Drawing.Size(153, 48);
-            this.contextMenuFile.Opened += new System.EventHandler(this.contextMenuFile_Opened);
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
             // folderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,13 +382,13 @@
             this.Controls.Add(this.ddUrl);
             this.Controls.Add(this.label1);
             this.Name = "folderView";
-            this.Size = new System.Drawing.Size(524, 620);
+            this.Size = new System.Drawing.Size(533, 630);
             ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).EndInit();
+            this.contextMenuFile.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.contextMenuFile.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,7 +404,7 @@
         private System.Windows.Forms.ComboBox ddUrl;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnAddCRC;
-        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnCheckCRC;
         private System.Windows.Forms.Button btnShowDiv;
         private System.Windows.Forms.Button btnDivide;

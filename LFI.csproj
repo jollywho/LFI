@@ -90,6 +90,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -160,6 +166,7 @@
       <DependentUpon>contentsPane.cs</DependentUpon>
     </Compile>
     <Content Include="Resources\arrow_divide.png" />
+    <None Include="Resources\database_process.png" />
     <None Include="Resources\notavailable.png" />
     <None Include="Resources\borderBigg.png" />
     <None Include="Resources\showdiv.png" />
@@ -186,6 +193,9 @@
     </None>
     <None Include="Resources\border.png" />
     <None Include="Resources\bannerOrig.jpg" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\VLabel.resx">
       <DependentUpon>VLabel.cs</DependentUpon>
     </EmbeddedResource>

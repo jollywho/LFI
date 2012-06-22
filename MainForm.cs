@@ -21,7 +21,7 @@ namespace LFI
     {
         public static string Lmode;
         public Size vertical = new Size(540, 700);
-        public Size horizontal = new Size(750, 700);
+        public Size horizontal = new Size(745, 700);
         mainView mv;
         folderView fv;
         public ViewMode mode;
@@ -205,6 +205,12 @@ namespace LFI
         {
             TopMost = !TopMost;
             menuAlwaysTop.Checked = !menuAlwaysTop.Checked;
+        }
+
+        private void menuItem8_Click(object sender, EventArgs e)
+        {
+            AboutForm abt = new AboutForm();
+            abt.ShowDialog();
         }
     }
     

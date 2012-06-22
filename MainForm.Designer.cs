@@ -43,12 +43,15 @@
             this.titleEditItem = new System.Windows.Forms.MenuItem();
             this.cancelItem = new System.Windows.Forms.MenuItem();
             this.menuItem3 = new System.Windows.Forms.MenuItem();
+            this.menuAlwaysTop = new System.Windows.Forms.MenuItem();
+            this.menuItem6 = new System.Windows.Forms.MenuItem();
             this.menuTitleItem = new System.Windows.Forms.MenuItem();
             this.menuFolderItem = new System.Windows.Forms.MenuItem();
             this.menuDiscItem = new System.Windows.Forms.MenuItem();
+            this.menuItem7 = new System.Windows.Forms.MenuItem();
+            this.menuItem9 = new System.Windows.Forms.MenuItem();
+            this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.menuItem6 = new System.Windows.Forms.MenuItem();
-            this.menuAlwaysTop = new System.Windows.Forms.MenuItem();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,9 +61,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusStripLabel,
             this.progBar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 640);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 629);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(524, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(534, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -82,7 +85,8 @@
             this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem1,
             this.menuItem2,
-            this.menuItem3});
+            this.menuItem3,
+            this.menuItem7});
             // 
             // menuItem1
             // 
@@ -151,6 +155,17 @@
             this.menuDiscItem});
             this.menuItem3.Text = "Window";
             // 
+            // menuAlwaysTop
+            // 
+            this.menuAlwaysTop.Index = 0;
+            this.menuAlwaysTop.Text = "Always on Top";
+            this.menuAlwaysTop.Click += new System.EventHandler(this.menuAlwaysTop_Click);
+            // 
+            // menuItem6
+            // 
+            this.menuItem6.Index = 1;
+            this.menuItem6.Text = "-";
+            // 
             // menuTitleItem
             // 
             this.menuTitleItem.Index = 2;
@@ -172,24 +187,32 @@
             this.menuDiscItem.Text = "Disc";
             this.menuDiscItem.Click += new System.EventHandler(this.menuDiscItem_Click);
             // 
+            // menuItem7
+            // 
+            this.menuItem7.Index = 3;
+            this.menuItem7.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem9,
+            this.menuItem8});
+            this.menuItem7.Text = "Help";
+            // 
+            // menuItem9
+            // 
+            this.menuItem9.Index = 0;
+            this.menuItem9.Text = "-";
+            // 
+            // menuItem8
+            // 
+            this.menuItem8.Index = 1;
+            this.menuItem8.Text = "About";
+            this.menuItem8.Click += new System.EventHandler(this.menuItem8_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(750, 620);
+            this.panel1.Size = new System.Drawing.Size(750, 630);
             this.panel1.TabIndex = 9;
-            // 
-            // menuItem6
-            // 
-            this.menuItem6.Index = 1;
-            this.menuItem6.Text = "-";
-            // 
-            // menuAlwaysTop
-            // 
-            this.menuAlwaysTop.Index = 0;
-            this.menuAlwaysTop.Text = "Always on Top";
-            this.menuAlwaysTop.Click += new System.EventHandler(this.menuAlwaysTop_Click);
             // 
             // MainForm
             // 
@@ -198,16 +221,17 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = global::LFI.Properties.Resources.bannerOrig;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(524, 662);
+            this.ClientSize = new System.Drawing.Size(534, 651);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(540, 700);
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(540, 700);
             this.Name = "MainForm";
-            this.Text = "LFI 0.3.9";
+            this.Text = "LFI";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
@@ -239,6 +263,9 @@
         private System.Windows.Forms.MenuItem menuDiscItem;
         private System.Windows.Forms.MenuItem menuAlwaysTop;
         private System.Windows.Forms.MenuItem menuItem6;
+        private System.Windows.Forms.MenuItem menuItem7;
+        private System.Windows.Forms.MenuItem menuItem9;
+        private System.Windows.Forms.MenuItem menuItem8;
 
 
     }

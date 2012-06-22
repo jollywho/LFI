@@ -143,17 +143,25 @@ namespace LFI
 
         public void load_infoPane()
         {
-            if (gvTitles.Rows.Count > 0)
-                scrollpos = gvTitles.FirstDisplayedScrollingRowIndex;
-            infoPane.Enable();
-            editPane.Disable();
-            discPane.Disable();
-            gvTitles.Enabled = true;
-            txtSearch.Enabled = true;
-            populateList();
-            Enable();
-            gvTitles.FirstDisplayedScrollingRowIndex = scrollpos;
-            gvTitles_RowEnter(null, null);
+            try
+            {
+                if (gvTitles.Rows.Count > 0)
+                    scrollpos = gvTitles.FirstDisplayedScrollingRowIndex;
+                infoPane.Enable();
+                editPane.Disable();
+                discPane.Disable();
+                gvTitles.Enabled = true;
+                txtSearch.Enabled = true;
+                populateList();
+                Enable();
+                if (gvTitles.Rows.Count > 0)
+                    gvTitles.FirstDisplayedScrollingRowIndex = scrollpos;
+                gvTitles_RowEnter(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void load_editPane()

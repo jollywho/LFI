@@ -94,9 +94,9 @@
             // 
             // panelMain
             // 
-            this.panelMain.Location = new System.Drawing.Point(184, 59);
+            this.panelMain.Location = new System.Drawing.Point(186, 59);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(340, 558);
+            this.panelMain.Size = new System.Drawing.Size(350, 571);
             this.panelMain.TabIndex = 21;
             // 
             // panel1
@@ -108,7 +108,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(179, 624);
+            this.panel1.Size = new System.Drawing.Size(179, 630);
             this.panel1.TabIndex = 0;
             // 
             // gvTitles
@@ -146,7 +146,7 @@
             this.gvTitles.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvTitles.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.gvTitles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvTitles.Size = new System.Drawing.Size(180, 563);
+            this.gvTitles.Size = new System.Drawing.Size(180, 571);
             this.gvTitles.StandardTab = true;
             this.gvTitles.TabIndex = 3;
             this.gvTitles.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvTitles_CellMouseEnter);
@@ -172,7 +172,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.panelMain);
             this.Name = "mainView";
-            this.Size = new System.Drawing.Size(524, 624);
+            this.Size = new System.Drawing.Size(534, 630);
             this.contextMenuDisc.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

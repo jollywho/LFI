@@ -90,7 +90,7 @@
             this.scrlPage.Minimum = 1;
             this.scrlPage.Name = "scrlPage";
             this.scrlPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.scrlPage.Size = new System.Drawing.Size(734, 20);
+            this.scrlPage.Size = new System.Drawing.Size(740, 20);
             this.scrlPage.SmallChange = 2;
             this.scrlPage.TabIndex = 0;
             this.scrlPage.Value = 1;
@@ -185,7 +185,7 @@
             this.panel1.Enabled = false;
             this.panel1.Location = new System.Drawing.Point(-10, 374);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(750, 246);
+            this.panel1.Size = new System.Drawing.Size(750, 256);
             this.panel1.TabIndex = 1;
             // 
             // imgTitle
@@ -716,7 +716,7 @@
             this.Controls.Add(this.scrlPage);
             this.Controls.Add(this.panel1);
             this.Name = "discView";
-            this.Size = new System.Drawing.Size(737, 620);
+            this.Size = new System.Drawing.Size(737, 630);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).EndInit();
