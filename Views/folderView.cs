@@ -45,6 +45,7 @@ namespace LFI
             string[] folders = System.IO.Directory.GetDirectories(
                 Environment.GetFolderPath(Environment.SpecialFolder.MyVideos));
             ddUrl.DataSource = folders;
+            ddUrl.MouseWheel += new MouseEventHandler(combobox_MouseWheel);
         }
 
         private void open_Folder()
@@ -409,6 +410,11 @@ namespace LFI
             }
             else
                 contextMenuFile.Enabled = false;
+        }
+
+        private void combobox_MouseWheel(object sender, MouseEventArgs e)
+        {
+            ((HandledMouseEventArgs)e).Handled = true;
         }
     }
 }

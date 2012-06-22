@@ -140,8 +140,8 @@
             this.ddLanguage.ForeColor = System.Drawing.Color.Black;
             this.ddLanguage.FormattingEnabled = true;
             this.ddLanguage.Items.AddRange(new object[] {
-            "ENG",
-            "JPN"});
+            "JPN",
+            "ENG"});
             this.ddLanguage.Location = new System.Drawing.Point(200, 97);
             this.ddLanguage.Name = "ddLanguage";
             this.ddLanguage.Size = new System.Drawing.Size(59, 24);

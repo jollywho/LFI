@@ -130,6 +130,7 @@ namespace LFI
             FixExtension(file);
 
             string crcStr = reg.Match(filename).Groups[0].Value;
+            crcStr = crcStr.ToUpper();
 
             Console.WriteLine("Detected CRC : " + crcStr);
             newfilename = Path.GetFileName(file.Name);

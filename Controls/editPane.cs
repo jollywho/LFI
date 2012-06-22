@@ -13,7 +13,7 @@ namespace LFI
 {
     public partial class editPane : UserControl
     {
-        char[] invalid_chars = { '\\',';','@',',','.','#','$','^','*','~','`',':' };
+        char[] invalid_chars = { '\\',';','@',',','.','#','$','^','*','~','`',':','"' };
         public bool active = false;
         public editPane()
         {
@@ -95,7 +95,6 @@ namespace LFI
             setImage(ddTitle.Text);
         }
 
-        //todo: strip illegal chars OR prevent from the start
         private void setImage(string str)
         {
             string path = Path.Combine(
@@ -127,7 +126,7 @@ namespace LFI
                     Error_Handle.TipError("Status required\n", toolTip, ddStatus);
                 else if (ddLanguage.Text.Length < 1)
                     Error_Handle.TipError("Language required\n", toolTip, ddLanguage);
-                else if (txtYear.Text.Length < 4)
+                else if (txtYear.Text.Length != 4)
                     Error_Handle.TipError("Year required\n", toolTip, txtYear);
                 else if (txtEpisode.Text.Length < 1)
                     Error_Handle.TipError("Episode required\n", toolTip, txtEpisode);
@@ -156,6 +155,16 @@ namespace LFI
                 toolTip.Show("Invalid Chars", imgError);
             else
                 toolTip.Hide(imgError);
+        }
+
+        public void Clear_Fields()
+        {
+            ddTitle.Text = string.Empty;
+            txtEpisode.Clear();
+            txtYear.Clear();
+            ddLanguage.Text = MainForm.Lmode;
+            ddCategory.SelectedIndex = 0;
+            ddStatus.SelectedIndex = 0;
         }
     }
 }

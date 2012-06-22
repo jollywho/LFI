@@ -21,6 +21,7 @@ namespace LFI
         int[] cellHover = new int[2];
         int savedRow = 0;
         public bool enabled;
+        private int scrollpos = 0;
 
         public mainView() 
         {
@@ -75,8 +76,20 @@ namespace LFI
                 @"SELECT title_id 
                 FROM titles WHERE language ='{0}' 
                 ORDER BY title_id", MainForm.Lmode));
-            gvTitles.DataSource = dvTitles;
+            gvTitles.DataSource = dvTitles; 
+        }
 
+        public bool IsEmpty()
+        {
+            if (gvTitles.Rows.Count < 1)
+                return true;
+            else
+                return false;
+        }
+
+        public void Force_RowEnter()
+        {
+            gvTitles_RowEnter(null, null);
         }
         
         private void gvTitles_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -130,6 +143,8 @@ namespace LFI
 
         public void load_infoPane()
         {
+            if (gvTitles.Rows.Count > 0)
+                scrollpos = gvTitles.FirstDisplayedScrollingRowIndex;
             infoPane.Enable();
             editPane.Disable();
             discPane.Disable();
@@ -137,6 +152,7 @@ namespace LFI
             txtSearch.Enabled = true;
             populateList();
             Enable();
+            gvTitles.FirstDisplayedScrollingRowIndex = scrollpos;
             gvTitles_RowEnter(null, null);
         }
 
@@ -152,6 +168,16 @@ namespace LFI
             editPane.Enable();
         }
 
+        public void load_blank_editPane()
+        {
+            discPane.Disable();
+            infoPane.Disable();
+            gvTitles.Enabled = false;
+            txtSearch.Enabled = false;
+            editPane.Clear_Fields();
+            editPane.Enable();
+        }
+
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult dlg = MessageBox.Show("Delete?", "Confirm", MessageBoxButtons.YesNo);
@@ -161,7 +187,7 @@ namespace LFI
                 DB_Handle.UpdateTable(string.Format(
                     @"DELETE FROM TITLES WHERE title_id={0}",
                     "\"" + gvTitles.SelectedCells[0].Value.ToString() + "\""));
-                populateList();
+                load_infoPane();
                 if (gvTitles.Rows.Count > 0)
                     gvTitles[0, row].Selected = true;
                 if (txtSearch.Text.Length != 0)

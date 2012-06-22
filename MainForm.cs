@@ -8,6 +8,15 @@ using System.Windows.Forms;
 
 namespace LFI
 {
+    public enum ViewMode
+    {
+        Main,
+        Disc,
+        Folder,
+        Edit,
+        Empty,
+    };
+
     public partial class MainForm : Form
     {
         public static string Lmode;
@@ -15,6 +24,7 @@ namespace LFI
         public Size horizontal = new Size(750, 700);
         mainView mv;
         folderView fv;
+        public ViewMode mode;
 
         public MainForm()
         {
@@ -26,6 +36,7 @@ namespace LFI
             mv = new mainView();
             panel1.Controls.Add(mv);
             mv.Enable();
+            pushBackMenuStates();
         }
 
         private void statusStripLabel_Click(object sender, EventArgs e)
@@ -36,25 +47,34 @@ namespace LFI
                 Lmode = "JPN";
             statusStripLabel.Text = Lmode;
             mv.populateList();
+            mv.Force_RowEnter();
+            if (mv.IsEmpty())
+            {
+                cancelItem.Enabled = false;
+                saveItem.Enabled = false;
+                titleEditItem.Enabled = false;
+            }
         }
 
         public void pushback_formView()
         {
+            pushBackMenuStates();
             panel1.Controls.Clear();
             panel1.Controls.Add(mv);
             this.MaximumSize = vertical;
             this.MinimumSize = vertical;
-            pushBackMenuStates();
             mv.Enable();
         }
 
         private void menuTitleItem_Click(object sender, EventArgs e)
         {
+            mode = ViewMode.Main;
             pushback_formView();
         }
 
         private void menuFolderItem_Click(object sender, EventArgs e)
         {
+            mode = ViewMode.Folder;
             pushBackMenuStates();
             panel1.Controls.Clear();
             mv.Disable();
@@ -68,6 +88,7 @@ namespace LFI
 
         private void menuDiscItem_Click(object sender, EventArgs e)
         {
+            mode = ViewMode.Disc;
             pushBackMenuStates();
             panel1.Controls.Clear();
             mv.Disable();
@@ -75,7 +96,7 @@ namespace LFI
             panel1.Controls.Add(dv);
             this.MaximumSize = horizontal;
             this.MinimumSize = horizontal;
-            
+
             dv.Focus();
         }
 
@@ -84,34 +105,45 @@ namespace LFI
             cancelItem.Enabled = false;
             saveItem.Enabled = false;
             titleEditItem.Enabled = false;
+            menuAddItem.Enabled = false;
 
             if (fv != null)
             {
                 fv.Cancel_MultiRun();
             }
-            if (mv.enabled && mv.infoPane.active)
+            if (mode == ViewMode.Main)
             {
                 titleEditItem.Enabled = true;
+                menuAddItem.Enabled = true;
             }
-            if (mv.enabled && mv.editPane.active)
+            if (mode == ViewMode.Edit)
             {
                 cancelItem.Enabled = true;
                 saveItem.Enabled = true;
             }
+
             if (titleEditItem.Checked == true)
             {
                 menuDiscItem.Enabled = false;
                 menuFolderItem.Enabled = false;
+                menuTitleItem.Enabled = false;
             }
             else
             {
                 menuDiscItem.Enabled = true;
                 menuFolderItem.Enabled = true;
+                menuTitleItem.Enabled = true;
+            }
+
+            if (mv.IsEmpty())
+            {
+                titleEditItem.Enabled = false;
             }
         }
 
         private void titleEditItem_Click(object sender, EventArgs e)
         {
+            mode = ViewMode.Edit;
             mv.load_editPane();
             titleEditItem.Checked = true;
             pushBackMenuStates();
@@ -123,12 +155,14 @@ namespace LFI
             {
                 titleEditItem.Checked = false;
                 mv.load_infoPane();
+                mode = ViewMode.Main;
             }
             pushBackMenuStates();
         }
 
         private void cancelItem_Click(object sender, EventArgs e)
         {
+            mode = ViewMode.Main;
             titleEditItem.Checked = false;
             mv.load_infoPane();
             pushBackMenuStates();
@@ -136,8 +170,10 @@ namespace LFI
 
         private void menuAddItem_Click(object sender, EventArgs e)
         {
-            //check view
-            //addnew
+            mode = ViewMode.Edit;
+            mv.load_blank_editPane();
+            titleEditItem.Checked = true;
+            pushBackMenuStates();
         }
 
         public void start_progBar() { progBar.Style = ProgressBarStyle.Marquee; }
@@ -148,6 +184,27 @@ namespace LFI
         {
             if (e.KeyCode == Keys.Escape && titleEditItem.Checked)
                 cancelItem_Click(null, null);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.location == new Point(0, 0))
+                return; // state has never been saved
+
+            StartPosition = FormStartPosition.Manual;
+            Location = Properties.Settings.Default.location;
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.location = Location;
+            Properties.Settings.Default.Save();
+        }
+
+        private void menuAlwaysTop_Click(object sender, EventArgs e)
+        {
+            TopMost = !TopMost;
+            menuAlwaysTop.Checked = !menuAlwaysTop.Checked;
         }
     }
     

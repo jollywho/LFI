@@ -54,32 +54,32 @@
             this.toolStripMenuItem1,
             this.deleteToolStripMenuItem});
             this.contextMenuDisc.Name = "contextMenuDisc";
-            this.contextMenuDisc.Size = new System.Drawing.Size(136, 76);
+            this.contextMenuDisc.Size = new System.Drawing.Size(110, 76);
             this.contextMenuDisc.Opened += new System.EventHandler(this.contextMenuDisc_Opened);
             // 
             // titleInfoToolStripMenuItem
             // 
             this.titleInfoToolStripMenuItem.Name = "titleInfoToolStripMenuItem";
-            this.titleInfoToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.titleInfoToolStripMenuItem.Text = "Title Info";
+            this.titleInfoToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.titleInfoToolStripMenuItem.Text = "Info";
             this.titleInfoToolStripMenuItem.Click += new System.EventHandler(this.titleInfoToolStripMenuItem_Click);
             // 
             // contextMenuItemDisc
             // 
             this.contextMenuItemDisc.Name = "contextMenuItemDisc";
-            this.contextMenuItemDisc.Size = new System.Drawing.Size(135, 22);
-            this.contextMenuItemDisc.Text = "Find Disc(s)";
+            this.contextMenuItemDisc.Size = new System.Drawing.Size(109, 22);
+            this.contextMenuItemDisc.Text = "Disc(s)";
             this.contextMenuItemDisc.Click += new System.EventHandler(this.contextMenuItemDisc_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(132, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(106, 6);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 

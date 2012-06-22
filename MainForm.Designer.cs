@@ -47,6 +47,8 @@
             this.menuFolderItem = new System.Windows.Forms.MenuItem();
             this.menuDiscItem = new System.Windows.Forms.MenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.menuItem6 = new System.Windows.Forms.MenuItem();
+            this.menuAlwaysTop = new System.Windows.Forms.MenuItem();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -142,6 +144,8 @@
             // 
             this.menuItem3.Index = 2;
             this.menuItem3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuAlwaysTop,
+            this.menuItem6,
             this.menuTitleItem,
             this.menuFolderItem,
             this.menuDiscItem});
@@ -149,21 +153,21 @@
             // 
             // menuTitleItem
             // 
-            this.menuTitleItem.Index = 0;
+            this.menuTitleItem.Index = 2;
             this.menuTitleItem.Shortcut = System.Windows.Forms.Shortcut.Ctrl1;
             this.menuTitleItem.Text = "Title";
             this.menuTitleItem.Click += new System.EventHandler(this.menuTitleItem_Click);
             // 
             // menuFolderItem
             // 
-            this.menuFolderItem.Index = 1;
+            this.menuFolderItem.Index = 3;
             this.menuFolderItem.Shortcut = System.Windows.Forms.Shortcut.Ctrl2;
             this.menuFolderItem.Text = "Folder";
             this.menuFolderItem.Click += new System.EventHandler(this.menuFolderItem_Click);
             // 
             // menuDiscItem
             // 
-            this.menuDiscItem.Index = 2;
+            this.menuDiscItem.Index = 4;
             this.menuDiscItem.Shortcut = System.Windows.Forms.Shortcut.Ctrl3;
             this.menuDiscItem.Text = "Disc";
             this.menuDiscItem.Click += new System.EventHandler(this.menuDiscItem_Click);
@@ -175,6 +179,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 620);
             this.panel1.TabIndex = 9;
+            // 
+            // menuItem6
+            // 
+            this.menuItem6.Index = 1;
+            this.menuItem6.Text = "-";
+            // 
+            // menuAlwaysTop
+            // 
+            this.menuAlwaysTop.Index = 0;
+            this.menuAlwaysTop.Text = "Always on Top";
+            this.menuAlwaysTop.Click += new System.EventHandler(this.menuAlwaysTop_Click);
             // 
             // MainForm
             // 
@@ -192,7 +207,9 @@
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(540, 700);
             this.Name = "MainForm";
-            this.Text = "LFI 0.3.8";
+            this.Text = "LFI 0.3.9";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -220,6 +237,8 @@
         private System.Windows.Forms.MenuItem menuTitleItem;
         private System.Windows.Forms.MenuItem menuFolderItem;
         private System.Windows.Forms.MenuItem menuDiscItem;
+        private System.Windows.Forms.MenuItem menuAlwaysTop;
+        private System.Windows.Forms.MenuItem menuItem6;
 
 
     }

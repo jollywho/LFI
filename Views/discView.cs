@@ -184,6 +184,7 @@ namespace LFI
                             gvContents.Rows[gvContents.SelectedCells[0].RowIndex].Cells[4].Value));
                     }
                     gvContents.Rows.Remove(gvContents.Rows[gvContents.SelectedCells[0].RowIndex]);
+                    loadPage();
                 }
             }
         }

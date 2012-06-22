@@ -144,6 +144,13 @@ namespace LFI.Properties {
             }
         }
         
+        internal static System.Drawing.Icon icon {
+            get {
+                object obj = ResourceManager.GetObject("icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static byte[] LFI {
             get {
                 object obj = ResourceManager.GetObject("LFI", resourceCulture);
