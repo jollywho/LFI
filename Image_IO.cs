@@ -80,8 +80,8 @@ namespace LFI
         {
             Image img = LFI.Properties.Resources.border;
             DataTable temp = DB_Handle.GetDataTable(string.Format(
-                @"SELECT * FROM contents WHERE content_id=(SELECT content_id
-                from disc_contents where disc_id='{0}' and location_id='{1}');",
+                @"SELECT * FROM contents JOIN disc_contents on contents.content_id =
+                disc_contents.content_id WHERE disc_id='{0}' and location_id='{1}';",
                 discid, locationid));
 
             if (temp.Rows.Count > 0)

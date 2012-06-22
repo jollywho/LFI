@@ -235,6 +235,8 @@
             // 
             // ddTitle
             // 
+            this.ddTitle.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ddTitle.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ddTitle.BackColor = System.Drawing.SystemColors.Control;
             this.ddTitle.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ddTitle.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

@@ -193,6 +193,8 @@ namespace LFI
 
             StartPosition = FormStartPosition.Manual;
             Location = Properties.Settings.Default.location;
+            this.MinimumSize = new Size(this.Width, this.Height);
+            this.MaximumSize = new Size(this.Width, this.Height);
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
