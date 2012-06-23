@@ -59,15 +59,17 @@ namespace LFI
             {
                 try
                 {
-                    Image img = Image.FromFile(dlg.FileName);
+                    FileStream fs = new FileStream(dlg.FileName, FileMode.Open);
+                    Image img = Image.FromStream(fs);
+                    fs.Close();
                     img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
-                    img.Save(string.Format("image\\{0}.jpg", ddTitle.Text), 
+                    img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserDataPath(), ddTitle.Text), 
                         System.Drawing.Imaging.ImageFormat.Jpeg);
-                    imgTitle.BackgroundImage = img;
+                    imgTitle.Image = img;
                 }
                 catch (Exception ex)
                 {
-                    toolTip.Show(ex.Message, txtEpisode);
+                    toolTip.Show(ex.Message, imgError);
                 }
             }
         }
@@ -97,17 +99,18 @@ namespace LFI
 
         private void setImage(string str)
         {
-            string path = Path.Combine(
-                Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
-                string.Format("image\\{0}.jpg", str));
+            string path = Folder_IO.GetUserDataPath() + string.Format("\\{0}.jpg", str);
 
             if (System.IO.File.Exists(path))
             {
-                imgTitle.ImageLocation = path;
+                FileStream fs = new FileStream(path, FileMode.Open); 
+                Image img = Image.FromStream(fs);
+                fs.Close();
+                imgTitle.Image = img;
             }
             else
             {
-                imgTitle.ImageLocation = null;
+                imgTitle.Image = null;
             }
         }
 
@@ -160,11 +163,52 @@ namespace LFI
         public void Clear_Fields()
         {
             ddTitle.Text = string.Empty;
+            imgTitle.Image = null;
             txtEpisode.Clear();
             txtYear.Clear();
             ddLanguage.Text = MainForm.Lmode;
             ddCategory.SelectedIndex = 0;
             ddStatus.SelectedIndex = 0;
+        }
+
+        private void editPane_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+        }
+
+        private void editPane_DragDrop(object sender, DragEventArgs e)
+        {
+            if (ddTitle.Text.Length < 1)
+            {
+                toolTip.Show("Title Required!", imgError);
+            }
+            else
+            {
+                try
+                {
+                    int x = this.PointToClient(new Point(e.X, e.Y)).X;
+
+                    int y = this.PointToClient(new Point(e.X, e.Y)).Y;
+
+                    if (x >= imgTitle.Location.X && x <= imgTitle.Location.X + imgTitle.Width
+                        && y >= imgTitle.Location.Y && y <= imgTitle.Location.Y + imgTitle.Height)
+                    {
+
+                        string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                        FileStream fs = new FileStream(files[0], FileMode.Open);
+                        Image img = Image.FromStream(fs);
+                        fs.Close();
+                        img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
+                        img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserDataPath(), ddTitle.Text),
+                            System.Drawing.Imaging.ImageFormat.Jpeg);
+                        imgTitle.Image = img;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    toolTip.Show(ex.Message, imgError);
+                }
+            }
         }
     }
 }

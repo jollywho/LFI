@@ -16,12 +16,15 @@ namespace LFI
         public static Image createMergedImage(List<string> titleStrs, Control btn)
         {
             List<Image> imgLst = new List<Image>();
+            string path = Folder_IO.GetUserDataPath();
             for (int i = 0; i <= titleStrs.Count - 1; i++)
             {
-                if (System.IO.File.Exists(string.Format("image\\{0}.jpg", titleStrs[i])))
+                if (System.IO.File.Exists(path + string.Format("\\{0}.jpg", titleStrs[i])))
                 {
-                    imgLst.Add(resize_Image(Image.FromFile(string.Format("image\\{0}.jpg",
-                        titleStrs[i])), btn.Width, btn.Height / titleStrs.Count));
+                    FileStream fs = new FileStream(path + string.Format("\\{0}.jpg", titleStrs[i]), FileMode.Open);
+                    Image img = Image.FromStream(fs);
+                    fs.Close();
+                    imgLst.Add(resize_Image(img, btn.Width, btn.Height / titleStrs.Count));
                 }
                 else
                     imgLst.Add(resize_Image(LFI.Properties.Resources.notavailable,
@@ -62,17 +65,18 @@ namespace LFI
 
         public static void setImage(string str, PictureBox bx)
         {
-            string path = Path.Combine(
-                Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
-                string.Format("image\\{0}.jpg", str));
+            string path = Folder_IO.GetUserDataPath() + string.Format("\\{0}.jpg", str);
 
             if (System.IO.File.Exists(path))
             {
-                bx.ImageLocation = path;
+                FileStream fs = new FileStream(path, FileMode.Open);
+                Image img = Image.FromStream(fs);
+                fs.Close();
+                bx.Image = img;
             }
             else
             {
-                bx.ImageLocation = null;
+                bx.Image = null;
             }
         }
 

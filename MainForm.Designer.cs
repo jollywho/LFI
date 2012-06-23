@@ -52,6 +52,8 @@
             this.menuItem9 = new System.Windows.Forms.MenuItem();
             this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.menuItem10 = new System.Windows.Forms.MenuItem();
+            this.dropItem = new System.Windows.Forms.MenuItem();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,16 +63,22 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusStripLabel,
             this.progBar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 629);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 627);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(534, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(534, 24);
+            this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // statusStripLabel
             // 
+            this.statusStripLabel.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.statusStripLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
+            this.statusStripLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.statusStripLabel.Name = "statusStripLabel";
-            this.statusStripLabel.Size = new System.Drawing.Size(27, 17);
+            this.statusStripLabel.Size = new System.Drawing.Size(31, 19);
             this.statusStripLabel.Text = "JPN";
             this.statusStripLabel.Click += new System.EventHandler(this.statusStripLabel_Click);
             // 
@@ -78,7 +86,7 @@
             // 
             this.progBar.MarqueeAnimationSpeed = 5;
             this.progBar.Name = "progBar";
-            this.progBar.Size = new System.Drawing.Size(100, 16);
+            this.progBar.Size = new System.Drawing.Size(100, 18);
             // 
             // mainMenu1
             // 
@@ -118,6 +126,8 @@
             // 
             this.menuItem2.Index = 1;
             this.menuItem2.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.dropItem,
+            this.menuItem10,
             this.saveItem,
             this.titleEditItem,
             this.cancelItem});
@@ -125,21 +135,21 @@
             // 
             // saveItem
             // 
-            this.saveItem.Index = 0;
+            this.saveItem.Index = 2;
             this.saveItem.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
             this.saveItem.Text = "Save";
             this.saveItem.Click += new System.EventHandler(this.saveItem_Click);
             // 
             // titleEditItem
             // 
-            this.titleEditItem.Index = 1;
+            this.titleEditItem.Index = 3;
             this.titleEditItem.Shortcut = System.Windows.Forms.Shortcut.CtrlE;
             this.titleEditItem.Text = "Details";
             this.titleEditItem.Click += new System.EventHandler(this.titleEditItem_Click);
             // 
             // cancelItem
             // 
-            this.cancelItem.Index = 2;
+            this.cancelItem.Index = 4;
             this.cancelItem.Shortcut = System.Windows.Forms.Shortcut.CtrlC;
             this.cancelItem.Text = "Cancel";
             this.cancelItem.Click += new System.EventHandler(this.cancelItem_Click);
@@ -209,21 +219,33 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(750, 630);
+            this.panel1.Size = new System.Drawing.Size(534, 627);
             this.panel1.TabIndex = 9;
+            // 
+            // menuItem10
+            // 
+            this.menuItem10.Index = 1;
+            this.menuItem10.Text = "-";
+            // 
+            // dropItem
+            // 
+            this.dropItem.Index = 0;
+            this.dropItem.Text = "Image Drop";
+            this.dropItem.Click += new System.EventHandler(this.dropItem_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = global::LFI.Properties.Resources.bannerOrig;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(534, 651);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -266,6 +288,8 @@
         private System.Windows.Forms.MenuItem menuItem7;
         private System.Windows.Forms.MenuItem menuItem9;
         private System.Windows.Forms.MenuItem menuItem8;
+        private System.Windows.Forms.MenuItem dropItem;
+        private System.Windows.Forms.MenuItem menuItem10;
 
 
     }

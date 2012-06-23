@@ -57,7 +57,7 @@
             this.panel1.Controls.Add(this.txtYear);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(15, 265);
+            this.panel1.Location = new System.Drawing.Point(15, 350);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(320, 200);
             this.panel1.TabIndex = 0;
@@ -189,9 +189,9 @@
             this.imgTitle.BackgroundImage = global::LFI.Properties.Resources.notfound;
             this.imgTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.imgTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.imgTitle.Location = new System.Drawing.Point(73, 17);
+            this.imgTitle.Location = new System.Drawing.Point(53, 0);
             this.imgTitle.Name = "imgTitle";
-            this.imgTitle.Size = new System.Drawing.Size(200, 200);
+            this.imgTitle.Size = new System.Drawing.Size(245, 345);
             this.imgTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgTitle.TabIndex = 28;
             this.imgTitle.TabStop = false;
@@ -203,8 +203,11 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.imgTitle);
+            this.DoubleBuffered = true;
             this.Name = "infoPane";
-            this.Size = new System.Drawing.Size(350, 482);
+            this.Size = new System.Drawing.Size(350, 550);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.infoPane_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.infoPane_DragEnter);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).EndInit();

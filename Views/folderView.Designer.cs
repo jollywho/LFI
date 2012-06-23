@@ -381,6 +381,7 @@
             this.Controls.Add(this.gvFiles);
             this.Controls.Add(this.ddUrl);
             this.Controls.Add(this.label1);
+            this.DoubleBuffered = true;
             this.Name = "folderView";
             this.Size = new System.Drawing.Size(533, 630);
             ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).EndInit();

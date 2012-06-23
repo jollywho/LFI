@@ -41,6 +41,8 @@ namespace LFI
 
         private void statusStripLabel_Click(object sender, EventArgs e)
         {
+            if (mode == ViewMode.Edit)
+                return;
             if (Lmode == "JPN")
                 Lmode = "ENG";
             else
@@ -53,6 +55,10 @@ namespace LFI
                 cancelItem.Enabled = false;
                 saveItem.Enabled = false;
                 titleEditItem.Enabled = false;
+            }
+            else
+            {
+                titleEditItem.Enabled = true;
             }
         }
 
@@ -193,8 +199,7 @@ namespace LFI
 
             StartPosition = FormStartPosition.Manual;
             Location = Properties.Settings.Default.location;
-            this.MinimumSize = new Size(this.Width, this.Height);
-            this.MaximumSize = new Size(this.Width, this.Height);
+            Folder_IO.GetUserDataPath();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -213,6 +218,12 @@ namespace LFI
         {
             AboutForm abt = new AboutForm();
             abt.ShowDialog();
+        }
+
+        private void dropItem_Click(object sender, EventArgs e)
+        {
+            dropItem.Checked = !dropItem.Checked;
+            mv.infoPane.AllowDrop = !mv.infoPane.AllowDrop;
         }
     }
     

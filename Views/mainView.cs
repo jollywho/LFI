@@ -127,8 +127,8 @@ namespace LFI
 
         private void gvTitles_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-                contextMenuItemDisc_Click(sender, e);
+            if (e.KeyCode == Keys.Delete)
+                deleteToolStripMenuItem_Click(null, null);
         }
 
         private void titleInfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -156,7 +156,7 @@ namespace LFI
                 Enable();
                 if (gvTitles.Rows.Count > 0)
                     gvTitles.FirstDisplayedScrollingRowIndex = scrollpos;
-                gvTitles_RowEnter(null, null);
+                //gvTitles_RowEnter(null, null);
             }
             catch (Exception ex)
             {

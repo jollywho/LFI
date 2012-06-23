@@ -162,6 +162,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.gvDisc);
+            this.DoubleBuffered = true;
             this.Name = "contentsPane";
             this.Size = new System.Drawing.Size(340, 433);
             ((System.ComponentModel.ISupportInitialize)(this.gvDisc)).EndInit();

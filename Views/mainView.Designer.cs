@@ -90,14 +90,14 @@
             this.lblTitle.Location = new System.Drawing.Point(184, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(340, 56);
-            this.lblTitle.TabIndex = 20;
+            this.lblTitle.TabIndex = 1;
             // 
             // panelMain
             // 
             this.panelMain.Location = new System.Drawing.Point(186, 59);
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(350, 571);
-            this.panelMain.TabIndex = 21;
+            this.panelMain.TabIndex = 2;
             // 
             // panel1
             // 
@@ -148,9 +148,10 @@
             this.gvTitles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvTitles.Size = new System.Drawing.Size(180, 571);
             this.gvTitles.StandardTab = true;
-            this.gvTitles.TabIndex = 3;
+            this.gvTitles.TabIndex = 1;
             this.gvTitles.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvTitles_CellMouseEnter);
             this.gvTitles.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvTitles_RowEnter);
+            this.gvTitles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gvTitles_KeyDown);
             // 
             // txtSearch
             // 
@@ -160,7 +161,7 @@
             this.txtSearch.Location = new System.Drawing.Point(5, 18);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(169, 20);
-            this.txtSearch.TabIndex = 1;
+            this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // mainView
@@ -171,6 +172,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.panelMain);
+            this.DoubleBuffered = true;
             this.Name = "mainView";
             this.Size = new System.Drawing.Size(534, 630);
             this.contextMenuDisc.ResumeLayout(false);
