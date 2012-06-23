@@ -9,7 +9,7 @@ namespace LFI
 {
     class DB_Handle
     {
-        static string conn = @"Data Source=|DataDirectory|lfi.db";
+        static string conn = @"Data Source=" + Folder_IO.GetUserDataPath();
         static SQLiteConnection manual_cnn;
 
         public static DataTable GetDataTable(string sql)

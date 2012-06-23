@@ -37,10 +37,10 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.panelMain = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gvTitles = new System.Windows.Forms.DataGridView();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.panelMain = new LFI.BPanel();
             this.contextMenuDisc.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTitles)).BeginInit();
@@ -91,13 +91,6 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(340, 56);
             this.lblTitle.TabIndex = 1;
-            // 
-            // panelMain
-            // 
-            this.panelMain.Location = new System.Drawing.Point(186, 59);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(350, 571);
-            this.panelMain.TabIndex = 2;
             // 
             // panel1
             // 
@@ -164,14 +157,22 @@
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
+            // panelMain
+            // 
+            this.panelMain.BackColor = System.Drawing.Color.Transparent;
+            this.panelMain.Location = new System.Drawing.Point(186, 60);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(348, 570);
+            this.panelMain.TabIndex = 2;
+            // 
             // mainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.panelMain);
             this.DoubleBuffered = true;
             this.Name = "mainView";
             this.Size = new System.Drawing.Size(534, 630);
@@ -188,12 +189,12 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuDisc;
         private System.Windows.Forms.ToolStripMenuItem contextMenuItemDisc;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.ToolStripMenuItem titleInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DataGridView gvTitles;
+        private BPanel panelMain;
     }
 }

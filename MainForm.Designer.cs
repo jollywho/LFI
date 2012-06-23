@@ -39,6 +39,8 @@
             this.menuItem4 = new System.Windows.Forms.MenuItem();
             this.menuItem5 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.dropItem = new System.Windows.Forms.MenuItem();
+            this.menuItem10 = new System.Windows.Forms.MenuItem();
             this.saveItem = new System.Windows.Forms.MenuItem();
             this.titleEditItem = new System.Windows.Forms.MenuItem();
             this.cancelItem = new System.Windows.Forms.MenuItem();
@@ -51,9 +53,7 @@
             this.menuItem7 = new System.Windows.Forms.MenuItem();
             this.menuItem9 = new System.Windows.Forms.MenuItem();
             this.menuItem8 = new System.Windows.Forms.MenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.menuItem10 = new System.Windows.Forms.MenuItem();
-            this.dropItem = new System.Windows.Forms.MenuItem();
+            this.bPanel = new LFI.BPanel();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,6 +132,17 @@
             this.titleEditItem,
             this.cancelItem});
             this.menuItem2.Text = "Edit";
+            // 
+            // dropItem
+            // 
+            this.dropItem.Index = 0;
+            this.dropItem.Text = "Image Drop";
+            this.dropItem.Click += new System.EventHandler(this.dropItem_Click);
+            // 
+            // menuItem10
+            // 
+            this.menuItem10.Index = 1;
+            this.menuItem10.Text = "-";
             // 
             // saveItem
             // 
@@ -216,25 +227,14 @@
             this.menuItem8.Text = "About";
             this.menuItem8.Click += new System.EventHandler(this.menuItem8_Click);
             // 
-            // panel1
+            // bPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(534, 627);
-            this.panel1.TabIndex = 9;
-            // 
-            // menuItem10
-            // 
-            this.menuItem10.Index = 1;
-            this.menuItem10.Text = "-";
-            // 
-            // dropItem
-            // 
-            this.dropItem.Index = 0;
-            this.dropItem.Text = "Image Drop";
-            this.dropItem.Click += new System.EventHandler(this.dropItem_Click);
+            this.bPanel.BackColor = System.Drawing.Color.Transparent;
+            this.bPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bPanel.Location = new System.Drawing.Point(0, 0);
+            this.bPanel.Name = "bPanel";
+            this.bPanel.Size = new System.Drawing.Size(534, 627);
+            this.bPanel.TabIndex = 9;
             // 
             // MainForm
             // 
@@ -243,7 +243,7 @@
             this.BackgroundImage = global::LFI.Properties.Resources.bannerOrig;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(534, 651);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.bPanel);
             this.Controls.Add(this.statusStrip1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -278,7 +278,6 @@
         private System.Windows.Forms.MenuItem saveItem;
         private System.Windows.Forms.MenuItem cancelItem;
         private System.Windows.Forms.ToolStripProgressBar progBar;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.MenuItem menuItem3;
         private System.Windows.Forms.MenuItem menuTitleItem;
         private System.Windows.Forms.MenuItem menuFolderItem;
@@ -290,6 +289,7 @@
         private System.Windows.Forms.MenuItem menuItem8;
         private System.Windows.Forms.MenuItem dropItem;
         private System.Windows.Forms.MenuItem menuItem10;
+        private BPanel bPanel;
 
 
     }

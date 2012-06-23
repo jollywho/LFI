@@ -158,13 +158,6 @@ namespace LFI.Properties {
             }
         }
         
-        internal static byte[] LFI {
-            get {
-                object obj = ResourceManager.GetObject("LFI", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap notavailable {
             get {
                 object obj = ResourceManager.GetObject("notavailable", resourceCulture);

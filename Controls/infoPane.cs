@@ -51,7 +51,7 @@ namespace LFI
         //todo: strip illegal chars OR prevent from the start
         private void setImage(string str)
         {
-            string path = Folder_IO.GetUserDataPath() + string.Format("\\{0}.jpg", str);
+            string path = Folder_IO.GetUserImagePath() + string.Format("\\{0}.jpg", str);
 
             if (System.IO.File.Exists(path))
             {
@@ -94,7 +94,7 @@ namespace LFI
                         Image img = Image.FromStream(fs);
                         fs.Close();
                         img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
-                        img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserDataPath(), txtTitle.Text),
+                        img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), txtTitle.Text),
                             System.Drawing.Imaging.ImageFormat.Jpeg);
                         imgTitle.Image = img;
                     }
@@ -104,6 +104,7 @@ namespace LFI
                     MessageBox.Show(ex.Message);
                 }
             }
+            ParentForm.Activate();
         }
     }
 }

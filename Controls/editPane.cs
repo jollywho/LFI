@@ -63,7 +63,7 @@ namespace LFI
                     Image img = Image.FromStream(fs);
                     fs.Close();
                     img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
-                    img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserDataPath(), ddTitle.Text), 
+                    img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), ddTitle.Text), 
                         System.Drawing.Imaging.ImageFormat.Jpeg);
                     imgTitle.Image = img;
                 }
@@ -99,7 +99,7 @@ namespace LFI
 
         private void setImage(string str)
         {
-            string path = Folder_IO.GetUserDataPath() + string.Format("\\{0}.jpg", str);
+            string path = Folder_IO.GetUserImagePath() + string.Format("\\{0}.jpg", str);
 
             if (System.IO.File.Exists(path))
             {
@@ -121,6 +121,8 @@ namespace LFI
             {
                 if (ddTitle.Text.Length == 0)
                     Error_Handle.TipError("Title required\n", toolTip, ddTitle);
+                else if (ddTitle.Text.IndexOfAny(invalid_chars) > 0)
+                    Error_Handle.TipError("Invalid chars\n", toolTip, ddTitle);
                 else if (ddTitle.FindStringExact(ddTitle.Text) != ddTitle.SelectedIndex)
                     Error_Handle.TipError("Title already exists\n", toolTip, ddTitle);
                 else if (ddCategory.Text.Length == 0)
@@ -199,7 +201,7 @@ namespace LFI
                         Image img = Image.FromStream(fs);
                         fs.Close();
                         img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
-                        img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserDataPath(), ddTitle.Text),
+                        img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), ddTitle.Text),
                             System.Drawing.Imaging.ImageFormat.Jpeg);
                         imgTitle.Image = img;
                     }
@@ -209,6 +211,7 @@ namespace LFI
                     toolTip.Show(ex.Message, imgError);
                 }
             }
+            ParentForm.Activate();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace LFI
         public static Image createMergedImage(List<string> titleStrs, Control btn)
         {
             List<Image> imgLst = new List<Image>();
-            string path = Folder_IO.GetUserDataPath();
+            string path = Folder_IO.GetUserImagePath();
             for (int i = 0; i <= titleStrs.Count - 1; i++)
             {
                 if (System.IO.File.Exists(path + string.Format("\\{0}.jpg", titleStrs[i])))
@@ -65,7 +65,7 @@ namespace LFI
 
         public static void setImage(string str, PictureBox bx)
         {
-            string path = Folder_IO.GetUserDataPath() + string.Format("\\{0}.jpg", str);
+            string path = Folder_IO.GetUserImagePath() + string.Format("\\{0}.jpg", str);
 
             if (System.IO.File.Exists(path))
             {

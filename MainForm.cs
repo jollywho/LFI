@@ -34,7 +34,7 @@ namespace LFI
             AppDomain.CurrentDomain.SetData("DataDirectory", @"data");
             AppDomain.CurrentDomain.SetData("Image", @"../../image");
             mv = new mainView();
-            panel1.Controls.Add(mv);
+            bPanel.Controls.Add(mv);
             mv.Enable();
             pushBackMenuStates();
         }
@@ -65,8 +65,8 @@ namespace LFI
         public void pushback_formView()
         {
             pushBackMenuStates();
-            panel1.Controls.Clear();
-            panel1.Controls.Add(mv);
+            bPanel.Controls.Clear();
+            bPanel.Controls.Add(mv);
             this.MaximumSize = vertical;
             this.MinimumSize = vertical;
             mv.Enable();
@@ -82,10 +82,10 @@ namespace LFI
         {
             mode = ViewMode.Folder;
             pushBackMenuStates();
-            panel1.Controls.Clear();
+            bPanel.Controls.Clear();
             mv.Disable();
             fv = new folderView(this);
-            panel1.Controls.Add(fv);
+            bPanel.Controls.Add(fv);
             this.MaximumSize = vertical;
             this.MinimumSize = vertical;
             
@@ -96,10 +96,10 @@ namespace LFI
         {
             mode = ViewMode.Disc;
             pushBackMenuStates();
-            panel1.Controls.Clear();
+            bPanel.Controls.Clear();
             mv.Disable();
             discView dv = new discView();
-            panel1.Controls.Add(dv);
+            bPanel.Controls.Add(dv);
             this.MaximumSize = horizontal;
             this.MinimumSize = horizontal;
 
@@ -199,7 +199,7 @@ namespace LFI
 
             StartPosition = FormStartPosition.Manual;
             Location = Properties.Settings.Default.location;
-            Folder_IO.GetUserDataPath();
+            Folder_IO.GetUserImagePath();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

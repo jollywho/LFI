@@ -37,7 +37,6 @@
             this.btn7 = new System.Windows.Forms.Button();
             this.btn6 = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
             this.imgTitle = new System.Windows.Forms.PictureBox();
             this.copyLabel = new System.Windows.Forms.Label();
             this.txtSlot = new System.Windows.Forms.MaskedTextBox();
@@ -77,10 +76,11 @@
             this.btn4 = new System.Windows.Forms.Button();
             this.txtJump = new System.Windows.Forms.TextBox();
             this.buttonMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.panel1.SuspendLayout();
+            this.panel1 = new LFI.BPanel();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvContents)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // scrlPage
@@ -165,36 +165,13 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 100;
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.panel1.BackgroundImage = global::LFI.Properties.Resources.borderBigg;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.imgTitle);
-            this.panel1.Controls.Add(this.copyLabel);
-            this.panel1.Controls.Add(this.txtSlot);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.txtDisc);
-            this.panel1.Controls.Add(this.btnGenerate);
-            this.panel1.Controls.Add(this.groupBox6);
-            this.panel1.Controls.Add(this.ddLocation);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.txtPage);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Enabled = false;
-            this.panel1.Location = new System.Drawing.Point(-10, 374);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(759, 256);
-            this.panel1.TabIndex = 1;
-            // 
             // imgTitle
             // 
             this.imgTitle.BackColor = System.Drawing.Color.Transparent;
             this.imgTitle.BackgroundImage = global::LFI.Properties.Resources.notavailable;
             this.imgTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.imgTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.imgTitle.Location = new System.Drawing.Point(539, 24);
+            this.imgTitle.Location = new System.Drawing.Point(540, 33);
             this.imgTitle.Name = "imgTitle";
             this.imgTitle.Size = new System.Drawing.Size(200, 217);
             this.imgTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -206,7 +183,7 @@
             this.copyLabel.AutoSize = true;
             this.copyLabel.Font = new System.Drawing.Font("Palatino Linotype", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.copyLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.copyLabel.Location = new System.Drawing.Point(342, 5);
+            this.copyLabel.Location = new System.Drawing.Point(343, 14);
             this.copyLabel.Name = "copyLabel";
             this.copyLabel.Size = new System.Drawing.Size(0, 22);
             this.copyLabel.TabIndex = 7;
@@ -217,7 +194,7 @@
             this.txtSlot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSlot.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSlot.ForeColor = System.Drawing.Color.Black;
-            this.txtSlot.Location = new System.Drawing.Point(284, 26);
+            this.txtSlot.Location = new System.Drawing.Point(285, 35);
             this.txtSlot.Mask = "000";
             this.txtSlot.Name = "txtSlot";
             this.txtSlot.ReadOnly = true;
@@ -232,7 +209,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label1.Location = new System.Drawing.Point(293, 9);
+            this.label1.Location = new System.Drawing.Point(294, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 16);
             this.label1.TabIndex = 5;
@@ -244,7 +221,7 @@
             this.txtDisc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDisc.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDisc.ForeColor = System.Drawing.Color.Black;
-            this.txtDisc.Location = new System.Drawing.Point(21, 26);
+            this.txtDisc.Location = new System.Drawing.Point(22, 35);
             this.txtDisc.Mask = "000";
             this.txtDisc.Name = "txtDisc";
             this.txtDisc.ReadOnly = true;
@@ -256,7 +233,7 @@
             // 
             this.btnGenerate.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate.ForeColor = System.Drawing.Color.Black;
-            this.btnGenerate.Location = new System.Drawing.Point(124, 26);
+            this.btnGenerate.Location = new System.Drawing.Point(125, 35);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(75, 23);
             this.btnGenerate.TabIndex = 2;
@@ -284,7 +261,7 @@
             this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.groupBox6.Location = new System.Drawing.Point(18, 58);
+            this.groupBox6.Location = new System.Drawing.Point(19, 67);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(510, 183);
             this.groupBox6.TabIndex = 10;
@@ -536,7 +513,7 @@
             this.ddLocation.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddLocation.ForeColor = System.Drawing.Color.Black;
             this.ddLocation.FormattingEnabled = true;
-            this.ddLocation.Location = new System.Drawing.Point(392, 24);
+            this.ddLocation.Location = new System.Drawing.Point(393, 33);
             this.ddLocation.Name = "ddLocation";
             this.ddLocation.Size = new System.Drawing.Size(136, 24);
             this.ddLocation.TabIndex = 9;
@@ -549,7 +526,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label7.Location = new System.Drawing.Point(435, 5);
+            this.label7.Location = new System.Drawing.Point(436, 14);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(51, 16);
             this.label7.TabIndex = 8;
@@ -561,7 +538,7 @@
             this.txtPage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPage.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPage.ForeColor = System.Drawing.Color.Black;
-            this.txtPage.Location = new System.Drawing.Point(215, 26);
+            this.txtPage.Location = new System.Drawing.Point(216, 35);
             this.txtPage.Mask = "000";
             this.txtPage.Name = "txtPage";
             this.txtPage.ReadOnly = true;
@@ -576,7 +553,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label8.Location = new System.Drawing.Point(224, 7);
+            this.label8.Location = new System.Drawing.Point(225, 16);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(34, 16);
             this.label8.TabIndex = 3;
@@ -588,7 +565,7 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label11.Location = new System.Drawing.Point(42, 9);
+            this.label11.Location = new System.Drawing.Point(43, 18);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(46, 16);
             this.label11.TabIndex = 0;
@@ -699,11 +676,35 @@
             this.buttonMenu.Name = "buttonMenu";
             this.buttonMenu.Size = new System.Drawing.Size(61, 4);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.BackgroundImage = global::LFI.Properties.Resources.borderBigg;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.imgTitle);
+            this.panel1.Controls.Add(this.ddLocation);
+            this.panel1.Controls.Add(this.copyLabel);
+            this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.txtSlot);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.txtPage);
+            this.panel1.Controls.Add(this.txtDisc);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.btnGenerate);
+            this.panel1.Controls.Add(this.groupBox6);
+            this.panel1.Enabled = false;
+            this.panel1.Location = new System.Drawing.Point(-10, 374);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(759, 256);
+            this.panel1.TabIndex = 100;
+            // 
             // discView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblPageRight);
             this.Controls.Add(this.lblPageLeft);
             this.Controls.Add(this.btn8);
@@ -716,16 +717,15 @@
             this.Controls.Add(this.btn3);
             this.Controls.Add(this.btn2);
             this.Controls.Add(this.scrlPage);
-            this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.Name = "discView";
             this.Size = new System.Drawing.Size(738, 630);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvContents)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -738,7 +738,6 @@
         private System.Windows.Forms.Button btn5;
         private System.Windows.Forms.Button btn7;
         private System.Windows.Forms.Button btn6;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox imgTitle;
         private System.Windows.Forms.Label copyLabel;
         private System.Windows.Forms.MaskedTextBox txtSlot;
@@ -779,5 +778,6 @@
         private System.Windows.Forms.Button btn4;
         private System.Windows.Forms.TextBox txtJump;
         private System.Windows.Forms.ContextMenuStrip buttonMenu;
+        private BPanel panel1;
     }
 }

@@ -30,12 +30,22 @@ namespace LFI
             folderSize = DirSize(filenames);
         }
 
-        static public string GetUserDataPath()
+        static public string GetUserImagePath()
         {
             string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             dir = System.IO.Path.Combine(dir, "LFI\\Images");
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
+            return dir;
+        }
+
+        static public string GetUserDataPath()
+        {
+            string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            dir = System.IO.Path.Combine(dir, "LFI\\Data");
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+            dir += "\\lfi.db";
             return dir;
         }
 
