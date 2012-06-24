@@ -31,8 +31,6 @@ namespace LFI
             Lmode = "JPN";
             DoubleBuffered = true;
             InitializeComponent();
-            AppDomain.CurrentDomain.SetData("DataDirectory", @"data");
-            AppDomain.CurrentDomain.SetData("Image", @"../../image");
             mv = new mainView();
             bPanel.Controls.Add(mv);
             mv.Enable();

@@ -9,7 +9,8 @@ namespace LFI
 {
     class DB_Handle
     {
-        static string conn = @"Data Source=" + Folder_IO.GetUserDataPath();
+        static string conn = @"PRAGMA foreign_keys = ON;
+            Data Source=" + Folder_IO.GetUserDataPath();
         static SQLiteConnection manual_cnn;
 
         public static DataTable GetDataTable(string sql)

@@ -48,6 +48,31 @@ namespace LFI
             }
         }
 
+        public static void rename_Image(string str, string newstr)
+        {
+            if (str == newstr)
+                return;
+            string path = Folder_IO.GetUserImagePath();
+            string file = string.Format("\\{0}.jpg", str);
+            string newfile = string.Format("\\{0}.jpg", newstr);
+
+            if (System.IO.File.Exists(path + file))
+            {
+                File.Move(path + file, path + newfile);
+            }
+        }
+
+        public static void delete_Image(string str)
+        {
+            string path = Folder_IO.GetUserImagePath();
+            string file = string.Format("\\{0}.jpg", str);
+
+            if (System.IO.File.Exists(path + file))
+            {
+                File.Delete(path + file);
+            }
+        }
+
         public static Image merge_Images(List<Image> imgLst, int newWidth, int newHeight, int items)
         {
             Image newImage = new Bitmap(newWidth, newHeight);

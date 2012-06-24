@@ -13,8 +13,10 @@ namespace LFI
 {
     public partial class editPane : UserControl
     {
-        char[] invalid_chars = { '\\',';','@',',','.','#','$','^','*','~','`',':','"' };
+        char[] invalid_chars = { '\\',';','@',',','#','$','^','*','~','`',':','"' };
         public bool active = false;
+        private string currentTitle = string.Empty;
+        private bool isnewrecord = false;
         public editPane()
         {
             InitializeComponent();
@@ -74,15 +76,22 @@ namespace LFI
             }
         }
 
-        public void load_data(DataTable sel)
+        private void populateDropDownTitles()
         {
             DataTable titles = DB_Handle.GetDataTable(string.Format(
                 @"Select title_id from titles order by title_id"));
-                ddTitle.DataSource = titles;
-                ddTitle.DisplayMember = "title_id";
+            ddTitle.DataSource = titles;
+            ddTitle.DisplayMember = "title_id";
+        }
+
+        public void load_data(DataTable sel)
+        {
+            populateDropDownTitles();
             try
             {
+                isnewrecord = false;
                 ddTitle.Text = sel.Rows[0][0].ToString();
+                currentTitle = ddTitle.Text;
                 txtEpisode.Text = sel.Rows[0][1].ToString();
                 ddCategory.Text = sel.Rows[0][2].ToString();
                 txtYear.Text = sel.Rows[0][3].ToString();
@@ -137,14 +146,32 @@ namespace LFI
                     Error_Handle.TipError("Episode required\n", toolTip, txtEpisode);
                 else
                 {
-                    DB_Handle.UpdateTable(string.Format(
-                        @"INSERT OR REPLACE INTO TITLES
-                        (title_id, episodes, category, year, status, language)
-                        VALUES ({0},'{1}','{2}','{3}','{4}','{5}');",
-                        "\"" + ddTitle.Text + "\"", txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
-                        txtYear.Text, ddStatus.Text, ddLanguage.Text));
+                    if (isnewrecord)
+                    {
+                        DB_Handle.UpdateTable(string.Format(
+                            @"INSERT INTO TITLES VALUES ({0},'{1}','{2}','{3}','{4}','{5}');",
+                            "\"" + ddTitle.Text + "\"", txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
+                            txtYear.Text, ddStatus.Text, ddLanguage.Text, currentTitle));
+                    }
+                    else
+                    {
+                        DB_Handle.UpdateTable(string.Format(
+                            @"UPDATE TITLES SET
+                            title_id={0}, 
+                            episodes='{1}', 
+                            category='{2}', 
+                            year='{3}', 
+                            status='{4}', 
+                            language='{5}'
+                            WHERE title_id='{6}';",
+                            "\"" + ddTitle.Text + "\"", txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
+                            txtYear.Text, ddStatus.Text, ddLanguage.Text, currentTitle));
+                    }
+                    Image_IO.rename_Image(currentTitle, ddTitle.Text);
+
                     MessageBox.Show("Saved", "Success");
                     status = true;
+                    populateDropDownTitles();
                 }
             }
             catch (Exception ex)
@@ -164,6 +191,8 @@ namespace LFI
 
         public void Clear_Fields()
         {
+            populateDropDownTitles();
+            isnewrecord = true;
             ddTitle.Text = string.Empty;
             imgTitle.Image = null;
             txtEpisode.Clear();

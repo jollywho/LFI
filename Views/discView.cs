@@ -80,6 +80,7 @@ namespace LFI
                 pg = Convert.ToInt32(txtJump.Text) - 1;
             lblPageLeft.Text = pg.ToString();
             lblPageRight.Text = (pg + 1).ToString();
+            Console.WriteLine(pg);
             return pg;
         }
 
@@ -339,6 +340,11 @@ namespace LFI
         public void setImagebox(Image img)
         {
             imgTitle.BackgroundImage = img;
+        }
+
+        public Control getImagebox()
+        {
+            return imgTitle;
         }
 
         public void setData(object disc, object page, object slot)

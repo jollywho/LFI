@@ -46,7 +46,6 @@ namespace LFI
 
         public void Enable()
         {
-            
             enabled = true;
             this.Show();
             txtSearch_TextChanged(null, null);
@@ -156,7 +155,6 @@ namespace LFI
                 Enable();
                 if (gvTitles.Rows.Count > 0)
                     gvTitles.FirstDisplayedScrollingRowIndex = scrollpos;
-                //gvTitles_RowEnter(null, null);
             }
             catch (Exception ex)
             {
@@ -195,11 +193,14 @@ namespace LFI
                 DB_Handle.UpdateTable(string.Format(
                     @"DELETE FROM TITLES WHERE title_id={0}",
                     "\"" + gvTitles.SelectedCells[0].Value.ToString() + "\""));
-                load_infoPane();
+                Image_IO.delete_Image(gvTitles.SelectedCells[0].Value.ToString());
+                savedRow = row--;
                 if (gvTitles.Rows.Count > 0)
                     gvTitles[0, row].Selected = true;
                 if (txtSearch.Text.Length != 0)
                     txtSearch_TextChanged(null, null);
+                load_infoPane();
+                
                 gvTitles.Focus();
             }
         }

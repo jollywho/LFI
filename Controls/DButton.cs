@@ -136,7 +136,7 @@ namespace LFI
                 Caller.setData(string.Empty, Page, Slot);
             }
 
-            Caller.setImagebox(Image_IO.generateDiscImage(Disc, Location_ID, this));
+            Caller.setImagebox(Image_IO.generateDiscImage(Disc, Location_ID, Caller.getImagebox()));
         }
 
     }

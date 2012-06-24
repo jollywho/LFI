@@ -161,7 +161,6 @@
             // cancelItem
             // 
             this.cancelItem.Index = 4;
-            this.cancelItem.Shortcut = System.Windows.Forms.Shortcut.CtrlC;
             this.cancelItem.Text = "Cancel";
             this.cancelItem.Click += new System.EventHandler(this.cancelItem_Click);
             // 
