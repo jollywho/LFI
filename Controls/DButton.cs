@@ -24,7 +24,7 @@ namespace LFI
         {
             InitializeComponent();
             Slot = slot;
-            BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             FlatAppearance.BorderSize = 0;
             FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;

@@ -194,9 +194,14 @@ namespace LFI
                     @"DELETE FROM TITLES WHERE title_id={0}",
                     "\"" + gvTitles.SelectedCells[0].Value.ToString() + "\""));
                 Image_IO.delete_Image(gvTitles.SelectedCells[0].Value.ToString());
-                savedRow = row--;
-                if (gvTitles.Rows.Count > 0)
+
+                if (gvTitles.Rows.Count > 0 && row > 0)
+                {
+                    savedRow = row - 1;
                     gvTitles[0, row].Selected = true;
+                }
+                else
+                    savedRow = 0;
                 if (txtSearch.Text.Length != 0)
                     txtSearch_TextChanged(null, null);
                 load_infoPane();

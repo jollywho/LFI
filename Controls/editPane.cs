@@ -163,9 +163,9 @@ namespace LFI
                             year='{3}', 
                             status='{4}', 
                             language='{5}'
-                            WHERE title_id='{6}';",
+                            WHERE title_id={6};",
                             "\"" + ddTitle.Text + "\"", txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
-                            txtYear.Text, ddStatus.Text, ddLanguage.Text, currentTitle));
+                            txtYear.Text, ddStatus.Text, ddLanguage.Text, "\"" + currentTitle + "\""));
                     }
                     Image_IO.rename_Image(currentTitle, ddTitle.Text);
 

@@ -22,6 +22,8 @@ namespace LFI
         public static string Lmode;
         public Size vertical = new Size(540, 700);
         public Size horizontal = new Size(745, 700);
+        private int SnapDist = 20;
+        private int BorderWidth = 0;
         mainView mv;
         folderView fv;
         public ViewMode mode;
@@ -192,6 +194,8 @@ namespace LFI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            BorderWidth = SystemInformation.FrameBorderSize.Width - 1;
+
             if (Properties.Settings.Default.location == new Point(0, 0))
                 return; // state has never been saved
 
@@ -222,6 +226,21 @@ namespace LFI
         {
             dropItem.Checked = !dropItem.Checked;
             mv.infoPane.AllowDrop = !mv.infoPane.AllowDrop;
+        }
+
+        private bool DoSnap(int pos, int edge)
+        {
+            int delta = pos - edge;
+            return delta > 0 && delta <= SnapDist;
+        }
+
+        private void MainForm_Move(object sender, EventArgs e)
+        {
+            Screen scn = Screen.FromPoint(this.Location);
+            if (DoSnap(this.Left + BorderWidth, scn.WorkingArea.Left)) this.Left = scn.WorkingArea.Left + BorderWidth;
+            if (DoSnap(this.Top + BorderWidth, scn.WorkingArea.Top)) this.Top = scn.WorkingArea.Top + BorderWidth;
+            if (DoSnap(scn.WorkingArea.Right, this.Right - BorderWidth)) this.Left = scn.WorkingArea.Right - this.Width - BorderWidth;
+            if (DoSnap(scn.WorkingArea.Bottom, this.Bottom - BorderWidth)) this.Top = scn.WorkingArea.Bottom - this.Height - BorderWidth;
         }
     }
     

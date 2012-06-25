@@ -29,6 +29,7 @@ namespace LFI
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
+            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_Completed);
 
             for (int i = 0, slot = 1; i <= (PAGES_PER_VIEW * DISCS_PER_PAGE) - 1; i++, slot++)
             {
@@ -80,7 +81,6 @@ namespace LFI
                 pg = Convert.ToInt32(txtJump.Text) - 1;
             lblPageLeft.Text = pg.ToString();
             lblPageRight.Text = (pg + 1).ToString();
-            Console.WriteLine(pg);
             return pg;
         }
 
@@ -107,6 +107,11 @@ namespace LFI
 
             if (!worker.IsBusy)
                 worker.RunWorkerAsync();
+            else
+            {
+                worker.CancelAsync();
+               // worker.RunWorkerAsync();
+            }
         }
 
         private void hidePage(int start, bool vis, int all=1)
@@ -128,12 +133,21 @@ namespace LFI
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-
             for (int i = 0; i <= PAGES_PER_VIEW * DISCS_PER_PAGE - 1; i++)
             {
+                if (worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                }
                 dbuttons[i].BackgroundImage = Image_IO.generateDiscImage(
                     dbuttons[i].Disc, DButton.Location_ID,  dbuttons[i]);
             }
+        }
+
+        private void worker_Completed(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+                worker.RunWorkerAsync();
         }
 
         private void numericTextbox_keydown(object sender, KeyEventArgs e)
