@@ -287,9 +287,9 @@
         private System.Windows.Forms.MenuItem menuItem7;
         private System.Windows.Forms.MenuItem menuItem9;
         private System.Windows.Forms.MenuItem menuItem8;
-        private System.Windows.Forms.MenuItem dropItem;
         private System.Windows.Forms.MenuItem menuItem10;
         private BPanel bPanel;
+        private System.Windows.Forms.MenuItem dropItem;
 
 
     }

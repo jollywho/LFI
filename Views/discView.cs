@@ -52,6 +52,7 @@ namespace LFI
             ddInsTitle.DisplayMember = "title_id";
 
             loadView();
+            scrlPage.Focus();
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
@@ -102,6 +103,7 @@ namespace LFI
                     page++;
                     slot = 1;
                 }
+                dbuttons[i].UnClick();
                 dbuttons[i].load(page);
             }
 
@@ -110,7 +112,6 @@ namespace LFI
             else
             {
                 worker.CancelAsync();
-               // worker.RunWorkerAsync();
             }
         }
 
@@ -222,10 +223,20 @@ namespace LFI
             {
                 try
                 {
-                    DB_Handle.UpdateTable(string.Format(
-                        @"INSERT OR REPLACE INTO DISCS 
-                        VALUES ('{0}','{1}','{2}','{3}');",
-                        txtDisc.Text, txtPage.Text, txtSlot.Text, ddLocation.Text));
+                    if (txtDisc.ReadOnly)
+                    {
+                        DB_Handle.UpdateTable(string.Format(
+                            @"INSERT OR REPLACE INTO DISCS 
+                            VALUES ('{0}','{1}','{2}','{3}');",
+                            txtDisc.Text, txtPage.Text, txtSlot.Text, ddLocation.Text));
+                    }
+                    else
+                    {
+                        DB_Handle.UpdateTable(string.Format(
+                            @"INSERT INTO DISCS VALUES ('{0}','{1}','{2}','{3}');",
+                            txtDisc.Text, txtPage.Text, txtSlot.Text, ddLocation.Text));
+                    }
+
                     if (isNewRecord)
                         rollbackpos = true;
                     DB_Handle.OpenConnection();
@@ -241,11 +252,13 @@ namespace LFI
                             gvContents.Rows[i].Cells[2].Value,
                             gvContents.Rows[i].Cells[3].Value));
 
+
                         DB_Handle.ScalarUpdate(string.Format(
                             @"INSERT OR REPLACE INTO DISC_CONTENTS
                             (content_id, disc_id, location_id)
                             VALUES (last_insert_rowid(),'{0}','{1}');",
-                            txtDisc.Text, ddLocation.Text));
+                            txtDisc.Text, 
+                            ddLocation.Text));
                     }
                     MessageBox.Show("Saved", "Success");
                 }
@@ -256,7 +269,7 @@ namespace LFI
                             @"DELETE FROM DISCS WHERE
                             disc_id = '{0}' AND location_id = '{1}'",
                             txtDisc.Text, ddLocation.Text));
-                    Error_Handle.TipError(ex.Message, toolTip, btnAddDisc);
+                     MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -339,6 +352,10 @@ namespace LFI
         {
             panel1.Enabled = true;
             gvContents.Rows.Clear();
+            for (int i = 0; i <= (PAGES_PER_VIEW * DISCS_PER_PAGE) - 1; i++)
+            {
+                dbuttons[i].UnClick();
+            }
         }
 
         public DataGridView getContentsGrid()
@@ -366,6 +383,11 @@ namespace LFI
             txtDisc.Text = disc.ToString();
             txtPage.Text = page.ToString();
             txtSlot.Text = slot.ToString();
+        }
+
+        public void SwapDiscIDMode()
+        {
+            txtDisc.ReadOnly = !txtDisc.ReadOnly; 
         }
         #endregion INTERFACE
     }

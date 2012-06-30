@@ -423,6 +423,7 @@
             // 
             // btnGenerate
             // 
+            this.btnGenerate.FlatAppearance.BorderSize = 0;
             this.btnGenerate.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate.ForeColor = System.Drawing.Color.Black;
             this.btnGenerate.Location = new System.Drawing.Point(125, 35);

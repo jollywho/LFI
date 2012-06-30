@@ -12,6 +12,7 @@ namespace LFI
         static string conn = @"PRAGMA foreign_keys = ON;
             Data Source=" + Folder_IO.GetUserDataPath();
         static SQLiteConnection manual_cnn;
+        static bool IsOpen = false;
 
         public static DataTable GetDataTable(string sql)
         {
@@ -29,20 +30,13 @@ namespace LFI
 
         public static void UpdateTable(string sql)
         {
-            try
-            {
-                SQLiteConnection cnn = new SQLiteConnection(conn);
-                cnn.Open();
-                SQLiteCommand mycommand = new SQLiteCommand(cnn);
-                mycommand.CommandText = sql;
-                SQLiteDataReader reader = mycommand.ExecuteReader();
-                reader.Close();
-                cnn.Close();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            SQLiteConnection cnn = new SQLiteConnection(conn);
+            cnn.Open();
+            SQLiteCommand mycommand = new SQLiteCommand(cnn);
+            mycommand.CommandText = sql;
+            SQLiteDataReader reader = mycommand.ExecuteReader();
+            reader.Close();
+            cnn.Close();
         }
 
         public static void OpenConnection()
@@ -51,6 +45,7 @@ namespace LFI
             {
                 manual_cnn = new SQLiteConnection(conn);
                 manual_cnn.Open();
+                IsOpen = true;
             }
             catch (Exception ex)
             {
@@ -62,9 +57,10 @@ namespace LFI
         {
             try
             {
-                SQLiteCommand mycommmand = new SQLiteCommand(manual_cnn);
-                mycommmand.CommandText = sql;
+                SQLiteCommand mycommmand = new SQLiteCommand(sql, manual_cnn);
                 mycommmand.ExecuteScalar();
+                mycommmand.CommandText = "SELECT last_insert_rowid()";
+                Console.WriteLine(mycommmand.ExecuteScalar());
             }
             catch (Exception ex)
             {
@@ -74,7 +70,11 @@ namespace LFI
 
         public static void CloseConnection()
         {
-            manual_cnn.Close();
+            if (IsOpen)
+            {
+                manual_cnn.Close();
+                IsOpen = false;
+            }
         }
     }
 

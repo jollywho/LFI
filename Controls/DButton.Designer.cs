@@ -28,7 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // DButton
+            // 
+            this.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight;
+            this.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.ResumeLayout(false);
+
         }
 
         #endregion

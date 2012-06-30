@@ -25,8 +25,10 @@ namespace LFI
         public Size horizontal = new Size(745, 700);
         private int SnapDist = 20;
         private int BorderWidth = 0;
+        MenuItem discEditItem = new MenuItem("Allow DiscId Edit");
         mainView mv;
         folderView fv;
+        discView dv;
         public ViewMode mode;
 
         public MainForm()
@@ -34,6 +36,7 @@ namespace LFI
             Lmode = "JPN";
             DoubleBuffered = true;
             InitializeComponent();
+            discEditItem.Click += new EventHandler(discEditItem_Click);
             mv = new mainView();
             bPanel.Controls.Add(mv);
             mv.Enable();
@@ -71,7 +74,11 @@ namespace LFI
             this.MaximumSize = vertical;
             this.MinimumSize = vertical;
             if (Longmode)
+            {
                 this.Left += horizontal.Width - vertical.Width;
+                menuItem2.MenuItems.RemoveAt(1);
+                menuItem2.MenuItems.Remove(discEditItem);
+            }
             Longmode = false;
             mv.Enable();
         }
@@ -93,7 +100,11 @@ namespace LFI
             this.MaximumSize = vertical;
             this.MinimumSize = vertical;
             if (Longmode)
+            {
                 this.Left += horizontal.Width - vertical.Width;
+                menuItem2.MenuItems.RemoveAt(1);
+                menuItem2.MenuItems.Remove(discEditItem);
+            }
             Longmode = false;
             fv.Focus();
         }
@@ -104,12 +115,17 @@ namespace LFI
             pushBackMenuStates();
             bPanel.Controls.Clear();
             mv.Disable();
-            discView dv = new discView();
+            dv = new discView();
             bPanel.Controls.Add(dv);
             this.MaximumSize = horizontal;
             this.MinimumSize = horizontal;
             if (!Longmode)
+            {
                 this.Left -= horizontal.Width - vertical.Width;
+                if (this.Left + BorderWidth < 0) this.Left = 0 + BorderWidth;
+                menuItem2.MenuItems.Add(0, discEditItem);
+                menuItem2.MenuItems.Add(1, new MenuItem("-"));
+            }
             Longmode = true;
             dv.Focus();
         }
@@ -234,6 +250,12 @@ namespace LFI
         {
             dropItem.Checked = !dropItem.Checked;
             mv.infoPane.AllowDrop = !mv.infoPane.AllowDrop;
+        }
+
+        private void discEditItem_Click(object sender, EventArgs e)
+        {
+            discEditItem.Checked = !discEditItem.Checked;
+            dv.SwapDiscIDMode();
         }
 
         private bool DoSnap(int pos, int edge)

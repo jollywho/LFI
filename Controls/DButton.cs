@@ -14,7 +14,7 @@ namespace LFI
     {
         public VLabel vlbl = new VLabel();
         public string Disc = string.Empty;
-        List<string> selData;
+        private static List<string> selData;
         public static string Location_ID = string.Empty;
         public int Page = 0;
         public int Slot = 0;
@@ -25,19 +25,20 @@ namespace LFI
             InitializeComponent();
             Slot = slot;
             BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            FlatAppearance.BorderSize = 0;
-            FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
+            FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight;
+            FlatAppearance.BorderSize = 1;
             FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             Location = loc;
             Size = new System.Drawing.Size(150, 150);
-            TabIndex = 94;
             TabStop = false;
+            SetStyle(ControlStyles.Selectable, false);
             UseVisualStyleBackColor = true;
             Visible = true;
             ContextMenuStrip menu = new ContextMenuStrip();
             menu.Items.Add("Swap Here");
+            menu.Items.Add("Delete");
             menu.Items[0].Click += new EventHandler(this.swapMenuItem_Click);
+            menu.Items[1].Click += new EventHandler(this.deleteMenuItem_Click);
             menu.Opening += new CancelEventHandler(swapMenu_Opening);
             this.ContextMenuStrip = menu;
             createVertLabel(copyLabel, "");
@@ -53,15 +54,34 @@ namespace LFI
                 setData(dt.Rows[0][0], dt.Rows[0][1]);
             else
                 setData(string.Empty, page);
+            selData = Caller.getSelData();
+            if (selData[0] == Disc)
+                SetClick();
         }
 
         private void swapMenu_Opening(object sender, CancelEventArgs e)
         {
             selData = Caller.getSelData();
+            this.ContextMenuStrip.Items[0].Visible = true;
             if (selData[0] != string.Empty)
                 this.ContextMenuStrip.Items[0].Text = "Swap " + selData[0] + " Here";
+            else if (Disc != string.Empty)
+                this.ContextMenuStrip.Items[0].Visible = false;
             else
                 e.Cancel = true;
+        }
+
+        private void deleteMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dlg = MessageBox.Show("Delete?", "Confirm", MessageBoxButtons.YesNo);
+            if (dlg == DialogResult.Yes)
+            {
+                DB_Handle.UpdateTable(string.Format(
+                    @"DELETE FROM DISCS WHERE disc_id='{0}' and location_id='{1}'",
+                    Disc, Location_ID));
+                Caller.loadPage();
+                OnClick(null);
+            }
         }
 
         private void swapMenuItem_Click(object sender, EventArgs e)
@@ -110,11 +130,21 @@ namespace LFI
             vlbl.Visible = true;
         }
 
+        public void UnClick()
+        {
+            FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+        }
+
+        public void SetClick()
+        {
+            FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FlatAppearance.BorderSize = 4;
+        }
+
         protected override void OnClick(EventArgs e)
         {
-            base.OnClick(e);
             Caller.popContentPane();
-
+            SetClick();
             DataTable temp = DB_Handle.GetDataTable(string.Format(
                 @"SELECT * FROM contents JOIN disc_contents on contents.content_id =
                 disc_contents.content_id WHERE disc_id='{0}' and location_id='{1}';",

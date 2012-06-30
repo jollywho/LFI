@@ -199,6 +199,9 @@
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DButton.resx">
+      <DependentUpon>DButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\VLabel.resx">
       <DependentUpon>VLabel.cs</DependentUpon>
     </EmbeddedResource>
