@@ -241,7 +241,7 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = global::LFI.Properties.Resources.bannerOrig;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(530, 647);
+            this.ClientSize = new System.Drawing.Size(534, 651);
             this.Controls.Add(this.bPanel);
             this.Controls.Add(this.statusStrip1);
             this.DoubleBuffered = true;

@@ -20,6 +20,7 @@ namespace LFI
     public partial class MainForm : Form
     {
         public static string Lmode;
+        public static bool Longmode = false;
         public Size vertical = new Size(540, 700);
         public Size horizontal = new Size(745, 700);
         private int SnapDist = 20;
@@ -69,6 +70,9 @@ namespace LFI
             bPanel.Controls.Add(mv);
             this.MaximumSize = vertical;
             this.MinimumSize = vertical;
+            if (Longmode)
+                this.Left += horizontal.Width - vertical.Width;
+            Longmode = false;
             mv.Enable();
         }
 
@@ -88,7 +92,9 @@ namespace LFI
             bPanel.Controls.Add(fv);
             this.MaximumSize = vertical;
             this.MinimumSize = vertical;
-            
+            if (Longmode)
+                this.Left += horizontal.Width - vertical.Width;
+            Longmode = false;
             fv.Focus();
         }
 
@@ -102,7 +108,9 @@ namespace LFI
             bPanel.Controls.Add(dv);
             this.MaximumSize = horizontal;
             this.MinimumSize = horizontal;
-
+            if (!Longmode)
+                this.Left -= horizontal.Width - vertical.Width;
+            Longmode = true;
             dv.Focus();
         }
 
