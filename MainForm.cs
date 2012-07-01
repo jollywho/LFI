@@ -254,7 +254,8 @@ namespace LFI
         private void dropItem_Click(object sender, EventArgs e)
         {
             dropItem.Checked = !dropItem.Checked;
-            mv.infoPane.AllowDrop = !mv.infoPane.AllowDrop;
+            mv.infoPane.AllowDrop = dropItem.Checked;
+            dv.allowDbuttonDrop(dropItem.Checked);
         }
 
         private void discEditItem_Click(object sender, EventArgs e)

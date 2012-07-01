@@ -8,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace LFI
 {
     public partial class discView : UserControl
     {
+        private static Size IMG_SIZE = new Size(245, 345);
         private BackgroundWorker worker = new BackgroundWorker();
         public static bool AllowDiscEdit = true;
         const int MAX_TOOLTIP = 500;
@@ -234,6 +236,7 @@ namespace LFI
                     }
                     gvContents.Rows.Remove(gvContents.Rows[gvContents.SelectedCells[0].RowIndex]);
                     loadPage();
+                    DButton.SelBtn.DButton_Click(null, null);
                 }
             }
         }
@@ -298,7 +301,7 @@ namespace LFI
                 finally
                 {
                     DB_Handle.CloseConnection();
-                    DButton.SelBtn.PerformClick();
+                    DButton.SelBtn.DButton_Click(null, null);
                     loadPage();
                 }
             }
@@ -380,6 +383,11 @@ namespace LFI
             }
         }
 
+        public void allowDbuttonDrop(bool val)
+        {
+            imgTitle.AllowDrop = val;
+        }
+
         public DataGridView getContentsGrid()
         {
             return gvContents;
@@ -426,6 +434,43 @@ namespace LFI
                 txtJump.Text = max_pages.ToString();
             e.Handled = true;
             loadPage();
+        }
+
+        private void imgTitle_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+        }
+
+        private void imgTitle_DragDrop(object sender, DragEventArgs e)
+        {
+            if (gvContents.Rows.Count > 0)
+            {
+                try
+                {
+                    int x = this.PointToClient(new Point(e.X, e.Y)).X;
+
+                    int y = this.PointToClient(new Point(e.X, e.Y)).Y;
+
+                    string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                    FileStream fs = new FileStream(files[0], FileMode.Open);
+                    Image img = Image.FromStream(fs);
+                    fs.Close();
+                    img = Image_IO.resize_Image(img, IMG_SIZE.Width, IMG_SIZE.Height);
+                    img.Save(
+                        string.Format("{0}\\{1}.jpg",
+                        Folder_IO.GetUserImagePath(), 
+                        gvContents.SelectedRows[0].Cells[0].Value),
+                        System.Drawing.Imaging.ImageFormat.Jpeg);
+                    imgTitle.BackgroundImage = img;
+                }
+                catch (Exception ex)
+                {
+                    toolTip.Show(ex.Message, imgTitle);
+                }
+            }
+            Enable();
+            ParentForm.Activate();
+            DButton.SelBtn.DButton_Click(null, null);
         }
 
     }

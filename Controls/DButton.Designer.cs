@@ -36,6 +36,7 @@
             this.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.MenuHighlight;
             this.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.Click += new System.EventHandler(this.DButton_Click);
             this.ResumeLayout(false);
 
         }

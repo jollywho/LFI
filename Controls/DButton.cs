@@ -172,7 +172,7 @@ namespace LFI
             FlatAppearance.BorderSize = 4;
         }
 
-        protected override void OnClick(EventArgs e)
+        public void DButton_Click(object sender, EventArgs e)
         {
             Caller.popContentPane();
             SetClick();
@@ -196,9 +196,7 @@ namespace LFI
                 Caller.isNewRecord = true;
                 Caller.setData(string.Empty, Page, Slot);
             }
-
             Caller.setImagebox(Image_IO.generateDiscImage(Disc, Location_ID, Caller.getImagebox()));
         }
-
     }
 }

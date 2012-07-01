@@ -80,9 +80,9 @@ namespace LFI
             {
                 for (int i = 0; i <= imgLst.Count - 1; i++)
                 {
-                    grfx.DrawImage(imgLst[i], new Rectangle(0, (newHeight / items) * i, newWidth, newHeight / items));
+                    grfx.DrawImage(imgLst[i], new Rectangle((newWidth / items) * i, 0, newWidth / items, newHeight));
                     if (i > 0 && i != imgLst.Count)
-                        grfx.DrawLine(new Pen(Color.Black), 0, (newHeight / items) * i, newWidth, (newHeight / items) * i);
+                        grfx.DrawLine(new Pen(Color.Black), (newWidth / items) * i, 0, (newWidth / items) * i, newHeight);
                 }
                 return newImage;
             }
