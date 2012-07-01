@@ -9,8 +9,9 @@ namespace LFI
 {
     class DB_Handle
     {
-        static string conn = @"PRAGMA foreign_keys = ON;
-            Data Source=" + Folder_IO.GetUserDataPath();
+        static string conn = @"Data Source=" 
+            + Folder_IO.GetUserDataPath() + "; foreign_keys = true;";
+            
         static SQLiteConnection manual_cnn;
         static bool IsOpen = false;
 

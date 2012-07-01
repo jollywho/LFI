@@ -19,6 +19,9 @@ namespace LFI
         public int Page = 0;
         public int Slot = 0;
         discView Caller;
+        public static DButton SelBtn;
+
+        public DButton() { }
 
         public DButton(int slot, Label copyLabel, Point loc, discView caller) 
         {
@@ -55,8 +58,10 @@ namespace LFI
             else
                 setData(string.Empty, page);
             selData = Caller.getSelData();
-            if (selData[0] == Disc)
-                SetClick();
+
+            if (selData[1] != string.Empty)
+                if (Convert.ToInt32(selData[2]) == Slot && Convert.ToInt32(selData[1]) == Page)
+                    SetClick();
         }
 
         private void swapMenu_Opening(object sender, CancelEventArgs e)
@@ -76,11 +81,36 @@ namespace LFI
             DialogResult dlg = MessageBox.Show("Delete?", "Confirm", MessageBoxButtons.YesNo);
             if (dlg == DialogResult.Yes)
             {
-                DB_Handle.UpdateTable(string.Format(
-                    @"DELETE FROM DISCS WHERE disc_id='{0}' and location_id='{1}'",
-                    Disc, Location_ID));
-                Caller.loadPage();
-                OnClick(null);
+                try
+                {
+                    DB_Handle.UpdateTable(string.Format(
+                        @"DELETE FROM DISCS WHERE disc_id='{0}' and location_id='{1}'",
+                        Disc, Location_ID));
+
+                    DataTable dt = DB_Handle.GetDataTable(string.Format(
+                        @"SELECT content_id from disc_contents WHERE disc_id='{0}' and location_id='{1}'",
+                        Disc, Location_ID));
+
+                    for (int i = 0; i <= dt.Rows.Count - 1; i++)
+                    {
+                        DB_Handle.UpdateTable(string.Format(
+                        @"DELETE FROM CONTENTS WHERE content_id='{0}'", dt.Rows[i][0])); 
+                    }
+
+                    DB_Handle.UpdateTable(string.Format(
+                        @"DELETE FROM DISC_CONTENTS WHERE disc_id='{0}' and location_id='{1}'",
+                        Disc, Location_ID));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    DButton.SelBtn.PerformClick();
+                    Caller.loadPage();
+                    OnClick(null);
+                }
             }
         }
 
@@ -137,6 +167,7 @@ namespace LFI
 
         public void SetClick()
         {
+            SelBtn = this;
             FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             FlatAppearance.BorderSize = 4;
         }

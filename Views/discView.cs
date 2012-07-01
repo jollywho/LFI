@@ -14,6 +14,7 @@ namespace LFI
     public partial class discView : UserControl
     {
         private BackgroundWorker worker = new BackgroundWorker();
+        public static bool AllowDiscEdit = true;
         const int MAX_TOOLTIP = 500;
         public bool isNewRecord = false;
         const int DISCS_PER_PAGE = 4;
@@ -21,6 +22,7 @@ namespace LFI
         private int max_pages = 0;
         private DataTable dtView;
         List<DButton> dbuttons = new List<DButton>();
+        Control lastControlEntered;
 
         public discView()
         {
@@ -51,18 +53,40 @@ namespace LFI
             ddInsTitle.DataSource = titles;
             ddInsTitle.DisplayMember = "title_id";
 
+            this.DoubleBuffered = true;
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            UpdateStyles();
+
+            txtDisc.ReadOnly = AllowDiscEdit;
             loadView();
-            scrlPage.Focus();
+            foreach (Control c in panel1.Controls)
+                c.Enter += new EventHandler(c_Enter);
+            foreach (Control c in gbContents.Controls)
+                c.Enter += new EventHandler(c_Enter);
+        }
+
+        void c_Enter(object sender, EventArgs e)
+        {
+            if (sender is Control)
+                lastControlEntered = (Control)sender;
+        }
+
+        public void Enable()
+        {
+            loadPage();
+            if (lastControlEntered != null)
+                lastControlEntered.Focus();
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
         {
             base.OnMouseWheel(e);
-            scrlPage.Focus();
             if (e.Delta < 0)
-                txtJump.Text = (Convert.ToInt32(txtJump.Text) + 1).ToString();
+                txtJump.Text = findNextJump(-2).ToString();
             else
-                txtJump.Text = (Convert.ToInt32(txtJump.Text) - 1).ToString();
+                txtJump.Text = findNextJump(2).ToString();
+            loadPage();
         }
 
         private void loadView()
@@ -83,6 +107,15 @@ namespace LFI
             lblPageLeft.Text = pg.ToString();
             lblPageRight.Text = (pg + 1).ToString();
             return pg;
+        }
+
+        private int findNextJump(int pg)
+        {
+            int jmp = Convert.ToInt32(txtJump.Text);
+            if (jmp % 2 != 0)
+                jmp--;
+            jmp = jmp + pg;
+            return jmp < 1 ? 1 : jmp;
         }
 
         public void loadPage()
@@ -175,7 +208,7 @@ namespace LFI
                         txtRangeEnd.Text.Replace(" ", ""), "null");
                     gvContents.Rows.Add(gvr);
 
-                    txtSeason.Clear();
+                    txtSeason.Text = "1";
                     ddInsTitle.SelectedText = "";
                     txtRangeStart.Clear();
                     txtRangeEnd.Clear();
@@ -223,19 +256,10 @@ namespace LFI
             {
                 try
                 {
-                    if (txtDisc.ReadOnly)
-                    {
-                        DB_Handle.UpdateTable(string.Format(
-                            @"INSERT OR REPLACE INTO DISCS 
-                            VALUES ('{0}','{1}','{2}','{3}');",
-                            txtDisc.Text, txtPage.Text, txtSlot.Text, ddLocation.Text));
-                    }
-                    else
-                    {
-                        DB_Handle.UpdateTable(string.Format(
-                            @"INSERT INTO DISCS VALUES ('{0}','{1}','{2}','{3}');",
-                            txtDisc.Text, txtPage.Text, txtSlot.Text, ddLocation.Text));
-                    }
+                    DB_Handle.UpdateTable(string.Format(
+                        @"INSERT OR REPLACE INTO DISCS 
+                        VALUES ('{0}','{1}','{2}','{3}');",
+                        txtDisc.Text, txtPage.Text, txtSlot.Text, ddLocation.Text));
 
                     if (isNewRecord)
                         rollbackpos = true;
@@ -274,6 +298,7 @@ namespace LFI
                 finally
                 {
                     DB_Handle.CloseConnection();
+                    DButton.SelBtn.PerformClick();
                     loadPage();
                 }
             }
@@ -310,40 +335,37 @@ namespace LFI
             loadView();
         }
 
-        private void scrlPage_Scroll(object sender, ScrollEventArgs e)
-        {
-            txtJump.Text = e.NewValue.ToString();
-            loadPage();
-        }
-
         private void scrlPage_ValueChanged(object sender, EventArgs e)
         {
+            txtJump.Text = scrlPage.Value.ToString();
             loadPage();
         }
 
         private void txtPageNo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space)
-                e.Handled = e.SuppressKeyPress = true;
+                e.Handled = true;
             if (e.KeyCode == Keys.Enter)
+            {
                 scrlPage.Value = Convert.ToInt32(txtJump.Text);
+                e.SuppressKeyPress = true;
+            }
         }
 
         private void numericTextbox_TextChanged(object sender, EventArgs e)
         {
             TextBox txt = (TextBox)sender;
+            int pos = txt.SelectionStart;
+            Regex reg = new Regex("[^0-9]");
+            txt.Text = reg.Replace(txt.Text, "");
             if (txt.Text.Length > 0)
             {
-                int pos = txt.SelectionStart;
-                if (txt.Name == "txtJump" && Convert.ToInt32(txtJump.Text) > max_pages)
+                if (Convert.ToInt32(txtJump.Text) > max_pages)
                 {
                     txt.Text = max_pages.ToString();
                     txt.Select(pos, 0);
                 }
-
-                Regex reg = new Regex("[^0-9]");
-                txt.Text = reg.Replace(txt.Text, "");
-                txt.Select(pos, 0);
+                scrlPage.Value = Convert.ToInt32(txtJump.Text);
             }
         }
 
@@ -385,10 +407,26 @@ namespace LFI
             txtSlot.Text = slot.ToString();
         }
 
-        public void SwapDiscIDMode()
+        public void SwapDiscIDMode(bool check)
         {
-            txtDisc.ReadOnly = !txtDisc.ReadOnly; 
+            txtDisc.ReadOnly = check;
+            AllowDiscEdit = check;
         }
         #endregion INTERFACE
+
+        public void scrlPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.PageUp)
+                txtJump.Text = findNextJump(2).ToString();
+            if (e.KeyCode == Keys.PageDown)
+                txtJump.Text = findNextJump(-2).ToString();
+            if (e.KeyCode == Keys.Home)
+                txtJump.Text = "1";
+            if (e.KeyCode == Keys.End)
+                txtJump.Text = max_pages.ToString();
+            e.Handled = true;
+            loadPage();
+        }
+
     }
 }

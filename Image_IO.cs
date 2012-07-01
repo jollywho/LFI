@@ -24,11 +24,11 @@ namespace LFI
                     FileStream fs = new FileStream(path + string.Format("\\{0}.jpg", titleStrs[i]), FileMode.Open);
                     Image img = Image.FromStream(fs);
                     fs.Close();
-                    imgLst.Add(resize_Image(img, btn.Width, btn.Height / titleStrs.Count));
+                    imgLst.Add(resize_Image(img, btn.Width, btn.Height));
                 }
                 else
                     imgLst.Add(resize_Image(LFI.Properties.Resources.notavailable,
-                        btn.Width, btn.Height / titleStrs.Count));
+                        btn.Width, btn.Height));
             }
             Image finalImage = merge_Images(imgLst, btn.Width, btn.Height, titleStrs.Count);
             return finalImage;

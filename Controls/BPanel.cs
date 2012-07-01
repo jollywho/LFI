@@ -9,12 +9,10 @@ namespace LFI
         public BPanel()
         {
             this.DoubleBuffered = true;
-
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             UpdateStyles();
 
-            this.DoubleBuffered = true;
             this.BackColor = Color.Transparent;
         }
 

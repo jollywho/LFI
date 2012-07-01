@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace LFI
 {
@@ -28,13 +29,16 @@ namespace LFI
         MenuItem discEditItem = new MenuItem("Allow DiscId Edit");
         mainView mv;
         folderView fv;
-        discView dv;
+        discView dv = new discView();
         public ViewMode mode;
 
         public MainForm()
         {
             Lmode = "JPN";
-            DoubleBuffered = true;
+            this.DoubleBuffered = true;
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            UpdateStyles();
             InitializeComponent();
             discEditItem.Click += new EventHandler(discEditItem_Click);
             mv = new mainView();
@@ -94,7 +98,6 @@ namespace LFI
             mode = ViewMode.Folder;
             pushBackMenuStates();
             bPanel.Controls.Clear();
-            mv.Disable();
             fv = new folderView(this);
             bPanel.Controls.Add(fv);
             this.MaximumSize = vertical;
@@ -115,10 +118,10 @@ namespace LFI
             pushBackMenuStates();
             bPanel.Controls.Clear();
             mv.Disable();
-            dv = new discView();
             bPanel.Controls.Add(dv);
             this.MaximumSize = horizontal;
             this.MinimumSize = horizontal;
+            dv.Enable();
             if (!Longmode)
             {
                 this.Left -= horizontal.Width - vertical.Width;
@@ -214,6 +217,8 @@ namespace LFI
         {
             if (e.KeyCode == Keys.Escape && titleEditItem.Checked)
                 cancelItem_Click(null, null);
+            if (mode == ViewMode.Disc)
+                dv.scrlPage_KeyDown(sender, e);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -255,7 +260,7 @@ namespace LFI
         private void discEditItem_Click(object sender, EventArgs e)
         {
             discEditItem.Checked = !discEditItem.Checked;
-            dv.SwapDiscIDMode();
+            dv.SwapDiscIDMode(!discEditItem.Checked);
         }
 
         private bool DoSnap(int pos, int edge)

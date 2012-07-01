@@ -52,7 +52,7 @@ namespace LFI
             
             if (gvTitles.Rows.Count > 0)
                 gvTitles.Rows[savedRow].Selected = true;
-            gvTitles.Focus();
+            txtSearch.Focus();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace LFI
                 dvSearch = new DataView(dvTitles);
                 dvSearch.RowFilter = string.Format(@"title_id like '%{0}*'",
                     txtSearch.Text.Replace("'", "''"));
-                
+                savedRow = 0;
                 gvTitles.DataSource = dvSearch;
             }
             else

@@ -166,6 +166,12 @@ namespace LFI
                             WHERE title_id={6};",
                             "\"" + ddTitle.Text + "\"", txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
                             txtYear.Text, ddStatus.Text, ddLanguage.Text, "\"" + currentTitle + "\""));
+
+                        DB_Handle.UpdateTable(string.Format(
+                            @"UPDATE CONTENTS SET
+                            title_id={0}
+                            WHERE title_id={1};",
+                            "\"" + ddTitle.Text + "\"", "\"" + currentTitle + "\""));
                     }
                     Image_IO.rename_Image(currentTitle, ddTitle.Text);
 

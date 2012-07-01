@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.scrlPage = new System.Windows.Forms.HScrollBar();
             this.btn8 = new System.Windows.Forms.Button();
             this.btn5 = new System.Windows.Forms.Button();
@@ -57,7 +57,7 @@
             this.txtDisc = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnGenerate = new System.Windows.Forms.Button();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.gbContents = new System.Windows.Forms.GroupBox();
             this.txtSeason = new System.Windows.Forms.TextBox();
             this.txtRangeEnd = new System.Windows.Forms.TextBox();
             this.txtRangeStart = new System.Windows.Forms.TextBox();
@@ -78,7 +78,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.lblRange = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.gbContents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvContents)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,8 +93,8 @@
             this.scrlPage.SmallChange = 2;
             this.scrlPage.TabIndex = 0;
             this.scrlPage.Value = 2;
-            this.scrlPage.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrlPage_Scroll);
             this.scrlPage.ValueChanged += new System.EventHandler(this.scrlPage_ValueChanged);
+            this.scrlPage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.scrlPage_KeyDown);
             // 
             // btn8
             // 
@@ -285,17 +285,18 @@
             this.panel1.Controls.Add(this.txtDisc);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.btnGenerate);
-            this.panel1.Controls.Add(this.groupBox6);
+            this.panel1.Controls.Add(this.gbContents);
             this.panel1.Enabled = false;
             this.panel1.Location = new System.Drawing.Point(-10, 374);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(759, 256);
-            this.panel1.TabIndex = 100;
+            this.panel1.TabIndex = 1;
             // 
             // imgTitle
             // 
             this.imgTitle.BackgroundImage = global::LFI.Properties.Resources.notavailable;
             this.imgTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.imgTitle.Enabled = false;
             this.imgTitle.FlatAppearance.BorderSize = 0;
             this.imgTitle.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.imgTitle.Location = new System.Drawing.Point(540, 18);
@@ -434,32 +435,32 @@
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
-            // groupBox6
+            // gbContents
             // 
-            this.groupBox6.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox6.Controls.Add(this.txtSeason);
-            this.groupBox6.Controls.Add(this.txtRangeEnd);
-            this.groupBox6.Controls.Add(this.txtRangeStart);
-            this.groupBox6.Controls.Add(this.gvContents);
-            this.groupBox6.Controls.Add(this.label3);
-            this.groupBox6.Controls.Add(this.button5);
-            this.groupBox6.Controls.Add(this.btnAddDisc);
-            this.groupBox6.Controls.Add(this.button6);
-            this.groupBox6.Controls.Add(this.ddInsTitle);
-            this.groupBox6.Controls.Add(this.lblEnd);
-            this.groupBox6.Controls.Add(this.label21);
-            this.groupBox6.Controls.Add(this.lblStart);
-            this.groupBox6.Controls.Add(this.label9);
-            this.groupBox6.Controls.Add(this.lblRange);
-            this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.groupBox6.Location = new System.Drawing.Point(19, 67);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(510, 183);
-            this.groupBox6.TabIndex = 10;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Contents";
+            this.gbContents.BackColor = System.Drawing.Color.Transparent;
+            this.gbContents.Controls.Add(this.txtSeason);
+            this.gbContents.Controls.Add(this.txtRangeEnd);
+            this.gbContents.Controls.Add(this.txtRangeStart);
+            this.gbContents.Controls.Add(this.gvContents);
+            this.gbContents.Controls.Add(this.label3);
+            this.gbContents.Controls.Add(this.button5);
+            this.gbContents.Controls.Add(this.btnAddDisc);
+            this.gbContents.Controls.Add(this.button6);
+            this.gbContents.Controls.Add(this.ddInsTitle);
+            this.gbContents.Controls.Add(this.lblEnd);
+            this.gbContents.Controls.Add(this.label21);
+            this.gbContents.Controls.Add(this.lblStart);
+            this.gbContents.Controls.Add(this.label9);
+            this.gbContents.Controls.Add(this.lblRange);
+            this.gbContents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gbContents.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbContents.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.gbContents.Location = new System.Drawing.Point(19, 67);
+            this.gbContents.Name = "gbContents";
+            this.gbContents.Size = new System.Drawing.Size(510, 183);
+            this.gbContents.TabIndex = 10;
+            this.gbContents.TabStop = false;
+            this.gbContents.Text = "Contents";
             // 
             // txtSeason
             // 
@@ -470,7 +471,8 @@
             this.txtSeason.MaxLength = 2;
             this.txtSeason.Name = "txtSeason";
             this.txtSeason.Size = new System.Drawing.Size(52, 22);
-            this.txtSeason.TabIndex = 3;
+            this.txtSeason.TabIndex = 1;
+            this.txtSeason.Text = "1";
             this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSeason.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
             this.txtSeason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPageNo_KeyDown);
@@ -484,7 +486,7 @@
             this.txtRangeEnd.MaxLength = 3;
             this.txtRangeEnd.Name = "txtRangeEnd";
             this.txtRangeEnd.Size = new System.Drawing.Size(52, 22);
-            this.txtRangeEnd.TabIndex = 6;
+            this.txtRangeEnd.TabIndex = 3;
             this.txtRangeEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtRangeEnd.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
             this.txtRangeEnd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
@@ -498,7 +500,7 @@
             this.txtRangeStart.MaxLength = 3;
             this.txtRangeStart.Name = "txtRangeStart";
             this.txtRangeStart.Size = new System.Drawing.Size(52, 22);
-            this.txtRangeStart.TabIndex = 5;
+            this.txtRangeStart.TabIndex = 2;
             this.txtRangeStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtRangeStart.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
             this.txtRangeStart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
@@ -509,11 +511,11 @@
             this.gvContents.AllowUserToDeleteRows = false;
             this.gvContents.AllowUserToResizeColumns = false;
             this.gvContents.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.gvContents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.gvContents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gvContents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvContents.BackgroundColor = System.Drawing.Color.White;
             this.gvContents.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -526,14 +528,14 @@
             this.Start,
             this.End,
             this.content});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvContents.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvContents.DefaultCellStyle = dataGridViewCellStyle4;
             this.gvContents.Location = new System.Drawing.Point(6, 60);
             this.gvContents.MultiSelect = false;
             this.gvContents.Name = "gvContents";
@@ -605,7 +607,7 @@
             this.button5.Location = new System.Drawing.Point(411, 119);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 12;
+            this.button5.TabIndex = 5;
             this.button5.Text = "Remove";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.btnRemove_Click);
@@ -617,7 +619,7 @@
             this.btnAddDisc.Location = new System.Drawing.Point(411, 148);
             this.btnAddDisc.Name = "btnAddDisc";
             this.btnAddDisc.Size = new System.Drawing.Size(75, 23);
-            this.btnAddDisc.TabIndex = 11;
+            this.btnAddDisc.TabIndex = 6;
             this.btnAddDisc.Text = "Save";
             this.btnAddDisc.UseVisualStyleBackColor = true;
             this.btnAddDisc.Click += new System.EventHandler(this.btnSaveClick);
@@ -629,7 +631,7 @@
             this.button6.Location = new System.Drawing.Point(411, 90);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 13;
+            this.button6.TabIndex = 4;
             this.button6.Text = "Insert";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.btnInsert_Click);
@@ -646,7 +648,7 @@
             this.ddInsTitle.Location = new System.Drawing.Point(6, 33);
             this.ddInsTitle.Name = "ddInsTitle";
             this.ddInsTitle.Size = new System.Drawing.Size(323, 24);
-            this.ddInsTitle.TabIndex = 1;
+            this.ddInsTitle.TabIndex = 0;
             // 
             // lblEnd
             // 
@@ -721,8 +723,8 @@
             this.Size = new System.Drawing.Size(738, 630);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
+            this.gbContents.ResumeLayout(false);
+            this.gbContents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvContents)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -741,7 +743,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox txtDisc;
         private System.Windows.Forms.Button btnGenerate;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox gbContents;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button btnAddDisc;
         private System.Windows.Forms.Button button6;
