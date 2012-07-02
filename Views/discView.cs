@@ -79,6 +79,11 @@ namespace LFI
             if (lastControlEntered != null)
                 lastControlEntered.Focus();
         }
+        
+        private void ddLocation_OnMouseWheel(object sender, MouseEventArgs e)
+        {
+            panel1.Focus();
+        }
 
         protected override void OnMouseWheel(MouseEventArgs e)
         {
@@ -97,6 +102,7 @@ namespace LFI
             max_pages = Convert.ToInt32(dtView.Rows[0][0].ToString()) / DISCS_PER_PAGE;
             scrlPage.Maximum = max_pages + scrlPage.LargeChange-1;
             DButton.Location_ID = ddLocation.Text;
+            txtJump.Text = "1";
             loadPage();
         }
 

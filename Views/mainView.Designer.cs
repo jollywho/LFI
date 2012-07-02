@@ -40,7 +40,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.gvTitles = new System.Windows.Forms.DataGridView();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.panelMain = new LFI.BPanel();
+            this.panelMain = new BPanel();
             this.contextMenuDisc.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTitles)).BeginInit();

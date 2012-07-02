@@ -35,6 +35,8 @@ namespace LFI
         public MainForm()
         {
             Lmode = "JPN";
+            this.MaximumSize = vertical;
+            this.MinimumSize = vertical;
             this.DoubleBuffered = true;
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);

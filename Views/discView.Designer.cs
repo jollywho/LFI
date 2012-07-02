@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.scrlPage = new System.Windows.Forms.HScrollBar();
             this.btn8 = new System.Windows.Forms.Button();
             this.btn5 = new System.Windows.Forms.Button();
@@ -78,6 +78,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.lblRange = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
             this.gbContents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvContents)).BeginInit();
             this.SuspendLayout();
@@ -286,7 +287,6 @@
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.btnGenerate);
             this.panel1.Controls.Add(this.gbContents);
-            this.panel1.Enabled = true;
             this.panel1.Location = new System.Drawing.Point(-10, 374);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(759, 256);
@@ -296,13 +296,12 @@
             // 
             this.imgTitle.BackgroundImage = global::LFI.Properties.Resources.notavailable;
             this.imgTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.imgTitle.Enabled = true;
             this.imgTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imgTitle.Location = new System.Drawing.Point(540, 18);
             this.imgTitle.Name = "imgTitle";
             this.imgTitle.Size = new System.Drawing.Size(200, 232);
             this.imgTitle.TabIndex = 94;
-            //this.imgTitle.UseVisualStyleBackColor = true;
+            this.imgTitle.TabStop = false;
             this.imgTitle.DragDrop += new System.Windows.Forms.DragEventHandler(this.imgTitle_DragDrop);
             this.imgTitle.DragEnter += new System.Windows.Forms.DragEventHandler(this.imgTitle_DragEnter);
             // 
@@ -320,6 +319,7 @@
             this.ddLocation.TabIndex = 9;
             this.ddLocation.SelectedIndexChanged += new System.EventHandler(this.ddLocation_SelectedIndexChanged);
             this.ddLocation.SelectedValueChanged += new System.EventHandler(this.ddLocation_SelectedValueChanged);
+            this.ddLocation.MouseWheel += new System.Windows.Forms.MouseEventHandler(ddLocation_OnMouseWheel);
             // 
             // copyLabel
             // 
@@ -512,11 +512,11 @@
             this.gvContents.AllowUserToDeleteRows = false;
             this.gvContents.AllowUserToResizeColumns = false;
             this.gvContents.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.gvContents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.gvContents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gvContents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvContents.BackgroundColor = System.Drawing.Color.White;
             this.gvContents.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -529,14 +529,14 @@
             this.Start,
             this.End,
             this.content});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvContents.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvContents.DefaultCellStyle = dataGridViewCellStyle4;
             this.gvContents.Location = new System.Drawing.Point(6, 60);
             this.gvContents.MultiSelect = false;
             this.gvContents.Name = "gvContents";
@@ -724,6 +724,7 @@
             this.Size = new System.Drawing.Size(738, 630);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).EndInit();
             this.gbContents.ResumeLayout(false);
             this.gbContents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvContents)).EndInit();
