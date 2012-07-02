@@ -168,6 +168,7 @@ namespace LFI
             infoPane.Disable();
             gvTitles.Enabled = false;
             txtSearch.Enabled = false;
+            editPane.Clear_Fields();
             editPane.load_data(DB_Handle.GetDataTable(string.Format(
                 @"SELECT * FROM titles WHERE title_id={0}",
                 "\"" + gvTitles.SelectedCells[0].Value.ToString() + "\"")));
@@ -180,6 +181,7 @@ namespace LFI
             infoPane.Disable();
             gvTitles.Enabled = false;
             txtSearch.Enabled = false;
+            lblTitle.Text = string.Empty;
             editPane.Clear_Fields();
             editPane.Enable();
         }

@@ -17,7 +17,6 @@ namespace LFI
         private static Size IMG_SIZE = new Size(245, 345);
         private BackgroundWorker worker = new BackgroundWorker();
         public static bool AllowDiscEdit = true;
-        const int MAX_TOOLTIP = 500;
         public bool isNewRecord = false;
         const int DISCS_PER_PAGE = 4;
         const int PAGES_PER_VIEW = 2;
@@ -95,7 +94,7 @@ namespace LFI
         {
             dtView = DB_Handle.GetDataTable(string.Format(@"select max_storage from locations
                 where location_id='{0}'", ddLocation.Text));
-            max_pages = Convert.ToInt32(dtView.Rows[0][0].ToString());
+            max_pages = Convert.ToInt32(dtView.Rows[0][0].ToString()) / DISCS_PER_PAGE;
             scrlPage.Maximum = max_pages + scrlPage.LargeChange-1;
             DButton.Location_ID = ddLocation.Text;
             loadPage();
@@ -333,7 +332,6 @@ namespace LFI
 
         private void ddLocation_SelectedValueChanged(object sender, EventArgs e)
         {
-            panel1.Enabled = false;
             gvContents.Rows.Clear();
             loadView();
         }
@@ -361,12 +359,13 @@ namespace LFI
             int pos = txt.SelectionStart;
             Regex reg = new Regex("[^0-9]");
             txt.Text = reg.Replace(txt.Text, "");
+            if (txt.Text == "0" && txt.Name == "txtJump") txt.Text = "1";
             if (txt.Text.Length > 0)
             {
                 if (Convert.ToInt32(txtJump.Text) > max_pages)
                 {
                     txt.Text = max_pages.ToString();
-                    txt.Select(pos, 0);
+                    txt.Select(0, 0);
                 }
                 scrlPage.Value = Convert.ToInt32(txtJump.Text);
             }
@@ -375,12 +374,12 @@ namespace LFI
         #region INTERFACE
         public void popContentPane()
         {
-            panel1.Enabled = true;
             gvContents.Rows.Clear();
             for (int i = 0; i <= (PAGES_PER_VIEW * DISCS_PER_PAGE) - 1; i++)
             {
                 dbuttons[i].UnClick();
             }
+            Error_Handle.Clear(toolTip);
         }
 
         public void allowDbuttonDrop(bool val)
@@ -472,6 +471,5 @@ namespace LFI
             ParentForm.Activate();
             DButton.SelBtn.DButton_Click(null, null);
         }
-
     }
 }

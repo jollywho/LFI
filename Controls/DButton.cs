@@ -118,14 +118,20 @@ namespace LFI
         {
             try
             {
-                DB_Handle.UpdateTable(string.Format(
-                    @"INSERT OR REPLACE INTO DISCS 
+                if (selData[0] != string.Empty)
+                {
+                    DB_Handle.UpdateTable(string.Format(
+                        @"INSERT OR REPLACE INTO DISCS 
                     VALUES ('{0}','{1}','{2}','{3}');",
-                    selData[0], Page, Slot, Location_ID));
-                DB_Handle.UpdateTable(string.Format(
-                    @"INSERT OR REPLACE INTO DISCS 
+                        selData[0], Page, Slot, Location_ID));
+                }
+                if (Disc != string.Empty)
+                {
+                    DB_Handle.UpdateTable(string.Format(
+                        @"INSERT OR REPLACE INTO DISCS 
                     VALUES ('{0}','{1}','{2}','{3}');",
-                    Disc, selData[1], selData[2], Location_ID));
+                        Disc, selData[1], selData[2], Location_ID));
+                }
                 Caller.loadPage();
                 OnClick(null);
             }

@@ -248,6 +248,7 @@ namespace LFI
         private void menuItem8_Click(object sender, EventArgs e)
         {
             AboutForm abt = new AboutForm();
+            abt.StartPosition = FormStartPosition.CenterParent;
             abt.ShowDialog();
         }
 

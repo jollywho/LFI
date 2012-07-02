@@ -13,7 +13,7 @@ namespace LFI
 {
     public partial class editPane : UserControl
     {
-        char[] invalid_chars = { '\\',';','@',',','#','$','^','*','~','`',':','"' };
+        char[] invalid_chars = { '\\','/',';','@',',','#','$','^','*','~','`',':','"' };
         public bool active = false;
         private string currentTitle = string.Empty;
         private bool isnewrecord = false;

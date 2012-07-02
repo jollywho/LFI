@@ -14,5 +14,9 @@ namespace LFI
             tp.Show(error, ctrl);
         }
 
+        public static void Clear(ToolTip tp)
+        {
+            tp.RemoveAll();
+        }
     }
 }
