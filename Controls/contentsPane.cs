@@ -36,12 +36,13 @@ namespace LFI
             try
             {
                 DataTable temp = DB_Handle.GetDataTable(string.Format(
-                    @"Select discs.location_id, discs.disc_id, discs.page_number,
+                    @"Select disc_contents.location_id, disc_contents.disc_id, discs.page_number,
                     discs.slot_number, contents.season, contents.rangeStart,
                     contents.rangeEnd from discs INNER JOIN disc_contents
                     ON discs.disc_id = disc_contents.disc_id INNER JOIN 
                     contents ON disc_contents.content_id = contents.content_id
-                    WHERE contents.title_id={0}", "\"" + sel + "\""));
+                    WHERE contents.title_id={0}",
+                    "\"" + sel + "\""));
 
 
                 if (temp.Rows.Count > 0)
