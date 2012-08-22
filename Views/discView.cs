@@ -67,6 +67,11 @@ namespace LFI
                 c.Enter += new EventHandler(c_Enter);
         }
 
+        /// <summary>
+        /// Save active control.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void c_Enter(object sender, EventArgs e)
         {
             if (sender is Control)
@@ -76,15 +81,29 @@ namespace LFI
         public void Enable()
         {
             loadPage();
+            DataTable titles = DB_Handle.GetDataTable(string.Format(
+                @"Select title_id from titles order by title_id"));
+            ddInsTitle.DataSource = titles;
+            ddInsTitle.DisplayMember = "title_id";
             if (lastControlEntered != null)
                 lastControlEntered.Focus();
         }
         
+        /// <summary>
+        /// Force focus off dropdown.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ddLocation_OnMouseWheel(object sender, MouseEventArgs e)
         {
             panel1.Focus();
         }
 
+        /// <summary>
+        /// Custom event handler to move visible page during mousewheel.
+        /// </summary>
+        /// <remarks>Moves 2 pages at a time (1 if half page).</remarks>
+        /// <param name="e"></param>
         protected override void OnMouseWheel(MouseEventArgs e)
         {
             base.OnMouseWheel(e);
@@ -95,6 +114,9 @@ namespace LFI
             loadPage();
         }
 
+        /// <summary>
+        /// Loads max pages for active location and sets scroll limit.
+        /// </summary>
         private void loadView()
         {
             dtView = DB_Handle.GetDataTable(string.Format(@"select max_storage from locations
@@ -106,6 +128,10 @@ namespace LFI
             loadPage();
         }
 
+        /// <summary>
+        /// Finds next even page.
+        /// </summary>
+        /// <returns>Always even.</returns>
         private int jumpPage()
         {
             int pg = Convert.ToInt32(txtJump.Text);
@@ -116,6 +142,11 @@ namespace LFI
             return pg;
         }
 
+        /// <summary>
+        /// Finds next page.
+        /// </summary>
+        /// <param name="pg"></param>
+        /// <returns></returns>
         private int findNextJump(int pg)
         {
             int jmp = Convert.ToInt32(txtJump.Text);
@@ -125,6 +156,9 @@ namespace LFI
             return jmp < 1 ? 1 : jmp;
         }
 
+        /// <summary>
+        /// Loads info to dbuttons based on page and slot
+        /// </summary>
         public void loadPage()
         {
             int page = jumpPage();
@@ -155,6 +189,12 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Hides front or end page of binder.
+        /// </summary>
+        /// <param name="start">the start as integer</param>
+        /// <param name="vis">visibility as boolean</param>
+        /// <param name="all">show all as integer (default 1)</param>
         private void hidePage(int start, bool vis, int all=1)
         {
             lblPageLeft.Visible = true;
@@ -171,6 +211,11 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Start image worker and listens for cancel requests.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
@@ -185,18 +230,35 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Starts again if worker was asked to stop while working.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void worker_Completed(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Cancelled)
                 worker.RunWorkerAsync();
         }
 
+        /// <summary>
+        /// Suppress ENTER key event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void numericTextbox_keydown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space)
                 e.Handled = e.SuppressKeyPress = true;
         }
 
+        /// <summary>
+        /// Inserts title information to gridview if valid.
+        /// Clears previous fields on success.
+        /// Displays error tip on failure.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnInsert_Click(object sender, EventArgs e)
         {
             if (ddInsTitle.Text.Length > 0 && ddInsTitle.FindStringExact(ddInsTitle.Text) != -1)
@@ -225,6 +287,11 @@ namespace LFI
                 Error_Handle.TipError("Invalid title\n", toolTip, ddInsTitle);
         }
 
+        /// <summary>
+        /// Removes selected title row from gridview.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRemove_Click(object sender, EventArgs e)
         {
             if (gvContents.Rows.Count > 0)
@@ -246,6 +313,11 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Attempts to save selected disc and each of its content rows.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSaveClick(object sender, EventArgs e)
         {
             bool rollbackpos = false;
@@ -312,6 +384,11 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Generates the next available disc_id from discs table.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             try
@@ -331,17 +408,32 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Clears disc_id field if dropdown location changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ddLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtDisc.Clear();
         }
 
+        /// <summary>
+        /// Reloads Disc View if dropdown location changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ddLocation_SelectedValueChanged(object sender, EventArgs e)
         {
             gvContents.Rows.Clear();
             loadView();
         }
 
+        /// <summary>
+        /// Loads new page with scrollbar change.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void scrlPage_ValueChanged(object sender, EventArgs e)
         {
             txtJump.Text = scrlPage.Value.ToString();
@@ -359,6 +451,14 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Allow only numerical numbers to be input.
+        /// txtJump only:
+        ///     Prevent zero values.
+        ///     Prevent higher values than max pages.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void numericTextbox_TextChanged(object sender, EventArgs e)
         {
             TextBox txt = (TextBox)sender;
@@ -378,6 +478,9 @@ namespace LFI
         }
 
         #region INTERFACE
+        /// <summary>
+        /// Tell dbuttons to unselect.
+        /// </summary>
         public void popContentPane()
         {
             gvContents.Rows.Clear();
@@ -388,6 +491,10 @@ namespace LFI
             Error_Handle.Clear(toolTip);
         }
 
+        /// <summary>
+        /// Turn ImageDrop On/Off for imgTitle.
+        /// </summary>
+        /// <param name="val">Enable value.</param>
         public void allowDbuttonDrop(bool val)
         {
             imgTitle.AllowDrop = val;
@@ -398,6 +505,10 @@ namespace LFI
             return gvContents;
         }
 
+        /// <summary>
+        /// Get disc and page information.
+        /// </summary>
+        /// <returns></returns>
         public List<string> getSelData()
         {
             return new List<string>() {txtDisc.Text, txtPage.Text,  txtSlot.Text};
@@ -413,6 +524,12 @@ namespace LFI
             return imgTitle;
         }
 
+        /// <summary>
+        /// Sets selected information.
+        /// </summary>
+        /// <param name="disc">disc_id.</param>
+        /// <param name="page">page_number.</param>
+        /// <param name="slot">slot_number.</param>
         public void setData(object disc, object page, object slot)
         {
             txtDisc.Text = disc.ToString();
@@ -446,6 +563,11 @@ namespace LFI
             e.Effect = DragDropEffects.Move;
         }
 
+        /// <summary>
+        /// Save dragged image with selected gridview row title.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void imgTitle_DragDrop(object sender, DragEventArgs e)
         {
             if (gvContents.Rows.Count > 0)

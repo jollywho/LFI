@@ -13,6 +13,13 @@ namespace LFI
     class Image_IO
     {
 
+        /// <summary>
+        /// Create a merged image using the list of titles.
+        /// Default image is used when an image cannot be found.
+        /// </summary>
+        /// <param name="titleStrs">list of string titles.</param>
+        /// <param name="btn">control to resize to.</param>
+        /// <returns>the final image.</returns>
         public static Image createMergedImage(List<string> titleStrs, Control btn)
         {
             List<Image> imgLst = new List<Image>();
@@ -34,7 +41,13 @@ namespace LFI
             return finalImage;
         }
 
-
+        /// <summary>
+        /// Resize an image to a specific width and height.
+        /// </summary>
+        /// <param name="srcImage">original image.</param>
+        /// <param name="newWidth">new width.</param>
+        /// <param name="newHeight">new height.</param>
+        /// <returns></returns>
         public static Image resize_Image(Image srcImage, int newWidth, int newHeight)
         {
             Bitmap newImage = new Bitmap(newWidth, newHeight);
@@ -48,6 +61,11 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Rename an image file to a new string.
+        /// </summary>
+        /// <param name="str">original filename.</param>
+        /// <param name="newstr">new filename.</param>
         public static void rename_Image(string str, string newstr)
         {
             if (str == newstr)
@@ -62,6 +80,10 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Delete a specific image file.
+        /// </summary>
+        /// <param name="str">the filename.</param>
         public static void delete_Image(string str)
         {
             string path = Folder_IO.GetUserImagePath();
@@ -73,6 +95,14 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Merge a list of images into a single image with dividing lines.
+        /// </summary>
+        /// <param name="imgLst">list of images.</param>
+        /// <param name="newWidth">new width.</param>
+        /// <param name="newHeight">new height.</param>
+        /// <param name="items">item count.</param>
+        /// <returns>the final image.</returns>
         public static Image merge_Images(List<Image> imgLst, int newWidth, int newHeight, int items)
         {
             Image newImage = new Bitmap(newWidth, newHeight);
@@ -88,6 +118,11 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Load image file to stream and place it into control property.
+        /// </summary>
+        /// <param name="str">filename.</param>
+        /// <param name="bx">picturebox control.</param>
         public static void setImage(string str, PictureBox bx)
         {
             string path = Folder_IO.GetUserImagePath() + string.Format("\\{0}.jpg", str);
@@ -105,6 +140,13 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Get contents of a disc_id and generate a merged image for it.
+        /// </summary>
+        /// <param name="discid"></param>
+        /// <param name="locationid"></param>
+        /// <param name="btn"></param>
+        /// <returns></returns>
         public static Image generateDiscImage(string discid, string locationid,  Control btn)
         {
             Image img = LFI.Properties.Resources.border;

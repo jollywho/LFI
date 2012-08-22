@@ -44,7 +44,6 @@ namespace LFI
                     WHERE contents.title_id={0}",
                     "\"" + sel + "\""));
 
-
                 if (temp.Rows.Count > 0)
                 {
                     for (int i = 0; i <= temp.Rows.Count - 1; i++)

@@ -18,6 +18,12 @@ namespace LFI
         Empty,
     };
 
+    /// <summary>
+    /// Main and only form for the SDI application.
+    /// </summary>
+    /// <remarks>
+    /// Intercepts all keyboard and menu events.
+    /// </remarks>
     public partial class MainForm : Form
     {
         public static string Lmode;
@@ -32,6 +38,9 @@ namespace LFI
         discView dv = new discView();
         public ViewMode mode;
 
+        /// <summary>
+        /// Sets visual styles and form size and adds all controls.
+        /// </summary>
         public MainForm()
         {
             Lmode = "JPN";
@@ -49,6 +58,12 @@ namespace LFI
             pushBackMenuStates();
         }
 
+        /// <summary>
+        /// Swaps language mode on click event.
+        /// Forces mainview to refresh and checks for empty condition.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void statusStripLabel_Click(object sender, EventArgs e)
         {
             if (mode == ViewMode.Edit)
@@ -72,8 +87,16 @@ namespace LFI
             }
         }
 
-        public void pushback_formView()
+#region MENU_CLICK
+
+        /// <summary>
+        /// Change View state to Main and resize form vertically.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuTitleItem_Click(object sender, EventArgs e)
         {
+            mode = ViewMode.Main;
             pushBackMenuStates();
             bPanel.Controls.Clear();
             bPanel.Controls.Add(mv);
@@ -89,12 +112,11 @@ namespace LFI
             mv.Enable();
         }
 
-        private void menuTitleItem_Click(object sender, EventArgs e)
-        {
-            mode = ViewMode.Main;
-            pushback_formView();
-        }
-
+        /// <summary>
+        /// Change View state to Folder and resize form vertically.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void menuFolderItem_Click(object sender, EventArgs e)
         {
             mode = ViewMode.Folder;
@@ -114,6 +136,11 @@ namespace LFI
             fv.Focus();
         }
 
+        /// <summary>
+        /// Change View state to Disc and resize form horizontally.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void menuDiscItem_Click(object sender, EventArgs e)
         {
             mode = ViewMode.Disc;
@@ -135,6 +162,120 @@ namespace LFI
             dv.Focus();
         }
 
+        /// <summary>
+        /// Turn edit mode On/Off for Main View.
+        /// </summary>
+        /// <remarks>OOnly accessible with mode set to Main View.</remarks>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void titleEditItem_Click(object sender, EventArgs e)
+        {
+            mode = ViewMode.Edit;
+            mv.load_editPane();
+            titleEditItem.Checked = true;
+            pushBackMenuStates();
+        }
+
+        /// <summary>
+        /// Send message to save the Main View record.
+        /// </summary>
+        /// <remarks>Only accessible with Main View state.</remarks>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveItem_Click(object sender, EventArgs e)
+        {
+            if (mv.editPane.saveData())
+            {
+                titleEditItem.Checked = false;
+                mv.load_infoPane();
+                mv.Force_RowEnter();
+                mode = ViewMode.Main;
+            }
+            pushBackMenuStates();
+        }
+
+        /// <summary>
+        /// Tell Main View to cancel editing the active record.
+        /// </summary>
+        /// <remarks>
+        /// Only accessible with both Main View state and Edit enabled
+        /// </remarks>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cancelItem_Click(object sender, EventArgs e)
+        {
+            mode = ViewMode.Main;
+            titleEditItem.Checked = false;
+            mv.load_infoPane();
+            pushBackMenuStates();
+        }
+
+        /// <summary>
+        /// Tell Main View to load edit pane with blank record.
+        /// </summary>
+        /// <remarks>Only accessible with Main View state.</remarks>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuAddItem_Click(object sender, EventArgs e)
+        {
+            mode = ViewMode.Edit;
+            mv.load_blank_editPane();
+            titleEditItem.Checked = true;
+            pushBackMenuStates();
+        }
+
+        /// <summary>
+        /// Turn AlwaysOnTop On/Off.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuAlwaysTop_Click(object sender, EventArgs e)
+        {
+            TopMost = !TopMost;
+            menuAlwaysTop.Checked = !menuAlwaysTop.Checked;
+        }
+
+        /// <summary>
+        /// Show About Form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuItem8_Click(object sender, EventArgs e)
+        {
+            AboutForm abt = new AboutForm();
+            abt.StartPosition = FormStartPosition.CenterParent;
+            abt.ShowDialog();
+        }
+
+        /// <summary>
+        /// Turn ImageDrop On/Off.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dropItem_Click(object sender, EventArgs e)
+        {
+            dropItem.Checked = !dropItem.Checked;
+            mv.infoPane.AllowDrop = dropItem.Checked;
+            dv.allowDbuttonDrop(dropItem.Checked);
+        }
+
+        /// <summary>
+        /// Tell Disc View to turn SwapDiscID On/Off.
+        /// </summary>
+        /// <remarks>Only accessible with mode set to Disc View.</remarks>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void discEditItem_Click(object sender, EventArgs e)
+        {
+            discEditItem.Checked = !discEditItem.Checked;
+            dv.SwapDiscIDMode(!discEditItem.Checked);
+        }
+
+#endregion MENU_CLICK
+
+        /// <summary>
+        /// Cycle enabled value of menu items based on View state.
+        /// </summary>
         private void pushBackMenuStates()
         {
             cancelItem.Enabled = false;
@@ -176,45 +317,17 @@ namespace LFI
             }
         }
 
-        private void titleEditItem_Click(object sender, EventArgs e)
-        {
-            mode = ViewMode.Edit;
-            mv.load_editPane();
-            titleEditItem.Checked = true;
-            pushBackMenuStates();
-        }
-
-        private void saveItem_Click(object sender, EventArgs e)
-        {
-            if (mv.editPane.saveData())
-            {
-                titleEditItem.Checked = false;
-                mv.load_infoPane();
-                mode = ViewMode.Main;
-            }
-            pushBackMenuStates();
-        }
-
-        private void cancelItem_Click(object sender, EventArgs e)
-        {
-            mode = ViewMode.Main;
-            titleEditItem.Checked = false;
-            mv.load_infoPane();
-            pushBackMenuStates();
-        }
-
-        private void menuAddItem_Click(object sender, EventArgs e)
-        {
-            mode = ViewMode.Edit;
-            mv.load_blank_editPane();
-            titleEditItem.Checked = true;
-            pushBackMenuStates();
-        }
-
+#region Form_Events
         public void start_progBar() { progBar.Style = ProgressBarStyle.Marquee; }
         public void stop_progBar() { progBar.Style = ProgressBarStyle.Blocks; }
 
-
+        /// <summary>
+        /// Intercept form-level keypress events:
+        /// Escape - Tell Main View to cancel editing the active record
+        /// </summary>
+        /// <remarks>All events sent to Disc View when active</remarks>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape && titleEditItem.Checked)
@@ -223,6 +336,12 @@ namespace LFI
                 dv.scrlPage_KeyDown(sender, e);
         }
 
+        /// <summary>
+        /// Load initial form location from SystemInformation and
+        /// create image folder in appdata if not already exists.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
             BorderWidth = SystemInformation.FrameBorderSize.Width - 1;
@@ -235,44 +354,34 @@ namespace LFI
             Folder_IO.GetUserImagePath();
         }
 
+        /// <summary>
+        /// Save current form location to SystemInformation.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Properties.Settings.Default.location = Location;
             Properties.Settings.Default.Save();
         }
 
-        private void menuAlwaysTop_Click(object sender, EventArgs e)
-        {
-            TopMost = !TopMost;
-            menuAlwaysTop.Checked = !menuAlwaysTop.Checked;
-        }
-
-        private void menuItem8_Click(object sender, EventArgs e)
-        {
-            AboutForm abt = new AboutForm();
-            abt.StartPosition = FormStartPosition.CenterParent;
-            abt.ShowDialog();
-        }
-
-        private void dropItem_Click(object sender, EventArgs e)
-        {
-            dropItem.Checked = !dropItem.Checked;
-            mv.infoPane.AllowDrop = dropItem.Checked;
-            dv.allowDbuttonDrop(dropItem.Checked);
-        }
-
-        private void discEditItem_Click(object sender, EventArgs e)
-        {
-            discEditItem.Checked = !discEditItem.Checked;
-            dv.SwapDiscIDMode(!discEditItem.Checked);
-        }
-
+        /// <summary>
+        /// Check for snap distance.
+        /// </summary>
+        /// <param name="pos">current position.</param>
+        /// <param name="edge">window edge.</param>
+        /// <returns></returns>
         private bool DoSnap(int pos, int edge)
         {
             int delta = pos - edge;
             return delta > 0 && delta <= SnapDist;
         }
 
+        /// <summary>
+        /// Snap form to screen edges when moved close enough.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_Move(object sender, EventArgs e)
         {
             Screen scn = Screen.FromPoint(this.Location);
@@ -282,5 +391,5 @@ namespace LFI
             if (DoSnap(scn.WorkingArea.Bottom, this.Bottom - BorderWidth)) this.Top = scn.WorkingArea.Bottom - this.Height - BorderWidth;
         }
     }
-    
+#endregion Form_Events
 }

@@ -15,6 +15,11 @@ namespace LFI
         static SQLiteConnection manual_cnn;
         static bool IsOpen = false;
 
+        /// <summary>
+        /// Retrieves datatable from database.
+        /// </summary>
+        /// <param name="sql">sql string.</param>
+        /// <returns>results as datatable.</returns>
         public static DataTable GetDataTable(string sql)
         {
             DataTable dt = new DataTable();
@@ -29,6 +34,10 @@ namespace LFI
             return dt;
         }
 
+        /// <summary>
+        /// Update datatabase.
+        /// </summary>
+        /// <param name="sql">sql string.</param>
         public static void UpdateTable(string sql)
         {
             SQLiteConnection cnn = new SQLiteConnection(conn);
@@ -40,6 +49,10 @@ namespace LFI
             cnn.Close();
         }
 
+        /// <summary>
+        /// Open a manual connection to the database for
+        /// scalar updates.
+        /// </summary>
         public static void OpenConnection()
         {
             try
@@ -54,6 +67,11 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Execute a scalar update with the open database
+        /// connection.
+        /// </summary>
+        /// <param name="sql">sql string.</param>
         public static void ScalarUpdate(string sql)
         {
             try
@@ -69,6 +87,9 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Close the database connection.
+        /// </summary>
         public static void CloseConnection()
         {
             if (IsOpen)

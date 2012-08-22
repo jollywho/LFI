@@ -48,7 +48,10 @@ namespace LFI
             setImage(txtTitle.Text);
         }
 
-        //todo: strip illegal chars OR prevent from the start
+        /// <summary>
+        /// Checks for existing image and loads it from stream to imgTitle.
+        /// </summary>
+        /// <param name="str">title_id</param>
         private void setImage(string str)
         {
             string path = Folder_IO.GetUserImagePath() + string.Format("\\{0}.jpg", str);

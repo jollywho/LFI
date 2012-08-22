@@ -49,6 +49,9 @@ namespace LFI
             return dir;
         }
 
+        /// <summary>
+        /// Get directory filenames, paths, and item count.
+        /// </summary>
         public void Set_Folder_Items()
         {
             folderitems.Clear();
@@ -71,6 +74,12 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Get folder size of specified directory.
+        /// </summary>
+        /// <param name="folder">folder index.</param>
+        /// <param name="root">root folder or divisioned.</param>
+        /// <returns>folder size.</returns>
         public string Get_Folder_Size(int folder, bool root)
         {
             if (root == true)
@@ -79,6 +88,9 @@ namespace LFI
                 return (DirSize(folderDivisions[folder-1])/ Math.Pow(1024, 3)).ToString("N3");
         }
 
+        /// <summary>
+        /// Calculate folder average and max items per divison.
+        /// </summary>
         public void Generate_Divisions()
         {
             dsCount = (int)(folderSize / DVD_SIZE);
@@ -119,6 +131,11 @@ namespace LFI
             return size;
         }
 
+        /// <summary>
+        /// Add items to division until greater than folder average.
+        /// </summary>
+        /// <param name="pos">current item position.</param>
+        /// <returns>new item position.</returns>
         private int AddMaxItems(int pos)
         {
             long sum = 0;
@@ -143,6 +160,12 @@ namespace LFI
             return newpos;
         }
 
+        /// <summary>
+        /// Detect CRC from given filename using regex.
+        /// </summary>
+        /// <param name="filename">string filename.</param>
+        /// <param name="newfilename">string newfilename.</param>
+        /// <returns>the CRC code.</returns>
         public static string ScanCRC(string filename, out string newfilename)
         {
             FileInfo file = new FileInfo(filename);
@@ -156,6 +179,13 @@ namespace LFI
             return crcStr;
         }
 
+        /// <summary>
+        /// Add CRC code to specified filename.
+        /// </summary>
+        /// <param name="filename">string filename.</param>
+        /// <param name="crc">string CRC code.</param>
+        /// <param name="newfilename">string newfilename.</param>
+        /// <returns>string full filename.</returns>
         public static string AddCRC(string filename, string crc, out string newfilename)
         {
             FileInfo file = new FileInfo(filename);
@@ -168,6 +198,10 @@ namespace LFI
             return file.FullName;
         }
 
+        /// <summary>
+        /// Remove .part file extensions.
+        /// </summary>
+        /// <param name="file"></param>
         public static void FixExtension(FileInfo file)
         {
             if (file.Extension.Contains(".part"))
@@ -176,6 +210,11 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Check if string contains valid CRC.
+        /// </summary>
+        /// <param name="str">the string.</param>
+        /// <returns>True if contains valid CRC.</returns>
         public static bool IsCRC(string str)
         {
             return reg.IsMatch(str);

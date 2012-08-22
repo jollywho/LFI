@@ -23,6 +23,9 @@ namespace LFI
         public bool enabled;
         private int scrollpos = 0;
 
+        /// <summary>
+        /// Load child Panes and components.
+        /// </summary>
         public mainView() 
         {
             InitializeComponent();
@@ -38,23 +41,11 @@ namespace LFI
             discPane.Disable();
         }
 
-        public void Disable() 
-        {
-            this.Hide();
-            enabled = false; 
-        }
-
-        public void Enable()
-        {
-            enabled = true;
-            this.Show();
-            txtSearch_TextChanged(null, null);
-            
-            if (gvTitles.Rows.Count > 0)
-                gvTitles.Rows[savedRow].Selected = true;
-            txtSearch.Focus();
-        }
-
+        /// <summary>
+        /// Filter gridview while typing.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             if (txtSearch.Text.Length > 0)
@@ -68,29 +59,14 @@ namespace LFI
             else
                 populateList();
         }
-
-        public void populateList()
-        {
-            dvTitles = DB_Handle.GetDataTable(string.Format(
-                @"SELECT title_id 
-                FROM titles WHERE language ='{0}' 
-                ORDER BY title_id", MainForm.Lmode));
-            gvTitles.DataSource = dvTitles; 
-        }
-
-        public bool IsEmpty()
-        {
-            if (gvTitles.Rows.Count < 1)
-                return true;
-            else
-                return false;
-        }
-
-        public void Force_RowEnter()
-        {
-            gvTitles_RowEnter(null, null);
-        }
         
+        /// <summary>
+        /// Load Info Pane with data for selected gridview title.
+        /// or
+        /// Load Disc Pane with data for selected gridview title.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void gvTitles_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (gvTitles.SelectedCells.Count > 0)
@@ -113,7 +89,42 @@ namespace LFI
             }
         }
 
-        private void contextMenuItemDisc_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Keydown event for gridview:
+        /// Delete - Force delete event for selected row.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gvTitles_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+                deleteToolStripMenuItem_Click(null, null);
+        }
+
+#region CONTEXT_MENU
+
+        /// <summary>
+        /// Sets correct positon for context menu when opened.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void contextMenuDisc_Opened(object sender, EventArgs e)
+        {
+            if (gvTitles.Rows.Count > 0)
+            {
+                contextMenuDisc.Enabled = true;
+                if (gvTitles[cellHover[1], cellHover[0]].Value != null)
+                    gvTitles[cellHover[1], cellHover[0]].Selected = true;
+            }
+            else
+                contextMenuDisc.Enabled = false;
+        }
+        /// <summary>
+        /// Load Disc Pane and disable all others.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void discInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (infoPane.active)
             {
@@ -124,12 +135,11 @@ namespace LFI
             }
         }
 
-        private void gvTitles_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
-                deleteToolStripMenuItem_Click(null, null);
-        }
-
+        /// <summary>
+        /// Load Info Pane and disable all others.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void titleInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (discPane.active)
@@ -140,52 +150,12 @@ namespace LFI
             }
         }
 
-        public void load_infoPane()
-        {
-            try
-            {
-                if (gvTitles.Rows.Count > 0)
-                    scrollpos = gvTitles.FirstDisplayedScrollingRowIndex;
-                infoPane.Enable();
-                editPane.Disable();
-                discPane.Disable();
-                gvTitles.Enabled = true;
-                txtSearch.Enabled = true;
-                populateList();
-                Enable();
-                if (gvTitles.Rows.Count > 0)
-                    gvTitles.FirstDisplayedScrollingRowIndex = scrollpos;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        public void load_editPane()
-        {
-            discPane.Disable();
-            infoPane.Disable();
-            gvTitles.Enabled = false;
-            txtSearch.Enabled = false;
-            editPane.Clear_Fields();
-            editPane.load_data(DB_Handle.GetDataTable(string.Format(
-                @"SELECT * FROM titles WHERE title_id={0}",
-                "\"" + gvTitles.SelectedCells[0].Value.ToString() + "\"")));
-            editPane.Enable();
-        }
-
-        public void load_blank_editPane()
-        {
-            discPane.Disable();
-            infoPane.Disable();
-            gvTitles.Enabled = false;
-            txtSearch.Enabled = false;
-            lblTitle.Text = string.Empty;
-            editPane.Clear_Fields();
-            editPane.Enable();
-        }
-
+        /// <summary>
+        /// Prompt to delete selected row:
+        /// Yes - Deletes title and image then refreshes gridview.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult dlg = MessageBox.Show("Delete?", "Confirm", MessageBoxButtons.YesNo);
@@ -211,23 +181,127 @@ namespace LFI
                 gvTitles.Focus();
             }
         }
+#endregion CONTEXT_MENU
 
+        /// <summary>
+        /// Mouse hover saves row-to-mouse position.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void gvTitles_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             cellHover[0] = e.RowIndex;
             cellHover[1] = e.ColumnIndex;
         }
 
-        private void contextMenuDisc_Opened(object sender, EventArgs e)
+#region INTERFACE
+        /// <summary>
+        /// Set View to disabled and hide self.
+        /// </summary>
+        public void Disable()
         {
-            if (gvTitles.Rows.Count > 0)
-            {
-                contextMenuDisc.Enabled = true;
-                if (gvTitles[cellHover[1], cellHover[0]].Value != null)
-                    gvTitles[cellHover[1], cellHover[0]].Selected = true;
-            }
-            else
-                contextMenuDisc.Enabled = false;
+            this.Hide();
+            enabled = false;
         }
+
+        /// <summary>
+        /// Set View to enabled and show self.
+        /// Reselect last row selected in gridview.
+        /// </summary>
+        public void Enable()
+        {
+            enabled = true;
+            this.Show();
+            txtSearch_TextChanged(null, null);
+
+            if (gvTitles.Rows.Count > 0)
+                gvTitles.Rows[savedRow].Selected = true;
+            txtSearch.Focus();
+        }
+
+        /// <summary>
+        /// Populate gridview with titles.
+        /// </summary>
+        public void populateList()
+        {
+            dvTitles = DB_Handle.GetDataTable(string.Format(
+                @"SELECT title_id 
+                FROM titles WHERE language ='{0}' 
+                ORDER BY title_id", MainForm.Lmode));
+            gvTitles.DataSource = dvTitles;
+        }
+
+        /// <summary>
+        /// Checks gridview row count.
+        /// </summary>
+        /// <returns>True if empty.</returns>
+        public bool IsEmpty()
+        {
+            return gvTitles.Rows.Count < 1 ? true : false;
+        }
+
+        /// <summary>
+        /// Force a gridview row enter event.
+        /// </summary>
+        public void Force_RowEnter()
+        {
+            gvTitles_RowEnter(null, null);
+        }
+
+        /// <summary>
+        /// Public interface to load Info Pane.
+        /// </summary>
+        public void load_infoPane()
+        {
+            try
+            {
+                if (gvTitles.Rows.Count > 0)
+                    scrollpos = gvTitles.FirstDisplayedScrollingRowIndex;
+                infoPane.Enable();
+                editPane.Disable();
+                discPane.Disable();
+                gvTitles.Enabled = true;
+                txtSearch.Enabled = true;
+                populateList();
+                Enable();
+                if (gvTitles.Rows.Count > 0)
+                    gvTitles.FirstDisplayedScrollingRowIndex = scrollpos;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Public interface to load Edit Pane.
+        /// </summary>
+        public void load_editPane()
+        {
+            discPane.Disable();
+            infoPane.Disable();
+            gvTitles.Enabled = false;
+            txtSearch.Enabled = false;
+            editPane.Clear_Fields();
+            editPane.load_data(DB_Handle.GetDataTable(string.Format(
+                @"SELECT * FROM titles WHERE title_id={0}",
+                "\"" + gvTitles.SelectedCells[0].Value.ToString() + "\"")));
+            editPane.Enable();
+        }
+
+        /// <summary>
+        /// Public interface to load Edit Pane with blank record.
+        /// </summary>
+        public void load_blank_editPane()
+        {
+            discPane.Disable();
+            infoPane.Disable();
+            gvTitles.Enabled = false;
+            txtSearch.Enabled = false;
+            lblTitle.Text = string.Empty;
+            editPane.Clear_Fields();
+            editPane.Enable();
+        }
+#endregion INTERFACE
     }
 }

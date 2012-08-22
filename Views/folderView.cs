@@ -132,6 +132,7 @@ namespace LFI
             }
         }
 
+#region WORKER
         private void worker_ComputeCRC(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
@@ -193,6 +194,7 @@ namespace LFI
             DisableRunButtons();
             Add_MultiRunIncrement();
         }
+#endregion WORKER
 
         private void Add_MultiRunIncrement()
         {

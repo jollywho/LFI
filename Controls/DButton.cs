@@ -48,6 +48,11 @@ namespace LFI
             Caller = caller;
         }
 
+        /// <summary>
+        /// Load dbutton information based on Location, Page, Slot.
+        /// Set selection data if currently selected.
+        /// </summary>
+        /// <param name="page">page_number.</param>
         public void load(int page)
         {
             DataTable dt = DB_Handle.GetDataTable(string.Format(@"select * from discs
@@ -64,6 +69,12 @@ namespace LFI
                     SetClick();
         }
 
+        /// <summary>
+        /// Load title into context menu when opening.
+        /// Hide if no record available.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void swapMenu_Opening(object sender, CancelEventArgs e)
         {
             selData = Caller.getSelData();
@@ -76,6 +87,16 @@ namespace LFI
                 e.Cancel = true;
         }
 
+        /// <summary>
+        /// Prompt to delete record.
+        /// Deletes disc and all content records on disc.
+        /// </summary>
+        /// <remarks>
+        /// no foreign_key support in sqlite version so
+        /// records are manually deleted from each table.
+        /// </remarks>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deleteMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult dlg = MessageBox.Show("Delete?", "Confirm", MessageBoxButtons.YesNo);
@@ -114,6 +135,11 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Attempt to swap selected disc with destination positon.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void swapMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -122,14 +148,14 @@ namespace LFI
                 {
                     DB_Handle.UpdateTable(string.Format(
                         @"INSERT OR REPLACE INTO DISCS 
-                    VALUES ('{0}','{1}','{2}','{3}');",
+                        VALUES ('{0}','{1}','{2}','{3}');",
                         selData[0], Page, Slot, Location_ID));
                 }
                 if (Disc != string.Empty)
                 {
                     DB_Handle.UpdateTable(string.Format(
                         @"INSERT OR REPLACE INTO DISCS 
-                    VALUES ('{0}','{1}','{2}','{3}');",
+                        VALUES ('{0}','{1}','{2}','{3}');",
                         Disc, selData[1], selData[2], Location_ID));
                 }
                 Caller.loadPage();
@@ -154,6 +180,11 @@ namespace LFI
             vlbl.Text = Disc;
         }
 
+        /// <summary>
+        /// Creates a vertical label to display disc_id text beside control.
+        /// </summary>
+        /// <param name="copylabel"></param>
+        /// <param name="text"></param>
         private void createVertLabel( Label copylabel, string text)
         {
             vlbl.Text = text;
@@ -178,6 +209,12 @@ namespace LFI
             FlatAppearance.BorderSize = 4;
         }
 
+        /// <summary>
+        /// Sends current dbutton info to Disc View and creates an upscaled
+        /// split image of the disc contents.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void DButton_Click(object sender, EventArgs e)
         {
             Caller.popContentPane();

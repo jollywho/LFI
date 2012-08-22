@@ -8,6 +8,12 @@ namespace LFI
 {
     class Error_Handle
     {
+        /// <summary>
+        /// Display an error messsage from the specified control.
+        /// </summary>
+        /// <param name="error">message string.</param>
+        /// <param name="tp">tooltip.</param>
+        /// <param name="ctrl">focus control.</param>
         public static void TipError(string error, ToolTip tp, Control ctrl)
         {
             ctrl.Focus();

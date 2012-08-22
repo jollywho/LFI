@@ -32,6 +32,7 @@ namespace LFI
 
         public void Enable()
         {
+            populateDropDownTitles();
             active = true;
             this.Show();
         }
@@ -54,6 +55,12 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Show dialog for saving image with title as file name.
+        /// </summary>
+        /// <remarks>saves jpeg format.</remarks>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnImg_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
@@ -76,6 +83,9 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Loads ddTitle dropdown with all existing titles.
+        /// </summary>
         private void populateDropDownTitles()
         {
             DataTable titles = DB_Handle.GetDataTable(string.Format(
@@ -123,6 +133,13 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Attempts to update title and information.
+        /// Validates information.
+        /// Renames image if exists.
+        /// </summary>
+        /// <remarks>uses insert for new records only.</remarks>
+        /// <returns></returns>
         public bool saveData()
         {
             bool status = false;

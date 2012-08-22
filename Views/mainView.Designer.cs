@@ -69,7 +69,7 @@
             this.contextMenuItemDisc.Name = "contextMenuItemDisc";
             this.contextMenuItemDisc.Size = new System.Drawing.Size(109, 22);
             this.contextMenuItemDisc.Text = "Disc(s)";
-            this.contextMenuItemDisc.Click += new System.EventHandler(this.contextMenuItemDisc_Click);
+            this.contextMenuItemDisc.Click += new System.EventHandler(this.discInfoToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
