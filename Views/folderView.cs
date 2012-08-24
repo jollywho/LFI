@@ -410,5 +410,15 @@ namespace LFI
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
+
+        private void btnTestReg_Click(object sender, EventArgs e)
+        {
+            EPFORMAT choice = 0;
+            if (radFormatReg.Checked) choice = EPFORMAT.REG_NUM;
+            if (radFormatNumXNum.Checked) choice = EPFORMAT.NUM_X_NUM;
+            if (radFormatS_Num_E_Num.Checked) choice = EPFORMAT.S_NUM_E_NUM;
+
+            FileNameFormat fn = new FileNameFormat(gvFiles.SelectedCells[1].Value.ToString(), choice);
+        }
     }
 }

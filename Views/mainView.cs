@@ -50,9 +50,20 @@ namespace LFI
         {
             if (txtSearch.Text.Length > 0)
             {
+                string filter = txtSearch.Text.Replace("'", "''");
+                string[] pattern = filter.Split('*');
                 dvSearch = new DataView(dvTitles);
-                dvSearch.RowFilter = string.Format(@"title_id like '%{0}*'",
-                    txtSearch.Text.Replace("'", "''"));
+
+                //filter = string.Format(@"title_id like '%{0}*%'", pattern[0].ToString());
+                filter = string.Format(@"title_id like '%*{0}*%'", pattern[0].ToString());
+                if (pattern.Count() > 0)
+                {
+                    for (int i = 1; i < pattern.Count(); i++)
+                    {
+                        filter += string.Format(@"and title_id like '%*{0}*%'", pattern[i]);
+                    }
+                }
+                dvSearch.RowFilter = filter;
                 savedRow = 0;
                 gvTitles.DataSource = dvSearch;
             }

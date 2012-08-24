@@ -172,6 +172,7 @@
       <DependentUpon>DButton.cs</DependentUpon>
     </Compile>
     <Compile Include="Error_Handle.cs" />
+    <Compile Include="FileNameFormat.cs" />
     <Compile Include="Image_IO.cs" />
     <Compile Include="LFIDataSet.Designer.cs">
       <AutoGen>True</AutoGen>

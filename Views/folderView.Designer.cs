@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.gvFiles = new System.Windows.Forms.DataGridView();
             this.check = new System.Windows.Forms.DataGridViewImageColumn();
@@ -54,6 +54,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblSize = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
+            this.btnTestReg = new System.Windows.Forms.Button();
+            this.radFormatReg = new System.Windows.Forms.RadioButton();
+            this.radFormatNumXNum = new System.Windows.Forms.RadioButton();
+            this.radFormatS_Num_E_Num = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).BeginInit();
             this.contextMenuFile.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -93,14 +97,14 @@
             this.Text,
             this.Hidden});
             this.gvFiles.ContextMenuStrip = this.contextMenuFile;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvFiles.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvFiles.DefaultCellStyle = dataGridViewCellStyle7;
             this.gvFiles.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.gvFiles.Location = new System.Drawing.Point(0, 203);
             this.gvFiles.MultiSelect = false;
@@ -120,9 +124,9 @@
             // check
             // 
             this.check.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.NullValue = null;
-            this.check.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.NullValue = null;
+            this.check.DefaultCellStyle = dataGridViewCellStyle3;
             this.check.FillWeight = 10F;
             this.check.HeaderText = "check";
             this.check.Name = "check";
@@ -371,11 +375,57 @@
             this.btnBack.MouseEnter += new System.EventHandler(this.btnBack_MouseEnter);
             this.btnBack.MouseLeave += new System.EventHandler(this.btnBack_MouseLeave);
             // 
+            // btnTestReg
+            // 
+            this.btnTestReg.Location = new System.Drawing.Point(19, 130);
+            this.btnTestReg.Name = "btnTestReg";
+            this.btnTestReg.Size = new System.Drawing.Size(75, 23);
+            this.btnTestReg.TabIndex = 5;
+            this.btnTestReg.Text = "Scan";
+            this.btnTestReg.UseVisualStyleBackColor = true;
+            this.btnTestReg.Click += new System.EventHandler(this.btnTestReg_Click);
+            // 
+            // radFormatReg
+            // 
+            this.radFormatReg.AutoSize = true;
+            this.radFormatReg.Checked = true;
+            this.radFormatReg.Location = new System.Drawing.Point(9, 58);
+            this.radFormatReg.Name = "radFormatReg";
+            this.radFormatReg.Size = new System.Drawing.Size(45, 17);
+            this.radFormatReg.TabIndex = 6;
+            this.radFormatReg.TabStop = true;
+            this.radFormatReg.Text = " ## ";
+            this.radFormatReg.UseVisualStyleBackColor = true;
+            // 
+            // radFormatNumXNum
+            // 
+            this.radFormatNumXNum.AutoSize = true;
+            this.radFormatNumXNum.Location = new System.Drawing.Point(9, 80);
+            this.radFormatNumXNum.Name = "radFormatNumXNum";
+            this.radFormatNumXNum.Size = new System.Drawing.Size(64, 17);
+            this.radFormatNumXNum.TabIndex = 7;
+            this.radFormatNumXNum.Text = "## x ##";
+            this.radFormatNumXNum.UseVisualStyleBackColor = true;
+            // 
+            // radFormatS_Num_E_Num
+            // 
+            this.radFormatS_Num_E_Num.AutoSize = true;
+            this.radFormatS_Num_E_Num.Location = new System.Drawing.Point(9, 103);
+            this.radFormatS_Num_E_Num.Name = "radFormatS_Num_E_Num";
+            this.radFormatS_Num_E_Num.Size = new System.Drawing.Size(64, 17);
+            this.radFormatS_Num_E_Num.TabIndex = 8;
+            this.radFormatS_Num_E_Num.Text = "s##e##";
+            this.radFormatS_Num_E_Num.UseVisualStyleBackColor = true;
+            // 
             // folderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.radFormatS_Num_E_Num);
+            this.Controls.Add(this.radFormatNumXNum);
+            this.Controls.Add(this.radFormatReg);
+            this.Controls.Add(this.btnTestReg);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.gvFiles);
@@ -419,5 +469,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Hidden;
         private System.Windows.Forms.ContextMenuStrip contextMenuFile;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.Button btnTestReg;
+        private System.Windows.Forms.RadioButton radFormatReg;
+        private System.Windows.Forms.RadioButton radFormatNumXNum;
+        private System.Windows.Forms.RadioButton radFormatS_Num_E_Num;
     }
 }
