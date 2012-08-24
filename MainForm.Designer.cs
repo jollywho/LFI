@@ -33,6 +33,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.progBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.slblSize = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuAddItem = new System.Windows.Forms.MenuItem();
@@ -54,6 +55,7 @@
             this.menuItem9 = new System.Windows.Forms.MenuItem();
             this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.bPanel = new LFI.BPanel();
+            this.slblItems = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +64,9 @@
             this.statusStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusStripLabel,
-            this.progBar});
+            this.progBar,
+            this.slblSize,
+            this.slblItems});
             this.statusStrip1.Location = new System.Drawing.Point(0, 648);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(534, 24);
@@ -87,6 +91,13 @@
             this.progBar.MarqueeAnimationSpeed = 5;
             this.progBar.Name = "progBar";
             this.progBar.Size = new System.Drawing.Size(100, 18);
+            // 
+            // slblSize
+            // 
+            this.slblSize.Name = "slblSize";
+            this.slblSize.Size = new System.Drawing.Size(72, 19);
+            this.slblSize.Text = "Size: 0.00 GB";
+            this.slblSize.Visible = false;
             // 
             // mainMenu1
             // 
@@ -235,6 +246,13 @@
             this.bPanel.Size = new System.Drawing.Size(534, 648);
             this.bPanel.TabIndex = 9;
             // 
+            // slblItems
+            // 
+            this.slblItems.Name = "slblItems";
+            this.slblItems.Size = new System.Drawing.Size(45, 19);
+            this.slblItems.Text = "0 Items";
+            this.slblItems.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -291,6 +309,8 @@
         private System.Windows.Forms.MenuItem menuItem10;
         private BPanel bPanel;
         private System.Windows.Forms.MenuItem dropItem;
+        private System.Windows.Forms.ToolStripStatusLabel slblSize;
+        private System.Windows.Forms.ToolStripStatusLabel slblItems;
 
 
     }

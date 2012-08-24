@@ -17,6 +17,7 @@ namespace LFI
         public List<string> folderitems = new List<string>();
         public List<string> filenames = new List<string>();
         public List<List<string>> folderDivisions = new List<List<string>>();
+        public List<string> subdiritems = new List<string>();
         private long folderSize = 0;
         private int itemCount = 0;
         private int dvCount = 0;
@@ -56,16 +57,23 @@ namespace LFI
         {
             folderitems.Clear();
             filenames.Clear();
+            subdiritems.Clear();
             itemCount = 0;
             try
             {
                 var sorted = Directory.GetFiles(dirname);
+                var subdirs = Directory.GetDirectories(dirname);
                 Array.Sort(sorted, new AlphanumComparatorFast());
                 foreach (string item in sorted)
                 {
                     folderitems.Add(Path.GetFileName(item));
                     filenames.Add(item);
                     itemCount++;
+                }
+                foreach (string item in subdirs)
+                {
+                    subdiritems.Add(item);
+                    
                 }
             }
             catch (Exception ex)

@@ -87,7 +87,17 @@ namespace LFI
             }
         }
 
-#region MENU_CLICK
+        #region MENU_INTERFACE
+        public void SetLabelSize(string size)
+        {
+            slblSize.Text = "Size: " + size + " GB";
+        }
+        public void SetLabelItemCount(int items)
+        {
+            slblItems.Text = items + " items";
+        }
+        #endregion MENU_INTERFACE
+        #region MENU_CLICK
 
         /// <summary>
         /// Change View state to Main and resize form vertically.
@@ -296,6 +306,16 @@ namespace LFI
             {
                 cancelItem.Enabled = true;
                 saveItem.Enabled = true;
+            }
+            if (mode == ViewMode.Folder)
+            {
+                slblItems.Visible = true;
+                slblSize.Visible = true;
+            }
+            else
+            {
+                slblItems.Visible = false;
+                slblSize.Visible = false;
             }
 
             if (titleEditItem.Checked == true)

@@ -60,13 +60,6 @@ namespace LFI.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap addchecksum {
-            get {
-                object obj = ResourceManager.GetObject("addchecksum", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap arrow_divide {
             get {
                 object obj = ResourceManager.GetObject("arrow_divide", resourceCulture);
@@ -102,6 +95,13 @@ namespace LFI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap cancel {
+            get {
+                object obj = ResourceManager.GetObject("cancel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap check {
             get {
                 object obj = ResourceManager.GetObject("check", resourceCulture);
@@ -109,16 +109,16 @@ namespace LFI.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap checksum {
+        internal static System.Drawing.Bitmap checksum_add {
             get {
-                object obj = ResourceManager.GetObject("checksum", resourceCulture);
+                object obj = ResourceManager.GetObject("checksum_add", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap clear {
+        internal static System.Drawing.Bitmap checksum_check {
             get {
-                object obj = ResourceManager.GetObject("clear", resourceCulture);
+                object obj = ResourceManager.GetObject("checksum_check", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -126,13 +126,6 @@ namespace LFI.Properties {
         internal static System.Drawing.Bitmap database_process {
             get {
                 object obj = ResourceManager.GetObject("database_process", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap divide {
-            get {
-                object obj = ResourceManager.GetObject("divide", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -147,6 +140,13 @@ namespace LFI.Properties {
         internal static System.Drawing.Bitmap error {
             get {
                 object obj = ResourceManager.GetObject("error", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap folder {
+            get {
+                object obj = ResourceManager.GetObject("folder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -182,6 +182,13 @@ namespace LFI.Properties {
         internal static System.Drawing.Bitmap progress {
             get {
                 object obj = ResourceManager.GetObject("progress", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap refresh {
+            get {
+                object obj = ResourceManager.GetObject("refresh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

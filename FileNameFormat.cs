@@ -62,7 +62,7 @@ namespace LFI
 
             Console.WriteLine(new Regex(regChoice).Match(file).Groups[2]);
             Console.WriteLine(new Regex(regChoice).Match(file).Groups[3]);
-            Console.WriteLine(new Regex(regChoice).Match(file).Groups[4]);
+            Console.WriteLine(new Regex(regChoice).Match(file).Groups[4]); //
 
             Console.WriteLine(new Regex(regCRC).Match(file).Groups[0]);
         }

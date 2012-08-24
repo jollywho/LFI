@@ -35,17 +35,31 @@ namespace LFI
             InitializeComponent();
             DoubleBuffered = true;
             caller = main;
+            gvFiles.CellPainting += new DataGridViewCellPaintingEventHandler(gvFiles_CellPainting);
+            List<string> folders = System.IO.Directory.GetDirectories(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyVideos)).ToList();
+            folders.Insert(0, Environment.GetFolderPath(Environment.SpecialFolder.MyVideos));
+            ddUrl.ComboBox.DataSource = folders;
+            ddUrl.ComboBox.MouseWheel += new MouseEventHandler(combobox_MouseWheel);
+            ddUrl.ComboBox.SelectedValueChanged += new EventHandler(ddUrl_SelectedValueChanged);
+            ddUrl.ComboBox.KeyDown += new KeyEventHandler(ddUrl_KeyDown);
+
             animation.Image = LFI.Properties.Resources.progress;
             animation.Width = 16;
             animation.Height = 16;
             animation.BackColor = Color.Transparent;
             animation.Hide();
             gvFiles.Controls.Add(animation);
-            gvFiles.CellPainting += new DataGridViewCellPaintingEventHandler(gvFiles_CellPainting);
-            string[] folders = System.IO.Directory.GetDirectories(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyVideos));
-            ddUrl.DataSource = folders;
-            ddUrl.MouseWheel += new MouseEventHandler(combobox_MouseWheel);
+
+            Dictionary<EPFORMAT, string> choices = new Dictionary<EPFORMAT, string>();
+            choices.Add(EPFORMAT.REG_NUM, "##");
+            choices.Add(EPFORMAT.NUM_X_NUM, "## x ##");
+            choices.Add(EPFORMAT.S_NUM_E_NUM, "S##E##");
+            ddFormat.DataSource = new BindingSource(choices, null);
+            ddFormat.DisplayMember = "Value";
+            ddFormat.ValueMember = "Key";
+
+            open_Folder();
         }
 
         private void open_Folder()
@@ -109,20 +123,31 @@ namespace LFI
 
                 if (lstDivs.Text == "0")
                 {
-                    lblSize.Text = folder.Get_Folder_Size(sel, true) + " GB";
+                    caller.SetLabelSize(folder.Get_Folder_Size(sel, true));
+                    caller.SetLabelItemCount(folder.folderitems.Count);
                     for (int i = 0; i <= folder.folderitems.Count - 1; i++)
                     {
                         gvFiles.Rows.Add(LFI.Properties.Resources.empty,
+                            Icon.ExtractAssociatedIcon(folder.filenames[i]),
                             Path.GetFileName(folder.folderitems[i]),
                             folder.filenames[i]);
                     }
+                    for (int i = 0; i <= folder.subdiritems.Count - 1; i++)
+                    {
+                        gvFiles.Rows.Add(LFI.Properties.Resources.empty,
+                            LFI.Properties.Resources.folder,
+                           Path.GetFileName(folder.subdiritems[i]), folder.subdiritems[i]
+                            );
+                    } 
                 }
                 else
                 {
-                    lblSize.Text = folder.Get_Folder_Size(sel, false) + " GB";
+                    caller.SetLabelSize(folder.Get_Folder_Size(sel, false));
+                    caller.SetLabelItemCount(folder.folderitems.Count);
                     for (int i = 0; i <= folder.folderDivisions[sel - 1].Count - 1; i++)
                     {
                         gvFiles.Rows.Add(LFI.Properties.Resources.empty,
+                            Icon.ExtractAssociatedIcon(folder.filenames[i]),
                             Path.GetFileName(folder.folderDivisions[sel - 1][i]),
                             folder.folderDivisions[sel - 1][i]
                         );
@@ -132,23 +157,23 @@ namespace LFI
             }
         }
 
-#region WORKER
+        #region WORKER
         private void worker_ComputeCRC(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
 
             string file = (string)e.Argument;
 
-                Crc32 crc32 = new Crc32();
-                Crc32.worker = worker;
-                String hash = String.Empty;
-                
-                using (FileStream fs = File.Open(file, FileMode.Open))
-                    foreach (byte b in crc32.ComputeHash(fs))
-                    {
-                        hash += b.ToString("x2").ToUpper();
-                    }
-                checksum = hash;
+            Crc32 crc32 = new Crc32();
+            Crc32.worker = worker;
+            String hash = String.Empty;
+
+            using (FileStream fs = File.Open(file, FileMode.Open))
+                foreach (byte b in crc32.ComputeHash(fs))
+                {
+                    hash += b.ToString("x2").ToUpper();
+                }
+            checksum = hash;
         }
 
         private void bw_CheckCRCCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -189,12 +214,12 @@ namespace LFI
                 folder.folderitems[workingRow] = ddUrl.Text + "\\" + newfilename;
             else
                 folder.folderDivisions[Convert.ToInt32(lstDivs.Text) - 1][workingRow] =
-                    ddUrl.Text + "\\" + newfilename;    
+                    ddUrl.Text + "\\" + newfilename;
 
             DisableRunButtons();
             Add_MultiRunIncrement();
         }
-#endregion WORKER
+        #endregion WORKER
 
         private void Add_MultiRunIncrement()
         {
@@ -228,6 +253,7 @@ namespace LFI
 
         void gvFiles_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
+            if (gvFiles.RowCount < 1) return;
             animation.Location = gvFiles.GetCellDisplayRectangle(0, workingRow, true).Location;
             animation.Width = gvFiles.GetCellDisplayRectangle(0, workingRow, true).Width;
             animation.Height = gvFiles.GetCellDisplayRectangle(0, workingRow, true).Height;
@@ -318,15 +344,8 @@ namespace LFI
         {
             if (System.IO.Directory.GetDirectories(ddUrl.Text).Count<string>() > 1)
             {
-                rebind_ddUrl();
+                //rebind_ddUrl();
             }
-            open_Folder();
-        }
-
-        private void rebind_ddUrl()
-        {
-            ddUrl.DataSource = System.IO.Directory.GetDirectories(
-                ddUrl.Text);
             open_Folder();
         }
 
@@ -350,8 +369,8 @@ namespace LFI
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            ddUrl.Text = Path.GetDirectoryName(Path.GetDirectoryName(ddUrl.Text));
-            rebind_ddUrl();
+            ddUrl.Text = Directory.GetParent(ddUrl.Text).FullName;
+            open_Folder();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -383,27 +402,10 @@ namespace LFI
             }
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start(gvFiles.SelectedCells[2].Value.ToString());
-        }
-
         private void gvFiles_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             cellHover[0] = e.RowIndex;
             cellHover[1] = e.ColumnIndex;
-        }
-
-        private void contextMenuFile_Opened(object sender, EventArgs e)
-        {
-            if (gvFiles.Rows.Count > 0)
-            {
-                contextMenuFile.Enabled = true;
-                if (gvFiles[cellHover[1], cellHover[0]].Value != null)
-                    gvFiles[cellHover[1], cellHover[0]].Selected = true;
-            }
-            else
-                contextMenuFile.Enabled = false;
         }
 
         private void combobox_MouseWheel(object sender, MouseEventArgs e)
@@ -413,12 +415,18 @@ namespace LFI
 
         private void btnTestReg_Click(object sender, EventArgs e)
         {
-            EPFORMAT choice = 0;
-            if (radFormatReg.Checked) choice = EPFORMAT.REG_NUM;
-            if (radFormatNumXNum.Checked) choice = EPFORMAT.NUM_X_NUM;
-            if (radFormatS_Num_E_Num.Checked) choice = EPFORMAT.S_NUM_E_NUM;
+            FileNameFormat fn = new FileNameFormat(gvFiles.SelectedCells[2].Value.ToString(), (EPFORMAT)ddFormat.SelectedValue);
+        }
 
-            FileNameFormat fn = new FileNameFormat(gvFiles.SelectedCells[1].Value.ToString(), choice);
+        private void gvFiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (Directory.Exists(gvFiles.SelectedCells[3].Value.ToString()))
+            {
+                ddUrl.Text = gvFiles.SelectedCells[3].Value.ToString();
+                open_Folder();
+            }
+            else
+                Process.Start(gvFiles.SelectedCells[3].Value.ToString());
         }
     }
 }
