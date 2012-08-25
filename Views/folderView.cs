@@ -58,6 +58,7 @@ namespace LFI
             ddFormat.DataSource = new BindingSource(choices, null);
             ddFormat.DisplayMember = "Value";
             ddFormat.ValueMember = "Key";
+            toolStrip1.Renderer = new TSystemRenderer();
 
             open_Folder();
         }
@@ -101,10 +102,12 @@ namespace LFI
         private void btnShowDiv_Click(object sender, EventArgs e)
         {
             open_Folder();
-            folder.Generate_Divisions();
-            countFolders();
-            btnDivide.Enabled = true;
-            lstDivs_Click(sender, e);
+            if (folder.Generate_Divisions())
+            {
+                countFolders();
+                btnDivide.Enabled = true;
+                lstDivs_Click(sender, e);
+            }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -115,7 +118,7 @@ namespace LFI
         //populate gvFiles with items from selected divison
         private void lstDivs_Click(object sender, EventArgs e)
         {
-            if (!Crc32.worker.IsBusy && folder.filenames.Count > 0)
+            if (!Crc32.worker.IsBusy && folder.GetItemCount() > 0)
             {
                 int sel = Convert.ToInt32(lstDivs.Text);
                 gvFiles.DataSource = null;
@@ -153,7 +156,20 @@ namespace LFI
                         );
                     }
                 }
+                LoadEpisodeEstimates();
                 gvFiles_RowEnter(null, null);
+            }
+        }
+
+        private void LoadEpisodeEstimates()
+        {
+            for (int i = 0; i < gvFiles.RowCount - 1; i++)
+            {
+                if (!Directory.Exists(gvFiles.Rows[i].Cells[3].Value.ToString()))
+                {
+                    FileNameFormat fn = new FileNameFormat(gvFiles.Rows[i].Cells[2].Value.ToString(), (EPFORMAT)ddFormat.SelectedValue);
+                    gvFiles.Rows[i].Cells[4].Value = fn.EstimateEpisode();
+                }
             }
         }
 
@@ -183,12 +199,12 @@ namespace LFI
             caller.stop_progBar();
 
             string newfilename = string.Empty;
-            if (checksum == Folder_IO.ScanCRC(gvFiles.Rows[workingRow].Cells[2].Value.ToString(),
+            if (checksum == Folder_IO.ScanCRC(gvFiles.Rows[workingRow].Cells[3].Value.ToString(),
                     out newfilename))
                 gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
             else
                 gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.error;
-            gvFiles.Rows[workingRow].Cells[1].Value = newfilename;
+            gvFiles.Rows[workingRow].Cells[2].Value = newfilename;
 
             DisableRunButtons();
             Check_MultiRunIncrement();
@@ -204,11 +220,11 @@ namespace LFI
             animation.Hide();
             caller.stop_progBar();
             string newfilename = string.Empty;
-            gvFiles.Rows[workingRow].Cells[2].Value =
-                Folder_IO.AddCRC(gvFiles.Rows[workingRow].Cells[2].Value.ToString(),
+            gvFiles.Rows[workingRow].Cells[3].Value =
+                Folder_IO.AddCRC(gvFiles.Rows[workingRow].Cells[3].Value.ToString(),
                 checksum, out newfilename);
             gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
-            gvFiles.Rows[workingRow].Cells[1].Value = newfilename;
+            gvFiles.Rows[workingRow].Cells[2].Value = newfilename;
 
             if (lstDivs.Text == "0")
                 folder.folderitems[workingRow] = ddUrl.Text + "\\" + newfilename;
@@ -284,12 +300,12 @@ namespace LFI
             Crc32.worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_CheckCRCCompleted);
             EnableRunButtons();
             caller.start_progBar();
-            Crc32.worker.RunWorkerAsync(gvFiles.Rows[workingRow].Cells[2].Value);
+            Crc32.worker.RunWorkerAsync(gvFiles.Rows[workingRow].Cells[3].Value);
         }
 
         private void AddCRC()
         {
-            if (!Folder_IO.IsCRC(gvFiles.Rows[workingRow].Cells[1].Value.ToString()))
+            if (!Folder_IO.IsCRC(gvFiles.Rows[workingRow].Cells[2].Value.ToString()))
             {
                 gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.empty;
                 animation.Show();
@@ -300,7 +316,7 @@ namespace LFI
                 Crc32.worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_AddCRCCompleted);
                 EnableRunButtons();
                 caller.start_progBar();
-                Crc32.worker.RunWorkerAsync(gvFiles.Rows[workingRow].Cells[2].Value);
+                Crc32.worker.RunWorkerAsync(gvFiles.Rows[workingRow].Cells[3].Value);
             }
             else
                 Add_MultiRunIncrement();
@@ -415,11 +431,12 @@ namespace LFI
 
         private void btnTestReg_Click(object sender, EventArgs e)
         {
-            FileNameFormat fn = new FileNameFormat(gvFiles.SelectedCells[2].Value.ToString(), (EPFORMAT)ddFormat.SelectedValue);
+
         }
 
         private void gvFiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            Console.WriteLine("ysfs");
             if (Directory.Exists(gvFiles.SelectedCells[3].Value.ToString()))
             {
                 ddUrl.Text = gvFiles.SelectedCells[3].Value.ToString();

@@ -171,6 +171,7 @@
     <Compile Include="Controls\DButton.Designer.cs">
       <DependentUpon>DButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TSystemRenderer.cs" />
     <Compile Include="Error_Handle.cs" />
     <Compile Include="FileNameFormat.cs" />
     <Compile Include="Image_IO.cs" />

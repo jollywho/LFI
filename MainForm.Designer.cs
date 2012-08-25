@@ -34,6 +34,7 @@
             this.statusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.progBar = new System.Windows.Forms.ToolStripProgressBar();
             this.slblSize = new System.Windows.Forms.ToolStripStatusLabel();
+            this.slblItems = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuAddItem = new System.Windows.Forms.MenuItem();
@@ -55,7 +56,6 @@
             this.menuItem9 = new System.Windows.Forms.MenuItem();
             this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.bPanel = new LFI.BPanel();
-            this.slblItems = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,6 +98,13 @@
             this.slblSize.Size = new System.Drawing.Size(72, 19);
             this.slblSize.Text = "Size: 0.00 GB";
             this.slblSize.Visible = false;
+            // 
+            // slblItems
+            // 
+            this.slblItems.Name = "slblItems";
+            this.slblItems.Size = new System.Drawing.Size(45, 19);
+            this.slblItems.Text = "0 Items";
+            this.slblItems.Visible = false;
             // 
             // mainMenu1
             // 
@@ -245,13 +252,6 @@
             this.bPanel.Name = "bPanel";
             this.bPanel.Size = new System.Drawing.Size(534, 648);
             this.bPanel.TabIndex = 9;
-            // 
-            // slblItems
-            // 
-            this.slblItems.Name = "slblItems";
-            this.slblItems.Size = new System.Drawing.Size(45, 19);
-            this.slblItems.Text = "0 Items";
-            this.slblItems.Visible = false;
             // 
             // MainForm
             // 

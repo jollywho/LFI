@@ -28,34 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(folderView));
             this.gvFiles = new System.Windows.Forms.DataGridView();
-            this.check = new System.Windows.Forms.DataGridViewImageColumn();
-            this.icon = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Text = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Hidden = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Group = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gvFiles_Check = new System.Windows.Forms.DataGridViewImageColumn();
+            this.gvFiles_Icon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.gvFiles_File = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gvFiles_Hidden = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gvFiles_Ep = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnRefresh = new System.Windows.Forms.ToolStripButton();
             this.btnCancel = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.btnShowDiv = new System.Windows.Forms.ToolStripButton();
             this.btnDivide = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAddCRC = new System.Windows.Forms.ToolStripButton();
             this.btnCheckCRC = new System.Windows.Forms.ToolStripButton();
-            this.btnBack = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.ddUrl = new System.Windows.Forms.ToolStripComboBox();
+            this.btnBack = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.lstDivs = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -63,18 +62,24 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnTestFormats = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radCheckItem = new System.Windows.Forms.RadioButton();
             this.radCheckAll = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gvFiles
@@ -83,30 +88,30 @@
             this.gvFiles.AllowUserToDeleteRows = false;
             this.gvFiles.AllowUserToResizeColumns = false;
             this.gvFiles.AllowUserToResizeRows = false;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.gvFiles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.gvFiles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gvFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvFiles.BackgroundColor = System.Drawing.Color.White;
             this.gvFiles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.gvFiles.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.gvFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gvFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.check,
-            this.icon,
-            this.Text,
-            this.Hidden,
-            this.Group});
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvFiles.DefaultCellStyle = dataGridViewCellStyle20;
+            this.gvFiles_Check,
+            this.gvFiles_Icon,
+            this.gvFiles_File,
+            this.gvFiles_Hidden,
+            this.gvFiles_Ep});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvFiles.DefaultCellStyle = dataGridViewCellStyle4;
             this.gvFiles.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.gvFiles.Location = new System.Drawing.Point(0, 155);
             this.gvFiles.MultiSelect = false;
@@ -123,60 +128,62 @@
             this.gvFiles.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFiles_CellMouseEnter);
             this.gvFiles.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFiles_RowEnter);
             // 
-            // check
+            // gvFiles_Check
             // 
-            this.check.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.NullValue = null;
-            this.check.DefaultCellStyle = dataGridViewCellStyle18;
-            this.check.FillWeight = 10F;
-            this.check.HeaderText = "";
-            this.check.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.check.Name = "check";
-            this.check.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.check.Width = 5;
+            this.gvFiles_Check.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.NullValue = null;
+            this.gvFiles_Check.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gvFiles_Check.FillWeight = 10F;
+            this.gvFiles_Check.HeaderText = "";
+            this.gvFiles_Check.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.gvFiles_Check.Name = "gvFiles_Check";
+            this.gvFiles_Check.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvFiles_Check.Width = 5;
             // 
-            // icon
+            // gvFiles_Icon
             // 
-            this.icon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.icon.DefaultCellStyle = dataGridViewCellStyle19;
-            this.icon.FillWeight = 10F;
-            this.icon.HeaderText = "";
-            this.icon.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.icon.Name = "icon";
-            this.icon.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.icon.Width = 5;
+            this.gvFiles_Icon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.gvFiles_Icon.DefaultCellStyle = dataGridViewCellStyle3;
+            this.gvFiles_Icon.FillWeight = 10F;
+            this.gvFiles_Icon.HeaderText = "";
+            this.gvFiles_Icon.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.gvFiles_Icon.Name = "gvFiles_Icon";
+            this.gvFiles_Icon.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvFiles_Icon.Width = 5;
             // 
-            // Text
+            // gvFiles_File
             // 
-            this.Text.FillWeight = 100.2273F;
-            this.Text.HeaderText = "File";
-            this.Text.Name = "Text";
-            this.Text.ReadOnly = true;
-            this.Text.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.gvFiles_File.FillWeight = 100.2273F;
+            this.gvFiles_File.HeaderText = "File";
+            this.gvFiles_File.Name = "gvFiles_File";
+            this.gvFiles_File.ReadOnly = true;
+            this.gvFiles_File.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // Hidden
+            // gvFiles_Hidden
             // 
-            this.Hidden.HeaderText = "Hidden";
-            this.Hidden.Name = "Hidden";
-            this.Hidden.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Hidden.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Hidden.Visible = false;
+            this.gvFiles_Hidden.HeaderText = "Hidden";
+            this.gvFiles_Hidden.Name = "gvFiles_Hidden";
+            this.gvFiles_Hidden.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvFiles_Hidden.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.gvFiles_Hidden.Visible = false;
             // 
-            // Group
+            // gvFiles_Ep
             // 
-            this.Group.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Group.FillWeight = 39.77273F;
-            this.Group.HeaderText = "Ep";
-            this.Group.MinimumWidth = 50;
-            this.Group.Name = "Group";
-            this.Group.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Group.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Group.Width = 50;
+            this.gvFiles_Ep.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.gvFiles_Ep.FillWeight = 39.77273F;
+            this.gvFiles_Ep.HeaderText = "Ep";
+            this.gvFiles_Ep.MinimumWidth = 50;
+            this.gvFiles_Ep.Name = "gvFiles_Ep";
+            this.gvFiles_Ep.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvFiles_Ep.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.gvFiles_Ep.Width = 50;
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnRefresh,
@@ -190,9 +197,11 @@
             this.toolStripSeparator4,
             this.ddUrl,
             this.btnBack});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(1, 0);
+            this.toolStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.Size = new System.Drawing.Size(533, 25);
             this.toolStrip1.TabIndex = 33;
             this.toolStrip1.Text = "toolStrip1";
@@ -205,6 +214,7 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(23, 22);
             this.btnRefresh.Text = "toolStripButton1";
+            this.btnRefresh.ToolTipText = "Refresh";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnCancel
@@ -215,7 +225,13 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(23, 22);
             this.btnCancel.Text = "toolStripButton2";
+            this.btnCancel.ToolTipText = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // btnShowDiv
             // 
@@ -225,6 +241,7 @@
             this.btnShowDiv.Name = "btnShowDiv";
             this.btnShowDiv.Size = new System.Drawing.Size(23, 22);
             this.btnShowDiv.Text = "toolStripButton3";
+            this.btnShowDiv.ToolTipText = "Show Divisions";
             this.btnShowDiv.Click += new System.EventHandler(this.btnShowDiv_Click);
             // 
             // btnDivide
@@ -235,7 +252,13 @@
             this.btnDivide.Name = "btnDivide";
             this.btnDivide.Size = new System.Drawing.Size(23, 22);
             this.btnDivide.Text = "toolStripButton4";
+            this.btnDivide.ToolTipText = "Commit Divisions";
             this.btnDivide.Click += new System.EventHandler(this.btnDivide_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
             // 
             // btnAddCRC
             // 
@@ -245,6 +268,7 @@
             this.btnAddCRC.Name = "btnAddCRC";
             this.btnAddCRC.Size = new System.Drawing.Size(23, 22);
             this.btnAddCRC.Text = "toolStripButton5";
+            this.btnAddCRC.ToolTipText = "Add CRC";
             this.btnAddCRC.Click += new System.EventHandler(this.btnAddCRC_Click);
             // 
             // btnCheckCRC
@@ -255,7 +279,20 @@
             this.btnCheckCRC.Name = "btnCheckCRC";
             this.btnCheckCRC.Size = new System.Drawing.Size(23, 22);
             this.btnCheckCRC.Text = "toolStripButton6";
+            this.btnCheckCRC.ToolTipText = "Check CRC";
             this.btnCheckCRC.Click += new System.EventHandler(this.btnCheckCRC_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
+            // ddUrl
+            // 
+            this.ddUrl.BackColor = System.Drawing.Color.White;
+            this.ddUrl.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ddUrl.Name = "ddUrl";
+            this.ddUrl.Size = new System.Drawing.Size(350, 25);
             // 
             // btnBack
             // 
@@ -265,12 +302,8 @@
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(23, 22);
             this.btnBack.Text = "toolStripButton7";
+            this.btnBack.ToolTipText = "Back";
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // ddUrl
-            // 
-            this.ddUrl.Name = "ddUrl";
-            this.ddUrl.Size = new System.Drawing.Size(340, 25);
             // 
             // toolStripSeparator1
             // 
@@ -287,44 +320,18 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
-            // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.lstDivs);
+            this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.groupBox4.Location = new System.Drawing.Point(304, 30);
+            this.groupBox4.Location = new System.Drawing.Point(214, 32);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(223, 119);
+            this.groupBox4.Size = new System.Drawing.Size(79, 119);
             this.groupBox4.TabIndex = 36;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Folder";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label6.Location = new System.Drawing.Point(3, 12);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Divisions:";
+            this.groupBox4.Text = "Divisions";
             // 
             // lstDivs
             // 
@@ -340,6 +347,7 @@
             this.lstDivs.ScrollAlwaysVisible = true;
             this.lstDivs.Size = new System.Drawing.Size(63, 85);
             this.lstDivs.TabIndex = 7;
+            this.lstDivs.Click += new System.EventHandler(this.lstDivs_Click);
             // 
             // groupBox3
             // 
@@ -348,13 +356,14 @@
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.btnTestFormats);
             this.groupBox3.Controls.Add(this.textBox3);
             this.groupBox3.Controls.Add(this.textBox2);
             this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.groupBox3.Location = new System.Drawing.Point(5, 30);
+            this.groupBox3.Location = new System.Drawing.Point(3, 32);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(205, 119);
             this.groupBox3.TabIndex = 35;
@@ -413,19 +422,20 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Prefix:";
             // 
-            // button1
+            // btnTestFormats
             // 
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(153, 86);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(45, 19);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Run";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnTestFormats.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTestFormats.FlatAppearance.BorderSize = 0;
+            this.btnTestFormats.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnTestFormats.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTestFormats.ForeColor = System.Drawing.Color.Transparent;
+            this.btnTestFormats.Location = new System.Drawing.Point(153, 86);
+            this.btnTestFormats.Name = "btnTestFormats";
+            this.btnTestFormats.Size = new System.Drawing.Size(45, 19);
+            this.btnTestFormats.TabIndex = 3;
+            this.btnTestFormats.Text = "Run";
+            this.btnTestFormats.UseVisualStyleBackColor = true;
+            this.btnTestFormats.Click += new System.EventHandler(this.btnTestReg_Click);
             // 
             // textBox3
             // 
@@ -452,21 +462,22 @@
             // 
             this.groupBox1.Controls.Add(this.radCheckItem);
             this.groupBox1.Controls.Add(this.radCheckAll);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.groupBox1.Location = new System.Drawing.Point(216, 30);
+            this.groupBox1.Location = new System.Drawing.Point(448, 32);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(82, 119);
-            this.groupBox1.TabIndex = 34;
+            this.groupBox1.Size = new System.Drawing.Size(82, 57);
+            this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Checksum";
+            this.groupBox1.Text = "Run for...";
             // 
             // radCheckItem
             // 
             this.radCheckItem.AutoSize = true;
             this.radCheckItem.Checked = true;
             this.radCheckItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCheckItem.Location = new System.Drawing.Point(5, 13);
+            this.radCheckItem.Location = new System.Drawing.Point(5, 15);
             this.radCheckItem.Name = "radCheckItem";
             this.radCheckItem.Size = new System.Drawing.Size(67, 17);
             this.radCheckItem.TabIndex = 2;
@@ -478,21 +489,95 @@
             // 
             this.radCheckAll.AutoSize = true;
             this.radCheckAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCheckAll.Location = new System.Drawing.Point(5, 28);
+            this.radCheckAll.Location = new System.Drawing.Point(5, 30);
             this.radCheckAll.Name = "radCheckAll";
             this.radCheckAll.Size = new System.Drawing.Size(36, 17);
             this.radCheckAll.TabIndex = 3;
             this.radCheckAll.Text = "All";
             this.radCheckAll.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.groupBox2.Location = new System.Drawing.Point(297, 30);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(150, 119);
+            this.groupBox2.TabIndex = 39;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Fix...";
+            // 
+            // button4
+            // 
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.Transparent;
+            this.button4.Location = new System.Drawing.Point(17, 79);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(117, 19);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "Checksum (Remove)";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.Transparent;
+            this.button3.Location = new System.Drawing.Point(17, 54);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(117, 19);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Episode";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Transparent;
+            this.button2.Location = new System.Drawing.Point(17, 29);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(117, 19);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Part Files";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Transparent;
+            this.button1.Location = new System.Drawing.Point(153, 86);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(45, 19);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Run";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // folderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gvFiles);
             this.Controls.Add(this.groupBox4);
             this.DoubleBuffered = true;
@@ -502,11 +587,11 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -515,11 +600,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView gvFiles;
-        private System.Windows.Forms.DataGridViewImageColumn check;
-        private System.Windows.Forms.DataGridViewImageColumn icon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Text;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Hidden;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Group;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnRefresh;
         private System.Windows.Forms.ToolStripButton btnCancel;
@@ -536,7 +616,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ListBox lstDivs;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
@@ -544,12 +623,22 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnTestFormats;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridViewImageColumn gvFiles_Check;
+        private System.Windows.Forms.DataGridViewImageColumn gvFiles_Icon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_File;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_Hidden;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_Ep;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radCheckItem;
         private System.Windows.Forms.RadioButton radCheckAll;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }

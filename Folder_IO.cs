@@ -20,6 +20,7 @@ namespace LFI
         public List<string> subdiritems = new List<string>();
         private long folderSize = 0;
         private int itemCount = 0;
+        private int folderCount = 0;
         private int dvCount = 0;
         public int dsCount = 0;
         private long folderAverage = 0;
@@ -73,13 +74,18 @@ namespace LFI
                 foreach (string item in subdirs)
                 {
                     subdiritems.Add(item);
-                    
+                    folderCount++;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error : " + ex.Message);
             }
+        }
+
+        public int GetItemCount()
+        {
+            return itemCount + folderCount;
         }
 
         /// <summary>
@@ -97,10 +103,14 @@ namespace LFI
         }
 
         /// <summary>
-        /// Calculate folder average and max items per divison.
+        /// Create folder divisions based on folder average ad max items per division.
+        /// <returns>
+        /// Returns a pass or fail condition.
+        /// </returns>
         /// </summary>
-        public void Generate_Divisions()
+        public bool Generate_Divisions()
         {
+            if (itemCount < 1) return false;
             dsCount = (int)(folderSize / DVD_SIZE);
             if (folderSize % DVD_SIZE != 0 && dsCount > 0)
             {
@@ -126,6 +136,7 @@ namespace LFI
             Console.WriteLine(dsCount.ToString());
             Console.WriteLine(itemCount.ToString());
             Console.WriteLine(folderAverage.ToString());
+            return true;
         }
 
         private long DirSize(List<string>itemlist)

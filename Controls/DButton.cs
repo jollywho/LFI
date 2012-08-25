@@ -136,7 +136,7 @@ namespace LFI
         }
 
         /// <summary>
-        /// Attempt to swap selected disc with destination positon.
+        /// Swap two disc slots in a location.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

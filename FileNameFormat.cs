@@ -31,22 +31,12 @@ namespace LFI
         private static string reg_NUM_X_NUM = @"(\[(.*?)\])?(.*?)(\d{1,3}[Xx]?\d{1,3}).*?";
         private static string reg_S_NUM_E_NUM = @"(\[(.*?)\])?(.*?)([Ss]?\d{1,2}[Ee]?\d{2}).*?";
         private static string regCRC = @"((?<=(?:\[))[a-fA-F0-9]{8}(?=(?:\]))(?x))";
+        private string regChoice;
+        private string strFile;
 
         public FileNameFormat(string file, EPFORMAT choice)
         {
-           // Console.Write("Fansub = ");
-            //Console.WriteLine(new Regex(regGroup).Match(file).Groups[1]);
-
-           // Console.Write("Ep = ");
-           // Match m = new Regex(regEp).Match(file);
-           // while (m.Success)
-           // {
-           //     Console.Write(m.Value);
-           //     Console.Write(", "); // Delimiter
-           //     m = m.NextMatch();
-           // }
-           // Console.WriteLine();
-            string regChoice = string.Empty;
+            strFile = file;
             switch (choice)
             {
                 case EPFORMAT.REG_NUM:
@@ -59,12 +49,14 @@ namespace LFI
                     regChoice = reg_S_NUM_E_NUM;
                     break;
             }
+        }
 
-            Console.WriteLine(new Regex(regChoice).Match(file).Groups[2]);
-            Console.WriteLine(new Regex(regChoice).Match(file).Groups[3]);
-            Console.WriteLine(new Regex(regChoice).Match(file).Groups[4]); //
-
-            Console.WriteLine(new Regex(regCRC).Match(file).Groups[0]);
+        public string EstimateEpisode()
+        {
+           // Console.WriteLine(new Regex(regChoice).Match(strFile).Groups[2]);
+            //Console.WriteLine(new Regex(regChoice).Match(strFile).Groups[3]);
+            //Console.WriteLine(new Regex(regCRC).Match(strFile).Groups[0]);
+            return (new Regex(regChoice).Match(strFile).Groups[4]).ToString();
         }
     }
 }
