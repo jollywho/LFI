@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(folderView));
             this.gvFiles = new System.Windows.Forms.DataGridView();
             this.gvFiles_Check = new System.Windows.Forms.DataGridViewImageColumn();
@@ -90,11 +90,11 @@
             this.gvFiles.AllowUserToDeleteRows = false;
             this.gvFiles.AllowUserToResizeColumns = false;
             this.gvFiles.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.gvFiles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.gvFiles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.gvFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvFiles.BackgroundColor = System.Drawing.Color.White;
             this.gvFiles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -110,14 +110,14 @@
             this.gvFiles_Ep,
             this.CRC,
             this.Pos});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvFiles.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvFiles.DefaultCellStyle = dataGridViewCellStyle8;
             this.gvFiles.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.gvFiles.Location = new System.Drawing.Point(0, 155);
             this.gvFiles.MultiSelect = false;
@@ -140,9 +140,9 @@
             // gvFiles_Check
             // 
             this.gvFiles_Check.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.NullValue = null;
-            this.gvFiles_Check.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.NullValue = null;
+            this.gvFiles_Check.DefaultCellStyle = dataGridViewCellStyle6;
             this.gvFiles_Check.FillWeight = 10F;
             this.gvFiles_Check.HeaderText = "";
             this.gvFiles_Check.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
@@ -153,8 +153,8 @@
             // gvFiles_Icon
             // 
             this.gvFiles_Icon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.gvFiles_Icon.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.gvFiles_Icon.DefaultCellStyle = dataGridViewCellStyle7;
             this.gvFiles_Icon.FillWeight = 10F;
             this.gvFiles_Icon.HeaderText = "";
             this.gvFiles_Icon.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
@@ -488,7 +488,7 @@
             this.groupBox1.Size = new System.Drawing.Size(82, 68);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Run for...";
+            this.groupBox1.Text = "Run";
             // 
             // radCheckItem
             // 
@@ -527,7 +527,7 @@
             this.groupBox2.Size = new System.Drawing.Size(150, 70);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Fix...";
+            this.groupBox2.Text = "Fix";
             // 
             // btnRemoveChecksum
             // 

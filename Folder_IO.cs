@@ -103,6 +103,24 @@ namespace LFI
         }
 
         /// <summary>
+        /// Get single folder or file size.
+        /// </summary>
+        /// <param name="filename">specified filename.</param>
+        /// <returns>Size in GB for directory and MB for file.</returns>
+        public static string Get_Item_Size(string filename)
+        {
+            if (Directory.Exists(filename))
+            {
+                return ((new DirectoryInfo(filename).GetFiles("*.*", SearchOption.AllDirectories).Sum(file => file.Length)) / 
+                    Math.Pow(1024,3)).ToString("N3") + " GB";
+            }
+            else
+            {
+                return (new FileInfo(filename).Length / Math.Pow(1024, 2)).ToString("N3") + " MB";
+            }
+        }
+
+        /// <summary>
         /// Create folder divisions based on folder average ad max items per division.
         /// <returns>
         /// Returns a pass or fail condition.
@@ -139,7 +157,7 @@ namespace LFI
             return true;
         }
 
-        private long DirSize(List<string>itemlist)
+        private static long DirSize(List<string>itemlist)
         {
             long size = 0;
             foreach (string fi in itemlist)

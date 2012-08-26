@@ -365,8 +365,16 @@ namespace LFI
         private void gvFiles_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (gvFiles.SelectedCells.Count > 0)
+            {
                 if (gvFiles.SelectedCells[0].Value != null && !multiRun)
-                    savedRow = gvFiles.SelectedCells[0].RowIndex;
+                {
+                    if (!multiRun)
+                        savedRow = gvFiles.SelectedCells[0].RowIndex;
+                    caller.SetLabelItemSize(Folder_IO.Get_Item_Size(gvFiles.SelectedCells[3].Value.ToString()));
+                }
+            }
+            else
+                caller.SetLabelItemSize(" ");
         }
 
         private void btnDivide_Click(object sender, EventArgs e)

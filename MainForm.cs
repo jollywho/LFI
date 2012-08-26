@@ -62,17 +62,11 @@ namespace LFI
         /// Swaps language mode on click event.
         /// Forces mainview to refresh and checks for empty condition.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void statusStripLabel_Click(object sender, EventArgs e)
+        private void Load_LMode()
         {
             if (mode == ViewMode.Edit)
                 return;
-            if (Lmode == "JPN")
-                Lmode = "ENG";
-            else
-                Lmode = "JPN";
-            statusStripLabel.Text = Lmode;
+            toolstripLanguage.Text = Lmode;
             mv.populateList();
             mv.Force_RowEnter();
             if (mv.IsEmpty())
@@ -95,6 +89,10 @@ namespace LFI
         public void SetLabelItemCount(int items)
         {
             slblItems.Text = items + " items";
+        }
+        public void SetLabelItemSize(string size)
+        {
+            slblItemSize.Text = size;
         }
         #endregion MENU_INTERFACE
         #region MENU_CLICK
@@ -311,11 +309,13 @@ namespace LFI
             {
                 slblItems.Visible = true;
                 slblSize.Visible = true;
+                slblItemSize.Visible = true;
             }
             else
             {
                 slblItems.Visible = false;
                 slblSize.Visible = false;
+                slblItemSize.Visible = false;
             }
 
             if (titleEditItem.Checked == true)
@@ -409,6 +409,18 @@ namespace LFI
             if (DoSnap(this.Top + BorderWidth, scn.WorkingArea.Top)) this.Top = scn.WorkingArea.Top + BorderWidth;
             if (DoSnap(scn.WorkingArea.Right, this.Right - BorderWidth)) this.Left = scn.WorkingArea.Right - this.Width - BorderWidth;
             if (DoSnap(scn.WorkingArea.Bottom, this.Bottom - BorderWidth)) this.Top = scn.WorkingArea.Bottom - this.Height - BorderWidth;
+        }
+
+        private void toolstripJPN_Click(object sender, EventArgs e)
+        {
+            Lmode = toolstripJPN.Text;
+            Load_LMode();
+        }
+
+        private void toolstripENG_Click(object sender, EventArgs e)
+        {
+            Lmode = toolstripENG.Text;
+            Load_LMode();
         }
     }
 #endregion Form_Events
