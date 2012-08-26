@@ -38,8 +38,14 @@
             this.gvFiles_Icon = new System.Windows.Forms.DataGridViewImageColumn();
             this.gvFiles_File = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gvFiles_Hidden = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Group = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gvFiles_Ep = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CRC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnBack = new System.Windows.Forms.ToolStripButton();
+            this.ddUrl = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btnRefresh = new System.Windows.Forms.ToolStripButton();
             this.btnCancel = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -48,38 +54,34 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAddCRC = new System.Windows.Forms.ToolStripButton();
             this.btnCheckCRC = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.ddUrl = new System.Windows.Forms.ToolStripComboBox();
-            this.btnBack = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lstDivs = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnShowEstimates = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.ddFormat = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnTestFormats = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnRunFormats = new System.Windows.Forms.Button();
+            this.txtTitle = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radCheckItem = new System.Windows.Forms.RadioButton();
             this.radCheckAll = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnRemoveChecksum = new System.Windows.Forms.Button();
+            this.btnPartFiles = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtFilter = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // gvFiles
@@ -97,18 +99,22 @@
             this.gvFiles.BackgroundColor = System.Drawing.Color.White;
             this.gvFiles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.gvFiles.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.gvFiles.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.gvFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gvFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.gvFiles_Check,
             this.gvFiles_Icon,
             this.gvFiles_File,
             this.gvFiles_Hidden,
-            this.gvFiles_Ep});
+            this.Group,
+            this.gvFiles_Ep,
+            this.CRC,
+            this.Pos});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(143)))));
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gvFiles.DefaultCellStyle = dataGridViewCellStyle4;
@@ -124,9 +130,12 @@
             this.gvFiles.Size = new System.Drawing.Size(533, 475);
             this.gvFiles.StandardTab = true;
             this.gvFiles.TabIndex = 0;
+            this.gvFiles.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.gvFiles_CellBeginEdit);
             this.gvFiles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFiles_CellDoubleClick);
+            this.gvFiles.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFiles_CellLeave);
             this.gvFiles.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFiles_CellMouseEnter);
             this.gvFiles.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFiles_RowEnter);
+            this.gvFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gvFiles_KeyDown);
             // 
             // gvFiles_Check
             // 
@@ -155,7 +164,7 @@
             // 
             // gvFiles_File
             // 
-            this.gvFiles_File.FillWeight = 100.2273F;
+            this.gvFiles_File.FillWeight = 94.69651F;
             this.gvFiles_File.HeaderText = "File";
             this.gvFiles_File.Name = "gvFiles_File";
             this.gvFiles_File.ReadOnly = true;
@@ -169,6 +178,14 @@
             this.gvFiles_Hidden.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gvFiles_Hidden.Visible = false;
             // 
+            // Group
+            // 
+            this.Group.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Group.HeaderText = "Group";
+            this.Group.Name = "Group";
+            this.Group.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Group.Visible = false;
+            // 
             // gvFiles_Ep
             // 
             this.gvFiles_Ep.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -178,7 +195,28 @@
             this.gvFiles_Ep.Name = "gvFiles_Ep";
             this.gvFiles_Ep.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvFiles_Ep.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.gvFiles_Ep.Visible = false;
             this.gvFiles_Ep.Width = 50;
+            // 
+            // CRC
+            // 
+            this.CRC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CRC.HeaderText = "CRC";
+            this.CRC.Name = "CRC";
+            this.CRC.ReadOnly = true;
+            this.CRC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CRC.Visible = false;
+            // 
+            // Pos
+            // 
+            this.Pos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Pos.FillWeight = 10F;
+            this.Pos.HeaderText = "Pos";
+            this.Pos.Name = "Pos";
+            this.Pos.ReadOnly = true;
+            this.Pos.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Pos.Visible = false;
+            this.Pos.Width = 15;
             // 
             // toolStrip1
             // 
@@ -186,6 +224,9 @@
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnBack,
+            this.ddUrl,
+            this.toolStripSeparator4,
             this.btnRefresh,
             this.btnCancel,
             this.toolStripSeparator5,
@@ -193,10 +234,7 @@
             this.btnDivide,
             this.toolStripSeparator6,
             this.btnAddCRC,
-            this.btnCheckCRC,
-            this.toolStripSeparator4,
-            this.ddUrl,
-            this.btnBack});
+            this.btnCheckCRC});
             this.toolStrip1.Location = new System.Drawing.Point(1, 0);
             this.toolStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.toolStrip1.Name = "toolStrip1";
@@ -205,6 +243,29 @@
             this.toolStrip1.Size = new System.Drawing.Size(533, 25);
             this.toolStrip1.TabIndex = 33;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnBack
+            // 
+            this.btnBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnBack.Image = global::LFI.Properties.Resources.back;
+            this.btnBack.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(23, 22);
+            this.btnBack.Text = "toolStripButton7";
+            this.btnBack.ToolTipText = "Back";
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // ddUrl
+            // 
+            this.ddUrl.BackColor = System.Drawing.Color.White;
+            this.ddUrl.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ddUrl.Name = "ddUrl";
+            this.ddUrl.Size = new System.Drawing.Size(350, 25);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // btnRefresh
             // 
@@ -282,29 +343,6 @@
             this.btnCheckCRC.ToolTipText = "Check CRC";
             this.btnCheckCRC.Click += new System.EventHandler(this.btnCheckCRC_Click);
             // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
-            // ddUrl
-            // 
-            this.ddUrl.BackColor = System.Drawing.Color.White;
-            this.ddUrl.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ddUrl.Name = "ddUrl";
-            this.ddUrl.Size = new System.Drawing.Size(350, 25);
-            // 
-            // btnBack
-            // 
-            this.btnBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnBack.Image = global::LFI.Properties.Resources.back;
-            this.btnBack.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(23, 22);
-            this.btnBack.Text = "toolStripButton7";
-            this.btnBack.ToolTipText = "Back";
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -324,8 +362,8 @@
             // 
             this.groupBox4.Controls.Add(this.lstDivs);
             this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.groupBox4.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox4.ForeColor = System.Drawing.Color.Black;
             this.groupBox4.Location = new System.Drawing.Point(214, 32);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(79, 119);
@@ -337,32 +375,29 @@
             // 
             this.lstDivs.BackColor = System.Drawing.Color.White;
             this.lstDivs.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lstDivs.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstDivs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.lstDivs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstDivs.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstDivs.ForeColor = System.Drawing.Color.Black;
             this.lstDivs.FormattingEnabled = true;
-            this.lstDivs.HorizontalScrollbar = true;
-            this.lstDivs.ItemHeight = 17;
-            this.lstDivs.Location = new System.Drawing.Point(6, 28);
+            this.lstDivs.ItemHeight = 15;
+            this.lstDivs.Location = new System.Drawing.Point(3, 18);
             this.lstDivs.Name = "lstDivs";
             this.lstDivs.ScrollAlwaysVisible = true;
-            this.lstDivs.Size = new System.Drawing.Size(63, 85);
+            this.lstDivs.Size = new System.Drawing.Size(73, 98);
             this.lstDivs.TabIndex = 7;
             this.lstDivs.Click += new System.EventHandler(this.lstDivs_Click);
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnShowEstimates);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.ddFormat);
-            this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.btnTestFormats);
-            this.groupBox3.Controls.Add(this.textBox3);
-            this.groupBox3.Controls.Add(this.textBox2);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.btnRunFormats);
+            this.groupBox3.Controls.Add(this.txtTitle);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.groupBox3.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox3.ForeColor = System.Drawing.Color.Black;
             this.groupBox3.Location = new System.Drawing.Point(3, 32);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(205, 119);
@@ -370,104 +405,87 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Reformat";
             // 
+            // btnShowEstimates
+            // 
+            this.btnShowEstimates.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnShowEstimates.FlatAppearance.BorderSize = 0;
+            this.btnShowEstimates.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnShowEstimates.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowEstimates.ForeColor = System.Drawing.Color.Transparent;
+            this.btnShowEstimates.Location = new System.Drawing.Point(123, 31);
+            this.btnShowEstimates.Name = "btnShowEstimates";
+            this.btnShowEstimates.Size = new System.Drawing.Size(75, 23);
+            this.btnShowEstimates.TabIndex = 21;
+            this.btnShowEstimates.Text = "Show Fields";
+            this.btnShowEstimates.UseVisualStyleBackColor = true;
+            this.btnShowEstimates.Click += new System.EventHandler(this.btnShowEstimates_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label1.Location = new System.Drawing.Point(6, 89);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(7, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.Size = new System.Drawing.Size(48, 15);
             this.label1.TabIndex = 20;
             this.label1.Text = "Format:";
             // 
             // ddFormat
             // 
+            this.ddFormat.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.ddFormat.FormattingEnabled = true;
-            this.ddFormat.Location = new System.Drawing.Point(54, 84);
+            this.ddFormat.Location = new System.Drawing.Point(9, 31);
             this.ddFormat.Name = "ddFormat";
-            this.ddFormat.Size = new System.Drawing.Size(93, 21);
+            this.ddFormat.Size = new System.Drawing.Size(108, 23);
             this.ddFormat.TabIndex = 19;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label5.Location = new System.Drawing.Point(12, 64);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 13);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Suffix:";
+            this.ddFormat.SelectedValueChanged += new System.EventHandler(this.ddFormat_SelectedValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label4.Location = new System.Drawing.Point(19, 44);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(7, 53);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(30, 13);
+            this.label4.Size = new System.Drawing.Size(33, 15);
             this.label4.TabIndex = 5;
             this.label4.Text = "Title:";
             // 
-            // label2
+            // btnRunFormats
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
-            this.label2.Location = new System.Drawing.Point(12, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Prefix:";
+            this.btnRunFormats.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRunFormats.Enabled = false;
+            this.btnRunFormats.FlatAppearance.BorderSize = 0;
+            this.btnRunFormats.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnRunFormats.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRunFormats.ForeColor = System.Drawing.Color.Transparent;
+            this.btnRunFormats.Location = new System.Drawing.Point(153, 93);
+            this.btnRunFormats.Name = "btnRunFormats";
+            this.btnRunFormats.Size = new System.Drawing.Size(45, 23);
+            this.btnRunFormats.TabIndex = 3;
+            this.btnRunFormats.Text = "Run";
+            this.btnRunFormats.UseVisualStyleBackColor = true;
+            this.btnRunFormats.Click += new System.EventHandler(this.btnRunFormats_Click);
             // 
-            // btnTestFormats
+            // txtTitle
             // 
-            this.btnTestFormats.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnTestFormats.FlatAppearance.BorderSize = 0;
-            this.btnTestFormats.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnTestFormats.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTestFormats.ForeColor = System.Drawing.Color.Transparent;
-            this.btnTestFormats.Location = new System.Drawing.Point(153, 86);
-            this.btnTestFormats.Name = "btnTestFormats";
-            this.btnTestFormats.Size = new System.Drawing.Size(45, 19);
-            this.btnTestFormats.TabIndex = 3;
-            this.btnTestFormats.Text = "Run";
-            this.btnTestFormats.UseVisualStyleBackColor = true;
-            this.btnTestFormats.Click += new System.EventHandler(this.btnTestReg_Click);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(54, 64);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(144, 20);
-            this.textBox3.TabIndex = 2;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(54, 44);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(144, 20);
-            this.textBox2.TabIndex = 1;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(54, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(144, 20);
-            this.textBox1.TabIndex = 0;
+            this.txtTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtTitle.Location = new System.Drawing.Point(9, 69);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Size = new System.Drawing.Size(189, 23);
+            this.txtTitle.TabIndex = 1;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.radCheckItem);
             this.groupBox1.Controls.Add(this.radCheckAll);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.groupBox1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox1.ForeColor = System.Drawing.Color.Black;
             this.groupBox1.Location = new System.Drawing.Point(448, 32);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(82, 57);
+            this.groupBox1.Size = new System.Drawing.Size(82, 68);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Run for...";
@@ -476,10 +494,10 @@
             // 
             this.radCheckItem.AutoSize = true;
             this.radCheckItem.Checked = true;
-            this.radCheckItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCheckItem.Location = new System.Drawing.Point(5, 15);
+            this.radCheckItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radCheckItem.Location = new System.Drawing.Point(8, 19);
             this.radCheckItem.Name = "radCheckItem";
-            this.radCheckItem.Size = new System.Drawing.Size(67, 17);
+            this.radCheckItem.Size = new System.Drawing.Size(69, 19);
             this.radCheckItem.TabIndex = 2;
             this.radCheckItem.TabStop = true;
             this.radCheckItem.Text = "Selected";
@@ -488,71 +506,58 @@
             // radCheckAll
             // 
             this.radCheckAll.AutoSize = true;
-            this.radCheckAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCheckAll.Location = new System.Drawing.Point(5, 30);
+            this.radCheckAll.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radCheckAll.Location = new System.Drawing.Point(8, 42);
             this.radCheckAll.Name = "radCheckAll";
-            this.radCheckAll.Size = new System.Drawing.Size(36, 17);
+            this.radCheckAll.Size = new System.Drawing.Size(39, 19);
             this.radCheckAll.TabIndex = 3;
             this.radCheckAll.Text = "All";
             this.radCheckAll.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.btnRemoveChecksum);
+            this.groupBox2.Controls.Add(this.btnPartFiles);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.groupBox2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox2.ForeColor = System.Drawing.Color.Black;
             this.groupBox2.Location = new System.Drawing.Point(297, 30);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(150, 119);
+            this.groupBox2.Size = new System.Drawing.Size(150, 70);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Fix...";
             // 
-            // button4
+            // btnRemoveChecksum
             // 
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.Transparent;
-            this.button4.Location = new System.Drawing.Point(17, 79);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(117, 19);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Checksum (Remove)";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnRemoveChecksum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRemoveChecksum.FlatAppearance.BorderSize = 0;
+            this.btnRemoveChecksum.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnRemoveChecksum.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveChecksum.ForeColor = System.Drawing.Color.Transparent;
+            this.btnRemoveChecksum.Location = new System.Drawing.Point(17, 41);
+            this.btnRemoveChecksum.Name = "btnRemoveChecksum";
+            this.btnRemoveChecksum.Size = new System.Drawing.Size(117, 23);
+            this.btnRemoveChecksum.TabIndex = 6;
+            this.btnRemoveChecksum.Text = "Checksum (Remove)";
+            this.btnRemoveChecksum.UseVisualStyleBackColor = true;
+            this.btnRemoveChecksum.Click += new System.EventHandler(this.btnRemoveChecksum_Click);
             // 
-            // button3
+            // btnPartFiles
             // 
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.Transparent;
-            this.button3.Location = new System.Drawing.Point(17, 54);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(117, 19);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Episode";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.Transparent;
-            this.button2.Location = new System.Drawing.Point(17, 29);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(117, 19);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Part Files";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnPartFiles.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPartFiles.FlatAppearance.BorderSize = 0;
+            this.btnPartFiles.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnPartFiles.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPartFiles.ForeColor = System.Drawing.Color.Transparent;
+            this.btnPartFiles.Location = new System.Drawing.Point(17, 15);
+            this.btnPartFiles.Name = "btnPartFiles";
+            this.btnPartFiles.Size = new System.Drawing.Size(117, 23);
+            this.btnPartFiles.TabIndex = 4;
+            this.btnPartFiles.Text = "Part Files";
+            this.btnPartFiles.UseVisualStyleBackColor = true;
+            this.btnPartFiles.Click += new System.EventHandler(this.btnPartFiles_Click);
             // 
             // button1
             // 
@@ -568,12 +573,36 @@
             this.button1.Text = "Run";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.txtFilter);
+            this.groupBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox5.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox5.ForeColor = System.Drawing.Color.Black;
+            this.groupBox5.Location = new System.Drawing.Point(297, 103);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(233, 48);
+            this.groupBox5.TabIndex = 40;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Filter";
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtFilter.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtFilter.Location = new System.Drawing.Point(3, 18);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(227, 23);
+            this.txtFilter.TabIndex = 2;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
+            // 
             // folderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
@@ -592,6 +621,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -620,25 +651,26 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox ddFormat;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnTestFormats;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridViewImageColumn gvFiles_Check;
-        private System.Windows.Forms.DataGridViewImageColumn gvFiles_Icon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_File;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_Hidden;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_Ep;
+        private System.Windows.Forms.Button btnRunFormats;
+        private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radCheckItem;
         private System.Windows.Forms.RadioButton radCheckAll;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnRemoveChecksum;
+        private System.Windows.Forms.Button btnPartFiles;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnShowEstimates;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox txtFilter;
+        private System.Windows.Forms.DataGridViewImageColumn gvFiles_Check;
+        private System.Windows.Forms.DataGridViewImageColumn gvFiles_Icon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_File;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_Hidden;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Group;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_Ep;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CRC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pos;
     }
 }

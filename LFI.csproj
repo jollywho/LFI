@@ -236,6 +236,7 @@
     <Compile Include="Controls\contentsPane.Designer.cs">
       <DependentUpon>contentsPane.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\Warning.png" />
     <None Include="Resources\cancel.png" />
     <None Include="Resources\checksum_add.png" />
     <None Include="Resources\checksum_check.png" />

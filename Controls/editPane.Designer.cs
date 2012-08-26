@@ -56,9 +56,9 @@
             this.btnImg.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnImg.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImg.ForeColor = System.Drawing.Color.Lime;
-            this.btnImg.Location = new System.Drawing.Point(10, 95);
+            this.btnImg.Location = new System.Drawing.Point(10, 93);
             this.btnImg.Name = "btnImg";
-            this.btnImg.Size = new System.Drawing.Size(78, 20);
+            this.btnImg.Size = new System.Drawing.Size(78, 25);
             this.btnImg.TabIndex = 1;
             this.btnImg.TabStop = false;
             this.btnImg.Text = "Change Image";
@@ -97,11 +97,11 @@
             // 
             this.txtYear.BackColor = System.Drawing.SystemColors.Control;
             this.txtYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtYear.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtYear.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtYear.Location = new System.Drawing.Point(152, 95);
             this.txtYear.MaxLength = 4;
             this.txtYear.Name = "txtYear";
-            this.txtYear.Size = new System.Drawing.Size(75, 22);
+            this.txtYear.Size = new System.Drawing.Size(75, 23);
             this.txtYear.TabIndex = 5;
             this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtYear.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
@@ -111,11 +111,11 @@
             // 
             this.txtEpisode.BackColor = System.Drawing.SystemColors.Control;
             this.txtEpisode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEpisode.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtEpisode.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEpisode.Location = new System.Drawing.Point(94, 95);
             this.txtEpisode.MaxLength = 3;
             this.txtEpisode.Name = "txtEpisode";
-            this.txtEpisode.Size = new System.Drawing.Size(52, 22);
+            this.txtEpisode.Size = new System.Drawing.Size(52, 23);
             this.txtEpisode.TabIndex = 3;
             this.txtEpisode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtEpisode.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
@@ -137,7 +137,7 @@
             this.ddLanguage.BackColor = System.Drawing.SystemColors.Control;
             this.ddLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddLanguage.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ddLanguage.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ddLanguage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddLanguage.ForeColor = System.Drawing.Color.Black;
             this.ddLanguage.FormattingEnabled = true;
             this.ddLanguage.Items.AddRange(new object[] {
@@ -145,14 +145,14 @@
             "ENG"});
             this.ddLanguage.Location = new System.Drawing.Point(251, 93);
             this.ddLanguage.Name = "ddLanguage";
-            this.ddLanguage.Size = new System.Drawing.Size(59, 24);
+            this.ddLanguage.Size = new System.Drawing.Size(59, 23);
             this.ddLanguage.TabIndex = 7;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(252, 74);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(57, 16);
@@ -163,7 +163,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(174, 75);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 16);
@@ -175,7 +175,7 @@
             this.ddStatus.BackColor = System.Drawing.SystemColors.Control;
             this.ddStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddStatus.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ddStatus.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ddStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddStatus.ForeColor = System.Drawing.Color.Black;
             this.ddStatus.FormattingEnabled = true;
             this.ddStatus.Items.AddRange(new object[] {
@@ -187,14 +187,14 @@
             "Unknown"});
             this.ddStatus.Location = new System.Drawing.Point(163, 146);
             this.ddStatus.Name = "ddStatus";
-            this.ddStatus.Size = new System.Drawing.Size(128, 24);
+            this.ddStatus.Size = new System.Drawing.Size(128, 23);
             this.ddStatus.TabIndex = 11;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(144, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 16);
@@ -205,7 +205,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(207, 127);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 16);
@@ -216,7 +216,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(66, 127);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 16);
@@ -227,7 +227,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(94, 75);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 16);
@@ -240,12 +240,12 @@
             this.ddTitle.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ddTitle.BackColor = System.Drawing.SystemColors.Control;
             this.ddTitle.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ddTitle.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ddTitle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddTitle.ForeColor = System.Drawing.Color.Black;
             this.ddTitle.FormattingEnabled = true;
             this.ddTitle.Location = new System.Drawing.Point(10, 42);
             this.ddTitle.Name = "ddTitle";
-            this.ddTitle.Size = new System.Drawing.Size(300, 24);
+            this.ddTitle.Size = new System.Drawing.Size(300, 23);
             this.ddTitle.TabIndex = 1;
             this.ddTitle.TextChanged += new System.EventHandler(this.ddTitle_TextChanged);
             // 
@@ -254,7 +254,7 @@
             this.ddCategory.BackColor = System.Drawing.SystemColors.Control;
             this.ddCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddCategory.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ddCategory.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ddCategory.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddCategory.ForeColor = System.Drawing.Color.Black;
             this.ddCategory.FormattingEnabled = true;
             this.ddCategory.Items.AddRange(new object[] {
@@ -263,7 +263,7 @@
             "OVA/ Special"});
             this.ddCategory.Location = new System.Drawing.Point(29, 146);
             this.ddCategory.Name = "ddCategory";
-            this.ddCategory.Size = new System.Drawing.Size(126, 24);
+            this.ddCategory.Size = new System.Drawing.Size(126, 23);
             this.ddCategory.TabIndex = 9;
             // 
             // imgTitle

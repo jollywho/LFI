@@ -66,12 +66,12 @@
             // 
             this.txtTitle.BackColor = System.Drawing.SystemColors.Control;
             this.txtTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTitle.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtTitle.ForeColor = System.Drawing.Color.Black;
             this.txtTitle.Location = new System.Drawing.Point(10, 42);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.ReadOnly = true;
-            this.txtTitle.Size = new System.Drawing.Size(300, 22);
+            this.txtTitle.Size = new System.Drawing.Size(300, 23);
             this.txtTitle.TabIndex = 1;
             this.txtTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -79,12 +79,12 @@
             // 
             this.txtCategory.BackColor = System.Drawing.SystemColors.Control;
             this.txtCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCategory.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCategory.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtCategory.ForeColor = System.Drawing.Color.Black;
             this.txtCategory.Location = new System.Drawing.Point(29, 146);
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.ReadOnly = true;
-            this.txtCategory.Size = new System.Drawing.Size(126, 22);
+            this.txtCategory.Size = new System.Drawing.Size(126, 23);
             this.txtCategory.TabIndex = 7;
             this.txtCategory.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -92,20 +92,20 @@
             // 
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtStatus.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtStatus.ForeColor = System.Drawing.Color.Black;
             this.txtStatus.Location = new System.Drawing.Point(163, 146);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(128, 22);
+            this.txtStatus.Size = new System.Drawing.Size(128, 23);
             this.txtStatus.TabIndex = 9;
             this.txtStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(94, 75);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 16);
@@ -116,21 +116,21 @@
             // 
             this.txtEpisode.BackColor = System.Drawing.SystemColors.Control;
             this.txtEpisode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEpisode.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEpisode.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtEpisode.ForeColor = System.Drawing.Color.Black;
             this.txtEpisode.Location = new System.Drawing.Point(94, 95);
             this.txtEpisode.Mask = "000";
             this.txtEpisode.Name = "txtEpisode";
             this.txtEpisode.ReadOnly = true;
-            this.txtEpisode.Size = new System.Drawing.Size(52, 22);
+            this.txtEpisode.Size = new System.Drawing.Size(52, 23);
             this.txtEpisode.TabIndex = 3;
             this.txtEpisode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(66, 127);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 16);
@@ -140,8 +140,8 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.label4.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(207, 127);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 16);
@@ -152,21 +152,21 @@
             // 
             this.txtYear.BackColor = System.Drawing.SystemColors.Control;
             this.txtYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtYear.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtYear.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtYear.ForeColor = System.Drawing.Color.Black;
             this.txtYear.Location = new System.Drawing.Point(152, 95);
             this.txtYear.Mask = "0000";
             this.txtYear.Name = "txtYear";
             this.txtYear.ReadOnly = true;
-            this.txtYear.Size = new System.Drawing.Size(75, 22);
+            this.txtYear.Size = new System.Drawing.Size(75, 23);
             this.txtYear.TabIndex = 5;
             this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(144, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 16);
@@ -176,8 +176,8 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.label5.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(174, 75);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 16);

@@ -53,10 +53,16 @@ namespace LFI
 
         public string EstimateEpisode()
         {
-           // Console.WriteLine(new Regex(regChoice).Match(strFile).Groups[2]);
-            //Console.WriteLine(new Regex(regChoice).Match(strFile).Groups[3]);
-            //Console.WriteLine(new Regex(regCRC).Match(strFile).Groups[0]);
-            return (new Regex(regChoice).Match(strFile).Groups[4]).ToString();
+            return (new Regex(regChoice).Match(strFile).Groups[4]).ToString().ToUpper();
+        }
+
+        public string EstimateGroup()
+        {
+            return (new Regex(regChoice).Match(strFile).Groups[2]).ToString();
+        }
+        public string EstimateCRC()
+        {
+            return Folder_IO.ScanCRC(strFile);
         }
     }
 }

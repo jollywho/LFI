@@ -180,35 +180,32 @@ namespace LFI
         }
 
         /// <summary>
-        /// Detect CRC from given filename using regex.
+        /// Find CRC within a given filename.
         /// </summary>
-        /// <param name="filename">string filename.</param>
-        /// <param name="newfilename">string newfilename.</param>
+        /// <param name="filename">given filename.</param>
+        /// <param name="newfilename">new filename.</param>
         /// <returns>the CRC code.</returns>
-        public static string ScanCRC(string filename, out string newfilename)
+        public static string ScanCRC(string filename)
         {
             FileInfo file = new FileInfo(filename);
-            FixExtension(file);
 
             string crcStr = reg.Match(filename).Groups[0].Value;
             crcStr = crcStr.ToUpper();
 
             Console.WriteLine("Detected CRC : " + crcStr);
-            newfilename = Path.GetFileName(file.Name);
             return crcStr;
         }
 
         /// <summary>
-        /// Add CRC code to specified filename.
+        /// Add CRC checksum to given filename.
         /// </summary>
         /// <param name="filename">string filename.</param>
         /// <param name="crc">string CRC code.</param>
-        /// <param name="newfilename">string newfilename.</param>
-        /// <returns>string full filename.</returns>
+        /// <param name="newfilename">new file name.</param>
+        /// <returns>path + filename.</returns>
         public static string AddCRC(string filename, string crc, out string newfilename)
         {
             FileInfo file = new FileInfo(filename);
-            FixExtension(file);
             file.Refresh();
 
             file.MoveTo(file.FullName.Insert(file.FullName.Length - (file.Extension.Length), "[" + crc + "]"));
@@ -218,9 +215,60 @@ namespace LFI
         }
 
         /// <summary>
-        /// Remove .part file extensions.
+        /// Remove CRC checksum from given filename.
         /// </summary>
-        /// <param name="file"></param>
+        /// <param name="filename">string filename.</param>
+        /// <param name="crc">string CRC code.</param>
+        /// <param name="newfilename">new file name.</param>
+        /// <returns>path + filename.</returns>
+        public static string RemoveCRC(string filename, out string newfilename)
+        {
+            FileInfo file = new FileInfo(filename);
+            file.MoveTo(file.FullName.Replace("[" + ScanCRC(filename) + "]", ""));
+            file.Refresh();
+            newfilename = Path.GetFileName(file.Name);
+            return file.FullName;
+        }
+
+        public static string RenameFile(string filename, 
+            string prefix, string title, string episode, string suffix,
+            out string newfilename, out bool skipped)
+        {
+            FileInfo file = new FileInfo(filename);
+            string destfilename = string.Empty;
+            skipped = false;
+            try
+            {
+                if (prefix.Trim().Length >= 1)
+                    destfilename = '[' + prefix + ']' + ' ';
+                destfilename += title;
+                if (episode.Trim().Length >= 1)
+                    destfilename += " - " + episode;
+                else
+                    skipped = true;
+                if (suffix.Trim().Length >= 1)
+                    destfilename += " [" + suffix + "]";
+                destfilename = destfilename.Replace(' ', '_');
+
+                if (!skipped)
+                    file.MoveTo(file.FullName.Replace(file.Name, destfilename)+file.Extension);
+                file.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("'{0}' :\n {1}", title, ex.Message), "Rename Error");
+            }
+            finally
+            {
+                newfilename = Path.GetFileName(file.Name);
+            }
+            return file.FullName;
+        }
+
+        /// <summary>
+        /// Remove 'part' from file extension.
+        /// </summary>
+        /// <param name="file">File</param>
         public static void FixExtension(FileInfo file)
         {
             if (file.Extension.Contains(".part"))

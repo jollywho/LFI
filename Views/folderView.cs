@@ -17,18 +17,16 @@ namespace LFI
         private string dirname;
         private MainForm caller;
         private string checksum;
+        private DataTable dtFilter = new DataTable();
         PictureBox animation = new PictureBox();
         int savedRow = 0;
         int workingRow = 0;
+        int refreshRow = 0;
+        int refreshIndex = 0;
+        private bool showFields = false;
         private bool multiRun = false;
         private bool cancel = false;
         int[] cellHover = new int[2];
-
-        public struct SimpleData
-        {
-            public string Text { get; set; }
-            public string Hidden { get; set; }
-        }
 
         public folderView(MainForm main)
         {
@@ -59,10 +57,19 @@ namespace LFI
             ddFormat.DisplayMember = "Value";
             ddFormat.ValueMember = "Key";
             toolStrip1.Renderer = new TSystemRenderer();
+            gvFiles.AlternatingRowsDefaultCellStyle = null;
+            for (int i = 0; i < gvFiles.Columns.Count; i++)
+                dtFilter.Columns.Add(i.ToString());
 
             open_Folder();
         }
 
+        /// <summary>
+        /// Opens folder pointed at by ddUrl.
+        /// </summary>
+        /// <remarks>
+        /// This refreshes the gridview if already open.
+        /// </remarks>
         private void open_Folder()
         {
             try
@@ -74,11 +81,23 @@ namespace LFI
                 btnRefresh.Enabled = true;
                 dirname = ddUrl.Text;
                 lstDivs_Click(null, null);
+                txtFilter.Enabled = true;
+                if (showFields) LoadFormatFields();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error opening : " + ex.Message);
             }
+        }
+
+        private void refresh_Folder()
+        {
+            refreshRow = gvFiles.SelectedCells[0].RowIndex;
+            refreshIndex = gvFiles.FirstDisplayedScrollingRowIndex;
+            open_Folder();
+            gvFiles.Rows[refreshRow].Selected = true;
+            gvFiles.FirstDisplayedScrollingRowIndex = refreshIndex;
+            gvFiles.Focus();
         }
 
         private void countFolders()
@@ -107,12 +126,15 @@ namespace LFI
                 countFolders();
                 btnDivide.Enabled = true;
                 lstDivs_Click(sender, e);
+                txtFilter.Enabled = false;
             }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            open_Folder();
+            refresh_Folder();
+            if (showFields)
+                LoadFormatFields();
         }
 
         //populate gvFiles with items from selected divison
@@ -121,27 +143,30 @@ namespace LFI
             if (!Crc32.worker.IsBusy && folder.GetItemCount() > 0)
             {
                 int sel = Convert.ToInt32(lstDivs.Text);
+                int row = 0;
                 gvFiles.DataSource = null;
                 gvFiles.Rows.Clear();
+                dtFilter.Clear();
 
                 if (lstDivs.Text == "0")
                 {
                     caller.SetLabelSize(folder.Get_Folder_Size(sel, true));
                     caller.SetLabelItemCount(folder.folderitems.Count);
-                    for (int i = 0; i <= folder.folderitems.Count - 1; i++)
+                    for (int i = 0; i <= folder.subdiritems.Count - 1; i++, row++)
+                    {
+                        gvFiles.Rows.Add(LFI.Properties.Resources.empty,
+                           LFI.Properties.Resources.folder,
+                           Path.GetFileName(folder.subdiritems[i]), folder.subdiritems[i], null, null, null, row.ToString());
+                        dtFilter.Rows.Add(null, null, Path.GetFileName(folder.subdiritems[i]), folder.subdiritems[i], null, null, null, row.ToString());
+                    } 
+                    for (int i = 0; i <= folder.folderitems.Count - 1; i++, row++)
                     {
                         gvFiles.Rows.Add(LFI.Properties.Resources.empty,
                             Icon.ExtractAssociatedIcon(folder.filenames[i]),
                             Path.GetFileName(folder.folderitems[i]),
-                            folder.filenames[i]);
+                            folder.filenames[i], null, null, null, row.ToString());
+                        dtFilter.Rows.Add(null, null, Path.GetFileName(folder.folderitems[i]), folder.filenames[i], null,null,null, row.ToString());
                     }
-                    for (int i = 0; i <= folder.subdiritems.Count - 1; i++)
-                    {
-                        gvFiles.Rows.Add(LFI.Properties.Resources.empty,
-                            LFI.Properties.Resources.folder,
-                           Path.GetFileName(folder.subdiritems[i]), folder.subdiritems[i]
-                            );
-                    } 
                 }
                 else
                 {
@@ -156,19 +181,20 @@ namespace LFI
                         );
                     }
                 }
-                LoadEpisodeEstimates();
-                gvFiles_RowEnter(null, null);
+                gvFiles.Focus();
             }
         }
 
-        private void LoadEpisodeEstimates()
+        private void LoadFormatFields()
         {
-            for (int i = 0; i < gvFiles.RowCount - 1; i++)
+            for (int i = 0; i < gvFiles.RowCount; i++)
             {
                 if (!Directory.Exists(gvFiles.Rows[i].Cells[3].Value.ToString()))
                 {
                     FileNameFormat fn = new FileNameFormat(gvFiles.Rows[i].Cells[2].Value.ToString(), (EPFORMAT)ddFormat.SelectedValue);
-                    gvFiles.Rows[i].Cells[4].Value = fn.EstimateEpisode();
+                    gvFiles.Rows[i].Cells[4].Value = fn.EstimateGroup();
+                    gvFiles.Rows[i].Cells[5].Value = fn.EstimateEpisode();
+                    gvFiles.Rows[i].Cells[6].Value = fn.EstimateCRC();
                 }
             }
         }
@@ -198,13 +224,10 @@ namespace LFI
             animation.Hide();
             caller.stop_progBar();
 
-            string newfilename = string.Empty;
-            if (checksum == Folder_IO.ScanCRC(gvFiles.Rows[workingRow].Cells[3].Value.ToString(),
-                    out newfilename))
+            if (checksum == Folder_IO.ScanCRC(gvFiles.Rows[workingRow].Cells[3].Value.ToString()))
                 gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
             else
                 gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.error;
-            gvFiles.Rows[workingRow].Cells[2].Value = newfilename;
 
             DisableRunButtons();
             Check_MultiRunIncrement();
@@ -225,6 +248,7 @@ namespace LFI
                 checksum, out newfilename);
             gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
             gvFiles.Rows[workingRow].Cells[2].Value = newfilename;
+            Copy_Cells(gvFiles.Rows[workingRow].Cells[7].RowIndex, workingRow);
 
             if (lstDivs.Text == "0")
                 folder.folderitems[workingRow] = ddUrl.Text + "\\" + newfilename;
@@ -277,16 +301,32 @@ namespace LFI
 
         private void EnableRunButtons()
         {
+            btnCancel.Enabled = true;
+            btnRunFormats.Enabled = false;
+            btnRefresh.Enabled = false;
+            btnShowDiv.Enabled = false;
             btnCheckCRC.Enabled = false;
             btnAddCRC.Enabled = false;
-            btnCancel.Enabled = true;
+            btnShowEstimates.Enabled = false;
+            btnRemoveChecksum.Enabled = false;
+            btnPartFiles.Enabled = false;
+            ddUrl.Enabled = false;
+            txtFilter.Enabled = false;
         }
 
         private void DisableRunButtons()
         {
+            btnCancel.Enabled = false;
+            btnRefresh.Enabled = true;
+            btnShowDiv.Enabled = true;
             btnCheckCRC.Enabled = true;
             btnAddCRC.Enabled = true;
-            btnCancel.Enabled = false;
+            btnShowEstimates.Enabled = true;
+            btnRemoveChecksum.Enabled = true;
+            btnPartFiles.Enabled = true;
+            ddUrl.Enabled = true;
+            txtFilter.Enabled = true;
+            btnRunFormats.Enabled = showFields;
         }
 
         private void CheckCRC()
@@ -358,10 +398,7 @@ namespace LFI
 
         private void ddUrl_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (System.IO.Directory.GetDirectories(ddUrl.Text).Count<string>() > 1)
-            {
-                //rebind_ddUrl();
-            }
+            txtFilter.Clear();
             open_Folder();
         }
 
@@ -429,21 +466,189 @@ namespace LFI
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        private void btnTestReg_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void gvFiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Console.WriteLine("ysfs");
-            if (Directory.Exists(gvFiles.SelectedCells[3].Value.ToString()))
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.ColumnIndex == 2)
             {
-                ddUrl.Text = gvFiles.SelectedCells[3].Value.ToString();
-                open_Folder();
+                if (Directory.Exists(gvFiles.SelectedCells[3].Value.ToString()))
+                {
+                    ddUrl.Text = gvFiles.SelectedCells[3].Value.ToString();
+                    open_Folder();
+                }
+                else
+                    if (File.Exists(gvFiles.SelectedCells[3].Value.ToString()))
+                        Process.Start(gvFiles.SelectedCells[3].Value.ToString());
+            }
+        }
+
+        private void btnPartFiles_Click(object sender, EventArgs e)
+        {
+            if (radCheckAll.Checked)
+            {
+                for (int i = 0; i < gvFiles.Rows.Count; i++)
+                {
+                    FileInfo file = new FileInfo(gvFiles.Rows[i].Cells[3].Value.ToString());
+                    Folder_IO.FixExtension(file);
+                    Copy_Cells(Convert.ToInt32(gvFiles.Rows[i].Cells[7].Value), i);
+                }
             }
             else
-                Process.Start(gvFiles.SelectedCells[3].Value.ToString());
+            {
+                FileInfo file = new FileInfo(gvFiles.SelectedCells[3].Value.ToString());
+                Folder_IO.FixExtension(file);
+                Copy_Cells(Convert.ToInt32(gvFiles.SelectedCells[7].Value), gvFiles.SelectedCells[0].RowIndex);
+            }
+            refresh_Folder();
+        }
+
+        private void btnRemoveChecksum_Click(object sender, EventArgs e)
+        {
+            if (radCheckAll.Checked)
+            {
+                for (int i = 0; i < gvFiles.Rows.Count; i++)
+                {
+                    string newfilename = string.Empty;
+                    gvFiles.Rows[i].Cells[3].Value =
+                        Folder_IO.RemoveCRC(gvFiles.Rows[i].Cells[3].Value.ToString(),
+                        out newfilename);
+                    dtFilter.Rows[i][0] = newfilename;
+                    dtFilter.Rows[i][1] = gvFiles.Rows[i].Cells[3].Value;
+                    gvFiles.Rows[i].Cells[2].Value = newfilename;
+                    Copy_Cells(Convert.ToInt32(gvFiles.Rows[i].Cells[7].Value), i);
+                }
+            }
+            else
+            {
+                string newfilename = string.Empty;
+                gvFiles.SelectedCells[3].Value =
+                    Folder_IO.RemoveCRC(gvFiles.SelectedCells[3].Value.ToString(),
+                    out newfilename);
+                //
+                gvFiles.SelectedCells[2].Value = newfilename;
+                Copy_Cells(Convert.ToInt32(gvFiles.SelectedCells[7].Value), gvFiles.SelectedCells[0].RowIndex);
+            }
+        }
+
+        private void btnRunFormats_Click(object sender, EventArgs e)
+        {
+            if (txtTitle.Text.Length < 1)
+                MessageBox.Show("Rename Error: Title required.\n");
+            else
+            {
+                
+                if (radCheckAll.Checked)
+                {
+                    for (int i = 0; i < gvFiles.Rows.Count; i++)
+                    {
+                        string newfilename = string.Empty;
+                        bool skipped = false;
+                        gvFiles.Rows[i].Cells[3].Value =
+                            Folder_IO.RenameFile(gvFiles.Rows[i].Cells[3].Value.ToString(),
+                            gvFiles.Rows[i].Cells[4].Value.ToString(),
+                            txtTitle.Text,
+                            gvFiles.Rows[i].Cells[5].Value.ToString(),
+                            gvFiles.Rows[i].Cells[6].Value.ToString(),
+                            out newfilename, out skipped);
+                        gvFiles.Rows[i].Cells[2].Value = newfilename;
+                        Copy_Cells(Convert.ToInt32(gvFiles.Rows[i].Cells[7].Value), i);
+                        if (skipped)
+                            gvFiles.Rows[i].Cells[0].Value = LFI.Properties.Resources.Warning;
+                    }
+                }
+                else
+                {
+                    string newfilename = string.Empty;
+                    bool skipped = false;
+                    gvFiles.SelectedCells[3].Value =
+                        Folder_IO.RenameFile(gvFiles.SelectedCells[3].Value.ToString(),
+                        gvFiles.SelectedCells[4].Value.ToString(),
+                        txtTitle.Text,
+                        gvFiles.SelectedCells[5].Value.ToString(),
+                        gvFiles.SelectedCells[6].Value.ToString(),
+                        out newfilename, out skipped);
+                    gvFiles.SelectedCells[2].Value = newfilename;
+                    Copy_Cells(Convert.ToInt32(gvFiles.SelectedCells[7].Value), gvFiles.SelectedCells[0].RowIndex);
+                    
+                    if (skipped)
+                        gvFiles.SelectedCells[0].Value = LFI.Properties.Resources.Warning;
+                }
+            }
+        }
+
+        private void Copy_Cells(int p_rowindex, int f_rowindex)
+        {
+            for (int i = 0; i < gvFiles.Columns.Count; i++)
+                dtFilter.Rows[p_rowindex][i] = gvFiles.Rows[f_rowindex].Cells[i].Value;
+        }
+
+        private void btnShowEstimates_Click(object sender, EventArgs e)
+        {
+            showFields = !showFields;
+            if (showFields) { btnShowEstimates.Text = "Hide Fields";  }
+            else { btnShowEstimates.Text = "Show Fields";  }
+            btnRunFormats.Enabled = showFields;
+            if (showFields) 
+                LoadFormatFields();
+            gvFiles.Columns[4].Visible = showFields;
+            gvFiles.Columns[5].Visible = showFields;
+            gvFiles.Columns[6].Visible = showFields;
+        }
+
+        private void gvFiles_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!gvFiles.IsCurrentCellInEditMode)
+            {
+                if (e.KeyCode == Keys.Back) btnBack_Click(null, null);
+                if (e.KeyCode == Keys.F4) btnRefresh_Click(null, null);
+
+                if (e.KeyCode == Keys.C && e.Modifiers == Keys.Control)
+                {
+                    Clipboard.SetText(gvFiles.SelectedCells[2].Value.ToString(), TextDataFormat.Text);
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            gvFiles.Rows.Clear();
+            for (int i = 0; i < dtFilter.Rows.Count; i++)
+            {
+                if (dtFilter.Rows[i][2].ToString().ToUpper().Contains(txtFilter.Text.ToUpper()) 
+                    || txtFilter.Text.Length < 1)
+                {
+                    if (!Directory.Exists(dtFilter.Rows[i][3].ToString()))
+                    {
+                        gvFiles.Rows.Add(LFI.Properties.Resources.empty,
+                            Icon.ExtractAssociatedIcon(dtFilter.Rows[i][3].ToString()),
+                            dtFilter.Rows[i][2], dtFilter.Rows[i][3], dtFilter.Rows[i][4],
+                            dtFilter.Rows[i][5], dtFilter.Rows[i][6], dtFilter.Rows[i][7]);
+                    }
+                    else
+                    {
+                        gvFiles.Rows.Add(LFI.Properties.Resources.empty,
+                            LFI.Properties.Resources.folder,
+                            dtFilter.Rows[i][2], dtFilter.Rows[i][3], dtFilter.Rows[i][4],
+                            dtFilter.Rows[i][5], dtFilter.Rows[i][6], dtFilter.Rows[i][7]);
+                    }
+                }
+            }
+            LoadFormatFields();
+        }
+
+        private void gvFiles_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            gvFiles.SelectionMode = DataGridViewSelectionMode.CellSelect;
+        }
+
+        private void gvFiles_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            gvFiles.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
+
+        private void ddFormat_SelectedValueChanged(object sender, EventArgs e)
+        {
+            LoadFormatFields();
         }
     }
 }
