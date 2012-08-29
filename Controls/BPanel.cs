@@ -11,6 +11,9 @@ namespace LFI
 {
     public partial class BPanel : System.Windows.Forms.Panel
     {
+        /// <summary>
+        /// Enable panel doublebuffering.
+        /// </summary>
         public BPanel()
         {
             InitializeComponent();

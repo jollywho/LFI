@@ -99,7 +99,10 @@ namespace LFI
         /// <param name="e"></param>
         private void deleteMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dlg = MessageBox.Show("Delete?", "Confirm", MessageBoxButtons.YesNo);
+
+            DialogResult dlg = BetterDialog.ShowDialog("Delete Disc",
+                "Disc will be deleted permanently. Are you Sure?",
+                Location_ID + Disc, "Yes", "No", this.BackgroundImage);
             if (dlg == DialogResult.Yes)
             {
                 try

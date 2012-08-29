@@ -107,7 +107,7 @@ namespace LFI
         protected override void OnMouseWheel(MouseEventArgs e)
         {
             base.OnMouseWheel(e);
-            if (e.Delta < 0)
+            if (e.Delta > 0)
                 txtJump.Text = findNextJump(-2).ToString();
             else
                 txtJump.Text = findNextJump(2).ToString();
@@ -296,8 +296,13 @@ namespace LFI
         {
             if (gvContents.Rows.Count > 0)
             {
-                if (MessageBox.Show(this, "Remove record?", "Record will be deleted",
-                    MessageBoxButtons.YesNo) == DialogResult.Yes)
+                DialogResult result = BetterDialog.ShowDialog("Remove Record?",
+                    "Record will be deleted permanently.  Are you sure?",
+                    string.Format("{0}\nSeason {1}\nStart {2}\nEnd {3}",
+                    gvContents.SelectedCells[0].Value, gvContents.SelectedCells[1].Value,
+                    gvContents.SelectedCells[2].Value, gvContents.SelectedCells[3].Value),
+                    "Yes", "No", Image_IO.getImage(gvContents.SelectedCells[0].Value.ToString()));
+                if (result == DialogResult.Yes)
                 {
                     if (gvContents.Rows[gvContents.SelectedCells[0].RowIndex].Cells[4].ToString() != "null")
                     {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace LFI
 {
@@ -52,7 +53,7 @@ namespace LFI
         }
 
         /// <summary>
-        /// Get directory filenames, paths, and item count.
+        /// Get fullpath names of files, subdirectories, and item count of the directory.
         /// </summary>
         public void Set_Folder_Items()
         {
@@ -83,6 +84,10 @@ namespace LFI
             }
         }
 
+        /// <summary>
+        /// Returns a combined number of subdirectory and file items in the set directory.
+        /// </summary>
+        /// <returns>The Count.</returns>
         public int GetItemCount()
         {
             return itemCount + folderCount;
@@ -91,8 +96,8 @@ namespace LFI
         /// <summary>
         /// Get folder size of specified directory.
         /// </summary>
-        /// <param name="folder">folder index.</param>
-        /// <param name="root">root folder or divisioned.</param>
+        /// <param name="folder">The selected divison number.</param>
+        /// <param name="root">Is division the root.</param>
         /// <returns>folder size.</returns>
         public string Get_Folder_Size(int folder, bool root)
         {
@@ -172,7 +177,7 @@ namespace LFI
         /// Add items to division until greater than folder average.
         /// </summary>
         /// <param name="pos">current item position.</param>
-        /// <returns>new item position.</returns>
+        /// <returns>The new item position.</returns>
         private int AddMaxItems(int pos)
         {
             long sum = 0;
@@ -200,9 +205,8 @@ namespace LFI
         /// <summary>
         /// Find CRC within a given filename.
         /// </summary>
-        /// <param name="filename">given filename.</param>
-        /// <param name="newfilename">new filename.</param>
-        /// <returns>the CRC code.</returns>
+        /// <param name="filename">The fullpath filename.</param>
+        /// <returns>The CRC code.</returns>
         public static string ScanCRC(string filename)
         {
             FileInfo file = new FileInfo(filename);
@@ -217,10 +221,10 @@ namespace LFI
         /// <summary>
         /// Add CRC checksum to given filename.
         /// </summary>
-        /// <param name="filename">string filename.</param>
-        /// <param name="crc">string CRC code.</param>
-        /// <param name="newfilename">new file name.</param>
-        /// <returns>path + filename.</returns>
+        /// <param name="filename">The fullpath filename.</param>
+        /// <param name="crc">The CRC code.</param>
+        /// <param name="newfilename">Just the filename.</param>
+        /// <returns>The fullpath filename.</returns>
         public static string AddCRC(string filename, string crc, out string newfilename)
         {
             FileInfo file = new FileInfo(filename);
@@ -235,10 +239,10 @@ namespace LFI
         /// <summary>
         /// Remove CRC checksum from given filename.
         /// </summary>
-        /// <param name="filename">string filename.</param>
+        /// <param name="filename">The fullpath filename.</param>
         /// <param name="crc">string CRC code.</param>
-        /// <param name="newfilename">new file name.</param>
-        /// <returns>path + filename.</returns>
+        /// <param name="newfilename">Just the filename.</param>
+        /// <returns>The fullpath filename.</returns>
         public static string RemoveCRC(string filename, out string newfilename)
         {
             FileInfo file = new FileInfo(filename);
@@ -248,6 +252,17 @@ namespace LFI
             return file.FullName;
         }
 
+        /// <summary>
+        /// Renames a file with a prefix, title, episode, and suffix into a standard format.
+        /// </summary>
+        /// <param name="filename">The fullpath filename.</param>
+        /// <param name="prefix">The prefix for the front.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="episode">The episode.</param>
+        /// <param name="suffix">The suffix for the end.</param>
+        /// <param name="newfilename">Just the filename.</param>
+        /// <param name="skipped">A skipped message.</param>
+        /// <returns>The fullpath filename.</returns>
         public static string RenameFile(string filename, 
             string prefix, string title, string episode, string suffix,
             out string newfilename, out bool skipped)
@@ -281,6 +296,49 @@ namespace LFI
                 newfilename = Path.GetFileName(file.Name);
             }
             return file.FullName;
+        }
+
+        public static void DeleteFile(string filename)
+        {
+            FileInfo file = new FileInfo(filename);
+            if (!file.Exists) return;
+            DialogResult result = BetterDialog.ShowDialog("Delete File", 
+                "Are you sure you want to move this file to the Recycle Bin?",
+                string.Format("{0}\nType: {1}\nSize: {2}",
+                file.Name,
+                NativeMethods.GetShellFileType(file.FullName),
+                (file.Length / Math.Pow(1024, 2)).ToString("N3") + " MB"), "Yes", "No",
+                NativeMethods.GetSmallIcon(file.FullName).ToBitmap()
+                );
+            if (result == DialogResult.Yes)
+            {
+                file.Delete();
+            }
+        }
+
+        public static void MoveFileTo(string src, string dest)
+        {
+            FileInfo file = new FileInfo(src);
+            DirectoryInfo fromdir = new DirectoryInfo(src);
+            DirectoryInfo dir = new DirectoryInfo(dest);
+            if (dir.Exists && file.Exists)
+            {
+                DialogResult result = BetterDialog.ShowDialog("Move File", string.Format("Are you sure you want to move this file to {0}?", dir.Name),
+                    string.Format("{0}", file.Name), "Yes", "No", Icon.ExtractAssociatedIcon(src).ToBitmap());
+                if (result == DialogResult.Yes)
+                {
+                    file.MoveTo(Path.Combine(dir.FullName, file.Name));
+                }
+            }
+            if (fromdir.Exists && dir.Exists)
+            {
+                DialogResult result = BetterDialog.ShowDialog("Move Folder", string.Format("Are you sure you want to move this folder to {0}?", dir.Name),
+                    string.Format("{0}", fromdir.Name), "Yes", "No", LFI.Properties.Resources.folder);
+                if (result == DialogResult.Yes)
+                {
+                    fromdir.MoveTo(Path.Combine(dir.FullName, fromdir.Name));
+                }
+            }
         }
 
         /// <summary>

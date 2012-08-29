@@ -140,6 +140,19 @@ namespace LFI
             }
         }
 
+        public static Image getImage(string str)
+        {
+            string path = Folder_IO.GetUserImagePath() + string.Format("\\{0}.jpg", str);
+            Image foundImage = null;
+            if (System.IO.File.Exists(path))
+            {
+                FileStream fs = new FileStream(path, FileMode.Open);
+                foundImage = Image.FromStream(fs);
+                fs.Close();
+            }
+            return foundImage;
+        }
+
         /// <summary>
         /// Get contents of a disc_id and generate a merged image for it.
         /// </summary>

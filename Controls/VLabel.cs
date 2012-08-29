@@ -8,13 +8,11 @@ namespace LFI
 {
 	public class VLabel : System.Windows.Forms.Label
 	{
-
 		private bool bFlip = true;
 
 		public VLabel()
 		{
 		}
-
 
 		protected override void OnPaint(PaintEventArgs e)
 		{

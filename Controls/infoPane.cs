@@ -74,6 +74,11 @@ namespace LFI
             e.Effect = DragDropEffects.Move;
         }
 
+        /// <summary>
+        /// Save, resize, and format dragged image with txtTitle filename.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void infoPane_DragDrop(object sender, DragEventArgs e)
         {
             if (txtTitle.Text.Length < 1)
@@ -88,6 +93,7 @@ namespace LFI
 
                     int y = this.PointToClient(new Point(e.X, e.Y)).Y;
 
+                    //inside imgTitle boundaries
                     if (x >= imgTitle.Location.X && x <= imgTitle.Location.X + imgTitle.Width
                         && y >= imgTitle.Location.Y && y <= imgTitle.Location.Y + imgTitle.Height)
                     {

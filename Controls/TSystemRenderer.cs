@@ -9,9 +9,13 @@ namespace LFI
 {
     class TSystemRenderer : ToolStripSystemRenderer
     {
-        // remove white line bellow button
+        /// <summary>
+        /// Remove white line bug in supplied renderer.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnRenderToolStripBorder(ToolStripRenderEventArgs e)
         {
+            //do nothing.
         }
     }
 }
