@@ -264,7 +264,7 @@ namespace LFI
         /// <param name="skipped">A skipped message.</param>
         /// <returns>The fullpath filename.</returns>
         public static string RenameFile(string filename, 
-            string prefix, string title, string episode, string suffix,
+            string prefix, string title, string season, string episode, string suffix,
             out string newfilename, out bool skipped)
         {
             FileInfo file = new FileInfo(filename);
@@ -323,8 +323,8 @@ namespace LFI
             DirectoryInfo dir = new DirectoryInfo(dest);
             if (dir.Exists && file.Exists)
             {
-                DialogResult result = BetterDialog.ShowDialog("Move File", string.Format("Are you sure you want to move this file to {0}?", dir.Name),
-                    string.Format("{0}", file.Name), "Yes", "No", Icon.ExtractAssociatedIcon(src).ToBitmap());
+                DialogResult result = BetterDialog.ShowDialog("Move File", "Are you sure you want to move this file?",
+                    string.Format("{0}\n\n  to\n\n{1}", file.Name, dir.Name), "Yes", "No", Icon.ExtractAssociatedIcon(src).ToBitmap());
                 if (result == DialogResult.Yes)
                 {
                     file.MoveTo(Path.Combine(dir.FullName, file.Name));
@@ -332,8 +332,8 @@ namespace LFI
             }
             if (fromdir.Exists && dir.Exists)
             {
-                DialogResult result = BetterDialog.ShowDialog("Move Folder", string.Format("Are you sure you want to move this folder to {0}?", dir.Name),
-                    string.Format("{0}", fromdir.Name), "Yes", "No", LFI.Properties.Resources.folder);
+                DialogResult result = BetterDialog.ShowDialog("Move Folder", "Are you sure you want to move this folder?",
+                    string.Format("{0}\n\n  to\n\n{1}", fromdir.Name, dir.Name), "Yes", "No", LFI.Properties.Resources.folder);
                 if (result == DialogResult.Yes)
                 {
                     fromdir.MoveTo(Path.Combine(dir.FullName, fromdir.Name));

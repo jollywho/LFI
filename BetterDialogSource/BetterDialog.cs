@@ -100,13 +100,6 @@ namespace LFI
                     // this is our text's dimensions
                     bigSize = graphics.MeasureString(largeHeading, label1.Font, label1.Width);
 
-                    // set our height
-                    label1.Height = (int)bigSize.Height;
-                    tableLayoutPanel1.Height = (int)bigSize.Height + 58;
-
-
-                    this.Height = tableLayoutPanel1.Height + 71;
-
                     // remove the top margin from the label (everything is vertically centered)
                     label1.Margin = new Padding(label1.Margin.Left, 0, label1.Margin.Right, label1.Margin.Bottom);
 

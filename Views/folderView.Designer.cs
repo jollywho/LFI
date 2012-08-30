@@ -29,19 +29,24 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(folderView));
             this.gvFiles = new System.Windows.Forms.DataGridView();
             this.gvFiles_Check = new System.Windows.Forms.DataGridViewImageColumn();
             this.gvFiles_Icon = new System.Windows.Forms.DataGridViewImageColumn();
             this.gvFiles_File = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gvFiles_Hidden = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Group = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gvFiles_Ep = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CRC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gvFiles_Group = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gvFiles_Season = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gvFiles_Episode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gvFiles_CRC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gvFiles_POS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnBack = new System.Windows.Forms.ToolStripButton();
             this.ddUrl = new System.Windows.Forms.ToolStripComboBox();
@@ -60,22 +65,24 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lstDivs = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnShowEstimates = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.ddFormat = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.ddFormat_Use = new System.Windows.Forms.ComboBox();
             this.btnRunFormats = new System.Windows.Forms.Button();
             this.txtTitle = new System.Windows.Forms.TextBox();
+            this.btnShowEstimates = new System.Windows.Forms.Button();
+            this.ddFormat = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radCheckItem = new System.Windows.Forms.RadioButton();
             this.radCheckAll = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnMarkFiles = new System.Windows.Forms.Button();
             this.btnPartFiles = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.txtFilter = new System.Windows.Forms.TextBox();
             this.fileWatcher = new System.IO.FileSystemWatcher();
-            this.btnMarkFiles = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtFilter = new LFI.CueTextBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -84,6 +91,9 @@
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileWatcher)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gvFiles
@@ -108,20 +118,21 @@
             this.gvFiles_Icon,
             this.gvFiles_File,
             this.gvFiles_Hidden,
-            this.Group,
-            this.gvFiles_Ep,
-            this.CRC,
-            this.Pos});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvFiles.DefaultCellStyle = dataGridViewCellStyle4;
+            this.gvFiles_Group,
+            this.gvFiles_Season,
+            this.gvFiles_Episode,
+            this.gvFiles_CRC,
+            this.gvFiles_POS});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvFiles.DefaultCellStyle = dataGridViewCellStyle8;
             this.gvFiles.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gvFiles.Location = new System.Drawing.Point(0, 155);
+            this.gvFiles.Location = new System.Drawing.Point(0, 164);
             this.gvFiles.MultiSelect = false;
             this.gvFiles.Name = "gvFiles";
             this.gvFiles.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -129,7 +140,7 @@
             this.gvFiles.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvFiles.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.gvFiles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvFiles.Size = new System.Drawing.Size(533, 475);
+            this.gvFiles.Size = new System.Drawing.Size(533, 466);
             this.gvFiles.StandardTab = true;
             this.gvFiles.TabIndex = 0;
             this.gvFiles.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.gvFiles_CellBeginEdit);
@@ -185,45 +196,65 @@
             this.gvFiles_Hidden.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gvFiles_Hidden.Visible = false;
             // 
-            // Group
+            // gvFiles_Group
             // 
-            this.Group.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Group.HeaderText = "Group";
-            this.Group.Name = "Group";
-            this.Group.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Group.Visible = false;
+            this.gvFiles_Group.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.gvFiles_Group.DefaultCellStyle = dataGridViewCellStyle4;
+            this.gvFiles_Group.HeaderText = "Group";
+            this.gvFiles_Group.Name = "gvFiles_Group";
+            this.gvFiles_Group.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.gvFiles_Group.Visible = false;
+            this.gvFiles_Group.Width = 42;
             // 
-            // gvFiles_Ep
+            // gvFiles_Season
             // 
-            this.gvFiles_Ep.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.gvFiles_Ep.FillWeight = 39.77273F;
-            this.gvFiles_Ep.HeaderText = "Ep";
-            this.gvFiles_Ep.MinimumWidth = 50;
-            this.gvFiles_Ep.Name = "gvFiles_Ep";
-            this.gvFiles_Ep.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvFiles_Ep.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.gvFiles_Ep.Visible = false;
-            this.gvFiles_Ep.Width = 50;
+            this.gvFiles_Season.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.gvFiles_Season.DefaultCellStyle = dataGridViewCellStyle5;
+            this.gvFiles_Season.FillWeight = 39.77273F;
+            this.gvFiles_Season.HeaderText = "S";
+            this.gvFiles_Season.Name = "gvFiles_Season";
+            this.gvFiles_Season.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvFiles_Season.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.gvFiles_Season.Visible = false;
+            this.gvFiles_Season.Width = 20;
             // 
-            // CRC
+            // gvFiles_Episode
             // 
-            this.CRC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.CRC.HeaderText = "CRC";
-            this.CRC.Name = "CRC";
-            this.CRC.ReadOnly = true;
-            this.CRC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CRC.Visible = false;
+            this.gvFiles_Episode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.gvFiles_Episode.DefaultCellStyle = dataGridViewCellStyle6;
+            this.gvFiles_Episode.FillWeight = 39.77273F;
+            this.gvFiles_Episode.HeaderText = "E";
+            this.gvFiles_Episode.Name = "gvFiles_Episode";
+            this.gvFiles_Episode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvFiles_Episode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.gvFiles_Episode.Visible = false;
+            this.gvFiles_Episode.Width = 20;
             // 
-            // Pos
+            // gvFiles_CRC
             // 
-            this.Pos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Pos.FillWeight = 10F;
-            this.Pos.HeaderText = "Pos";
-            this.Pos.Name = "Pos";
-            this.Pos.ReadOnly = true;
-            this.Pos.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Pos.Visible = false;
-            this.Pos.Width = 15;
+            this.gvFiles_CRC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.gvFiles_CRC.DefaultCellStyle = dataGridViewCellStyle7;
+            this.gvFiles_CRC.HeaderText = "CRC";
+            this.gvFiles_CRC.Name = "gvFiles_CRC";
+            this.gvFiles_CRC.ReadOnly = true;
+            this.gvFiles_CRC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.gvFiles_CRC.Visible = false;
+            this.gvFiles_CRC.Width = 35;
+            // 
+            // gvFiles_POS
+            // 
+            this.gvFiles_POS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.gvFiles_POS.FillWeight = 10F;
+            this.gvFiles_POS.HeaderText = "Pos";
+            this.gvFiles_POS.Name = "gvFiles_POS";
+            this.gvFiles_POS.ReadOnly = true;
+            this.gvFiles_POS.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvFiles_POS.Visible = false;
+            this.gvFiles_POS.Width = 15;
             // 
             // toolStrip1
             // 
@@ -258,7 +289,6 @@
             this.btnBack.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(23, 22);
-            this.btnBack.Text = "toolStripButton7";
             this.btnBack.ToolTipText = "Back";
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
@@ -346,7 +376,7 @@
             this.btnRemoveCRC.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRemoveCRC.Name = "btnRemoveCRC";
             this.btnRemoveCRC.Size = new System.Drawing.Size(23, 22);
-            this.btnRemoveCRC.Text = "toolStripButton1";
+            this.btnRemoveCRC.Text = "Remove CRC";
             this.btnRemoveCRC.Click += new System.EventHandler(this.btnRemoveCRC_Click);
             // 
             // toolStripSeparator1
@@ -372,7 +402,8 @@
             this.groupBox4.ForeColor = System.Drawing.Color.Black;
             this.groupBox4.Location = new System.Drawing.Point(214, 32);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(79, 119);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.groupBox4.Size = new System.Drawing.Size(79, 125);
             this.groupBox4.TabIndex = 36;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Divisions";
@@ -386,89 +417,51 @@
             this.lstDivs.ForeColor = System.Drawing.Color.Black;
             this.lstDivs.FormattingEnabled = true;
             this.lstDivs.ItemHeight = 15;
-            this.lstDivs.Location = new System.Drawing.Point(3, 18);
+            this.lstDivs.Location = new System.Drawing.Point(3, 15);
             this.lstDivs.Name = "lstDivs";
             this.lstDivs.ScrollAlwaysVisible = true;
-            this.lstDivs.Size = new System.Drawing.Size(73, 98);
+            this.lstDivs.Size = new System.Drawing.Size(73, 107);
             this.lstDivs.TabIndex = 7;
             this.lstDivs.Click += new System.EventHandler(this.lstDivs_Click);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.btnShowEstimates);
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.ddFormat);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.btnRunFormats);
-            this.groupBox3.Controls.Add(this.txtTitle);
+            this.groupBox3.Controls.Add(this.tableLayoutPanel2);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox3.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
             this.groupBox3.ForeColor = System.Drawing.Color.Black;
-            this.groupBox3.Location = new System.Drawing.Point(3, 32);
+            this.groupBox3.Location = new System.Drawing.Point(3, 79);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(205, 119);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(5, 5, 5, 3);
+            this.groupBox3.Size = new System.Drawing.Size(208, 78);
             this.groupBox3.TabIndex = 35;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Reformat";
             // 
-            // btnShowEstimates
+            // ddFormat_Use
             // 
-            this.btnShowEstimates.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnShowEstimates.FlatAppearance.BorderSize = 0;
-            this.btnShowEstimates.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnShowEstimates.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShowEstimates.ForeColor = System.Drawing.Color.Transparent;
-            this.btnShowEstimates.Location = new System.Drawing.Point(123, 31);
-            this.btnShowEstimates.Name = "btnShowEstimates";
-            this.btnShowEstimates.Size = new System.Drawing.Size(75, 23);
-            this.btnShowEstimates.TabIndex = 21;
-            this.btnShowEstimates.Text = "Show Fields";
-            this.btnShowEstimates.UseVisualStyleBackColor = true;
-            this.btnShowEstimates.Click += new System.EventHandler(this.btnShowEstimates_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(7, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 15);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Format:";
-            // 
-            // ddFormat
-            // 
-            this.ddFormat.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.ddFormat.FormattingEnabled = true;
-            this.ddFormat.Location = new System.Drawing.Point(9, 31);
-            this.ddFormat.Name = "ddFormat";
-            this.ddFormat.Size = new System.Drawing.Size(108, 23);
-            this.ddFormat.TabIndex = 19;
-            this.ddFormat.SelectedValueChanged += new System.EventHandler(this.ddFormat_SelectedValueChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(7, 53);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 15);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Title:";
+            this.ddFormat_Use.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ddFormat_Use.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddFormat_Use.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ddFormat_Use.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ddFormat_Use.FormattingEnabled = true;
+            this.ddFormat_Use.Location = new System.Drawing.Point(3, 30);
+            this.ddFormat_Use.Name = "ddFormat_Use";
+            this.ddFormat_Use.Size = new System.Drawing.Size(93, 23);
+            this.ddFormat_Use.TabIndex = 22;
             // 
             // btnRunFormats
             // 
             this.btnRunFormats.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRunFormats.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnRunFormats.Enabled = false;
             this.btnRunFormats.FlatAppearance.BorderSize = 0;
             this.btnRunFormats.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnRunFormats.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRunFormats.ForeColor = System.Drawing.Color.Transparent;
-            this.btnRunFormats.Location = new System.Drawing.Point(153, 93);
+            this.btnRunFormats.Location = new System.Drawing.Point(102, 30);
             this.btnRunFormats.Name = "btnRunFormats";
-            this.btnRunFormats.Size = new System.Drawing.Size(45, 23);
+            this.btnRunFormats.Size = new System.Drawing.Size(93, 22);
             this.btnRunFormats.TabIndex = 3;
             this.btnRunFormats.Text = "Run";
             this.btnRunFormats.UseVisualStyleBackColor = true;
@@ -476,11 +469,41 @@
             // 
             // txtTitle
             // 
+            this.tableLayoutPanel2.SetColumnSpan(this.txtTitle, 2);
             this.txtTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTitle.Location = new System.Drawing.Point(9, 69);
+            this.txtTitle.Location = new System.Drawing.Point(3, 3);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(189, 23);
+            this.txtTitle.Size = new System.Drawing.Size(192, 23);
             this.txtTitle.TabIndex = 1;
+            // 
+            // btnShowEstimates
+            // 
+            this.btnShowEstimates.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnShowEstimates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnShowEstimates.FlatAppearance.BorderSize = 0;
+            this.btnShowEstimates.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnShowEstimates.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowEstimates.ForeColor = System.Drawing.Color.Transparent;
+            this.btnShowEstimates.Location = new System.Drawing.Point(102, 3);
+            this.btnShowEstimates.Name = "btnShowEstimates";
+            this.btnShowEstimates.Size = new System.Drawing.Size(93, 22);
+            this.btnShowEstimates.TabIndex = 21;
+            this.btnShowEstimates.Text = "Show Fields";
+            this.btnShowEstimates.UseVisualStyleBackColor = true;
+            this.btnShowEstimates.Click += new System.EventHandler(this.btnShowEstimates_Click);
+            // 
+            // ddFormat
+            // 
+            this.ddFormat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ddFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddFormat.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ddFormat.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ddFormat.FormattingEnabled = true;
+            this.ddFormat.Location = new System.Drawing.Point(3, 3);
+            this.ddFormat.Name = "ddFormat";
+            this.ddFormat.Size = new System.Drawing.Size(93, 23);
+            this.ddFormat.TabIndex = 19;
+            this.ddFormat.SelectedValueChanged += new System.EventHandler(this.ddFormat_SelectedValueChanged);
             // 
             // groupBox1
             // 
@@ -491,6 +514,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
             this.groupBox1.Location = new System.Drawing.Point(448, 32);
             this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 10);
             this.groupBox1.Size = new System.Drawing.Size(82, 68);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
@@ -500,10 +524,11 @@
             // 
             this.radCheckItem.AutoSize = true;
             this.radCheckItem.Checked = true;
+            this.radCheckItem.Dock = System.Windows.Forms.DockStyle.Top;
             this.radCheckItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCheckItem.Location = new System.Drawing.Point(8, 19);
+            this.radCheckItem.Location = new System.Drawing.Point(5, 20);
             this.radCheckItem.Name = "radCheckItem";
-            this.radCheckItem.Size = new System.Drawing.Size(69, 19);
+            this.radCheckItem.Size = new System.Drawing.Size(72, 19);
             this.radCheckItem.TabIndex = 2;
             this.radCheckItem.TabStop = true;
             this.radCheckItem.Text = "Selected";
@@ -512,10 +537,11 @@
             // radCheckAll
             // 
             this.radCheckAll.AutoSize = true;
+            this.radCheckAll.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.radCheckAll.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCheckAll.Location = new System.Drawing.Point(8, 42);
+            this.radCheckAll.Location = new System.Drawing.Point(5, 39);
             this.radCheckAll.Name = "radCheckAll";
-            this.radCheckAll.Size = new System.Drawing.Size(39, 19);
+            this.radCheckAll.Size = new System.Drawing.Size(72, 19);
             this.radCheckAll.TabIndex = 3;
             this.radCheckAll.Text = "All";
             this.radCheckAll.UseVisualStyleBackColor = true;
@@ -530,21 +556,38 @@
             this.groupBox2.ForeColor = System.Drawing.Color.Black;
             this.groupBox2.Location = new System.Drawing.Point(297, 30);
             this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 5);
             this.groupBox2.Size = new System.Drawing.Size(150, 70);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Misc";
             // 
+            // btnMarkFiles
+            // 
+            this.btnMarkFiles.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMarkFiles.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnMarkFiles.FlatAppearance.BorderSize = 0;
+            this.btnMarkFiles.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnMarkFiles.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMarkFiles.ForeColor = System.Drawing.Color.Transparent;
+            this.btnMarkFiles.Location = new System.Drawing.Point(5, 42);
+            this.btnMarkFiles.Name = "btnMarkFiles";
+            this.btnMarkFiles.Size = new System.Drawing.Size(140, 23);
+            this.btnMarkFiles.TabIndex = 5;
+            this.btnMarkFiles.Text = "Mark Files";
+            this.btnMarkFiles.UseVisualStyleBackColor = true;
+            // 
             // btnPartFiles
             // 
             this.btnPartFiles.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPartFiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnPartFiles.FlatAppearance.BorderSize = 0;
             this.btnPartFiles.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnPartFiles.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPartFiles.ForeColor = System.Drawing.Color.Transparent;
-            this.btnPartFiles.Location = new System.Drawing.Point(17, 15);
+            this.btnPartFiles.Location = new System.Drawing.Point(5, 15);
             this.btnPartFiles.Name = "btnPartFiles";
-            this.btnPartFiles.Size = new System.Drawing.Size(117, 23);
+            this.btnPartFiles.Size = new System.Drawing.Size(140, 23);
             this.btnPartFiles.TabIndex = 4;
             this.btnPartFiles.Text = "Part Files";
             this.btnPartFiles.UseVisualStyleBackColor = true;
@@ -570,22 +613,13 @@
             this.groupBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox5.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
             this.groupBox5.ForeColor = System.Drawing.Color.Black;
-            this.groupBox5.Location = new System.Drawing.Point(297, 103);
+            this.groupBox5.Location = new System.Drawing.Point(297, 100);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(233, 48);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.groupBox5.Size = new System.Drawing.Size(233, 57);
             this.groupBox5.TabIndex = 40;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Filter";
-            // 
-            // txtFilter
-            // 
-            this.txtFilter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtFilter.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtFilter.Location = new System.Drawing.Point(3, 18);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(227, 23);
-            this.txtFilter.TabIndex = 2;
-            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
             // fileWatcher
             // 
@@ -596,19 +630,62 @@
             this.fileWatcher.Deleted += new System.IO.FileSystemEventHandler(this.fileWatcher_Deleted);
             this.fileWatcher.Renamed += new System.IO.RenamedEventHandler(this.fileWatcher_Renamed);
             // 
-            // btnMarkFiles
+            // groupBox6
             // 
-            this.btnMarkFiles.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnMarkFiles.FlatAppearance.BorderSize = 0;
-            this.btnMarkFiles.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnMarkFiles.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMarkFiles.ForeColor = System.Drawing.Color.Transparent;
-            this.btnMarkFiles.Location = new System.Drawing.Point(17, 41);
-            this.btnMarkFiles.Name = "btnMarkFiles";
-            this.btnMarkFiles.Size = new System.Drawing.Size(117, 23);
-            this.btnMarkFiles.TabIndex = 5;
-            this.btnMarkFiles.Text = "Mark Files Missing";
-            this.btnMarkFiles.UseVisualStyleBackColor = true;
+            this.groupBox6.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox6.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox6.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox6.Location = new System.Drawing.Point(3, 32);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.groupBox6.Size = new System.Drawing.Size(208, 49);
+            this.groupBox6.TabIndex = 41;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Detect";
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.Cue = "<Search Here>";
+            this.txtFilter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtFilter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFilter.Location = new System.Drawing.Point(3, 22);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(227, 23);
+            this.txtFilter.TabIndex = 3;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.btnShowEstimates, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ddFormat, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 18);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(198, 28);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.ddFormat_Use, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnRunFormats, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtTitle, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(5, 20);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(198, 55);
+            this.tableLayoutPanel2.TabIndex = 0;
             // 
             // folderView
             // 
@@ -616,6 +693,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -631,13 +709,16 @@
             this.toolStrip1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileWatcher)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -663,9 +744,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ListBox lstDivs;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox ddFormat;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnRunFormats;
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -676,17 +755,22 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnShowEstimates;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox txtFilter;
+        private System.IO.FileSystemWatcher fileWatcher;
+        private System.Windows.Forms.ToolStripButton btnRemoveCRC;
+        private System.Windows.Forms.Button btnMarkFiles;
         private System.Windows.Forms.DataGridViewImageColumn gvFiles_Check;
         private System.Windows.Forms.DataGridViewImageColumn gvFiles_Icon;
         private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_File;
         private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_Hidden;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Group;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_Ep;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CRC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Pos;
-        private System.IO.FileSystemWatcher fileWatcher;
-        private System.Windows.Forms.ToolStripButton btnRemoveCRC;
-        private System.Windows.Forms.Button btnMarkFiles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_Group;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_Season;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_Episode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_CRC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_POS;
+        private System.Windows.Forms.ComboBox ddFormat_Use;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private CueTextBox txtFilter;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
