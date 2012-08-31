@@ -65,9 +65,10 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lstDivs = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtTitle = new LFI.RTextBox();
             this.ddFormat_Use = new System.Windows.Forms.ComboBox();
             this.btnRunFormats = new System.Windows.Forms.Button();
-            this.txtTitle = new System.Windows.Forms.TextBox();
             this.btnShowEstimates = new System.Windows.Forms.Button();
             this.ddFormat = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -78,22 +79,21 @@
             this.btnPartFiles = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtFilter = new LFI.RTextBox();
             this.fileWatcher = new System.IO.FileSystemWatcher();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtFilter = new LFI.CueTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileWatcher)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gvFiles
@@ -142,7 +142,7 @@
             this.gvFiles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvFiles.Size = new System.Drawing.Size(533, 466);
             this.gvFiles.StandardTab = true;
-            this.gvFiles.TabIndex = 0;
+            this.gvFiles.TabIndex = 7;
             this.gvFiles.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.gvFiles_CellBeginEdit);
             this.gvFiles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFiles_CellDoubleClick);
             this.gvFiles.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFiles_CellLeave);
@@ -205,7 +205,6 @@
             this.gvFiles_Group.Name = "gvFiles_Group";
             this.gvFiles_Group.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gvFiles_Group.Visible = false;
-            this.gvFiles_Group.Width = 42;
             // 
             // gvFiles_Season
             // 
@@ -218,7 +217,6 @@
             this.gvFiles_Season.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvFiles_Season.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gvFiles_Season.Visible = false;
-            this.gvFiles_Season.Width = 20;
             // 
             // gvFiles_Episode
             // 
@@ -231,7 +229,6 @@
             this.gvFiles_Episode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvFiles_Episode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gvFiles_Episode.Visible = false;
-            this.gvFiles_Episode.Width = 20;
             // 
             // gvFiles_CRC
             // 
@@ -243,7 +240,6 @@
             this.gvFiles_CRC.ReadOnly = true;
             this.gvFiles_CRC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gvFiles_CRC.Visible = false;
-            this.gvFiles_CRC.Width = 35;
             // 
             // gvFiles_POS
             // 
@@ -279,7 +275,7 @@
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.Size = new System.Drawing.Size(533, 25);
-            this.toolStrip1.TabIndex = 33;
+            this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // btnBack
@@ -404,7 +400,7 @@
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.groupBox4.Size = new System.Drawing.Size(79, 125);
-            this.groupBox4.TabIndex = 36;
+            this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Divisions";
             // 
@@ -434,9 +430,38 @@
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(5, 5, 5, 3);
             this.groupBox3.Size = new System.Drawing.Size(208, 78);
-            this.groupBox3.TabIndex = 35;
+            this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Reformat";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.txtTitle, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.ddFormat_Use, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnRunFormats, 1, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(5, 20);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(198, 55);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // txtTitle
+            // 
+            this.tableLayoutPanel2.SetColumnSpan(this.txtTitle, 2);
+            this.txtTitle.Cue = "<Title>";
+            this.txtTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtTitle.Location = new System.Drawing.Point(3, 3);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Restriction = LFI.RTextBox.RestrictionType.File;
+            this.txtTitle.Size = new System.Drawing.Size(192, 23);
+            this.txtTitle.TabIndex = 8;
             // 
             // ddFormat_Use
             // 
@@ -467,15 +492,6 @@
             this.btnRunFormats.UseVisualStyleBackColor = true;
             this.btnRunFormats.Click += new System.EventHandler(this.btnRunFormats_Click);
             // 
-            // txtTitle
-            // 
-            this.tableLayoutPanel2.SetColumnSpan(this.txtTitle, 2);
-            this.txtTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTitle.Location = new System.Drawing.Point(3, 3);
-            this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(192, 23);
-            this.txtTitle.TabIndex = 1;
-            // 
             // btnShowEstimates
             // 
             this.btnShowEstimates.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -487,7 +503,7 @@
             this.btnShowEstimates.Location = new System.Drawing.Point(102, 3);
             this.btnShowEstimates.Name = "btnShowEstimates";
             this.btnShowEstimates.Size = new System.Drawing.Size(93, 22);
-            this.btnShowEstimates.TabIndex = 21;
+            this.btnShowEstimates.TabIndex = 0;
             this.btnShowEstimates.Text = "Show Fields";
             this.btnShowEstimates.UseVisualStyleBackColor = true;
             this.btnShowEstimates.Click += new System.EventHandler(this.btnShowEstimates_Click);
@@ -502,7 +518,7 @@
             this.ddFormat.Location = new System.Drawing.Point(3, 3);
             this.ddFormat.Name = "ddFormat";
             this.ddFormat.Size = new System.Drawing.Size(93, 23);
-            this.ddFormat.TabIndex = 19;
+            this.ddFormat.TabIndex = 1;
             this.ddFormat.SelectedValueChanged += new System.EventHandler(this.ddFormat_SelectedValueChanged);
             // 
             // groupBox1
@@ -516,7 +532,7 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 10);
             this.groupBox1.Size = new System.Drawing.Size(82, 68);
-            this.groupBox1.TabIndex = 38;
+            this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Run";
             // 
@@ -558,7 +574,7 @@
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 5);
             this.groupBox2.Size = new System.Drawing.Size(150, 70);
-            this.groupBox2.TabIndex = 39;
+            this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Misc";
             // 
@@ -576,6 +592,7 @@
             this.btnMarkFiles.TabIndex = 5;
             this.btnMarkFiles.Text = "Mark Files";
             this.btnMarkFiles.UseVisualStyleBackColor = true;
+            this.btnMarkFiles.Click += new System.EventHandler(this.btnMarkFiles_Click);
             // 
             // btnPartFiles
             // 
@@ -617,9 +634,21 @@
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 7, 3, 3);
             this.groupBox5.Size = new System.Drawing.Size(233, 57);
-            this.groupBox5.TabIndex = 40;
+            this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Filter";
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.Cue = "<Search Here>";
+            this.txtFilter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtFilter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFilter.Location = new System.Drawing.Point(3, 22);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Restriction = LFI.RTextBox.RestrictionType.File;
+            this.txtFilter.Size = new System.Drawing.Size(227, 23);
+            this.txtFilter.TabIndex = 3;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
             // fileWatcher
             // 
@@ -639,20 +668,9 @@
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.groupBox6.Size = new System.Drawing.Size(208, 49);
-            this.groupBox6.TabIndex = 41;
+            this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Detect";
-            // 
-            // txtFilter
-            // 
-            this.txtFilter.Cue = "<Search Here>";
-            this.txtFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtFilter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFilter.Location = new System.Drawing.Point(3, 22);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(227, 23);
-            this.txtFilter.TabIndex = 3;
-            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
             // tableLayoutPanel1
             // 
@@ -666,26 +684,9 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(198, 28);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.ddFormat_Use, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnRunFormats, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.txtTitle, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(5, 20);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(198, 55);
-            this.tableLayoutPanel2.TabIndex = 0;
             // 
             // folderView
             // 
@@ -709,6 +710,8 @@
             this.toolStrip1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -717,8 +720,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.fileWatcher)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -746,7 +747,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox ddFormat;
         private System.Windows.Forms.Button btnRunFormats;
-        private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radCheckItem;
         private System.Windows.Forms.RadioButton radCheckAll;
@@ -769,8 +769,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn gvFiles_POS;
         private System.Windows.Forms.ComboBox ddFormat_Use;
         private System.Windows.Forms.GroupBox groupBox6;
-        private CueTextBox txtFilter;
+        private RTextBox txtFilter;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private RTextBox txtTitle;
     }
 }

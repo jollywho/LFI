@@ -38,9 +38,9 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtSearch = new LFI.RTextBox();
             this.gvTitles = new System.Windows.Forms.DataGridView();
             this.panelMain = new LFI.BPanel();
-            this.txtSearch = new LFI.CueTextBox();
             this.contextMenuDisc.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTitles)).BeginInit();
@@ -106,6 +106,17 @@
             this.panel1.Size = new System.Drawing.Size(179, 630);
             this.panel1.TabIndex = 0;
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Cue = "<Search Here>";
+            this.txtSearch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtSearch.Location = new System.Drawing.Point(10, 20);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Restriction = LFI.RTextBox.RestrictionType.None;
+            this.txtSearch.Size = new System.Drawing.Size(159, 20);
+            this.txtSearch.TabIndex = 2;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // gvTitles
             // 
             this.gvTitles.AllowUserToAddRows = false;
@@ -157,16 +168,6 @@
             this.panelMain.Size = new System.Drawing.Size(348, 570);
             this.panelMain.TabIndex = 2;
             // 
-            // txtSearch
-            // 
-            this.txtSearch.Cue = "<Search Here>";
-            this.txtSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtSearch.Location = new System.Drawing.Point(10, 20);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(159, 20);
-            this.txtSearch.TabIndex = 2;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
             // mainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -197,6 +198,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView gvTitles;
         private BPanel panelMain;
-        private CueTextBox txtSearch;
+        private RTextBox txtSearch;
     }
 }

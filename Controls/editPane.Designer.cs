@@ -32,18 +32,16 @@
             this.btnImg = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtYear = new System.Windows.Forms.TextBox();
-            this.txtEpisode = new System.Windows.Forms.TextBox();
+            this.txtYear = new LFI.RTextBox();
+            this.txtEpisode = new LFI.RTextBox();
+            this.txtTitle = new LFI.RTextBox();
             this.imgError = new System.Windows.Forms.PictureBox();
             this.ddLanguage = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.ddStatus = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.ddTitle = new System.Windows.Forms.ComboBox();
             this.ddCategory = new System.Windows.Forms.ComboBox();
             this.imgTitle = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
@@ -76,17 +74,15 @@
             this.panel1.BackgroundImage = global::LFI.Properties.Resources.border;
             this.panel1.Controls.Add(this.txtYear);
             this.panel1.Controls.Add(this.txtEpisode);
+            this.panel1.Controls.Add(this.txtTitle);
             this.panel1.Controls.Add(this.btnImg);
             this.panel1.Controls.Add(this.imgError);
             this.panel1.Controls.Add(this.ddLanguage);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.ddStatus);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.ddTitle);
             this.panel1.Controls.Add(this.ddCategory);
             this.panel1.Location = new System.Drawing.Point(15, 350);
             this.panel1.Name = "panel1";
@@ -95,31 +91,36 @@
             // 
             // txtYear
             // 
-            this.txtYear.BackColor = System.Drawing.SystemColors.Control;
-            this.txtYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtYear.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtYear.Cue = "<Year>";
+            this.txtYear.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtYear.Location = new System.Drawing.Point(152, 95);
             this.txtYear.MaxLength = 4;
             this.txtYear.Name = "txtYear";
+            this.txtYear.Restriction = LFI.RTextBox.RestrictionType.Number;
             this.txtYear.Size = new System.Drawing.Size(75, 23);
-            this.txtYear.TabIndex = 5;
-            this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtYear.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
-            this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            this.txtYear.TabIndex = 77;
             // 
             // txtEpisode
             // 
-            this.txtEpisode.BackColor = System.Drawing.SystemColors.Control;
-            this.txtEpisode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEpisode.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEpisode.Cue = "<Ep>";
+            this.txtEpisode.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtEpisode.Location = new System.Drawing.Point(94, 95);
             this.txtEpisode.MaxLength = 3;
             this.txtEpisode.Name = "txtEpisode";
+            this.txtEpisode.Restriction = LFI.RTextBox.RestrictionType.Number;
             this.txtEpisode.Size = new System.Drawing.Size(52, 23);
-            this.txtEpisode.TabIndex = 3;
-            this.txtEpisode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtEpisode.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
-            this.txtEpisode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            this.txtEpisode.TabIndex = 76;
+            // 
+            // txtTitle
+            // 
+            this.txtTitle.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtTitle.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtTitle.Cue = "<Title>";
+            this.txtTitle.Location = new System.Drawing.Point(10, 40);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Restriction = LFI.RTextBox.RestrictionType.File;
+            this.txtTitle.Size = new System.Drawing.Size(299, 20);
+            this.txtTitle.TabIndex = 75;
             // 
             // imgError
             // 
@@ -158,17 +159,6 @@
             this.label6.Size = new System.Drawing.Size(57, 16);
             this.label6.TabIndex = 6;
             this.label6.Text = "Language";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(174, 75);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(30, 16);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Year";
             // 
             // ddStatus
             // 
@@ -223,32 +213,6 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Category";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(94, 75);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 16);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Episodes";
-            // 
-            // ddTitle
-            // 
-            this.ddTitle.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.ddTitle.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.ddTitle.BackColor = System.Drawing.SystemColors.Control;
-            this.ddTitle.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ddTitle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ddTitle.ForeColor = System.Drawing.Color.Black;
-            this.ddTitle.FormattingEnabled = true;
-            this.ddTitle.Location = new System.Drawing.Point(10, 42);
-            this.ddTitle.Name = "ddTitle";
-            this.ddTitle.Size = new System.Drawing.Size(300, 23);
-            this.ddTitle.TabIndex = 1;
-            this.ddTitle.TextChanged += new System.EventHandler(this.ddTitle_TextChanged);
-            // 
             // ddCategory
             // 
             this.ddCategory.BackColor = System.Drawing.SystemColors.Control;
@@ -301,13 +265,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox imgTitle;
         private System.Windows.Forms.Button btnImg;
-        private System.Windows.Forms.ComboBox ddTitle;
         private System.Windows.Forms.ComboBox ddCategory;
         private System.Windows.Forms.ComboBox ddStatus;
         private System.Windows.Forms.Label label4;
@@ -316,7 +277,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox imgError;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.TextBox txtYear;
-        private System.Windows.Forms.TextBox txtEpisode;
+        private RTextBox txtTitle;
+        private RTextBox txtYear;
+        private RTextBox txtEpisode;
     }
 }

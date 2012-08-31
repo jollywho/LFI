@@ -866,5 +866,10 @@ namespace LFI
             else
                 dragFromMouse = Rectangle.Empty;
         }
+
+        private void btnMarkFiles_Click(object sender, EventArgs e)
+        {
+            FileMarkerDialog.ShowDialog(ddUrl.Text);
+        }
     }
 }

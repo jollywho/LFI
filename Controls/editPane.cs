@@ -13,6 +13,7 @@ namespace LFI
 {
     public partial class editPane : UserControl
     {
+        DataTable titles;
         char[] invalid_chars = { '\\','/',';','@',',','#','$','^','*','~','`',':','"' };
         public bool active = false;
         private string currentTitle = string.Empty;
@@ -37,12 +38,6 @@ namespace LFI
             this.Show();
         }
 
-        private void numericTextbox_keydown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Space)
-                e.Handled = e.SuppressKeyPress = true;
-        }
-
         private void numericTextbox_TextChanged(object sender, EventArgs e)
         {
             TextBox txt = (TextBox)sender;
@@ -64,7 +59,7 @@ namespace LFI
         private void btnImg_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
-            if (dlg.ShowDialog() != DialogResult.Cancel && ddTitle.Text.Length > 0)
+            if (dlg.ShowDialog() != DialogResult.Cancel && txtTitle.Text.Length > 0)
             {
                 try
                 {
@@ -72,7 +67,7 @@ namespace LFI
                     Image img = Image.FromStream(fs);
                     fs.Close();
                     img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
-                    img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), ddTitle.Text), 
+                    img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), txtTitle.Text), 
                         System.Drawing.Imaging.ImageFormat.Jpeg);
                     imgTitle.Image = img;
                 }
@@ -84,14 +79,16 @@ namespace LFI
         }
 
         /// <summary>
-        /// Loads ddTitle dropdown with all existing titles.
+        /// Loads txtTitle dropdown with all existing titles.
         /// </summary>
         private void populateDropDownTitles()
         {
-            DataTable titles = DB_Handle.GetDataTable(string.Format(
+            titles = DB_Handle.GetDataTable(string.Format(
                 @"Select title_id from titles order by title_id"));
-            ddTitle.DataSource = titles;
-            ddTitle.DisplayMember = "title_id";
+            AutoCompleteStringCollection acCollection = new AutoCompleteStringCollection();
+            for (int i = 0; i < titles.Rows.Count; i++)
+                acCollection.Add(titles.Rows[i][0].ToString());
+            txtTitle.AutoCompleteCustomSource = acCollection;
         }
 
         public void load_data(DataTable sel)
@@ -100,8 +97,8 @@ namespace LFI
             try
             {
                 isnewrecord = false;
-                ddTitle.Text = sel.Rows[0][0].ToString();
-                currentTitle = ddTitle.Text;
+                txtTitle.Text = sel.Rows[0][0].ToString();
+                currentTitle = txtTitle.Text;
                 txtEpisode.Text = sel.Rows[0][1].ToString();
                 ddCategory.Text = sel.Rows[0][2].ToString();
                 txtYear.Text = sel.Rows[0][3].ToString();
@@ -113,7 +110,7 @@ namespace LFI
                 toolTip.Show(ex.Message, txtEpisode);
             }
 
-            setImage(ddTitle.Text);
+            setImage(txtTitle.Text);
         }
 
         private void setImage(string str)
@@ -133,6 +130,16 @@ namespace LFI
             }
         }
 
+        private bool SearchExistingTitles()
+        {
+            for (int i = 0; i < titles.Rows.Count; i++)
+            {
+                if (titles.Rows[i][0].ToString() == txtTitle.Text)
+                    return false;
+            }
+            return true;
+        }
+
         /// <summary>
         /// Attempts to update title and information.
         /// Validates information.
@@ -145,12 +152,10 @@ namespace LFI
             bool status = false;
             try
             {
-                if (ddTitle.Text.Length == 0)
-                    Error_Handle.TipError("Title required\n", toolTip, ddTitle);
-                else if (ddTitle.Text.IndexOfAny(invalid_chars) > 0)
-                    Error_Handle.TipError("Invalid chars\n", toolTip, ddTitle);
-                else if (ddTitle.FindStringExact(ddTitle.Text) != ddTitle.SelectedIndex)
-                    Error_Handle.TipError("Title already exists\n", toolTip, ddTitle);
+                if (txtTitle.Text.Length == 0)
+                    Error_Handle.TipError("Title required\n", toolTip, txtTitle);
+                else if (SearchExistingTitles())
+                    Error_Handle.TipError("Title already exists\n", toolTip, txtTitle);
                 else if (ddCategory.Text.Length == 0)
                     Error_Handle.TipError("Category required\n", toolTip, ddCategory);
                 else if (ddStatus.Text.Length < 1)
@@ -167,7 +172,7 @@ namespace LFI
                     {
                         DB_Handle.UpdateTable(string.Format(
                             @"INSERT INTO TITLES VALUES ({0},'{1}','{2}','{3}','{4}','{5}');",
-                            "\"" + ddTitle.Text + "\"", txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
+                            "\"" + txtTitle.Text + "\"", txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
                             txtYear.Text, ddStatus.Text, ddLanguage.Text, currentTitle));
                     }
                     else
@@ -181,16 +186,16 @@ namespace LFI
                             status='{4}', 
                             language='{5}'
                             WHERE title_id={6};",
-                            "\"" + ddTitle.Text + "\"", txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
+                            "\"" + txtTitle.Text + "\"", txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
                             txtYear.Text, ddStatus.Text, ddLanguage.Text, "\"" + currentTitle + "\""));
 
                         DB_Handle.UpdateTable(string.Format(
                             @"UPDATE CONTENTS SET
                             title_id={0}
                             WHERE title_id={1};",
-                            "\"" + ddTitle.Text + "\"", "\"" + currentTitle + "\""));
+                            "\"" + txtTitle.Text + "\"", "\"" + currentTitle + "\""));
                     }
-                    Image_IO.rename_Image(currentTitle, ddTitle.Text);
+                    Image_IO.rename_Image(currentTitle, txtTitle.Text);
 
                     MessageBox.Show("Saved", "Success");
                     status = true;
@@ -204,9 +209,9 @@ namespace LFI
             return status;
         }
 
-        private void ddTitle_TextChanged(object sender, EventArgs e)
+        private void txtTitle_TextChanged(object sender, EventArgs e)
         {
-            if (ddTitle.Text.IndexOfAny(invalid_chars) > 0)
+            if (txtTitle.Text.IndexOfAny(invalid_chars) > -1)
                 toolTip.Show("Invalid Chars", imgError);
             else
                 toolTip.Hide(imgError);
@@ -216,7 +221,7 @@ namespace LFI
         {
             populateDropDownTitles();
             isnewrecord = true;
-            ddTitle.Text = string.Empty;
+            txtTitle.Text = string.Empty;
             imgTitle.Image = null;
             txtEpisode.Clear();
             txtYear.Clear();
@@ -237,7 +242,7 @@ namespace LFI
         /// <param name="e"></param>
         private void editPane_DragDrop(object sender, DragEventArgs e)
         {
-            if (ddTitle.Text.Length < 1)
+            if (txtTitle.Text.Length < 1)
             {
                 toolTip.Show("Title Required!", imgError);
             }
@@ -259,7 +264,7 @@ namespace LFI
                         Image img = Image.FromStream(fs);
                         fs.Close();
                         img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
-                        img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), ddTitle.Text),
+                        img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), txtTitle.Text),
                             System.Drawing.Imaging.ImageFormat.Jpeg);
                         imgTitle.Image = img;
                     }

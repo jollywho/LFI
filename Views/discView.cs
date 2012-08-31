@@ -162,27 +162,13 @@ namespace LFI
         public void loadPage()
         {
             int page = jumpPage();
-
             hidePage(1, true, 2);
             if (page == 0)
                 hidePage(1, false);
             else if (page == max_pages)
                 hidePage(DISCS_PER_PAGE + 1, false);
-
-            int slot = 1;
-            for (int i = 0; i <= PAGES_PER_VIEW * DISCS_PER_PAGE - 1; i++, slot++)
-            {
-                if (slot > DISCS_PER_PAGE)
-                {
-                    page++;
-                    slot = 1;
-                }
-                dbuttons[i].UnClick();
-                dbuttons[i].load(page);
-            }
-
             if (!worker.IsBusy)
-                worker.RunWorkerAsync();
+                worker.RunWorkerAsync(txtJump.Text);
             else
             {
                 worker.CancelAsync();
@@ -218,15 +204,19 @@ namespace LFI
         /// <param name="e"></param>
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            BackgroundWorker worker = sender as BackgroundWorker;
-            for (int i = 0; i <= PAGES_PER_VIEW * DISCS_PER_PAGE - 1; i++)
+            int page = Convert.ToInt32(txtJump.Text);
+
+            int slot = 1;
+            for (int i = 0; i <= PAGES_PER_VIEW * DISCS_PER_PAGE - 1; i++, slot++)
             {
-                if (worker.CancellationPending)
+                if (slot > DISCS_PER_PAGE)
                 {
-                    e.Cancel = true;
+                    page++;
+                    slot = 1;
                 }
-                dbuttons[i].BackgroundImage = Image_IO.generateDiscImage(
-                    dbuttons[i].Disc, DButton.Location_ID,  dbuttons[i]);
+                dbuttons[i].UnClick();
+                dbuttons[i].load(page);
+                dbuttons[i].loadown();
             }
         }
 
@@ -238,7 +228,7 @@ namespace LFI
         private void worker_Completed(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Cancelled)
-                worker.RunWorkerAsync();
+                worker.RunWorkerAsync(txtJump.Text);
         }
 
         /// <summary>
@@ -457,8 +447,6 @@ namespace LFI
         }
 
         /// <summary>
-        /// Allow only numerical numbers to be input.
-        /// txtJump only:
         ///     Prevent zero values.
         ///     Prevent higher values than max pages.
         /// </summary>
@@ -467,10 +455,8 @@ namespace LFI
         private void numericTextbox_TextChanged(object sender, EventArgs e)
         {
             TextBox txt = (TextBox)sender;
-            int pos = txt.SelectionStart;
-            Regex reg = new Regex("[^0-9]");
-            txt.Text = reg.Replace(txt.Text, "");
-            if (txt.Text == "0" && txt.Name == "txtJump") txt.Text = "1";
+            if (txt.Text == string.Empty) txt.Text = "0";
+            if (txt.Text == "0") txt.Text = "1";
             if (txt.Text.Length > 0)
             {
                 if (Convert.ToInt32(txtJump.Text) > max_pages)
@@ -552,15 +538,16 @@ namespace LFI
         public void scrlPage_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.PageUp)
-                txtJump.Text = findNextJump(2).ToString();
-            if (e.KeyCode == Keys.PageDown)
                 txtJump.Text = findNextJump(-2).ToString();
+            if (e.KeyCode == Keys.PageDown)
+                txtJump.Text = findNextJump(2).ToString();
             if (e.KeyCode == Keys.Home)
                 txtJump.Text = "1";
             if (e.KeyCode == Keys.End)
                 txtJump.Text = max_pages.ToString();
             e.Handled = true;
-            loadPage();
+            if (txtJump.Text.Length > 1)
+                loadPage();
         }
 
         private void imgTitle_DragEnter(object sender, DragEventArgs e)

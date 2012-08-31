@@ -63,10 +63,16 @@ namespace LFI
             else
                 setData(string.Empty, page);
             selData = Caller.getSelData();
+            Image = LFI.Properties.Resources.progress;
 
             if (selData[1] != string.Empty)
                 if (Convert.ToInt32(selData[2]) == Slot && Convert.ToInt32(selData[1]) == Page)
                     SetClick();
+        }
+
+        public void loadown()
+        {
+            Image = Image_IO.generateDiscImage(Disc, Location_ID, this);
         }
 
         /// <summary>
@@ -99,10 +105,9 @@ namespace LFI
         /// <param name="e"></param>
         private void deleteMenuItem_Click(object sender, EventArgs e)
         {
-
             DialogResult dlg = BetterDialog.ShowDialog("Delete Disc",
                 "Disc will be deleted permanently. Are you Sure?",
-                Location_ID + Disc, "Yes", "No", this.BackgroundImage);
+                Location_ID + Disc, "Yes", "No", Image);
             if (dlg == DialogResult.Yes)
             {
                 try
@@ -178,9 +183,21 @@ namespace LFI
 
         private void setData(object disc, object page)
         {
-            Disc = disc.ToString();
-            Page = Convert.ToInt32(page);
-            vlbl.Text = Disc;
+            if (InvokeRequired)
+            {
+                this.Invoke((Action)(() => Disc = disc.ToString()));
+                this.Invoke((Action)(() => Page = Convert.ToInt32(page)));
+                this.Invoke((Action)(() => vlbl.Text = Disc));
+                //Disc = disc.ToString();
+                //Page = Convert.ToInt32(page);
+                //vlbl.Text = Disc;
+            }
+            else
+            {
+                Disc = disc.ToString();
+                Page = Convert.ToInt32(page);
+                vlbl.Text = Disc;
+            }
         }
 
         /// <summary>

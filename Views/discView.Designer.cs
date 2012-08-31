@@ -43,8 +43,8 @@
             this.btn3 = new System.Windows.Forms.Button();
             this.btn1 = new System.Windows.Forms.Button();
             this.btn4 = new System.Windows.Forms.Button();
-            this.txtJump = new System.Windows.Forms.TextBox();
             this.buttonMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.txtJump = new LFI.RTextBox();
             this.panel1 = new LFI.BPanel();
             this.imgTitle = new System.Windows.Forms.PictureBox();
             this.ddLocation = new System.Windows.Forms.ComboBox();
@@ -58,9 +58,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.gbContents = new System.Windows.Forms.GroupBox();
-            this.txtSeason = new System.Windows.Forms.TextBox();
-            this.txtRangeEnd = new System.Windows.Forms.TextBox();
-            this.txtRangeStart = new System.Windows.Forms.TextBox();
+            this.txtRangeEnd = new LFI.RTextBox();
+            this.txtRangeStart = new LFI.RTextBox();
+            this.txtSeason = new LFI.RTextBox();
             this.gvContents = new System.Windows.Forms.DataGridView();
             this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Season = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,9 +72,7 @@
             this.btnAddDisc = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.ddInsTitle = new System.Windows.Forms.ComboBox();
-            this.lblEnd = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.lblStart = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblRange = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -91,7 +89,6 @@
             this.scrlPage.Name = "scrlPage";
             this.scrlPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.scrlPage.Size = new System.Drawing.Size(740, 20);
-            this.scrlPage.SmallChange = 2;
             this.scrlPage.TabIndex = 0;
             this.scrlPage.Value = 2;
             this.scrlPage.ValueChanged += new System.EventHandler(this.scrlPage_ValueChanged);
@@ -253,23 +250,25 @@
             this.btn4.UseVisualStyleBackColor = true;
             this.btn4.Visible = false;
             // 
-            // txtJump
-            // 
-            this.txtJump.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtJump.Location = new System.Drawing.Point(351, 326);
-            this.txtJump.Name = "txtJump";
-            this.txtJump.Size = new System.Drawing.Size(35, 23);
-            this.txtJump.TabIndex = 92;
-            this.txtJump.TabStop = false;
-            this.txtJump.Text = "1";
-            this.txtJump.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtJump.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
-            this.txtJump.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPageNo_KeyDown);
-            // 
             // buttonMenu
             // 
             this.buttonMenu.Name = "buttonMenu";
             this.buttonMenu.Size = new System.Drawing.Size(61, 4);
+            // 
+            // txtJump
+            // 
+            this.txtJump.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtJump.Cue = null;
+            this.txtJump.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtJump.Location = new System.Drawing.Point(361, 326);
+            this.txtJump.Name = "txtJump";
+            this.txtJump.Restriction = LFI.RTextBox.RestrictionType.Number;
+            this.txtJump.Size = new System.Drawing.Size(35, 23);
+            this.txtJump.TabIndex = 100;
+            this.txtJump.Text = "0";
+            this.txtJump.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtJump.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
+            this.txtJump.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPageNo_KeyDown);
             // 
             // panel1
             // 
@@ -441,18 +440,16 @@
             // gbContents
             // 
             this.gbContents.BackColor = System.Drawing.Color.Transparent;
-            this.gbContents.Controls.Add(this.txtSeason);
             this.gbContents.Controls.Add(this.txtRangeEnd);
             this.gbContents.Controls.Add(this.txtRangeStart);
+            this.gbContents.Controls.Add(this.txtSeason);
             this.gbContents.Controls.Add(this.gvContents);
             this.gbContents.Controls.Add(this.label3);
             this.gbContents.Controls.Add(this.button5);
             this.gbContents.Controls.Add(this.btnAddDisc);
             this.gbContents.Controls.Add(this.button6);
             this.gbContents.Controls.Add(this.ddInsTitle);
-            this.gbContents.Controls.Add(this.lblEnd);
             this.gbContents.Controls.Add(this.label21);
-            this.gbContents.Controls.Add(this.lblStart);
             this.gbContents.Controls.Add(this.label9);
             this.gbContents.Controls.Add(this.lblRange);
             this.gbContents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -465,48 +462,37 @@
             this.gbContents.TabStop = false;
             this.gbContents.Text = "Contents";
             // 
-            // txtSeason
-            // 
-            this.txtSeason.BackColor = System.Drawing.Color.White;
-            this.txtSeason.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSeason.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtSeason.Location = new System.Drawing.Point(335, 33);
-            this.txtSeason.MaxLength = 2;
-            this.txtSeason.Name = "txtSeason";
-            this.txtSeason.Size = new System.Drawing.Size(52, 23);
-            this.txtSeason.TabIndex = 1;
-            this.txtSeason.Text = "1";
-            this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSeason.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
-            this.txtSeason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPageNo_KeyDown);
-            // 
             // txtRangeEnd
             // 
-            this.txtRangeEnd.BackColor = System.Drawing.Color.White;
-            this.txtRangeEnd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRangeEnd.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtRangeEnd.Cue = "<End>";
             this.txtRangeEnd.Location = new System.Drawing.Point(452, 33);
             this.txtRangeEnd.MaxLength = 3;
             this.txtRangeEnd.Name = "txtRangeEnd";
+            this.txtRangeEnd.Restriction = LFI.RTextBox.RestrictionType.Number;
             this.txtRangeEnd.Size = new System.Drawing.Size(52, 23);
-            this.txtRangeEnd.TabIndex = 3;
-            this.txtRangeEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtRangeEnd.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
-            this.txtRangeEnd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            this.txtRangeEnd.TabIndex = 104;
             // 
             // txtRangeStart
             // 
-            this.txtRangeStart.BackColor = System.Drawing.Color.White;
-            this.txtRangeStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRangeStart.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtRangeStart.Cue = "<Start>";
             this.txtRangeStart.Location = new System.Drawing.Point(393, 33);
             this.txtRangeStart.MaxLength = 3;
             this.txtRangeStart.Name = "txtRangeStart";
+            this.txtRangeStart.Restriction = LFI.RTextBox.RestrictionType.Number;
             this.txtRangeStart.Size = new System.Drawing.Size(52, 23);
-            this.txtRangeStart.TabIndex = 2;
-            this.txtRangeStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtRangeStart.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
-            this.txtRangeStart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
+            this.txtRangeStart.TabIndex = 103;
+            // 
+            // txtSeason
+            // 
+            this.txtSeason.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSeason.Cue = null;
+            this.txtSeason.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtSeason.Location = new System.Drawing.Point(335, 33);
+            this.txtSeason.Name = "txtSeason";
+            this.txtSeason.Restriction = LFI.RTextBox.RestrictionType.Number;
+            this.txtSeason.Size = new System.Drawing.Size(52, 23);
+            this.txtSeason.TabIndex = 102;
+            this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gvContents
             // 
@@ -656,16 +642,6 @@
             this.ddInsTitle.Size = new System.Drawing.Size(323, 23);
             this.ddInsTitle.TabIndex = 0;
             // 
-            // lblEnd
-            // 
-            this.lblEnd.AutoSize = true;
-            this.lblEnd.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEnd.Location = new System.Drawing.Point(459, 58);
-            this.lblEnd.Name = "lblEnd";
-            this.lblEnd.Size = new System.Drawing.Size(35, 16);
-            this.lblEnd.TabIndex = 9;
-            this.lblEnd.Text = "(End)";
-            // 
             // label21
             // 
             this.label21.AutoSize = true;
@@ -675,16 +651,6 @@
             this.label21.Size = new System.Drawing.Size(32, 16);
             this.label21.TabIndex = 0;
             this.label21.Text = "Title";
-            // 
-            // lblStart
-            // 
-            this.lblStart.AutoSize = true;
-            this.lblStart.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStart.Location = new System.Drawing.Point(399, 58);
-            this.lblStart.Name = "lblStart";
-            this.lblStart.Size = new System.Drawing.Size(41, 16);
-            this.lblStart.TabIndex = 8;
-            this.lblStart.Text = "(Start)";
             // 
             // label9
             // 
@@ -711,6 +677,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.txtJump);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblPageRight);
             this.Controls.Add(this.lblPageLeft);
@@ -718,7 +685,6 @@
             this.Controls.Add(this.btn5);
             this.Controls.Add(this.btn7);
             this.Controls.Add(this.btn6);
-            this.Controls.Add(this.txtJump);
             this.Controls.Add(this.btn4);
             this.Controls.Add(this.btn1);
             this.Controls.Add(this.btn3);
@@ -755,9 +721,7 @@
         private System.Windows.Forms.Button btnAddDisc;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ComboBox ddInsTitle;
-        private System.Windows.Forms.Label lblEnd;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label lblStart;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblRange;
         private System.Windows.Forms.ComboBox ddLocation;
@@ -768,9 +732,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView gvContents;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.TextBox txtRangeStart;
-        private System.Windows.Forms.TextBox txtRangeEnd;
-        private System.Windows.Forms.TextBox txtSeason;
         private System.Windows.Forms.Label lblPageLeft;
         private System.Windows.Forms.Label lblPageRight;
         private System.Windows.Forms.DataGridViewTextBoxColumn Title;
@@ -782,9 +743,12 @@
         private System.Windows.Forms.Button btn3;
         private System.Windows.Forms.Button btn1;
         private System.Windows.Forms.Button btn4;
-        private System.Windows.Forms.TextBox txtJump;
         private System.Windows.Forms.ContextMenuStrip buttonMenu;
         private BPanel panel1;
         private System.Windows.Forms.PictureBox imgTitle;
+        private RTextBox txtJump;
+        private RTextBox txtSeason;
+        private RTextBox txtRangeEnd;
+        private RTextBox txtRangeStart;
     }
 }

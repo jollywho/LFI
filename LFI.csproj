@@ -177,14 +177,14 @@
     <Compile Include="Controls\BPanel.Designer.cs">
       <DependentUpon>BPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CueTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Controls\DButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\DButton.Designer.cs">
       <DependentUpon>DButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RTextBox.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\TSystemRenderer.cs" />
     <Compile Include="Error_Handle.cs" />
