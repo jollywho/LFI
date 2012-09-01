@@ -22,6 +22,7 @@ namespace LFI
         const int PAGES_PER_VIEW = 2;
         private int max_pages = 0;
         private DataTable dtView;
+        private int cur_page = 0;
         List<DButton> dbuttons = new List<DButton>();
         Control lastControlEntered;
 
@@ -161,16 +162,18 @@ namespace LFI
         /// </summary>
         public void loadPage()
         {
-            int page = jumpPage();
+            cur_page = jumpPage();
             hidePage(1, true, 2);
-            if (page == 0)
+            if (cur_page == 0)
                 hidePage(1, false);
-            else if (page == max_pages)
+            else if (cur_page == max_pages)
                 hidePage(DISCS_PER_PAGE + 1, false);
+
             if (!worker.IsBusy)
-                worker.RunWorkerAsync(txtJump.Text);
+                worker.RunWorkerAsync(cur_page);
             else
             {
+                Console.WriteLine("Cancel");
                 worker.CancelAsync();
             }
         }
@@ -204,11 +207,15 @@ namespace LFI
         /// <param name="e"></param>
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            int page = Convert.ToInt32(txtJump.Text);
-
+            int page = (int)e.Argument;
             int slot = 1;
             for (int i = 0; i <= PAGES_PER_VIEW * DISCS_PER_PAGE - 1; i++, slot++)
             {
+                if (worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    return;
+                }
                 if (slot > DISCS_PER_PAGE)
                 {
                     page++;
@@ -216,7 +223,6 @@ namespace LFI
                 }
                 dbuttons[i].UnClick();
                 dbuttons[i].load(page);
-                dbuttons[i].loadown();
             }
         }
 
@@ -227,8 +233,11 @@ namespace LFI
         /// <param name="e"></param>
         private void worker_Completed(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (e.Cancelled)
-                worker.RunWorkerAsync(txtJump.Text);
+            if (e.Cancelled || worker.CancellationPending)
+            {
+                Console.WriteLine("Continue");
+                worker.RunWorkerAsync(cur_page);
+            }
         }
 
         /// <summary>
@@ -291,7 +300,8 @@ namespace LFI
                     string.Format("{0}\nSeason {1}\nStart {2}\nEnd {3}",
                     gvContents.SelectedCells[0].Value, gvContents.SelectedCells[1].Value,
                     gvContents.SelectedCells[2].Value, gvContents.SelectedCells[3].Value),
-                    "Yes", "No", Image_IO.getImage(gvContents.SelectedCells[0].Value.ToString()));
+                    "Yes", "No", Image_IO.getImage(gvContents.SelectedCells[0].Value.ToString()),
+                    BetterDialog.ImageStyle.Image);
                 if (result == DialogResult.Yes)
                 {
                     if (gvContents.Rows[gvContents.SelectedCells[0].RowIndex].Cells[4].ToString() != "null")
@@ -494,15 +504,6 @@ namespace LFI
         public DataGridView getContentsGrid()
         {
             return gvContents;
-        }
-
-        /// <summary>
-        /// Get disc and page information.
-        /// </summary>
-        /// <returns></returns>
-        public List<string> getSelData()
-        {
-            return new List<string>() {txtDisc.Text, txtPage.Text,  txtSlot.Text};
         }
 
         public void setImagebox(Image img)

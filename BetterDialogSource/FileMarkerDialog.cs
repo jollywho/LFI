@@ -10,17 +10,24 @@ namespace LFI
 {
     public partial class FileMarkerDialog : Form
     {
-        string dirname = string.Empty;
+        private string dirname = string.Empty;
+        private EPFORMAT fileformat;
+        private FileNameFormat file;
 
-        public FileMarkerDialog(string path)
+        public FileMarkerDialog(string path, FileNameFormat fn)
         {
             InitializeComponent();
+            file = fn;
+            fileformat = fn.Format;
             dirname = path;
+            txtGroup.Text = fn.EstimateGroup();
+            txtStart.Text = fn.EstimateEpisode();
+            txtSeason.Text = fn.EstimateSeason();
         }
 
-        public static void ShowDialog(string path)
+        public static void ShowDialog(string path, FileNameFormat fn)
         {
-            using (FileMarkerDialog dlg = new FileMarkerDialog(path))
+            using (FileMarkerDialog dlg = new FileMarkerDialog(path, fn))
             {
                 dlg.ShowDialog();
             }
@@ -28,34 +35,58 @@ namespace LFI
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            if (!ValidateFields()) return;
+            string filename = string.Empty;
+            try
+            {
+                if (txtGroup.Text.Length > 1)
+                    filename = '[' + txtGroup.Text + ']' + ' ';
+                filename += txtTitle.Text + FileNameFormat.ToFormat(txtStart.Text, txtSeason.Text, fileformat);
+
+                string fullpath = Path.Combine(dirname, filename.Replace(' ', '_'));
+                file.FileName = fullpath;
+                if (txtEnd.Text.Length > 1)
+                    fullpath = file.FileName.Replace(file.EstimateEpisode(), file.EstimateEpisode() + "-" + txtEnd.Text);
+
+                fullpath = Path.ChangeExtension(fullpath, radType_Filler.Checked ? "filler" : "missing");
+
+                if (File.Exists(fullpath))
+                {
+                    Error_Handle.TipError("Title Already Exists\n", toolTip, txtTitle);
+                    return;
+                }
+                imgWorking.Visible = true;
+                File.CreateText(fullpath);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                Error_Handle.TipError("Error Creating File : " + ex.Message, toolTip, txtTitle);
+            }
+        }
+
+        private bool ValidateFields()
+        {
             if (txtTitle.Text.Length < 1)
             {
                 Error_Handle.TipError("Title Required\n", toolTip, txtTitle);
-                return;
+                return false;
             }
             if (txtStart.Text.Length < 1)
             {
                 Error_Handle.TipError("Start Required\n", toolTip, txtStart);
-                return;
+                return false;
             }
-            if (txtEnd.Text.Length < 1)
+            if (txtEnd.Text.Length >= 1)
             {
-                Error_Handle.TipError("End Required\n", toolTip, txtEnd);
-                return;
-            }
-            
-            string fullpath = Path.Combine(dirname, txtTitle.Text.Replace(' ', '_'));
-            fullpath = Path.ChangeExtension(fullpath, radType_Filler.Checked ? "filler" : "missing");
-
-            if (File.Exists(fullpath))
-            {
-                Error_Handle.TipError("Title Already Exists\n", toolTip, txtTitle);
-                return;
+                if (Convert.ToInt32(txtEnd.Text) < Convert.ToInt32(txtStart.Text))
+                {
+                    Error_Handle.TipError("Cannot Be Less Than Start\n", toolTip, txtEnd);
+                    return false;
+                }
             }
 
-            imgWorking.Visible = true;
-            File.CreateText(fullpath);
-            Close();
+            return true;
         }
     }
 }

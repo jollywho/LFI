@@ -170,9 +170,8 @@ namespace LFI
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult dlg = BetterDialog.ShowDialog("Delete Title?", "Are you sure you want to delete this title?",
-                gvTitles.SelectedCells[0].Value.ToString(),
-                "Yes", "No",
-                Image_IO.getImage(gvTitles.SelectedCells[0].Value.ToString()));
+                gvTitles.SelectedCells[0].Value.ToString(), "Yes", "No",
+                Image_IO.getImage(gvTitles.SelectedCells[0].Value.ToString()), BetterDialog.ImageStyle.Image);
             if (dlg == DialogResult.Yes)
             {
                 int row = gvTitles.SelectedCells[0].RowIndex;

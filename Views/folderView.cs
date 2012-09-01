@@ -62,6 +62,7 @@ namespace LFI
             ddFormat.DataSource = new BindingSource(choices, null);
             ddFormat.DisplayMember = "Value";
             ddFormat.ValueMember = "Key";
+            choices.Remove(EPFORMAT.ALL_NUM);
             ddFormat_Use.DataSource = new BindingSource(choices, null);
             ddFormat_Use.DisplayMember = "Value";
             ddFormat_Use.ValueMember = "Key";
@@ -91,7 +92,7 @@ namespace LFI
                 dirname = ddUrl.Text;
                 lstDivs_Click(null, null);
                 txtFilter.Enabled = true;
-                dragRow = -1;
+                dragRow = -1; savedRow = 0;
                 if (showFields) LoadFormatFields();
             }
             catch (Exception ex)
@@ -116,10 +117,15 @@ namespace LFI
                 refreshRow = 0;
    
             open_Folder();
+            
+            if (txtFilter.Text.Length >= 1)
+                txtFilter_TextChanged(null, null);
             if (gvFiles.Rows.Count < 1) return;
+
             gvFiles.Rows[refreshRow].Selected = true;
             gvFiles.FirstDisplayedScrollingRowIndex = refreshIndex;
             insertRow = 0;
+            
             gvFiles.Focus();
         }
 
@@ -233,6 +239,12 @@ namespace LFI
 
         private void LoadFormatFields()
         {
+            if (!showFields || multiRun)
+            {
+                Console.WriteLine("----DENIED");
+                return;
+            }
+            Console.WriteLine("----FORMATS");
             for (int i = 0; i < gvFiles.RowCount; i++)
             {
                 if (!Directory.Exists(gvFiles.Rows[i].Cells[3].Value.ToString()))
@@ -310,8 +322,11 @@ namespace LFI
         {
             if (multiRun && workingRow < gvFiles.Rows.Count - 1 && !cancel)
             {
+                fileWatcher.EnableRaisingEvents = false;
                 workingRow++;
                 AddCRC();
+                fileWatcher.EnableRaisingEvents = true;
+                LoadFormatFields();
             }
             else
             {
@@ -591,7 +606,6 @@ namespace LFI
                 Folder_IO.FixExtension(file);
                 Copy_Cells(Convert.ToInt32(gvFiles.SelectedCells[8].Value), gvFiles.SelectedCells[0].RowIndex);
             }
-            refresh_Folder();
         }
         
         /// <summary>
@@ -606,6 +620,7 @@ namespace LFI
         {
             if (radCheckAll.Checked)
             {
+                fileWatcher.EnableRaisingEvents = false;
                 for (int i = 0; i < gvFiles.Rows.Count; i++)
                 {
                     string newfilename = string.Empty;
@@ -617,6 +632,8 @@ namespace LFI
                     gvFiles.Rows[i].Cells[2].Value = newfilename;
                     Copy_Cells(Convert.ToInt32(gvFiles.Rows[i].Cells[8].Value), i);
                 }
+                fileWatcher.EnableRaisingEvents = true;
+                LoadFormatFields();
             }
             else
             {
@@ -646,6 +663,7 @@ namespace LFI
             {
                 if (radCheckAll.Checked)
                 {
+                    fileWatcher.EnableRaisingEvents = false;
                     for (int i = 0; i < gvFiles.Rows.Count; i++)
                     {
                         string newfilename = string.Empty;
@@ -657,12 +675,15 @@ namespace LFI
                             gvFiles.Rows[i].Cells[5].Value.ToString(),
                             gvFiles.Rows[i].Cells[6].Value.ToString(),
                             gvFiles.Rows[i].Cells[7].Value.ToString(),
+                            (EPFORMAT)ddFormat_Use.SelectedValue,
                             out newfilename, out skipped);
                         gvFiles.Rows[i].Cells[2].Value = newfilename;
                         Copy_Cells(Convert.ToInt32(gvFiles.Rows[i].Cells[8].Value), i);
                         if (skipped)
                             gvFiles.Rows[i].Cells[0].Value = LFI.Properties.Resources.Warning;
                     }
+                    fileWatcher.EnableRaisingEvents = true;
+                    LoadFormatFields();
                 }
                 else
                 {
@@ -675,6 +696,7 @@ namespace LFI
                         gvFiles.SelectedCells[5].Value.ToString(),
                         gvFiles.SelectedCells[6].Value.ToString(),
                         gvFiles.SelectedCells[7].Value.ToString(),
+                        (EPFORMAT)ddFormat_Use.SelectedValue,
                         out newfilename, out skipped);
                     gvFiles.SelectedCells[2].Value = newfilename;
                     Copy_Cells(Convert.ToInt32(gvFiles.SelectedCells[8].Value), gvFiles.SelectedCells[0].RowIndex);
@@ -740,7 +762,8 @@ namespace LFI
         private void txtFilter_TextChanged(object sender, EventArgs e)
         {
             gvFiles.Rows.Clear();
-
+            dragFromMouseIndex = -1;
+            savedRow = 0;
             for (int i = 0; i < dtFilter.Rows.Count; i++)
             {
                 if (dtFilter.Rows[i][2].ToString().ToUpper().Contains(txtFilter.Text.ToUpper()) 
@@ -764,7 +787,8 @@ namespace LFI
                     }
                 }
             }
-            LoadFormatFields();
+            if (showFields)
+                btnShowEstimates.PerformClick();
         }
 
         private void gvFiles_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -789,10 +813,11 @@ namespace LFI
             insertRow = 1;
             refresh_Folder();
         }
-
+        
         private void fileWatcher_Renamed(object sender, RenamedEventArgs e)
         {
-            if (!multiRun) refresh_Folder();
+            if (multiRun) return;
+            refresh_Folder();
             Console.WriteLine(e.FullPath + ": " + e.ChangeType);
         }
 
@@ -869,7 +894,9 @@ namespace LFI
 
         private void btnMarkFiles_Click(object sender, EventArgs e)
         {
-            FileMarkerDialog.ShowDialog(ddUrl.Text);
+            FileMarkerDialog.ShowDialog(ddUrl.Text,
+                new FileNameFormat(gvFiles.SelectedCells[2].Value.ToString(),
+                    (EPFORMAT)ddFormat.SelectedValue));
         }
     }
 }

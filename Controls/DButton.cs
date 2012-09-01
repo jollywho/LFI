@@ -14,7 +14,9 @@ namespace LFI
     {
         public VLabel vlbl = new VLabel();
         public string Disc = string.Empty;
-        private static List<string> selData;
+        private static int selSlot = 0;
+        private static int selPage = 0;
+        private static string selDisc = "0";
         public static string Location_ID = string.Empty;
         public int Page = 0;
         public int Slot = 0;
@@ -62,17 +64,10 @@ namespace LFI
                 setData(dt.Rows[0][0], dt.Rows[0][1]);
             else
                 setData(string.Empty, page);
-            selData = Caller.getSelData();
-            Image = LFI.Properties.Resources.progress;
-
-            if (selData[1] != string.Empty)
-                if (Convert.ToInt32(selData[2]) == Slot && Convert.ToInt32(selData[1]) == Page)
-                    SetClick();
-        }
-
-        public void loadown()
-        {
             Image = Image_IO.generateDiscImage(Disc, Location_ID, this);
+            if (selDisc != string.Empty)
+                if (selSlot == Slot && selPage == Page)
+                    SetClick();
         }
 
         /// <summary>
@@ -83,10 +78,9 @@ namespace LFI
         /// <param name="e"></param>
         private void swapMenu_Opening(object sender, CancelEventArgs e)
         {
-            selData = Caller.getSelData();
             this.ContextMenuStrip.Items[0].Visible = true;
-            if (selData[0] != string.Empty)
-                this.ContextMenuStrip.Items[0].Text = "Swap " + selData[0] + " Here";
+            if (selDisc != string.Empty)
+                this.ContextMenuStrip.Items[0].Text = "Swap " + selDisc + " Here";
             else if (Disc != string.Empty)
                 this.ContextMenuStrip.Items[0].Visible = false;
             else
@@ -107,7 +101,7 @@ namespace LFI
         {
             DialogResult dlg = BetterDialog.ShowDialog("Delete Disc",
                 "Disc will be deleted permanently. Are you Sure?",
-                Location_ID + Disc, "Yes", "No", Image);
+                Location_ID + Disc, "Yes", "No", Image, BetterDialog.ImageStyle.Image);
             if (dlg == DialogResult.Yes)
             {
                 try
@@ -152,19 +146,19 @@ namespace LFI
         {
             try
             {
-                if (selData[0] != string.Empty)
+                if (selDisc != string.Empty)
                 {
                     DB_Handle.UpdateTable(string.Format(
                         @"INSERT OR REPLACE INTO DISCS 
                         VALUES ('{0}','{1}','{2}','{3}');",
-                        selData[0], Page, Slot, Location_ID));
+                        selDisc, Page, Slot, Location_ID));
                 }
                 if (Disc != string.Empty)
                 {
                     DB_Handle.UpdateTable(string.Format(
                         @"INSERT OR REPLACE INTO DISCS 
                         VALUES ('{0}','{1}','{2}','{3}');",
-                        Disc, selData[1], selData[2], Location_ID));
+                        Disc, selPage, selSlot, Location_ID));
                 }
                 Caller.loadPage();
                 OnClick(null);
@@ -177,6 +171,7 @@ namespace LFI
 
         public void setVisibility(bool vis)
         {
+            Image = LFI.Properties.Resources.progress;
             Visible = vis;
             vlbl.Visible = vis;
         }
@@ -224,6 +219,7 @@ namespace LFI
 
         public void SetClick()
         {
+            selPage = Page; selSlot = Slot; selDisc = Disc;
             SelBtn = this;
             FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             FlatAppearance.BorderSize = 4;

@@ -9,6 +9,11 @@ namespace LFI
     /// </summary>
     public partial class BetterDialog : Form
     {
+        public enum ImageStyle
+        {
+            Icon,
+            Image,
+        }
         /// <summary>
         /// Create a special dialog in the style of Windows XP or Vista. A dialog has a custom icon, an optional large
         /// title in the form, body text, window text, and one or two custom-labeled buttons.
@@ -22,10 +27,10 @@ namespace LFI
         /// <param name="rightButton">The right button--typically "Cancel", but could be "No".</param>
         /// <param name="iconSet">An image to be displayed on the left side of the dialog. Should be 32 x 32 pixels.</param>
         static public DialogResult ShowDialog(string title, string largeHeading, string smallExplanation,
-            string leftButton, string rightButton, Image iconSet)
+            string leftButton, string rightButton, Image iconSet, ImageStyle iconDock)
         {
             using (BetterDialog dialog = new BetterDialog(title, largeHeading, smallExplanation, leftButton,
-                rightButton, iconSet))
+                rightButton, iconSet, iconDock))
             {
                 DialogResult result = dialog.ShowDialog();
                 return result;
@@ -36,12 +41,17 @@ namespace LFI
         /// The private constructor. This is only called by the static method ShowDialog.
         /// </summary>
         private BetterDialog(string title, string largeHeading, string smallExplanation,
-            string leftButton, string rightButton, Image iconSet)
+            string leftButton, string rightButton, Image iconSet, ImageStyle iconDock)
         {
             this.Font = SystemFonts.MessageBoxFont;
             this.ForeColor = SystemColors.WindowText;
-
+            
             InitializeComponent();
+
+            if (iconDock == ImageStyle.Icon)
+                this.pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            else
+                this.pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
 
             // set our width and height to these values (redundant, but who cares?)
             this.Width = 350;
@@ -67,10 +77,6 @@ namespace LFI
 
                         smallSize = graphics.MeasureString(smallExplanation, this.Font, this.label2.Width);
                         bigSize = graphics.MeasureString(largeHeading, label1.Font, this.label1.Width);
-
-                        // add in a little margin on the top as well
-                        pictureBox1.Margin = new Padding(pictureBox1.Margin.Left, pictureBox1.Margin.Top + 6,
-                            pictureBox1.Margin.Right, pictureBox1.Margin.Bottom);
                     }
                     else
                     {
@@ -102,9 +108,6 @@ namespace LFI
 
                     // remove the top margin from the label (everything is vertically centered)
                     label1.Margin = new Padding(label1.Margin.Left, 0, label1.Margin.Right, label1.Margin.Bottom);
-
-                    // remove top margin of picture; everything is just centered.
-                    pictureBox1.Margin = new Padding(pictureBox1.Margin.Left, 0, pictureBox1.Margin.Right, pictureBox1.Margin.Bottom);
 
                     // modify our width (clean this up a bit) based on text's physical width
                     this.Width = (int)bigSize.Width + 100;

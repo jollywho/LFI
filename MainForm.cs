@@ -62,7 +62,7 @@ namespace LFI
         /// Swaps language mode on click event.
         /// Forces mainview to refresh and checks for empty condition.
         /// </summary>
-        private void Load_LMode()
+        private void Load_Language()
         {
             if (mode == ViewMode.Edit)
                 return;
@@ -112,7 +112,6 @@ namespace LFI
             this.MinimumSize = vertical;
             if (Longmode)
             {
-                this.Left += horizontal.Width - vertical.Width;
                 menuItem2.MenuItems.RemoveAt(1);
                 menuItem2.MenuItems.Remove(discEditItem);
             }
@@ -136,7 +135,6 @@ namespace LFI
             this.MinimumSize = vertical;
             if (Longmode)
             {
-                this.Left += horizontal.Width - vertical.Width;
                 menuItem2.MenuItems.RemoveAt(1);
                 menuItem2.MenuItems.Remove(discEditItem);
             }
@@ -161,8 +159,8 @@ namespace LFI
             dv.Enable();
             if (!Longmode)
             {
-                this.Left -= horizontal.Width - vertical.Width;
-                if (this.Left + BorderWidth < 0) this.Left = 0 + BorderWidth;
+                if (this.Right + BorderWidth > Screen.PrimaryScreen.Bounds.Right) 
+                    this.Left = Screen.PrimaryScreen.Bounds.Right - Width;
                 menuItem2.MenuItems.Add(0, discEditItem);
                 menuItem2.MenuItems.Add(1, new MenuItem("-"));
             }
@@ -414,13 +412,13 @@ namespace LFI
         private void toolstripJPN_Click(object sender, EventArgs e)
         {
             Lmode = toolstripJPN.Text;
-            Load_LMode();
+            Load_Language();
         }
 
         private void toolstripENG_Click(object sender, EventArgs e)
         {
             Lmode = toolstripENG.Text;
-            Load_LMode();
+            Load_Language();
         }
     }
 #endregion Form_Events

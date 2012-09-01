@@ -265,7 +265,6 @@
             this.txtJump.Restriction = LFI.RTextBox.RestrictionType.Number;
             this.txtJump.Size = new System.Drawing.Size(35, 23);
             this.txtJump.TabIndex = 100;
-            this.txtJump.Text = "0";
             this.txtJump.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtJump.TextChanged += new System.EventHandler(this.numericTextbox_TextChanged);
             this.txtJump.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPageNo_KeyDown);

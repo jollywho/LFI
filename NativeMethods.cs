@@ -13,8 +13,8 @@ namespace LFI
         private const int FILE_ATTRIBUTE_NORMAL = 0x80;
         private const int SHGFI_TYPENAME = 0x400;
         private const int SHGFI_USEFILEATTRIBUTES = 0x000000010;
-        public const uint SHGFI_ICON = 0x000000100;
-        public const uint SHGFI_SMALLICON = 0x000000000;
+        public const uint SHGFI_ICON = 0x100;
+        public const uint SHGFI_SMALLICON = 0x0;
         public const uint FILE_ATTRIBUTE_DIRECTORY = 0x00000010;
 
         [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
@@ -83,7 +83,7 @@ namespace LFI
         public static Icon GetFolderIcon()
         {
             // Need to add size check, although errors generated at present!    
-            uint flags = SHGFI_ICON | SHGFI_USEFILEATTRIBUTES | SHGFI_SMALLICON;
+            uint flags = SHGFI_USEFILEATTRIBUTES | SHGFI_SMALLICON;
 
             // Get the folder icon    
             var shfi = new SHFILEINFO();

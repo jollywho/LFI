@@ -264,7 +264,7 @@ namespace LFI
         /// <param name="skipped">A skipped message.</param>
         /// <returns>The fullpath filename.</returns>
         public static string RenameFile(string filename, 
-            string prefix, string title, string season, string episode, string suffix,
+            string prefix, string title, string season, string episode, string suffix, EPFORMAT format,
             out string newfilename, out bool skipped)
         {
             FileInfo file = new FileInfo(filename);
@@ -275,20 +275,24 @@ namespace LFI
                 if (prefix.Trim().Length >= 1)
                     destfilename = '[' + prefix + ']' + ' ';
                 destfilename += title;
+
                 if (episode.Trim().Length >= 1)
-                    destfilename += " - " + episode;
+                    destfilename += FileNameFormat.ToFormat(episode, season, format);
                 else
                     skipped = true;
+
                 if (suffix.Trim().Length >= 1)
                     destfilename += " [" + suffix + "]";
                 destfilename = destfilename.Replace(' ', '_');
-
+                FixExtension(file);
+                file.Refresh();
                 if (!skipped)
                     file.MoveTo(file.FullName.Replace(file.Name, destfilename)+file.Extension);
                 file.Refresh();
             }
             catch (Exception ex)
             {
+                skipped = true;
                 MessageBox.Show(string.Format("'{0}' :\n {1}", title, ex.Message), "Rename Error");
             }
             finally
@@ -308,7 +312,7 @@ namespace LFI
                 file.Name,
                 NativeMethods.GetShellFileType(file.FullName),
                 (file.Length / Math.Pow(1024, 2)).ToString("N3") + " MB"), "Yes", "No",
-                NativeMethods.GetSmallIcon(file.FullName).ToBitmap()
+                NativeMethods.GetSmallIcon(file.FullName).ToBitmap(), BetterDialog.ImageStyle.Icon
                 );
             if (result == DialogResult.Yes)
             {
@@ -324,7 +328,8 @@ namespace LFI
             if (dir.Exists && file.Exists)
             {
                 DialogResult result = BetterDialog.ShowDialog("Move File", "Are you sure you want to move this file?",
-                    string.Format("{0}\n\n  to\n\n{1}", file.Name, dir.Name), "Yes", "No", Icon.ExtractAssociatedIcon(src).ToBitmap());
+                    string.Format("File: {0}\n-\nDestination: {1}", file.Name, dir.Name), "Yes", "No",
+                    NativeMethods.GetSmallIcon(src).ToBitmap(), BetterDialog.ImageStyle.Icon);
                 if (result == DialogResult.Yes)
                 {
                     file.MoveTo(Path.Combine(dir.FullName, file.Name));
@@ -333,7 +338,8 @@ namespace LFI
             if (fromdir.Exists && dir.Exists)
             {
                 DialogResult result = BetterDialog.ShowDialog("Move Folder", "Are you sure you want to move this folder?",
-                    string.Format("{0}\n\n  to\n\n{1}", fromdir.Name, dir.Name), "Yes", "No", LFI.Properties.Resources.folder);
+                    string.Format("Folder: {0}\n-\nDestination: {1}", fromdir.Name, dir.Name), "Yes", "No",
+                    LFI.Properties.Resources.folder, BetterDialog.ImageStyle.Icon);
                 if (result == DialogResult.Yes)
                 {
                     fromdir.MoveTo(Path.Combine(dir.FullName, fromdir.Name));
