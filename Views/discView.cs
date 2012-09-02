@@ -25,6 +25,7 @@ namespace LFI
         private int cur_page = 0;
         List<DButton> dbuttons = new List<DButton>();
         Control lastControlEntered;
+        bool refreshRequired = false;
 
         public discView()
         {
@@ -97,7 +98,9 @@ namespace LFI
         /// <param name="e"></param>
         private void ddLocation_OnMouseWheel(object sender, MouseEventArgs e)
         {
-            panel1.Focus();
+            ComboBox bx = (ComboBox)sender;
+            if (!bx.DroppedDown)
+                ((HandledMouseEventArgs)e).Handled = true;
         }
 
         /// <summary>
@@ -173,8 +176,8 @@ namespace LFI
                 worker.RunWorkerAsync(cur_page);
             else
             {
+                refreshRequired = true;
                 Console.WriteLine("Cancel");
-                worker.CancelAsync();
             }
         }
 
@@ -211,11 +214,6 @@ namespace LFI
             int slot = 1;
             for (int i = 0; i <= PAGES_PER_VIEW * DISCS_PER_PAGE - 1; i++, slot++)
             {
-                if (worker.CancellationPending)
-                {
-                    e.Cancel = true;
-                    return;
-                }
                 if (slot > DISCS_PER_PAGE)
                 {
                     page++;
@@ -233,10 +231,11 @@ namespace LFI
         /// <param name="e"></param>
         private void worker_Completed(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (e.Cancelled || worker.CancellationPending)
+            if (refreshRequired)
             {
                 Console.WriteLine("Continue");
                 worker.RunWorkerAsync(cur_page);
+                refreshRequired = false;
             }
         }
 
@@ -489,6 +488,7 @@ namespace LFI
             {
                 dbuttons[i].UnClick();
             }
+            panel1.Focus();
             Error_Handle.Clear(toolTip);
         }
 
@@ -547,8 +547,6 @@ namespace LFI
             if (e.KeyCode == Keys.End)
                 txtJump.Text = max_pages.ToString();
             e.Handled = true;
-            if (txtJump.Text.Length > 1)
-                loadPage();
         }
 
         private void imgTitle_DragEnter(object sender, DragEventArgs e)

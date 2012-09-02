@@ -109,6 +109,7 @@ namespace LFI
             if (gvFiles.Rows.Count > 1)
             {
                 refreshRow = gvFiles.SelectedCells[0].RowIndex + insertRow;
+                refreshRow = refreshRow < 0 ? 0 : refreshRow;
                 refreshIndex = gvFiles.FirstDisplayedScrollingRowIndex;
             }
             else if (gvFiles.IsCurrentCellInEditMode)
@@ -361,6 +362,7 @@ namespace LFI
             btnShowEstimates.Enabled = false;
             btnRemoveCRC.Enabled = false;
             btnPartFiles.Enabled = false;
+            btnMarkFiles.Enabled = false;
             lstDivs.Enabled = false;
             ddUrl.Enabled = false;
             txtFilter.Enabled = false;
@@ -375,6 +377,7 @@ namespace LFI
             btnShowEstimates.Enabled = true;
             btnRemoveCRC.Enabled = true;
             btnPartFiles.Enabled = true;
+            btnMarkFiles.Enabled = true;
             lstDivs.Enabled = true;
             ddUrl.Enabled = true;
             txtFilter.Enabled = true;
@@ -573,7 +576,6 @@ namespace LFI
                 if (Directory.Exists(gvFiles.SelectedCells[3].Value.ToString()))
                 {
                     ddUrl.Text = gvFiles.SelectedCells[3].Value.ToString();
-                    open_Folder();
                 }
                 else
                     if (File.Exists(gvFiles.SelectedCells[3].Value.ToString()))
@@ -794,7 +796,7 @@ namespace LFI
         private void gvFiles_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             editRow = e.RowIndex;
-            gvFiles.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            //gvFiles.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
 
         private void gvFiles_CellLeave(object sender, DataGridViewCellEventArgs e)

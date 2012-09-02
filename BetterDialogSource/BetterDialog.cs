@@ -111,6 +111,8 @@ namespace LFI
 
                     // modify our width (clean this up a bit) based on text's physical width
                     this.Width = (int)bigSize.Width + 100;
+
+                    this.Height -= tableLayoutPanel2.Height;
                 }
             }
 

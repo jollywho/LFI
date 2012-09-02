@@ -29,7 +29,10 @@ namespace LFI
         public Folder_IO(string dir)
         {
             dirname = dir;
-            Set_Folder_Items();
+            var files = Directory.GetFiles(dirname);
+            var folders = Directory.GetDirectories(dirname);
+
+            Set_Folder_Items(files, folders);
             folderSize = DirSize(filenames);
         }
 
@@ -55,7 +58,7 @@ namespace LFI
         /// <summary>
         /// Get fullpath names of files, subdirectories, and item count of the directory.
         /// </summary>
-        public void Set_Folder_Items()
+        public void Set_Folder_Items(string[] files, string[]folders)
         {
             folderitems.Clear();
             filenames.Clear();
@@ -63,16 +66,14 @@ namespace LFI
             itemCount = 0;
             try
             {
-                var sorted = Directory.GetFiles(dirname);
-                var subdirs = Directory.GetDirectories(dirname);
-                Array.Sort(sorted, new AlphanumComparatorFast());
-                foreach (string item in sorted)
+                Array.Sort(files, new AlphanumComparatorFast());
+                foreach (string item in files)
                 {
                     folderitems.Add(Path.GetFileName(item));
                     filenames.Add(item);
                     itemCount++;
                 }
-                foreach (string item in subdirs)
+                foreach (string item in folders)
                 {
                     subdiritems.Add(item);
                     folderCount++;
@@ -335,7 +336,7 @@ namespace LFI
                     file.MoveTo(Path.Combine(dir.FullName, file.Name));
                 }
             }
-            if (fromdir.Exists && dir.Exists)
+            if (fromdir.Exists && dir.Exists && fromdir.FullName != dir.FullName)
             {
                 DialogResult result = BetterDialog.ShowDialog("Move Folder", "Are you sure you want to move this folder?",
                     string.Format("Folder: {0}\n-\nDestination: {1}", fromdir.Name, dir.Name), "Yes", "No",

@@ -183,9 +183,6 @@ namespace LFI
                 this.Invoke((Action)(() => Disc = disc.ToString()));
                 this.Invoke((Action)(() => Page = Convert.ToInt32(page)));
                 this.Invoke((Action)(() => vlbl.Text = Disc));
-                //Disc = disc.ToString();
-                //Page = Convert.ToInt32(page);
-                //vlbl.Text = Disc;
             }
             else
             {

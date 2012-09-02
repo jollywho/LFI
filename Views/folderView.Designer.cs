@@ -66,6 +66,7 @@
             this.lstDivs = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtTitle = new LFI.RTextBox();
             this.ddFormat_Use = new System.Windows.Forms.ComboBox();
             this.btnRunFormats = new System.Windows.Forms.Button();
             this.btnShowEstimates = new System.Windows.Forms.Button();
@@ -78,11 +79,10 @@
             this.btnPartFiles = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtFilter = new LFI.RTextBox();
             this.fileWatcher = new System.IO.FileSystemWatcher();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtFilter = new LFI.RTextBox();
-            this.txtTitle = new LFI.RTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -132,6 +132,7 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gvFiles.DefaultCellStyle = dataGridViewCellStyle8;
             this.gvFiles.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.gvFiles.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.gvFiles.Location = new System.Drawing.Point(0, 164);
             this.gvFiles.MultiSelect = false;
             this.gvFiles.Name = "gvFiles";
@@ -205,7 +206,6 @@
             this.gvFiles_Group.Name = "gvFiles_Group";
             this.gvFiles_Group.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gvFiles_Group.Visible = false;
-            this.gvFiles_Group.Width = 42;
             // 
             // gvFiles_Season
             // 
@@ -218,7 +218,6 @@
             this.gvFiles_Season.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvFiles_Season.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gvFiles_Season.Visible = false;
-            this.gvFiles_Season.Width = 20;
             // 
             // gvFiles_Episode
             // 
@@ -231,7 +230,6 @@
             this.gvFiles_Episode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvFiles_Episode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gvFiles_Episode.Visible = false;
-            this.gvFiles_Episode.Width = 20;
             // 
             // gvFiles_CRC
             // 
@@ -243,7 +241,6 @@
             this.gvFiles_CRC.ReadOnly = true;
             this.gvFiles_CRC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gvFiles_CRC.Visible = false;
-            this.gvFiles_CRC.Width = 35;
             // 
             // gvFiles_POS
             // 
@@ -455,6 +452,18 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(198, 55);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
+            // txtTitle
+            // 
+            this.tableLayoutPanel2.SetColumnSpan(this.txtTitle, 2);
+            this.txtTitle.Cue = "<Title>";
+            this.txtTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtTitle.Location = new System.Drawing.Point(3, 3);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Restriction = LFI.RTextBox.RestrictionType.File;
+            this.txtTitle.Size = new System.Drawing.Size(192, 23);
+            this.txtTitle.TabIndex = 8;
+            // 
             // ddFormat_Use
             // 
             this.ddFormat_Use.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -630,6 +639,18 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Filter";
             // 
+            // txtFilter
+            // 
+            this.txtFilter.Cue = "<Search Here>";
+            this.txtFilter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtFilter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFilter.Location = new System.Drawing.Point(3, 22);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Restriction = LFI.RTextBox.RestrictionType.File;
+            this.txtFilter.Size = new System.Drawing.Size(227, 23);
+            this.txtFilter.TabIndex = 3;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
+            // 
             // fileWatcher
             // 
             this.fileWatcher.EnableRaisingEvents = true;
@@ -667,30 +688,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(198, 28);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // txtFilter
-            // 
-            this.txtFilter.Cue = "<Search Here>";
-            this.txtFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtFilter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFilter.Location = new System.Drawing.Point(3, 22);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Restriction = LFI.RTextBox.RestrictionType.File;
-            this.txtFilter.Size = new System.Drawing.Size(227, 23);
-            this.txtFilter.TabIndex = 3;
-            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
-            // 
-            // txtTitle
-            // 
-            this.tableLayoutPanel2.SetColumnSpan(this.txtTitle, 2);
-            this.txtTitle.Cue = "<Title>";
-            this.txtTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTitle.Location = new System.Drawing.Point(3, 3);
-            this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Restriction = LFI.RTextBox.RestrictionType.File;
-            this.txtTitle.Size = new System.Drawing.Size(192, 23);
-            this.txtTitle.TabIndex = 8;
             // 
             // folderView
             // 

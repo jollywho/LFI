@@ -640,6 +640,7 @@
             this.ddInsTitle.Name = "ddInsTitle";
             this.ddInsTitle.Size = new System.Drawing.Size(323, 23);
             this.ddInsTitle.TabIndex = 0;
+            this.ddInsTitle.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.ddLocation_OnMouseWheel);
             // 
             // label21
             // 

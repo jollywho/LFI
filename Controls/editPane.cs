@@ -135,9 +135,9 @@ namespace LFI
             for (int i = 0; i < titles.Rows.Count; i++)
             {
                 if (titles.Rows[i][0].ToString() == txtTitle.Text)
-                    return false;
+                    return true;
             }
-            return true;
+            return false;
         }
 
         /// <summary>
