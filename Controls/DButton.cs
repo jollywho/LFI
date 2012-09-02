@@ -102,7 +102,7 @@ namespace LFI
             DialogResult dlg = BetterDialog.ShowDialog("Delete Disc",
                 "Disc will be deleted permanently. Are you Sure?",
                 Location_ID + Disc, "Yes", "No", Image, BetterDialog.ImageStyle.Image);
-            if (dlg == DialogResult.Yes)
+            if (dlg == DialogResult.OK)
             {
                 try
                 {

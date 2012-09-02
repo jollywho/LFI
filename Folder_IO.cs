@@ -29,6 +29,7 @@ namespace LFI
         public Folder_IO(string dir)
         {
             dirname = dir;
+
             var files = Directory.GetFiles(dirname);
             var folders = Directory.GetDirectories(dirname);
 
@@ -64,24 +65,17 @@ namespace LFI
             filenames.Clear();
             subdiritems.Clear();
             itemCount = 0;
-            try
+            Array.Sort(files, new AlphanumComparatorFast());
+            foreach (string item in files)
             {
-                Array.Sort(files, new AlphanumComparatorFast());
-                foreach (string item in files)
-                {
-                    folderitems.Add(Path.GetFileName(item));
-                    filenames.Add(item);
-                    itemCount++;
-                }
-                foreach (string item in folders)
-                {
-                    subdiritems.Add(item);
-                    folderCount++;
-                }
+                folderitems.Add(Path.GetFileName(item));
+                filenames.Add(item);
+                itemCount++;
             }
-            catch (Exception ex)
+            foreach (string item in folders)
             {
-                MessageBox.Show("Error : " + ex.Message);
+                subdiritems.Add(item);
+                folderCount++;
             }
         }
 
@@ -291,10 +285,12 @@ namespace LFI
                     file.MoveTo(file.FullName.Replace(file.Name, destfilename)+file.Extension);
                 file.Refresh();
             }
-            catch (Exception ex)
+            catch (IOException)
             {
                 skipped = true;
-                MessageBox.Show(string.Format("'{0}' :\n {1}", title, ex.Message), "Rename Error");
+                BetterDialog.ShowDialog("Rename Error",
+                    string.Format("Cannot Rename File: {0}\nFile Already Exists As: {1}", file.Name, destfilename),
+                    "", "", "OK", null, BetterDialog.ImageStyle.Icon);
             }
             finally
             {
@@ -315,7 +311,7 @@ namespace LFI
                 (file.Length / Math.Pow(1024, 2)).ToString("N3") + " MB"), "Yes", "No",
                 NativeMethods.GetSmallIcon(file.FullName).ToBitmap(), BetterDialog.ImageStyle.Icon
                 );
-            if (result == DialogResult.Yes)
+            if (result == DialogResult.OK)
             {
                 file.Delete();
             }
@@ -331,7 +327,7 @@ namespace LFI
                 DialogResult result = BetterDialog.ShowDialog("Move File", "Are you sure you want to move this file?",
                     string.Format("File: {0}\n-\nDestination: {1}", file.Name, dir.Name), "Yes", "No",
                     NativeMethods.GetSmallIcon(src).ToBitmap(), BetterDialog.ImageStyle.Icon);
-                if (result == DialogResult.Yes)
+                if (result == DialogResult.OK)
                 {
                     file.MoveTo(Path.Combine(dir.FullName, file.Name));
                 }
@@ -341,7 +337,7 @@ namespace LFI
                 DialogResult result = BetterDialog.ShowDialog("Move Folder", "Are you sure you want to move this folder?",
                     string.Format("Folder: {0}\n-\nDestination: {1}", fromdir.Name, dir.Name), "Yes", "No",
                     LFI.Properties.Resources.folder, BetterDialog.ImageStyle.Icon);
-                if (result == DialogResult.Yes)
+                if (result == DialogResult.OK)
                 {
                     fromdir.MoveTo(Path.Combine(dir.FullName, fromdir.Name));
                 }

@@ -154,7 +154,7 @@ namespace LFI
             {
                 if (txtTitle.Text.Length == 0)
                     Error_Handle.TipError("Title required\n", toolTip, txtTitle);
-                else if (SearchExistingTitles())
+                else if (isnewrecord && SearchExistingTitles())
                     Error_Handle.TipError("Title already exists\n", toolTip, txtTitle);
                 else if (ddCategory.Text.Length == 0)
                     Error_Handle.TipError("Category required\n", toolTip, ddCategory);
@@ -197,7 +197,7 @@ namespace LFI
                     }
                     Image_IO.rename_Image(currentTitle, txtTitle.Text);
 
-                    MessageBox.Show("Saved", "Success");
+                    BetterDialog.ShowDialog("Saved", "Success", string.Empty, string.Empty, "OK", null, BetterDialog.ImageStyle.Icon);
                     status = true;
                     populateDropDownTitles();
                 }

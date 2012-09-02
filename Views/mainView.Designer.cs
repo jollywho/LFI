@@ -114,8 +114,9 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Restriction = LFI.RTextBox.RestrictionType.None;
             this.txtSearch.Size = new System.Drawing.Size(159, 20);
-            this.txtSearch.TabIndex = 2;
+            this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // gvTitles
             // 
@@ -159,6 +160,7 @@
             this.gvTitles.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvTitles_CellMouseEnter);
             this.gvTitles.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvTitles_RowEnter);
             this.gvTitles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gvTitles_KeyDown);
+            this.gvTitles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gvTitles_KeyPress);
             // 
             // panelMain
             // 

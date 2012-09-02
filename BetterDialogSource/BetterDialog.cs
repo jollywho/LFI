@@ -40,7 +40,7 @@ namespace LFI
         /// <summary>
         /// The private constructor. This is only called by the static method ShowDialog.
         /// </summary>
-        private BetterDialog(string title, string largeHeading, string smallExplanation,
+        public BetterDialog(string title, string largeHeading, string smallExplanation,
             string leftButton, string rightButton, Image iconSet, ImageStyle iconDock)
         {
             this.Font = SystemFonts.MessageBoxFont;

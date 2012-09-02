@@ -301,7 +301,7 @@ namespace LFI
                     gvContents.SelectedCells[2].Value, gvContents.SelectedCells[3].Value),
                     "Yes", "No", Image_IO.getImage(gvContents.SelectedCells[0].Value.ToString()),
                     BetterDialog.ImageStyle.Image);
-                if (result == DialogResult.Yes)
+                if (result == DialogResult.OK)
                 {
                     if (gvContents.Rows[gvContents.SelectedCells[0].RowIndex].Cells[4].ToString() != "null")
                     {

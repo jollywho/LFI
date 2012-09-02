@@ -45,7 +45,6 @@ namespace LFI
             ddUrl.ComboBox.DataSource = folders;
             ddUrl.ComboBox.MouseWheel += new MouseEventHandler(combobox_MouseWheel);
             ddUrl.ComboBox.SelectedValueChanged += new EventHandler(ddUrl_SelectedValueChanged);
-            ddUrl.ComboBox.KeyDown += new KeyEventHandler(ddUrl_KeyDown);
 
             animation.Image = LFI.Properties.Resources.progress;
             animation.Width = 16;
@@ -82,6 +81,7 @@ namespace LFI
         /// </remarks>
         private void open_Folder()
         {
+            Console.WriteLine("OPEN");
             try
             {
                 folder = new Folder_IO(ddUrl.Text);
@@ -97,7 +97,7 @@ namespace LFI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error opening : " + ex.Message);
+                BetterDialog.ShowDialog("", "Error : " + ex.Message, "", "", "OK", null, BetterDialog.ImageStyle.Icon);
             }
         }
 
@@ -492,10 +492,21 @@ namespace LFI
             open_Folder();
         }
 
-        private void ddUrl_KeyDown(object sender, KeyEventArgs e)
+        private void ddUrl_ChangeText(string url)
         {
-            if (e.KeyCode == Keys.Enter)
+            ddUrl.ComboBox.SelectedValueChanged -= new EventHandler(ddUrl_SelectedValueChanged);
+            ddUrl.ComboBox.Text = url;
+            ddUrl.ComboBox.SelectedValueChanged += new EventHandler(ddUrl_SelectedValueChanged);
+        }
+
+        private void ddUrl_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
                 open_Folder();
+            }
+            
         }
 
         /// <summary>
@@ -505,7 +516,8 @@ namespace LFI
         /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
-            ddUrl.Text = Directory.GetParent(ddUrl.Text).FullName;
+            ddUrl_ChangeText(Directory.GetParent(ddUrl.Text).FullName);
+            txtFilter.Clear();
             open_Folder();
         }
 
@@ -575,7 +587,9 @@ namespace LFI
             {
                 if (Directory.Exists(gvFiles.SelectedCells[3].Value.ToString()))
                 {
-                    ddUrl.Text = gvFiles.SelectedCells[3].Value.ToString();
+                    ddUrl_ChangeText(gvFiles.SelectedCells[3].Value.ToString());
+                    txtFilter.Clear();
+                    open_Folder();
                 }
                 else
                     if (File.Exists(gvFiles.SelectedCells[3].Value.ToString()))

@@ -110,6 +110,12 @@ namespace LFI
         {
             if (e.KeyCode == Keys.Delete)
                 deleteToolStripMenuItem_Click(null, null);
+
+            if (e.Control & (e.KeyCode == Keys.A))
+            {
+                txtSearch.Focus();
+                txtSearch.SelectAll();
+            }
         }
 
 #region CONTEXT_MENU
@@ -172,7 +178,7 @@ namespace LFI
             DialogResult dlg = BetterDialog.ShowDialog("Delete Title?", "Are you sure you want to delete this title?",
                 gvTitles.SelectedCells[0].Value.ToString(), "Yes", "No",
                 Image_IO.getImage(gvTitles.SelectedCells[0].Value.ToString()), BetterDialog.ImageStyle.Image);
-            if (dlg == DialogResult.Yes)
+            if (dlg == DialogResult.OK)
             {
                 int row = gvTitles.SelectedCells[0].RowIndex;
                 DB_Handle.UpdateTable(string.Format(
@@ -316,5 +322,21 @@ namespace LFI
             editPane.Enable();
         }
 #endregion INTERFACE
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+                e.Handled = true;
+        }
+
+        private void gvTitles_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetterOrDigit(e.KeyChar))
+            {
+                txtSearch.Text += e.KeyChar;
+                txtSearch.SelectionStart = txtSearch.Text.Length;
+                txtSearch.Focus();
+            }
+        }
     }
 }

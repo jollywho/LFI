@@ -77,7 +77,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnMarkFiles = new System.Windows.Forms.Button();
             this.btnPartFiles = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtFilter = new LFI.RTextBox();
             this.fileWatcher = new System.IO.FileSystemWatcher();
@@ -295,6 +294,7 @@
             this.ddUrl.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ddUrl.Name = "ddUrl";
             this.ddUrl.Size = new System.Drawing.Size(350, 25);
+            this.ddUrl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ddUrl_KeyPress);
             // 
             // toolStripSeparator4
             // 
@@ -304,6 +304,7 @@
             // btnCancel
             // 
             this.btnCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnCancel.Enabled = false;
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
             this.btnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCancel.Name = "btnCancel";
@@ -418,7 +419,7 @@
             this.lstDivs.Name = "lstDivs";
             this.lstDivs.ScrollAlwaysVisible = true;
             this.lstDivs.Size = new System.Drawing.Size(73, 107);
-            this.lstDivs.TabIndex = 7;
+            this.lstDivs.TabIndex = 0;
             this.lstDivs.Click += new System.EventHandler(this.lstDivs_Click);
             // 
             // groupBox3
@@ -462,7 +463,7 @@
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Restriction = LFI.RTextBox.RestrictionType.File;
             this.txtTitle.Size = new System.Drawing.Size(192, 23);
-            this.txtTitle.TabIndex = 8;
+            this.txtTitle.TabIndex = 0;
             // 
             // ddFormat_Use
             // 
@@ -474,7 +475,7 @@
             this.ddFormat_Use.Location = new System.Drawing.Point(3, 30);
             this.ddFormat_Use.Name = "ddFormat_Use";
             this.ddFormat_Use.Size = new System.Drawing.Size(93, 23);
-            this.ddFormat_Use.TabIndex = 22;
+            this.ddFormat_Use.TabIndex = 1;
             // 
             // btnRunFormats
             // 
@@ -488,7 +489,7 @@
             this.btnRunFormats.Location = new System.Drawing.Point(102, 30);
             this.btnRunFormats.Name = "btnRunFormats";
             this.btnRunFormats.Size = new System.Drawing.Size(93, 22);
-            this.btnRunFormats.TabIndex = 3;
+            this.btnRunFormats.TabIndex = 2;
             this.btnRunFormats.Text = "Run";
             this.btnRunFormats.UseVisualStyleBackColor = true;
             this.btnRunFormats.Click += new System.EventHandler(this.btnRunFormats_Click);
@@ -504,7 +505,7 @@
             this.btnShowEstimates.Location = new System.Drawing.Point(102, 3);
             this.btnShowEstimates.Name = "btnShowEstimates";
             this.btnShowEstimates.Size = new System.Drawing.Size(93, 22);
-            this.btnShowEstimates.TabIndex = 0;
+            this.btnShowEstimates.TabIndex = 1;
             this.btnShowEstimates.Text = "Show Fields";
             this.btnShowEstimates.UseVisualStyleBackColor = true;
             this.btnShowEstimates.Click += new System.EventHandler(this.btnShowEstimates_Click);
@@ -519,7 +520,7 @@
             this.ddFormat.Location = new System.Drawing.Point(3, 3);
             this.ddFormat.Name = "ddFormat";
             this.ddFormat.Size = new System.Drawing.Size(93, 23);
-            this.ddFormat.TabIndex = 1;
+            this.ddFormat.TabIndex = 0;
             this.ddFormat.SelectedValueChanged += new System.EventHandler(this.ddFormat_SelectedValueChanged);
             // 
             // groupBox1
@@ -567,7 +568,6 @@
             // 
             this.groupBox2.Controls.Add(this.btnMarkFiles);
             this.groupBox2.Controls.Add(this.btnPartFiles);
-            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold);
             this.groupBox2.ForeColor = System.Drawing.Color.Black;
@@ -590,7 +590,7 @@
             this.btnMarkFiles.Location = new System.Drawing.Point(5, 42);
             this.btnMarkFiles.Name = "btnMarkFiles";
             this.btnMarkFiles.Size = new System.Drawing.Size(140, 23);
-            this.btnMarkFiles.TabIndex = 5;
+            this.btnMarkFiles.TabIndex = 1;
             this.btnMarkFiles.Text = "Mark Files";
             this.btnMarkFiles.UseVisualStyleBackColor = true;
             this.btnMarkFiles.Click += new System.EventHandler(this.btnMarkFiles_Click);
@@ -606,24 +606,10 @@
             this.btnPartFiles.Location = new System.Drawing.Point(5, 15);
             this.btnPartFiles.Name = "btnPartFiles";
             this.btnPartFiles.Size = new System.Drawing.Size(140, 23);
-            this.btnPartFiles.TabIndex = 4;
+            this.btnPartFiles.TabIndex = 0;
             this.btnPartFiles.Text = "Part Files";
             this.btnPartFiles.UseVisualStyleBackColor = true;
             this.btnPartFiles.Click += new System.EventHandler(this.btnPartFiles_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(153, 86);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(45, 19);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Run";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
@@ -753,7 +739,6 @@
         private System.Windows.Forms.RadioButton radCheckAll;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnPartFiles;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnShowEstimates;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.IO.FileSystemWatcher fileWatcher;

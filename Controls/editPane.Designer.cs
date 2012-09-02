@@ -98,7 +98,7 @@
             this.txtYear.Name = "txtYear";
             this.txtYear.Restriction = LFI.RTextBox.RestrictionType.Number;
             this.txtYear.Size = new System.Drawing.Size(75, 23);
-            this.txtYear.TabIndex = 77;
+            this.txtYear.TabIndex = 3;
             // 
             // txtEpisode
             // 
@@ -109,7 +109,7 @@
             this.txtEpisode.Name = "txtEpisode";
             this.txtEpisode.Restriction = LFI.RTextBox.RestrictionType.Number;
             this.txtEpisode.Size = new System.Drawing.Size(52, 23);
-            this.txtEpisode.TabIndex = 76;
+            this.txtEpisode.TabIndex = 2;
             // 
             // txtTitle
             // 
@@ -120,7 +120,7 @@
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Restriction = LFI.RTextBox.RestrictionType.File;
             this.txtTitle.Size = new System.Drawing.Size(299, 20);
-            this.txtTitle.TabIndex = 75;
+            this.txtTitle.TabIndex = 1;
             // 
             // imgError
             // 
@@ -147,7 +147,7 @@
             this.ddLanguage.Location = new System.Drawing.Point(251, 93);
             this.ddLanguage.Name = "ddLanguage";
             this.ddLanguage.Size = new System.Drawing.Size(59, 23);
-            this.ddLanguage.TabIndex = 7;
+            this.ddLanguage.TabIndex = 4;
             // 
             // label6
             // 
@@ -178,7 +178,7 @@
             this.ddStatus.Location = new System.Drawing.Point(163, 146);
             this.ddStatus.Name = "ddStatus";
             this.ddStatus.Size = new System.Drawing.Size(128, 23);
-            this.ddStatus.TabIndex = 11;
+            this.ddStatus.TabIndex = 6;
             // 
             // label2
             // 
@@ -228,7 +228,7 @@
             this.ddCategory.Location = new System.Drawing.Point(29, 146);
             this.ddCategory.Name = "ddCategory";
             this.ddCategory.Size = new System.Drawing.Size(126, 23);
-            this.ddCategory.TabIndex = 9;
+            this.ddCategory.TabIndex = 5;
             // 
             // imgTitle
             // 

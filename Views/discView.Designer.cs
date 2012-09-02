@@ -315,7 +315,7 @@
             this.ddLocation.Location = new System.Drawing.Point(393, 33);
             this.ddLocation.Name = "ddLocation";
             this.ddLocation.Size = new System.Drawing.Size(136, 23);
-            this.ddLocation.TabIndex = 9;
+            this.ddLocation.TabIndex = 4;
             this.ddLocation.SelectedIndexChanged += new System.EventHandler(this.ddLocation_SelectedIndexChanged);
             this.ddLocation.SelectedValueChanged += new System.EventHandler(this.ddLocation_SelectedValueChanged);
             this.ddLocation.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.ddLocation_OnMouseWheel);
@@ -353,7 +353,7 @@
             this.txtSlot.Name = "txtSlot";
             this.txtSlot.ReadOnly = true;
             this.txtSlot.Size = new System.Drawing.Size(52, 23);
-            this.txtSlot.TabIndex = 6;
+            this.txtSlot.TabIndex = 3;
             this.txtSlot.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSlot.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
@@ -392,7 +392,7 @@
             this.txtPage.Name = "txtPage";
             this.txtPage.ReadOnly = true;
             this.txtPage.Size = new System.Drawing.Size(52, 23);
-            this.txtPage.TabIndex = 4;
+            this.txtPage.TabIndex = 2;
             this.txtPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericTextbox_keydown);
             // 
@@ -407,7 +407,7 @@
             this.txtDisc.Name = "txtDisc";
             this.txtDisc.ReadOnly = true;
             this.txtDisc.Size = new System.Drawing.Size(88, 23);
-            this.txtDisc.TabIndex = 1;
+            this.txtDisc.TabIndex = 0;
             this.txtDisc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
@@ -431,7 +431,7 @@
             this.btnGenerate.Location = new System.Drawing.Point(125, 35);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(75, 23);
-            this.btnGenerate.TabIndex = 2;
+            this.btnGenerate.TabIndex = 1;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
@@ -457,7 +457,7 @@
             this.gbContents.Location = new System.Drawing.Point(19, 67);
             this.gbContents.Name = "gbContents";
             this.gbContents.Size = new System.Drawing.Size(510, 183);
-            this.gbContents.TabIndex = 10;
+            this.gbContents.TabIndex = 5;
             this.gbContents.TabStop = false;
             this.gbContents.Text = "Contents";
             // 
@@ -469,7 +469,7 @@
             this.txtRangeEnd.Name = "txtRangeEnd";
             this.txtRangeEnd.Restriction = LFI.RTextBox.RestrictionType.Number;
             this.txtRangeEnd.Size = new System.Drawing.Size(52, 23);
-            this.txtRangeEnd.TabIndex = 104;
+            this.txtRangeEnd.TabIndex = 3;
             // 
             // txtRangeStart
             // 
@@ -479,7 +479,7 @@
             this.txtRangeStart.Name = "txtRangeStart";
             this.txtRangeStart.Restriction = LFI.RTextBox.RestrictionType.Number;
             this.txtRangeStart.Size = new System.Drawing.Size(52, 23);
-            this.txtRangeStart.TabIndex = 103;
+            this.txtRangeStart.TabIndex = 2;
             // 
             // txtSeason
             // 
@@ -490,7 +490,7 @@
             this.txtSeason.Name = "txtSeason";
             this.txtSeason.Restriction = LFI.RTextBox.RestrictionType.Number;
             this.txtSeason.Size = new System.Drawing.Size(52, 23);
-            this.txtSeason.TabIndex = 102;
+            this.txtSeason.TabIndex = 1;
             this.txtSeason.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gvContents
@@ -534,7 +534,7 @@
             this.gvContents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvContents.Size = new System.Drawing.Size(381, 112);
             this.gvContents.StandardTab = true;
-            this.gvContents.TabIndex = 10;
+            this.gvContents.TabIndex = 7;
             // 
             // Title
             // 
