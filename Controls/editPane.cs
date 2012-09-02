@@ -58,8 +58,14 @@ namespace LFI
         /// <param name="e"></param>
         private void btnImg_Click(object sender, EventArgs e)
         {
+            if (txtTitle.Text.Length < 1)
+            {
+                toolTip.Show("Title Required!", imgError);
+                return;
+            }
+
             OpenFileDialog dlg = new OpenFileDialog();
-            if (dlg.ShowDialog() != DialogResult.Cancel && txtTitle.Text.Length > 0)
+            if (dlg.ShowDialog() != DialogResult.Cancel)
             {
                 try
                 {
@@ -194,8 +200,8 @@ namespace LFI
                             title_id={0}
                             WHERE title_id={1};",
                             "\"" + txtTitle.Text + "\"", "\"" + currentTitle + "\""));
+                        Image_IO.rename_Image(currentTitle, txtTitle.Text);
                     }
-                    Image_IO.rename_Image(currentTitle, txtTitle.Text);
 
                     BetterDialog.ShowDialog("Saved", "Success", string.Empty, string.Empty, "OK", null, BetterDialog.ImageStyle.Icon);
                     status = true;
@@ -275,6 +281,37 @@ namespace LFI
                 }
             }
             ParentForm.Activate();
+        }
+
+        private void contextMenuImg_Opening(object sender, CancelEventArgs e)
+        {
+            Image img = Clipboard.GetImage();
+            if (img == null)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            pasteToolStripMenuItem.Image = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Image img = Clipboard.GetImage();
+            if (img != null)
+            {
+                if (txtTitle.Text.Length < 1)
+                {
+                    toolTip.Show("Title Required!", imgError);
+                }
+                else
+                {
+                    img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
+                    img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), txtTitle.Text),
+                        System.Drawing.Imaging.ImageFormat.Jpeg);
+                    imgTitle.Image = img;
+                }
+            }
         }
     }
 }

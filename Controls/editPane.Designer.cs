@@ -32,9 +32,6 @@
             this.btnImg = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtYear = new LFI.RTextBox();
-            this.txtEpisode = new LFI.RTextBox();
-            this.txtTitle = new LFI.RTextBox();
             this.imgError = new System.Windows.Forms.PictureBox();
             this.ddLanguage = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -44,9 +41,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.ddCategory = new System.Windows.Forms.ComboBox();
             this.imgTitle = new System.Windows.Forms.PictureBox();
+            this.contextMenuImg = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtYear = new LFI.RTextBox();
+            this.txtEpisode = new LFI.RTextBox();
+            this.txtTitle = new LFI.RTextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgError)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
+            this.contextMenuImg.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnImg
@@ -88,39 +91,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(320, 200);
             this.panel1.TabIndex = 0;
-            // 
-            // txtYear
-            // 
-            this.txtYear.Cue = "<Year>";
-            this.txtYear.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtYear.Location = new System.Drawing.Point(152, 95);
-            this.txtYear.MaxLength = 4;
-            this.txtYear.Name = "txtYear";
-            this.txtYear.Restriction = LFI.RTextBox.RestrictionType.Number;
-            this.txtYear.Size = new System.Drawing.Size(75, 23);
-            this.txtYear.TabIndex = 3;
-            // 
-            // txtEpisode
-            // 
-            this.txtEpisode.Cue = "<Ep>";
-            this.txtEpisode.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtEpisode.Location = new System.Drawing.Point(94, 95);
-            this.txtEpisode.MaxLength = 3;
-            this.txtEpisode.Name = "txtEpisode";
-            this.txtEpisode.Restriction = LFI.RTextBox.RestrictionType.Number;
-            this.txtEpisode.Size = new System.Drawing.Size(52, 23);
-            this.txtEpisode.TabIndex = 2;
-            // 
-            // txtTitle
-            // 
-            this.txtTitle.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.txtTitle.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtTitle.Cue = "<Title>";
-            this.txtTitle.Location = new System.Drawing.Point(10, 40);
-            this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Restriction = LFI.RTextBox.RestrictionType.File;
-            this.txtTitle.Size = new System.Drawing.Size(299, 20);
-            this.txtTitle.TabIndex = 1;
             // 
             // imgError
             // 
@@ -235,12 +205,65 @@
             this.imgTitle.BackgroundImage = global::LFI.Properties.Resources.notfound;
             this.imgTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.imgTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imgTitle.ContextMenuStrip = this.contextMenuImg;
             this.imgTitle.Location = new System.Drawing.Point(53, 0);
             this.imgTitle.Name = "imgTitle";
             this.imgTitle.Size = new System.Drawing.Size(245, 345);
             this.imgTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgTitle.TabIndex = 31;
             this.imgTitle.TabStop = false;
+            // 
+            // contextMenuImg
+            // 
+            this.contextMenuImg.ImageScalingSize = new System.Drawing.Size(245, 345);
+            this.contextMenuImg.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pasteToolStripMenuItem});
+            this.contextMenuImg.Name = "contextMenuImg";
+            this.contextMenuImg.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.contextMenuImg.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuImg.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuImg_Opening);
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            // 
+            // txtYear
+            // 
+            this.txtYear.Cue = "<Year>";
+            this.txtYear.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtYear.Location = new System.Drawing.Point(152, 95);
+            this.txtYear.MaxLength = 4;
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Restriction = LFI.RTextBox.RestrictionType.Number;
+            this.txtYear.Size = new System.Drawing.Size(75, 23);
+            this.txtYear.TabIndex = 3;
+            // 
+            // txtEpisode
+            // 
+            this.txtEpisode.Cue = "<Ep>";
+            this.txtEpisode.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtEpisode.Location = new System.Drawing.Point(94, 95);
+            this.txtEpisode.MaxLength = 3;
+            this.txtEpisode.Name = "txtEpisode";
+            this.txtEpisode.Restriction = LFI.RTextBox.RestrictionType.Number;
+            this.txtEpisode.Size = new System.Drawing.Size(52, 23);
+            this.txtEpisode.TabIndex = 2;
+            // 
+            // txtTitle
+            // 
+            this.txtTitle.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtTitle.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtTitle.Cue = "<Title>";
+            this.txtTitle.Location = new System.Drawing.Point(10, 40);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Restriction = LFI.RTextBox.RestrictionType.File;
+            this.txtTitle.Size = new System.Drawing.Size(299, 20);
+            this.txtTitle.TabIndex = 1;
             // 
             // editPane
             // 
@@ -259,6 +282,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgError)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).EndInit();
+            this.contextMenuImg.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -280,5 +304,7 @@
         private RTextBox txtTitle;
         private RTextBox txtYear;
         private RTextBox txtEpisode;
+        private System.Windows.Forms.ContextMenuStrip contextMenuImg;
+        private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
     }
 }

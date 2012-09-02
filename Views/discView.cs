@@ -590,5 +590,45 @@ namespace LFI
             ParentForm.Activate();
             DButton.SelBtn.DButton_Click(null, null);
         }
+
+        private void contextMenuImg_Opening(object sender, CancelEventArgs e)
+        {
+            Image img = Clipboard.GetImage();
+            if (img == null)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            pasteToolStripMenuItem.Image = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Image img = Clipboard.GetImage();
+            if (img != null)
+            {
+                if (gvContents.Rows.Count < 1)
+                {
+                    toolTip.Show("Title Required!", ddInsTitle);
+                }
+                else
+                {
+                    DialogResult result = DialogResult.OK;
+                    if (imgTitle.BackgroundImage != LFI.Properties.Resources.border)
+                    {
+                        result = BetterDialog.ShowDialog("Change Image", "Are you sure you want to overwrite this image?",
+                            "", "Yes", "No", imgTitle.Image, BetterDialog.ImageStyle.Image);
+                    }
+                    if (result == DialogResult.OK)
+                    {
+                        img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
+                        img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), gvContents.SelectedRows[0].Cells[0].Value),
+                            System.Drawing.Imaging.ImageFormat.Jpeg);
+                        imgTitle.BackgroundImage = img;
+                    }
+                }
+            }
+        }
     }
 }
