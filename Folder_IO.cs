@@ -225,7 +225,7 @@ namespace LFI
             FileInfo file = new FileInfo(filename);
             file.Refresh();
 
-            file.MoveTo(file.FullName.Insert(file.FullName.Length - (file.Extension.Length), "[" + crc + "]"));
+            file.MoveTo(file.FullName.Insert(file.FullName.Length - (file.Extension.Length), "_[" + crc + "]"));
             file.Refresh();
             newfilename = Path.GetFileName(file.Name);
             return file.FullName;
@@ -241,7 +241,10 @@ namespace LFI
         public static string RemoveCRC(string filename, out string newfilename)
         {
             FileInfo file = new FileInfo(filename);
-            file.MoveTo(file.FullName.Replace("[" + ScanCRC(filename) + "]", ""));
+            if (file.Name.Contains("_[" + ScanCRC(filename) + "]"))
+                file.MoveTo(file.FullName.Replace("_[" + ScanCRC(filename) + "]", ""));
+            else if (file.Name.Contains("[" + ScanCRC(filename) + "]"))
+                file.MoveTo(file.FullName.Replace("[" + ScanCRC(filename) + "]", ""));
             file.Refresh();
             newfilename = Path.GetFileName(file.Name);
             return file.FullName;

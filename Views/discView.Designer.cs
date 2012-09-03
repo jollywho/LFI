@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.scrlPage = new System.Windows.Forms.HScrollBar();
             this.btn8 = new System.Windows.Forms.Button();
             this.btn5 = new System.Windows.Forms.Button();
@@ -47,6 +47,8 @@
             this.txtJump = new LFI.RTextBox();
             this.panel1 = new LFI.BPanel();
             this.imgTitle = new System.Windows.Forms.PictureBox();
+            this.contextMenuImg = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ddLocation = new System.Windows.Forms.ComboBox();
             this.copyLabel = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -75,13 +77,11 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblRange = new System.Windows.Forms.Label();
-            this.contextMenuImg = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
+            this.contextMenuImg.SuspendLayout();
             this.gbContents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvContents)).BeginInit();
-            this.contextMenuImg.SuspendLayout();
             this.SuspendLayout();
             // 
             // scrlPage
@@ -263,7 +263,7 @@
             this.txtJump.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtJump.Cue = null;
             this.txtJump.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtJump.Location = new System.Drawing.Point(361, 326);
+            this.txtJump.Location = new System.Drawing.Point(352, 326);
             this.txtJump.Name = "txtJump";
             this.txtJump.Restriction = LFI.RTextBox.RestrictionType.Number;
             this.txtJump.Size = new System.Drawing.Size(35, 23);
@@ -307,6 +307,25 @@
             this.imgTitle.TabStop = false;
             this.imgTitle.DragDrop += new System.Windows.Forms.DragEventHandler(this.imgTitle_DragDrop);
             this.imgTitle.DragEnter += new System.Windows.Forms.DragEventHandler(this.imgTitle_DragEnter);
+            // 
+            // contextMenuImg
+            // 
+            this.contextMenuImg.ImageScalingSize = new System.Drawing.Size(245, 345);
+            this.contextMenuImg.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pasteToolStripMenuItem});
+            this.contextMenuImg.Name = "contextMenuImg";
+            this.contextMenuImg.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.contextMenuImg.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuImg.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuImg_Opening);
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // ddLocation
             // 
@@ -503,11 +522,11 @@
             this.gvContents.AllowUserToDeleteRows = false;
             this.gvContents.AllowUserToResizeColumns = false;
             this.gvContents.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            this.gvContents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.gvContents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gvContents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvContents.BackgroundColor = System.Drawing.Color.White;
             this.gvContents.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -520,14 +539,14 @@
             this.Start,
             this.End,
             this.content});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvContents.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvContents.DefaultCellStyle = dataGridViewCellStyle2;
             this.gvContents.Location = new System.Drawing.Point(6, 60);
             this.gvContents.MultiSelect = false;
             this.gvContents.Name = "gvContents";
@@ -676,25 +695,6 @@
             this.lblRange.TabIndex = 70;
             this.lblRange.Text = "-";
             // 
-            // contextMenuImg
-            // 
-            this.contextMenuImg.ImageScalingSize = new System.Drawing.Size(245, 345);
-            this.contextMenuImg.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pasteToolStripMenuItem});
-            this.contextMenuImg.Name = "contextMenuImg";
-            this.contextMenuImg.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.contextMenuImg.Size = new System.Drawing.Size(153, 48);
-            this.contextMenuImg.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuImg_Opening);
-            // 
-            // pasteToolStripMenuItem
-            // 
-            this.pasteToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.pasteToolStripMenuItem.Text = "Paste";
-            this.pasteToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
-            // 
             // discView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -719,10 +719,10 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).EndInit();
+            this.contextMenuImg.ResumeLayout(false);
             this.gbContents.ResumeLayout(false);
             this.gbContents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvContents)).EndInit();
-            this.contextMenuImg.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

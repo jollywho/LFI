@@ -34,19 +34,19 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.radType_Filler = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.imgWorking = new System.Windows.Forms.PictureBox();
-            this.radType_Missing = new System.Windows.Forms.RadioButton();
             this.txtStart = new LFI.RTextBox();
             this.txtEnd = new LFI.RTextBox();
             this.txtTitle = new LFI.RTextBox();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.txtGroup = new LFI.RTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtSeason = new LFI.RTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.radType_Filler = new System.Windows.Forms.RadioButton();
+            this.radType_Missing = new System.Windows.Forms.RadioButton();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgWorking)).BeginInit();
             this.SuspendLayout();
@@ -137,21 +137,6 @@
             this.label2.Text = "Start:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // radType_Filler
-            // 
-            this.radType_Filler.AutoSize = true;
-            this.radType_Filler.Checked = true;
-            this.radType_Filler.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radType_Filler.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radType_Filler.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radType_Filler.Location = new System.Drawing.Point(169, 81);
-            this.radType_Filler.Name = "radType_Filler";
-            this.radType_Filler.Size = new System.Drawing.Size(63, 20);
-            this.radType_Filler.TabIndex = 5;
-            this.radType_Filler.TabStop = true;
-            this.radType_Filler.Text = "Filler";
-            this.radType_Filler.UseVisualStyleBackColor = true;
-            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -165,19 +150,6 @@
             this.label1.Text = "Title:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.label4.Location = new System.Drawing.Point(79, 80);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 21);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Type:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // imgWorking
             // 
             this.imgWorking.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -190,19 +162,6 @@
             this.imgWorking.TabStop = false;
             this.imgWorking.Visible = false;
             // 
-            // radType_Missing
-            // 
-            this.radType_Missing.AutoSize = true;
-            this.radType_Missing.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radType_Missing.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radType_Missing.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radType_Missing.Location = new System.Drawing.Point(238, 81);
-            this.radType_Missing.Name = "radType_Missing";
-            this.radType_Missing.Size = new System.Drawing.Size(103, 20);
-            this.radType_Missing.TabIndex = 6;
-            this.radType_Missing.Text = "Missing";
-            this.radType_Missing.UseVisualStyleBackColor = true;
-            // 
             // txtStart
             // 
             this.txtStart.Cue = "<Start>";
@@ -211,7 +170,7 @@
             this.txtStart.Name = "txtStart";
             this.txtStart.Restriction = LFI.RTextBox.RestrictionType.Number;
             this.txtStart.Size = new System.Drawing.Size(84, 20);
-            this.txtStart.TabIndex = 10;
+            this.txtStart.TabIndex = 3;
             // 
             // txtEnd
             // 
@@ -221,7 +180,7 @@
             this.txtEnd.Name = "txtEnd";
             this.txtEnd.Restriction = LFI.RTextBox.RestrictionType.Number;
             this.txtEnd.Size = new System.Drawing.Size(103, 20);
-            this.txtEnd.TabIndex = 11;
+            this.txtEnd.TabIndex = 4;
             // 
             // txtTitle
             // 
@@ -232,12 +191,7 @@
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Restriction = LFI.RTextBox.RestrictionType.File;
             this.txtTitle.Size = new System.Drawing.Size(262, 20);
-            this.txtTitle.TabIndex = 12;
-            // 
-            // toolTip
-            // 
-            this.toolTip.BackColor = System.Drawing.Color.Transparent;
-            this.toolTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.txtTitle.TabIndex = 2;
             // 
             // label5
             // 
@@ -260,7 +214,7 @@
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Restriction = LFI.RTextBox.RestrictionType.File;
             this.txtGroup.Size = new System.Drawing.Size(84, 20);
-            this.txtGroup.TabIndex = 14;
+            this.txtGroup.TabIndex = 0;
             // 
             // label6
             // 
@@ -283,7 +237,53 @@
             this.txtSeason.Name = "txtSeason";
             this.txtSeason.Restriction = LFI.RTextBox.RestrictionType.Number;
             this.txtSeason.Size = new System.Drawing.Size(103, 20);
-            this.txtSeason.TabIndex = 16;
+            this.txtSeason.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.label4.Location = new System.Drawing.Point(79, 80);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(84, 21);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Type:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // radType_Filler
+            // 
+            this.radType_Filler.AutoSize = true;
+            this.radType_Filler.Checked = true;
+            this.radType_Filler.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radType_Filler.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.radType_Filler.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radType_Filler.Location = new System.Drawing.Point(169, 81);
+            this.radType_Filler.Name = "radType_Filler";
+            this.radType_Filler.Size = new System.Drawing.Size(63, 20);
+            this.radType_Filler.TabIndex = 5;
+            this.radType_Filler.TabStop = true;
+            this.radType_Filler.Text = "Filler";
+            this.radType_Filler.UseVisualStyleBackColor = true;
+            // 
+            // radType_Missing
+            // 
+            this.radType_Missing.AutoSize = true;
+            this.radType_Missing.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radType_Missing.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.radType_Missing.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radType_Missing.Location = new System.Drawing.Point(238, 81);
+            this.radType_Missing.Name = "radType_Missing";
+            this.radType_Missing.Size = new System.Drawing.Size(103, 20);
+            this.radType_Missing.TabIndex = 6;
+            this.radType_Missing.Text = "Missing";
+            this.radType_Missing.UseVisualStyleBackColor = true;
+            // 
+            // toolTip
+            // 
+            this.toolTip.BackColor = System.Drawing.Color.Transparent;
+            this.toolTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
             // 
             // FileMarkerDialog
             // 

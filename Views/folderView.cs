@@ -123,11 +123,9 @@ namespace LFI
                 txtFilter_TextChanged(null, null);
             if (gvFiles.Rows.Count < 1) return;
 
-            gvFiles.Rows[refreshRow].Selected = true;
+            gvFiles.Rows[refreshRow].Cells[2].Selected = true;
             gvFiles.FirstDisplayedScrollingRowIndex = refreshIndex;
-            insertRow = 0;
-            
-            gvFiles.Focus();
+            insertRow = 0; 
         }
 
         private void countFolders()
@@ -153,10 +151,11 @@ namespace LFI
             open_Folder();
             if (folder.Generate_Divisions())
             {
+                txtFilter.Clear();
+                txtFilter.Enabled = false;
                 countFolders();
                 btnDivide.Enabled = true;
                 lstDivs_Click(sender, e);
-                txtFilter.Enabled = false;
             }
         }
 
@@ -309,11 +308,11 @@ namespace LFI
             gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
             gvFiles.Rows[workingRow].Cells[2].Value = newfilename;
 
-            if (lstDivs.Text == "0")
-                folder.folderitems[workingRow] = ddUrl.Text + "\\" + newfilename;
-            else
-                folder.folderDivisions[Convert.ToInt32(lstDivs.Text) - 1][workingRow] =
-                    ddUrl.Text + "\\" + newfilename;
+           // if (lstDivs.Text == "0")
+           //     folder.folderitems[workingRow] = ddUrl.Text + "\\" + newfilename;
+           // else
+           //     folder.folderDivisions[Convert.ToInt32(lstDivs.Text) - 1][workingRow] =
+           //         ddUrl.Text + "\\" + newfilename;
 
             DisableRunButtons();
             Add_MultiRunIncrement();

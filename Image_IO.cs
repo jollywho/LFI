@@ -12,7 +12,6 @@ namespace LFI
 {
     class Image_IO
     {
-
         /// <summary>
         /// Create a merged image using the list of titles.
         /// Default image is used when an image cannot be found.
@@ -23,21 +22,26 @@ namespace LFI
         public static Image createMergedImage(List<string> titleStrs, Control btn)
         {
             List<Image> imgLst = new List<Image>();
+            List<string> titleLst = new List<string>();
             string path = Folder_IO.GetUserImagePath();
             for (int i = 0; i <= titleStrs.Count - 1; i++)
             {
-                if (System.IO.File.Exists(path + string.Format("\\{0}.jpg", titleStrs[i])))
+                if (!titleLst.Contains(titleStrs[i]))
                 {
-                    FileStream fs = new FileStream(path + string.Format("\\{0}.jpg", titleStrs[i]), FileMode.Open);
-                    Image img = Image.FromStream(fs);
-                    fs.Close();
-                    imgLst.Add(resize_Image(img, btn.Width, btn.Height));
+                    titleLst.Add(titleStrs[i]);
+                    if (System.IO.File.Exists(path + string.Format("\\{0}.jpg", titleStrs[i])))
+                    {
+                        FileStream fs = new FileStream(path + string.Format("\\{0}.jpg", titleStrs[i]), FileMode.Open);
+                        Image img = Image.FromStream(fs);
+                        fs.Close();
+                        imgLst.Add(resize_Image(img, btn.Width, btn.Height));
+                    }
+                    else
+                        imgLst.Add(resize_Image(LFI.Properties.Resources.notavailable,
+                            btn.Width, btn.Height));
                 }
-                else
-                    imgLst.Add(resize_Image(LFI.Properties.Resources.notavailable,
-                        btn.Width, btn.Height));
             }
-            Image finalImage = merge_Images(imgLst, btn.Width, btn.Height, titleStrs.Count);
+            Image finalImage = merge_Images(imgLst, btn.Width, btn.Height, titleLst.Count);
             return finalImage;
         }
 
