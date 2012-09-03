@@ -101,6 +101,7 @@ namespace LFI
 
         public static string ToFormat(string episode, string season, EPFORMAT format)
         {
+            int outIgnore;
             if (string.IsNullOrEmpty(season))
                 season = "01";
 

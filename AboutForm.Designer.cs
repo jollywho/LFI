@@ -135,7 +135,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 22);
             this.label7.TabIndex = 7;
-            this.label7.Text = "1.5.5";
+            this.label7.Text = "1.5.6";
             // 
             // AboutForm
             // 

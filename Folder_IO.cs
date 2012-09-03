@@ -268,16 +268,21 @@ namespace LFI
             FileInfo file = new FileInfo(filename);
             string destfilename = string.Empty;
             skipped = false;
+            int outIgnore;
             try
             {
                 if (prefix.Trim().Length >= 1)
                     destfilename = '[' + prefix + ']' + ' ';
                 destfilename += title;
 
-                if (episode.Trim().Length >= 1)
-                    destfilename += FileNameFormat.ToFormat(episode, season, format);
-                else
+                if (episode.Trim().Length < 1)
                     skipped = true;
+                else if (!int.TryParse(episode, out outIgnore))
+                    skipped = true;
+                else if (season.Trim().Length >= 1 && !int.TryParse(season, out outIgnore))
+                    skipped = true;
+                else
+                    destfilename += FileNameFormat.ToFormat(episode, season, format);
 
                 if (suffix.Trim().Length >= 1)
                     destfilename += " [" + suffix + "]";

@@ -271,7 +271,7 @@ namespace LFI
 
             using (FileStream fs = File.Open(file, FileMode.Open))
                 foreach (byte b in crc32.ComputeHash(fs))
-                {
+                { 
                     hash += b.ToString("x2").ToUpper();
                 }
             checksum = hash;
@@ -279,14 +279,18 @@ namespace LFI
 
         private void bw_CheckCRCCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            Console.WriteLine(checksum);
             animation.Hide();
             caller.stop_progBar();
 
-            if (checksum == Folder_IO.ScanCRC(gvFiles.Rows[workingRow].Cells[3].Value.ToString()))
-                gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
+            if (!cancel)
+            {
+                if (checksum == Folder_IO.ScanCRC(gvFiles.Rows[workingRow].Cells[3].Value.ToString()))
+                    gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
+                else
+                    gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.error;
+            }
             else
-                gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.error;
+                gvFiles.Rows[workingRow].Cells[0].Value = null;
 
             DisableRunButtons();
             Check_MultiRunIncrement();
@@ -294,6 +298,7 @@ namespace LFI
 
         public void Cancel_MultiRun()
         {
+            Crc32.worker.CancelAsync();
             cancel = true;
         }
 
@@ -302,17 +307,16 @@ namespace LFI
             animation.Hide();
             caller.stop_progBar();
             string newfilename = string.Empty;
-            gvFiles.Rows[workingRow].Cells[3].Value =
-                Folder_IO.AddCRC(gvFiles.Rows[workingRow].Cells[3].Value.ToString(),
-                checksum, out newfilename);
-            gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
-            gvFiles.Rows[workingRow].Cells[2].Value = newfilename;
-
-           // if (lstDivs.Text == "0")
-           //     folder.folderitems[workingRow] = ddUrl.Text + "\\" + newfilename;
-           // else
-           //     folder.folderDivisions[Convert.ToInt32(lstDivs.Text) - 1][workingRow] =
-           //         ddUrl.Text + "\\" + newfilename;
+            if (!cancel)
+            {
+                gvFiles.Rows[workingRow].Cells[3].Value =
+                    Folder_IO.AddCRC(gvFiles.Rows[workingRow].Cells[3].Value.ToString(),
+                    checksum, out newfilename);
+                gvFiles.Rows[workingRow].Cells[0].Value = LFI.Properties.Resources.check;
+                gvFiles.Rows[workingRow].Cells[2].Value = newfilename;
+            }
+            else
+                gvFiles.Rows[workingRow].Cells[0].Value = null;
 
             DisableRunButtons();
             Add_MultiRunIncrement();
@@ -442,11 +446,12 @@ namespace LFI
         {
             if (gvFiles.SelectedCells.Count > 0)
             {
-                if (gvFiles.SelectedCells[0].Value != null && !multiRun)
+                if (gvFiles.SelectedCells[2].Value != null && !multiRun)
                 {
                     if (!multiRun)
-                        savedRow = gvFiles.SelectedCells[0].RowIndex;
+                        savedRow = gvFiles.SelectedCells[2].RowIndex;
                     caller.SetLabelItemSize(Folder_IO.Get_Item_Size(gvFiles.SelectedCells[3].Value.ToString()));
+                    Console.WriteLine(savedRow);
                 }
             }
             else
@@ -505,7 +510,6 @@ namespace LFI
                 e.Handled = true;
                 open_Folder();
             }
-            
         }
 
         /// <summary>
@@ -555,6 +559,7 @@ namespace LFI
                     multiRun = true;
                 else
                     workingRow = savedRow;
+                Console.WriteLine(workingRow);
                 CheckCRC();
             }
         }
@@ -683,19 +688,23 @@ namespace LFI
                     {
                         string newfilename = string.Empty;
                         bool skipped = false;
-                        gvFiles.Rows[i].Cells[3].Value =
-                            Folder_IO.RenameFile(gvFiles.Rows[i].Cells[3].Value.ToString(),
-                            gvFiles.Rows[i].Cells[4].Value.ToString(),
-                            txtTitle.Text,
-                            gvFiles.Rows[i].Cells[5].Value.ToString(),
-                            gvFiles.Rows[i].Cells[6].Value.ToString(),
-                            gvFiles.Rows[i].Cells[7].Value.ToString(),
-                            (EPFORMAT)ddFormat_Use.SelectedValue,
-                            out newfilename, out skipped);
-                        gvFiles.Rows[i].Cells[2].Value = newfilename;
-                        Copy_Cells(Convert.ToInt32(gvFiles.Rows[i].Cells[8].Value), i);
-                        if (skipped)
-                            gvFiles.Rows[i].Cells[0].Value = LFI.Properties.Resources.Warning;
+                        if (!Directory.Exists(gvFiles.Rows[i].Cells[3].Value.ToString()))
+                        {
+                            gvFiles.Rows[i].Cells[3].Value =
+                                Folder_IO.RenameFile(gvFiles.Rows[i].Cells[3].Value.ToString(),
+                                gvFiles.Rows[i].Cells[4].Value.ToString(),
+                                txtTitle.Text,
+                                gvFiles.Rows[i].Cells[5].Value.ToString(),
+                                gvFiles.Rows[i].Cells[6].Value.ToString(),
+                                gvFiles.Rows[i].Cells[7].Value.ToString(),
+                                (EPFORMAT)ddFormat_Use.SelectedValue,
+                                out newfilename, out skipped);
+                            gvFiles.Rows[i].Cells[2].Value = newfilename;
+                            Copy_Cells(Convert.ToInt32(gvFiles.Rows[i].Cells[8].Value), i);
+
+                            if (skipped)
+                                gvFiles.Rows[i].Cells[0].Value = LFI.Properties.Resources.Warning;
+                        }
                     }
                     fileWatcher.EnableRaisingEvents = true;
                     LoadFormatFields();
@@ -704,20 +713,23 @@ namespace LFI
                 {
                     string newfilename = string.Empty;
                     bool skipped = false;
-                    gvFiles.SelectedCells[3].Value =
-                        Folder_IO.RenameFile(gvFiles.SelectedCells[3].Value.ToString(),
-                        gvFiles.SelectedCells[4].Value.ToString(),
-                        txtTitle.Text,
-                        gvFiles.SelectedCells[5].Value.ToString(),
-                        gvFiles.SelectedCells[6].Value.ToString(),
-                        gvFiles.SelectedCells[7].Value.ToString(),
-                        (EPFORMAT)ddFormat_Use.SelectedValue,
-                        out newfilename, out skipped);
-                    gvFiles.SelectedCells[2].Value = newfilename;
-                    Copy_Cells(Convert.ToInt32(gvFiles.SelectedCells[8].Value), gvFiles.SelectedCells[0].RowIndex);
-                    
-                    if (skipped)
-                        gvFiles.SelectedCells[0].Value = LFI.Properties.Resources.Warning;
+                    if (!Directory.Exists(gvFiles.SelectedCells[3].Value.ToString()))
+                    {
+                        gvFiles.SelectedCells[3].Value =
+                            Folder_IO.RenameFile(gvFiles.SelectedCells[3].Value.ToString(),
+                            gvFiles.SelectedCells[4].Value.ToString(),
+                            txtTitle.Text,
+                            gvFiles.SelectedCells[5].Value.ToString(),
+                            gvFiles.SelectedCells[6].Value.ToString(),
+                            gvFiles.SelectedCells[7].Value.ToString(),
+                            (EPFORMAT)ddFormat_Use.SelectedValue,
+                            out newfilename, out skipped);
+                        gvFiles.SelectedCells[2].Value = newfilename;
+                        Copy_Cells(Convert.ToInt32(gvFiles.SelectedCells[8].Value), gvFiles.SelectedCells[0].RowIndex);
+
+                        if (skipped)
+                            gvFiles.SelectedCells[0].Value = LFI.Properties.Resources.Warning;
+                    }
                 }
             }
         }
@@ -809,12 +821,13 @@ namespace LFI
         private void gvFiles_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             editRow = e.RowIndex;
-            //gvFiles.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
 
-        private void gvFiles_CellLeave(object sender, DataGridViewCellEventArgs e)
+        private void gvFiles_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            gvFiles.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            if (gvFiles.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null)
+                gvFiles.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "";
+            gvFiles.Rows[e.RowIndex].Selected = true;
         }
 
         private void ddFormat_SelectedValueChanged(object sender, EventArgs e)

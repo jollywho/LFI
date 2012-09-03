@@ -35,6 +35,8 @@ public class Crc32 : HashAlgorithm
 
     protected override void HashCore(byte[] buffer, int start, int length)
     {
+        if (worker.CancellationPending)
+            return;
         hash = CalculateHash(table, hash, buffer, start, length);
     }
 
@@ -73,6 +75,8 @@ public class Crc32 : HashAlgorithm
         UInt32[] createTable = new UInt32[256];
         for (int i = 0; i < 256; i++)
         {
+            if (worker.CancellationPending)
+                return createTable;
             UInt32 entry = (UInt32)i;
             for (int j = 0; j < 8; j++)
                 if ((entry & 1) == 1)
@@ -96,6 +100,8 @@ public class Crc32 : HashAlgorithm
         {
             unchecked
             {
+                if (worker.CancellationPending)
+                    return crc;
                 crc = (crc >> 8) ^ table[buffer[i] ^ crc & 0xff];
             }
         }
