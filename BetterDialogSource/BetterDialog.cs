@@ -32,7 +32,7 @@ namespace LFI
             using (BetterDialog dialog = new BetterDialog(title, largeHeading, smallExplanation, leftButton,
                 rightButton, iconSet, iconDock))
             {
-                DialogResult result = dialog.ShowDialog();
+                DialogResult result = dialog.ShowDialog(MainForm.Main);
                 return result;
             }
         }
@@ -47,6 +47,7 @@ namespace LFI
             this.ForeColor = SystemColors.WindowText;
             
             InitializeComponent();
+            this.TopMost = MainForm.Main.TopMost;
 
             if (iconDock == ImageStyle.Icon)
                 this.pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;

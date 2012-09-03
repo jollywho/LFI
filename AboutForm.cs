@@ -14,6 +14,7 @@ namespace LFI
         public AboutForm()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterParent;
         }
 
         private void btnOK_Click(object sender, EventArgs e)

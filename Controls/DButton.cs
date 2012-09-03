@@ -126,7 +126,7 @@ namespace LFI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    BetterDialog.ShowDialog("Disc Delete", "Error : " + ex.Message, "", "", "OK", null, BetterDialog.ImageStyle.Icon);
                 }
                 finally
                 {
@@ -165,7 +165,7 @@ namespace LFI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"Error Moving Disc");
+                BetterDialog.ShowDialog("Disc Move", "Error : " + ex.Message, "", "", "OK", null, BetterDialog.ImageStyle.Icon);
             }
         }
 

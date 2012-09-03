@@ -28,6 +28,7 @@ namespace LFI
     {
         public static string Lmode;
         public static bool Longmode = false;
+        public static Form Main;
         public Size vertical = new Size(540, 700);
         public Size horizontal = new Size(745, 700);
         private int SnapDist = 20;
@@ -43,6 +44,7 @@ namespace LFI
         /// </summary>
         public MainForm()
         {
+            Main = this;
             Lmode = "JPN";
             this.MaximumSize = vertical;
             this.MinimumSize = vertical;
@@ -249,8 +251,8 @@ namespace LFI
         private void menuItem8_Click(object sender, EventArgs e)
         {
             AboutForm abt = new AboutForm();
-            abt.StartPosition = FormStartPosition.CenterParent;
-            abt.ShowDialog();
+            abt.TopMost = TopMost;
+            abt.ShowDialog(this);
         }
 
         /// <summary>

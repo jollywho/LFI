@@ -368,7 +368,7 @@ namespace LFI
                             txtDisc.Text, 
                             ddLocation.Text));
                     }
-                    MessageBox.Show("Saved", "Success");
+                    BetterDialog.ShowDialog("Disc Save", "Success", "", "", "OK", null, BetterDialog.ImageStyle.Icon);
                 }
                 catch (Exception ex)
                 {
@@ -377,7 +377,7 @@ namespace LFI
                             @"DELETE FROM DISCS WHERE
                             disc_id = '{0}' AND location_id = '{1}'",
                             txtDisc.Text, ddLocation.Text));
-                     MessageBox.Show(ex.Message);
+                    BetterDialog.ShowDialog("Disc Save", "Error : " + ex.Message, "", "", "OK", null, BetterDialog.ImageStyle.Icon);
                 }
                 finally
                 {
@@ -408,7 +408,7 @@ namespace LFI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                BetterDialog.ShowDialog("DiscID Generation", "Error : " + ex.Message, "", "", "OK", null, BetterDialog.ImageStyle.Icon);
             }
         }
 

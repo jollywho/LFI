@@ -56,7 +56,7 @@ namespace LFI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "DB Error");
+                BetterDialog.ShowDialog("DB Error", ex.Message, "", "", "OK", null, BetterDialog.ImageStyle.Icon);
             }
         }
     }

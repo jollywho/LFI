@@ -475,12 +475,12 @@ namespace LFI
                         }
                     }
                     btnDivide.Enabled = false;
-                    MessageBox.Show("No Errors Detected", "Move Complete");
+                    BetterDialog.ShowDialog("Divide Complete", "Success", "", "", "OK", null, BetterDialog.ImageStyle.Icon);
                     ddUrl_SelectedValueChanged(null, null);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error");
+                    BetterDialog.ShowDialog("", "Error : " + ex.Message, "", "", "OK", null, BetterDialog.ImageStyle.Icon);
                 }
             }
         }
@@ -673,7 +673,7 @@ namespace LFI
         private void btnRunFormats_Click(object sender, EventArgs e)
         {
             if (txtTitle.Text.Length < 1)
-                MessageBox.Show("Rename Error: Title required.\n");
+                BetterDialog.ShowDialog("Rename Function", "Error : Title Required.", "", "", "OK", null, BetterDialog.ImageStyle.Icon);
             else
             {
                 if (radCheckAll.Checked)

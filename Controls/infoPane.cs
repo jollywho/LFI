@@ -42,7 +42,7 @@ namespace LFI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                BetterDialog.ShowDialog("Load Error", "Error : " + ex.Message, "", "", "OK", null, BetterDialog.ImageStyle.Icon);
             }
 
             setImage(txtTitle.Text);
@@ -83,7 +83,7 @@ namespace LFI
         {
             if (txtTitle.Text.Length < 1)
             {
-                MessageBox.Show("Title Required!");
+                BetterDialog.ShowDialog("Image Save", "Error : Title Required", "", "", "OK", null, BetterDialog.ImageStyle.Icon);
             }
             else
             {
@@ -110,7 +110,7 @@ namespace LFI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    BetterDialog.ShowDialog("Image Save", "Error : " + ex.Message, "", "", "OK", null, BetterDialog.ImageStyle.Icon);
                 }
             }
             ParentForm.Activate();

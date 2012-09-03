@@ -248,6 +248,9 @@ namespace LFI
                 FROM titles WHERE language ='{0}' 
                 ORDER BY title_id", MainForm.Lmode));
             gvTitles.DataSource = dvTitles;
+
+            if (txtSearch.Text.Length >= 1)
+                txtSearch_TextChanged(null, null);
         }
 
         /// <summary>
@@ -288,7 +291,7 @@ namespace LFI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                BetterDialog.ShowDialog("Main Load", "Error : " + ex.Message, "", "", "OK", null, BetterDialog.ImageStyle.Icon);
             }
         }
 

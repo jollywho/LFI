@@ -17,6 +17,8 @@ namespace LFI
         public FileMarkerDialog(string path, FileNameFormat fn)
         {
             InitializeComponent();
+
+            this.TopMost = MainForm.Main.TopMost;
             file = fn;
             fileformat = fn.Format;
             dirname = path;
@@ -29,7 +31,7 @@ namespace LFI
         {
             using (FileMarkerDialog dlg = new FileMarkerDialog(path, fn))
             {
-                dlg.ShowDialog();
+                dlg.ShowDialog(MainForm.Main);
             }
         }
 
