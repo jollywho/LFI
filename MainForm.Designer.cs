@@ -74,7 +74,7 @@
             this.slblItems,
             this.slblItemSize});
             this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.statusStrip1.Location = new System.Drawing.Point(0, 627);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 648);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(534, 24);
             this.statusStrip1.SizingGrip = false;
@@ -297,7 +297,7 @@
             this.bPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bPanel.Location = new System.Drawing.Point(0, 0);
             this.bPanel.Name = "bPanel";
-            this.bPanel.Size = new System.Drawing.Size(534, 627);
+            this.bPanel.Size = new System.Drawing.Size(534, 648);
             this.bPanel.TabIndex = 9;
             // 
             // MainForm
@@ -306,7 +306,7 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = global::LFI.Properties.Resources.bannerOrig;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(534, 651);
+            this.ClientSize = new System.Drawing.Size(534, 672);
             this.Controls.Add(this.bPanel);
             this.Controls.Add(this.statusStrip1);
             this.DoubleBuffered = true;

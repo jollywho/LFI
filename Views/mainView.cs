@@ -270,6 +270,10 @@ namespace LFI
             gvTitles_RowEnter(null, null);
         }
 
+        public void FocusSearch()
+        {
+            txtSearch.Focus();
+        }
         /// <summary>
         /// Public interface to load Info Pane.
         /// </summary>

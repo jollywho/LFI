@@ -96,6 +96,10 @@ namespace LFI
         {
             slblItemSize.Text = size;
         }
+        public void SetMenuEnableState(bool state)
+        {
+            menuItem3.Enabled = state;
+        }
         #endregion MENU_INTERFACE
         #region MENU_CLICK
 
@@ -291,10 +295,6 @@ namespace LFI
             titleEditItem.Enabled = false;
             menuAddItem.Enabled = false;
 
-            if (fv != null)
-            {
-                fv.Cancel_MultiRun();
-            }
             if (mode == ViewMode.Main)
             {
                 titleEditItem.Enabled = true;
@@ -345,7 +345,7 @@ namespace LFI
         /// Intercept form-level keypress events:
         /// Escape - Tell Main View to cancel editing the active record
         /// </summary>
-        /// <remarks>All events sent to Disc View when active</remarks>
+        /// <remarks>All events sent to Disc View when its active</remarks>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -354,6 +354,12 @@ namespace LFI
                 cancelItem_Click(null, null);
             if (mode == ViewMode.Disc)
                 dv.scrlPage_KeyDown(sender, e);
+            if (e.Control & e.KeyCode == Keys.F)
+            {
+                if (mode == ViewMode.Disc) dv.LoadFinder();
+                if (mode == ViewMode.Folder) fv.FocusFilter();
+                if (mode == ViewMode.Main) mv.FocusSearch();
+            }
         }
 
         /// <summary>

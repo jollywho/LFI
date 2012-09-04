@@ -302,6 +302,11 @@ namespace LFI
             cancel = true;
         }
 
+        public void FocusFilter()
+        {
+            txtFilter.Focus();
+        }
+
         private void bw_AddCRCCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             animation.Hide();
@@ -357,6 +362,7 @@ namespace LFI
 
         private void EnableRunButtons()
         {
+            caller.SetMenuEnableState(false);
             btnCancel.Enabled = true;
             btnRunFormats.Enabled = false;
             btnShowDiv.Enabled = false;
@@ -373,6 +379,7 @@ namespace LFI
 
         private void DisableRunButtons()
         {
+            caller.SetMenuEnableState(true);
             btnCancel.Enabled = false;
             btnShowDiv.Enabled = true;
             btnCheckCRC.Enabled = true;

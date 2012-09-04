@@ -26,6 +26,7 @@ namespace LFI
         List<DButton> dbuttons = new List<DButton>();
         Control lastControlEntered;
         bool refreshRequired = false;
+        bool selectRequired = false;
 
         public discView()
         {
@@ -236,6 +237,17 @@ namespace LFI
                 Console.WriteLine("Continue");
                 worker.RunWorkerAsync(cur_page);
                 refreshRequired = false;
+            }
+            if (selectRequired)
+            {
+                foreach (DButton btn in dbuttons)
+                {
+                    if (btn.Disc == DiscFinderDialog.Disc)
+                    {
+                        btn.DButton_Click(null, null);
+                        selectRequired = false;
+                    }
+                }
             }
         }
 
@@ -514,6 +526,16 @@ namespace LFI
         public Control getImagebox()
         {
             return imgTitle;
+        }
+
+        public void LoadFinder()
+        {
+            if (DiscFinderDialog.ShowDialog() == DialogResult.OK)
+            {
+                ddLocation.Text = DiscFinderDialog.Location;
+                txtJump.Text = DiscFinderDialog.Page;
+                selectRequired = true;
+            }
         }
 
         /// <summary>

@@ -165,6 +165,12 @@
     <Compile Include="BetterDialogSource\BetterDialog.designer.cs">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="BetterDialogSource\DiscFinderDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BetterDialogSource\DiscFinderDialog.Designer.cs">
+      <DependentUpon>DiscFinderDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="BetterDialogSource\FileMarkerDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -290,8 +296,8 @@
     <EmbeddedResource Include="BetterDialogSource\BetterDialog.resx">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BetterDialogSource\FileMarkerDialog.resx">
-      <DependentUpon>FileMarkerDialog.cs</DependentUpon>
+    <EmbeddedResource Include="BetterDialogSource\DiscFinderDialog.resx">
+      <DependentUpon>DiscFinderDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DButton.resx">
       <DependentUpon>DButton.cs</DependentUpon>
