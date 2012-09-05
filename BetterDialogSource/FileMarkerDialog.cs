@@ -17,22 +17,25 @@ namespace LFI
         public FileMarkerDialog(string path, FileNameFormat fn)
         {
             InitializeComponent();
-
+            MainForm.Main.WindowState = FormWindowState.Normal;
+            this.WindowState = MainForm.Main.WindowState;
             this.TopMost = MainForm.Main.TopMost;
+
             file = fn;
             fileformat = fn.Format;
             dirname = path;
+
             txtGroup.Text = fn.EstimateGroup();
             txtStart.Text = fn.EstimateEpisode();
             txtSeason.Text = fn.EstimateSeason();
+            txtTitle.Text = fn.EstimateTitle();
         }
 
         public static void ShowDialog(string path, FileNameFormat fn)
         {
-            using (FileMarkerDialog dlg = new FileMarkerDialog(path, fn))
-            {
-                dlg.ShowDialog(MainForm.Main);
-            }
+            FileMarkerDialog dlg = new FileMarkerDialog(path, fn);
+            dlg.Owner = MainForm.Main;
+            dlg.ShowDialog();
         }
 
         private void btnOk_Click(object sender, EventArgs e)

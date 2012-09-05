@@ -29,12 +29,10 @@ namespace LFI
         static public DialogResult ShowDialog(string title, string largeHeading, string smallExplanation,
             string leftButton, string rightButton, Image iconSet, ImageStyle iconDock)
         {
-            using (BetterDialog dialog = new BetterDialog(title, largeHeading, smallExplanation, leftButton,
-                rightButton, iconSet, iconDock))
-            {
-                DialogResult result = dialog.ShowDialog(MainForm.Main);
-                return result;
-            }
+            BetterDialog dlg = new BetterDialog(title, largeHeading, smallExplanation, leftButton,
+                rightButton, iconSet, iconDock);
+            dlg.Owner = MainForm.Main;
+            return dlg.ShowDialog();
         }
 
         /// <summary>
@@ -47,6 +45,8 @@ namespace LFI
             this.ForeColor = SystemColors.WindowText;
             
             InitializeComponent();
+            MainForm.Main.WindowState = FormWindowState.Normal;
+            this.WindowState = MainForm.Main.WindowState;
             this.TopMost = MainForm.Main.TopMost;
 
             if (iconDock == ImageStyle.Icon)

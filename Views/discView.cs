@@ -530,7 +530,7 @@ namespace LFI
 
         public void LoadFinder()
         {
-            if (DiscFinderDialog.ShowDialog() == DialogResult.OK)
+            if (DiscFinderDialog.ShowDialog(ddLocation.Text) == DialogResult.OK)
             {
                 ddLocation.Text = DiscFinderDialog.Location;
                 txtJump.Text = DiscFinderDialog.Page;

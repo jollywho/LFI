@@ -428,6 +428,14 @@ namespace LFI
             Lmode = toolstripENG.Text;
             Load_Language();
         }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+                TopMost = false;
+            if (WindowState == FormWindowState.Normal)
+                TopMost = menuAlwaysTop.Checked;
+        }
     }
 #endregion Form_Events
 }

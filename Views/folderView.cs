@@ -42,6 +42,8 @@ namespace LFI
             List<string> folders = System.IO.Directory.GetDirectories(
                 Environment.GetFolderPath(Environment.SpecialFolder.MyVideos)).ToList();
             folders.Insert(0, Environment.GetFolderPath(Environment.SpecialFolder.MyVideos));
+            folders.Insert(folders.Count,
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads"));
             ddUrl.ComboBox.DataSource = folders;
             ddUrl.ComboBox.MouseWheel += new MouseEventHandler(combobox_MouseWheel);
             ddUrl.ComboBox.SelectedValueChanged += new EventHandler(ddUrl_SelectedValueChanged);
@@ -854,6 +856,9 @@ namespace LFI
             if (multiRun) return;
             refresh_Folder();
             Console.WriteLine(e.FullPath + ": " + e.ChangeType);
+            FileMarkerDialog.ShowDialog(ddUrl.Text,
+                new FileNameFormat(gvFiles.SelectedCells[2].Value.ToString(),
+                    (EPFORMAT)ddFormat.SelectedValue));
         }
 
         private void fileWatcher_Deleted(object sender, FileSystemEventArgs e)

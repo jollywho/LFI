@@ -15,24 +15,25 @@ namespace LFI
         public static int Slot;
         public static string Location;
 
-        private DiscFinderDialog()
+        private DiscFinderDialog(string curLocation)
         {
             InitializeComponent();
-
+            MainForm.Main.WindowState = FormWindowState.Normal;
+            this.WindowState = MainForm.Main.WindowState;
             this.TopMost = MainForm.Main.TopMost;
 
             DataTable locations = DB_Handle.GetDataTable(string.Format(
                 @"Select location_id from locations order by location_id"));
             ddLocation.DisplayMember = "location_id";
             ddLocation.DataSource = locations;
+            ddLocation.Text = curLocation;
         }
 
-        public static DialogResult ShowDialog()
+        public static DialogResult ShowDialog(string curLocation)
         {
-            using (DiscFinderDialog dlg = new DiscFinderDialog())
-            {
-                return dlg.ShowDialog(MainForm.Main);
-            }
+            DiscFinderDialog dlg = new DiscFinderDialog(curLocation);
+            dlg.Owner = MainForm.Main;
+            return dlg.ShowDialog();
         }
 
         private void btnOk_Click(object sender, EventArgs e)

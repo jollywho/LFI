@@ -61,17 +61,18 @@ namespace LFI
                     break;
             }
         }
-
+        public string EstimateTitle()
+        {
+            return (new Regex(regChoice).Match(fileName).Groups[3]).ToString();
+        }
         public string EstimateSeason()
         {
             return (new Regex(regChoice).Match(fileName).Groups[4]).ToString().ToUpper();
         }
-
         public string EstimateEpisode()
         {
             return (new Regex(regChoice).Match(fileName).Groups[5]).ToString().ToUpper();
         }
-
         public string EstimateGroup()
         {
             return (new Regex(regChoice).Match(fileName).Groups[2]).ToString();
