@@ -46,18 +46,15 @@ namespace LFI
         {
             Main = this;
             Lmode = "JPN";
-            this.MaximumSize = vertical;
-            this.MinimumSize = vertical;
             this.DoubleBuffered = true;
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.OptimizedDoubleBuffer |
+                          ControlStyles.UserPaint, true);
             UpdateStyles();
             InitializeComponent();
             discEditItem.Click += new EventHandler(discEditItem_Click);
             mv = new mainView();
-            bPanel.Controls.Add(mv);
-            mv.Enable();
-            pushBackMenuStates();
+            menuTitleItem.PerformClick();
         }
 
         /// <summary>
@@ -111,11 +108,11 @@ namespace LFI
         private void menuTitleItem_Click(object sender, EventArgs e)
         {
             mode = ViewMode.Main;
+            bPanel.SuspendLayout();
+            this.Size = vertical;
             pushBackMenuStates();
             bPanel.Controls.Clear();
             bPanel.Controls.Add(mv);
-            this.MaximumSize = vertical;
-            this.MinimumSize = vertical;
             if (Longmode)
             {
                 menuItem2.MenuItems.RemoveAt(1);
@@ -123,6 +120,7 @@ namespace LFI
             }
             Longmode = false;
             mv.Enable();
+            bPanel.ResumeLayout();
         }
 
         /// <summary>
@@ -133,12 +131,12 @@ namespace LFI
         private void menuFolderItem_Click(object sender, EventArgs e)
         {
             mode = ViewMode.Folder;
+            bPanel.SuspendLayout();
+            this.Size = vertical;
             pushBackMenuStates();
             bPanel.Controls.Clear();
             fv = new folderView(this);
             bPanel.Controls.Add(fv);
-            this.MaximumSize = vertical;
-            this.MinimumSize = vertical;
             if (Longmode)
             {
                 menuItem2.MenuItems.RemoveAt(1);
@@ -146,6 +144,7 @@ namespace LFI
             }
             Longmode = false;
             fv.Focus();
+            bPanel.ResumeLayout();
         }
 
         /// <summary>
@@ -156,22 +155,23 @@ namespace LFI
         private void menuDiscItem_Click(object sender, EventArgs e)
         {
             mode = ViewMode.Disc;
+            bPanel.SuspendLayout();
+            this.Size = horizontal;
             pushBackMenuStates();
             bPanel.Controls.Clear();
             mv.Disable();
             bPanel.Controls.Add(dv);
-            this.MaximumSize = horizontal;
-            this.MinimumSize = horizontal;
             dv.Enable();
             if (!Longmode)
             {
-                if (this.Right + BorderWidth > Screen.PrimaryScreen.Bounds.Right) 
+                if (this.Right + BorderWidth > Screen.PrimaryScreen.Bounds.Right)
                     this.Left = Screen.PrimaryScreen.Bounds.Right - Width;
                 menuItem2.MenuItems.Add(0, discEditItem);
                 menuItem2.MenuItems.Add(1, new MenuItem("-"));
             }
             Longmode = true;
             dv.Focus();
+            bPanel.ResumeLayout();
         }
 
         /// <summary>
@@ -183,9 +183,11 @@ namespace LFI
         private void titleEditItem_Click(object sender, EventArgs e)
         {
             mode = ViewMode.Edit;
+            bPanel.SuspendLayout();
             mv.load_editPane();
             titleEditItem.Checked = true;
             pushBackMenuStates();
+            bPanel.ResumeLayout();
         }
 
         /// <summary>
@@ -199,9 +201,11 @@ namespace LFI
             if (mv.editPane.saveData())
             {
                 titleEditItem.Checked = false;
+                bPanel.SuspendLayout();
                 mv.load_infoPane();
                 mv.Force_RowEnter();
                 mode = ViewMode.Main;
+                bPanel.ResumeLayout();
             }
             pushBackMenuStates();
         }
@@ -217,9 +221,11 @@ namespace LFI
         private void cancelItem_Click(object sender, EventArgs e)
         {
             mode = ViewMode.Main;
+            bPanel.SuspendLayout();
             titleEditItem.Checked = false;
             mv.load_infoPane();
             pushBackMenuStates();
+            bPanel.ResumeLayout();
         }
 
         /// <summary>
@@ -231,9 +237,11 @@ namespace LFI
         private void menuAddItem_Click(object sender, EventArgs e)
         {
             mode = ViewMode.Edit;
+            bPanel.SuspendLayout();
             mv.load_blank_editPane();
             titleEditItem.Checked = true;
             pushBackMenuStates();
+            bPanel.ResumeLayout();
         }
 
         /// <summary>
@@ -283,7 +291,7 @@ namespace LFI
             dv.SwapDiscIDMode(!discEditItem.Checked);
         }
 
-#endregion MENU_CLICK
+        #endregion MENU_CLICK
 
         /// <summary>
         /// Cycle enabled value of menu items based on View state.
@@ -337,7 +345,7 @@ namespace LFI
             }
         }
 
-#region Form_Events
+        #region Form_Events
         public void start_progBar() { progBar.Style = ProgressBarStyle.Marquee; }
         public void stop_progBar() { progBar.Style = ProgressBarStyle.Blocks; }
 
@@ -378,6 +386,7 @@ namespace LFI
             StartPosition = FormStartPosition.Manual;
             Location = Properties.Settings.Default.location;
             Folder_IO.GetUserImagePath();
+            this.Size = vertical;
         }
 
         /// <summary>
@@ -436,6 +445,11 @@ namespace LFI
             if (WindowState == FormWindowState.Normal)
                 TopMost = menuAlwaysTop.Checked;
         }
+
+        private void MainForm_ResizeEnd(object sender, EventArgs e)
+        {
+            Console.WriteLine("END");
+        }
     }
-#endregion Form_Events
+        #endregion Form_Events
 }

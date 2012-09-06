@@ -18,8 +18,9 @@ namespace LFI
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.OptimizedDoubleBuffer |
+                          ControlStyles.UserPaint, true);
             UpdateStyles();
 
             this.BackColor = Color.Transparent;

@@ -23,7 +23,7 @@ namespace LFI
 			stringFormat.Trimming = StringTrimming.None;
 			stringFormat.FormatFlags = StringFormatFlags.DirectionVertical;
 
-			Brush textBrush = new SolidBrush(Color.Black);
+			Brush textBrush = new SolidBrush(this.ForeColor);
 		
 			Matrix storedState = g.Transform;
 
@@ -65,8 +65,8 @@ namespace LFI
             // 
             // VLabel
             // 
-            this.Font = new System.Drawing.Font("Segoe UI Bold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ForeColor = System.Drawing.Color.Black;
+            this.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
             this.ResumeLayout(false);
 
         }

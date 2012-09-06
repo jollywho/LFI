@@ -38,6 +38,7 @@ namespace LFI
             InitializeComponent();
             DoubleBuffered = true;
             caller = main;
+            gvFiles.AlternatingRowsDefaultCellStyle = null;
             gvFiles.CellPainting += new DataGridViewCellPaintingEventHandler(gvFiles_CellPainting);
             List<string> folders = System.IO.Directory.GetDirectories(
                 Environment.GetFolderPath(Environment.SpecialFolder.MyVideos)).ToList();
@@ -68,7 +69,7 @@ namespace LFI
             ddFormat_Use.DisplayMember = "Value";
             ddFormat_Use.ValueMember = "Key";
             toolStrip1.Renderer = new TSystemRenderer();
-            gvFiles.AlternatingRowsDefaultCellStyle = null;
+            
             for (int i = 0; i < gvFiles.Columns.Count; i++)
                 dtFilter.Columns.Add("Col_" + i.ToString());
 
@@ -96,6 +97,8 @@ namespace LFI
                 txtFilter.Enabled = true;
                 dragRow = -1; savedRow = 0;
                 if (showFields) LoadFormatFields();
+                if (gvFiles.SelectedCells.Count > 0)
+                    caller.SetLabelItemSize(Folder_IO.Get_Item_Size(gvFiles.SelectedCells[3].Value.ToString()));
             }
             catch (Exception ex)
             {
@@ -856,9 +859,6 @@ namespace LFI
             if (multiRun) return;
             refresh_Folder();
             Console.WriteLine(e.FullPath + ": " + e.ChangeType);
-            FileMarkerDialog.ShowDialog(ddUrl.Text,
-                new FileNameFormat(gvFiles.SelectedCells[2].Value.ToString(),
-                    (EPFORMAT)ddFormat.SelectedValue));
         }
 
         private void fileWatcher_Deleted(object sender, FileSystemEventArgs e)

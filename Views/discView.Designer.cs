@@ -30,7 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.scrlPage = new System.Windows.Forms.HScrollBar();
             this.btn8 = new System.Windows.Forms.Button();
             this.btn5 = new System.Windows.Forms.Button();
@@ -44,11 +47,11 @@
             this.btn1 = new System.Windows.Forms.Button();
             this.btn4 = new System.Windows.Forms.Button();
             this.buttonMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuImg = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtJump = new LFI.RTextBox();
             this.panel1 = new LFI.BPanel();
             this.imgTitle = new System.Windows.Forms.PictureBox();
-            this.contextMenuImg = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ddLocation = new System.Windows.Forms.ComboBox();
             this.copyLabel = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -77,9 +80,9 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblRange = new System.Windows.Forms.Label();
+            this.contextMenuImg.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
-            this.contextMenuImg.SuspendLayout();
             this.gbContents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvContents)).BeginInit();
             this.SuspendLayout();
@@ -171,7 +174,7 @@
             this.lblPageLeft.BackColor = System.Drawing.Color.Transparent;
             this.lblPageLeft.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPageLeft.ForeColor = System.Drawing.Color.Black;
-            this.lblPageLeft.Location = new System.Drawing.Point(175, 326);
+            this.lblPageLeft.Location = new System.Drawing.Point(173, 326);
             this.lblPageLeft.Name = "lblPageLeft";
             this.lblPageLeft.Size = new System.Drawing.Size(54, 26);
             this.lblPageLeft.TabIndex = 98;
@@ -184,7 +187,7 @@
             this.lblPageRight.BackColor = System.Drawing.Color.Transparent;
             this.lblPageRight.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPageRight.ForeColor = System.Drawing.Color.Black;
-            this.lblPageRight.Location = new System.Drawing.Point(537, 326);
+            this.lblPageRight.Location = new System.Drawing.Point(535, 326);
             this.lblPageRight.Name = "lblPageRight";
             this.lblPageRight.Size = new System.Drawing.Size(54, 26);
             this.lblPageRight.TabIndex = 99;
@@ -258,6 +261,25 @@
             this.buttonMenu.Name = "buttonMenu";
             this.buttonMenu.Size = new System.Drawing.Size(61, 4);
             // 
+            // contextMenuImg
+            // 
+            this.contextMenuImg.ImageScalingSize = new System.Drawing.Size(245, 345);
+            this.contextMenuImg.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pasteToolStripMenuItem});
+            this.contextMenuImg.Name = "contextMenuImg";
+            this.contextMenuImg.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.contextMenuImg.Size = new System.Drawing.Size(103, 26);
+            this.contextMenuImg.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuImg_Opening);
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            // 
             // txtJump
             // 
             this.txtJump.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -274,7 +296,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BackgroundImage = global::LFI.Properties.Resources.borderBigg;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.imgTitle);
@@ -308,25 +330,6 @@
             this.imgTitle.DragDrop += new System.Windows.Forms.DragEventHandler(this.imgTitle_DragDrop);
             this.imgTitle.DragEnter += new System.Windows.Forms.DragEventHandler(this.imgTitle_DragEnter);
             // 
-            // contextMenuImg
-            // 
-            this.contextMenuImg.ImageScalingSize = new System.Drawing.Size(245, 345);
-            this.contextMenuImg.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pasteToolStripMenuItem});
-            this.contextMenuImg.Name = "contextMenuImg";
-            this.contextMenuImg.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.contextMenuImg.Size = new System.Drawing.Size(153, 48);
-            this.contextMenuImg.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuImg_Opening);
-            // 
-            // pasteToolStripMenuItem
-            // 
-            this.pasteToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.pasteToolStripMenuItem.Text = "Paste";
-            this.pasteToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
-            // 
             // ddLocation
             // 
             this.ddLocation.BackColor = System.Drawing.Color.White;
@@ -346,11 +349,11 @@
             // copyLabel
             // 
             this.copyLabel.AutoSize = true;
-            this.copyLabel.Font = new System.Drawing.Font("Palatino Linotype", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.copyLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(126)))), ((int)(((byte)(57)))));
+            this.copyLabel.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.copyLabel.ForeColor = System.Drawing.Color.Black;
             this.copyLabel.Location = new System.Drawing.Point(343, 14);
             this.copyLabel.Name = "copyLabel";
-            this.copyLabel.Size = new System.Drawing.Size(0, 22);
+            this.copyLabel.Size = new System.Drawing.Size(0, 19);
             this.copyLabel.TabIndex = 7;
             // 
             // label11
@@ -539,14 +542,15 @@
             this.Start,
             this.End,
             this.content});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvContents.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvContents.DefaultCellStyle = dataGridViewCellStyle5;
+            this.gvContents.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.gvContents.Location = new System.Drawing.Point(6, 60);
             this.gvContents.MultiSelect = false;
             this.gvContents.Name = "gvContents";
@@ -566,32 +570,42 @@
             this.Title.HeaderText = "Title";
             this.Title.Name = "Title";
             this.Title.ReadOnly = true;
+            this.Title.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Title.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Season
             // 
-            this.Season.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Season.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Season.DefaultCellStyle = dataGridViewCellStyle2;
             this.Season.FillWeight = 25.60142F;
             this.Season.HeaderText = "Season";
             this.Season.Name = "Season";
+            this.Season.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Season.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Season.Width = 50;
             // 
             // Start
             // 
-            this.Start.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Start.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Start.DefaultCellStyle = dataGridViewCellStyle3;
             this.Start.FillWeight = 75.52417F;
             this.Start.HeaderText = "Start";
             this.Start.Name = "Start";
+            this.Start.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Start.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Start.Width = 37;
             // 
             // End
             // 
-            this.End.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.End.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.End.DefaultCellStyle = dataGridViewCellStyle4;
             this.End.FillWeight = 75.52417F;
             this.End.HeaderText = "End";
             this.End.Name = "End";
+            this.End.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.End.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.End.Width = 33;
             // 
@@ -599,6 +613,7 @@
             // 
             this.content.HeaderText = "content";
             this.content.Name = "content";
+            this.content.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.content.Visible = false;
             // 
             // label3
@@ -716,10 +731,10 @@
             this.DoubleBuffered = true;
             this.Name = "discView";
             this.Size = new System.Drawing.Size(738, 630);
+            this.contextMenuImg.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).EndInit();
-            this.contextMenuImg.ResumeLayout(false);
             this.gbContents.ResumeLayout(false);
             this.gbContents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvContents)).EndInit();
@@ -758,11 +773,6 @@
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Label lblPageLeft;
         private System.Windows.Forms.Label lblPageRight;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Season;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Start;
-        private System.Windows.Forms.DataGridViewTextBoxColumn End;
-        private System.Windows.Forms.DataGridViewTextBoxColumn content;
         private System.Windows.Forms.Button btn2;
         private System.Windows.Forms.Button btn3;
         private System.Windows.Forms.Button btn1;
@@ -776,5 +786,10 @@
         private RTextBox txtRangeStart;
         private System.Windows.Forms.ContextMenuStrip contextMenuImg;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Season;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Start;
+        private System.Windows.Forms.DataGridViewTextBoxColumn End;
+        private System.Windows.Forms.DataGridViewTextBoxColumn content;
     }
 }

@@ -204,7 +204,7 @@ namespace LFI
             vlbl.ForeColor = copylabel.ForeColor;
             vlbl.Size = new System.Drawing.Size(18, base.Height);
             Point point = Location;
-            point.X -= vlbl.Size.Width;
+            point.X -= vlbl.Size.Width + 2;
             vlbl.Location = point;
             vlbl.Visible = true;
         }

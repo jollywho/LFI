@@ -32,6 +32,7 @@ namespace LFI
         {
             InitializeComponent();
             DoubleBuffered = true;
+            gvContents.AlternatingRowsDefaultCellStyle = null;
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);

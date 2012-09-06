@@ -39,6 +39,7 @@ namespace LFI
             panelMain.Controls.Add(editPane);
             infoPane.Enable();
             discPane.Disable();
+            editPane.Disable();
         }
 
         /// <summary>
