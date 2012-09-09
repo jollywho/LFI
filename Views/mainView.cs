@@ -334,7 +334,7 @@ namespace LFI
             discPane.Disable();
             infoPane.Disable();
             gvTitles.Enabled = false;
-            txtSearch.Enabled = false;
+            panel1.Enabled = false;
             lblTitle.Text = string.Empty;
             editPane.Clear_Fields();
             editPane.SetFilter(filterCategory);
