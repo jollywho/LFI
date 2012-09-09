@@ -65,7 +65,7 @@ namespace LFI
         /// <param name="e"></param>
         private void btnImg_Click(object sender, EventArgs e)
         {
-            if (txtTitle.Text.Length < 1)
+            if (txtTitle.Text.Trim().Length < 1)
             {
                 toolTip.Show("Title Required!", imgError);
                 return;
@@ -80,7 +80,7 @@ namespace LFI
                     Image img = Image.FromStream(fs);
                     fs.Close();
                     img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
-                    img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), txtTitle.Text), 
+                    img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), txtTitle.Text.Trim()), 
                         System.Drawing.Imaging.ImageFormat.Jpeg);
                     imgTitle.Image = img;
                 }
@@ -97,7 +97,7 @@ namespace LFI
         private void populateDropDownTitles()
         {
             titles = DB_Handle.GetDataTable(string.Format(
-                @"Select title_id from titles order by title_id"));
+                @"Select title_id FROM titles order by title_id"));
             AutoCompleteStringCollection acCollection = new AutoCompleteStringCollection();
             for (int i = 0; i < titles.Rows.Count; i++)
                 acCollection.Add(titles.Rows[i][0].ToString());
@@ -147,7 +147,7 @@ namespace LFI
         {
             for (int i = 0; i < titles.Rows.Count; i++)
             {
-                if (titles.Rows[i][0].ToString() == txtTitle.Text)
+                if (titles.Rows[i][0].ToString() == txtTitle.Text.Trim())
                     return true;
             }
             return false;
@@ -165,7 +165,7 @@ namespace LFI
             bool status = false;
             try
             {
-                if (txtTitle.Text.Length == 0)
+                if (txtTitle.Text.Trim().Length == 0)
                     Error_Handle.TipError("Title required\n", toolTip, txtTitle);
                 else if (isnewrecord && SearchExistingTitles())
                     Error_Handle.TipError("Title already exists\n", toolTip, txtTitle);
@@ -185,7 +185,7 @@ namespace LFI
                     {
                         DB_Handle.UpdateTable(string.Format(
                             @"INSERT INTO TITLES VALUES ({0},'{1}','{2}','{3}','{4}','{5}');",
-                            "\"" + txtTitle.Text + "\"", txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
+                            "\"" + txtTitle.Text.Trim() + "\"", txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
                             txtYear.Text, ddStatus.Text, ddLanguage.Text, currentTitle));
                     }
                     else
@@ -199,15 +199,15 @@ namespace LFI
                             status='{4}', 
                             language='{5}'
                             WHERE title_id={6};",
-                            "\"" + txtTitle.Text + "\"", txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
+                            "\"" + txtTitle.Text.Trim() + "\"", txtEpisode.Text.Replace(" ", ""), ddCategory.Text,
                             txtYear.Text, ddStatus.Text, ddLanguage.Text, "\"" + currentTitle + "\""));
 
                         DB_Handle.UpdateTable(string.Format(
                             @"UPDATE CONTENTS SET
                             title_id={0}
                             WHERE title_id={1};",
-                            "\"" + txtTitle.Text + "\"", "\"" + currentTitle + "\""));
-                        Image_IO.rename_Image(currentTitle, txtTitle.Text);
+                            "\"" + txtTitle.Text.Trim() + "\"", "\"" + currentTitle + "\""));
+                        Image_IO.rename_Image(currentTitle, txtTitle.Text.Trim());
                     }
 
                     BetterDialog.ShowDialog("Saved", "Success", string.Empty, string.Empty, "OK", null, BetterDialog.ImageStyle.Icon);
@@ -255,7 +255,7 @@ namespace LFI
         /// <param name="e"></param>
         private void editPane_DragDrop(object sender, DragEventArgs e)
         {
-            if (txtTitle.Text.Length < 1)
+            if (txtTitle.Text.Trim().Length < 1)
             {
                 toolTip.Show("Title Required!", imgError);
             }
@@ -277,7 +277,7 @@ namespace LFI
                         Image img = Image.FromStream(fs);
                         fs.Close();
                         img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
-                        img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), txtTitle.Text),
+                        img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), txtTitle.Text.Trim()),
                             System.Drawing.Imaging.ImageFormat.Jpeg);
                         imgTitle.Image = img;
                     }
@@ -307,14 +307,14 @@ namespace LFI
             Image img = Clipboard.GetImage();
             if (img != null)
             {
-                if (txtTitle.Text.Length < 1)
+                if (txtTitle.Text.Trim().Length < 1)
                 {
                     toolTip.Show("Title Required!", imgError);
                 }
                 else
                 {
                     img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
-                    img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), txtTitle.Text),
+                    img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), txtTitle.Text.Trim()),
                         System.Drawing.Imaging.ImageFormat.Jpeg);
                     imgTitle.Image = img;
                 }
