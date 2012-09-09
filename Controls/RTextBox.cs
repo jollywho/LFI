@@ -31,6 +31,17 @@ namespace LFI
             None,
         }
 
+        public RTextBox()
+        {
+            var menu = new ContextMenu();
+            menu.MenuItems.Add(new MenuItem("Undo", (s,ea) => this.Undo()));
+            menu.MenuItems.Add(new MenuItem("-"));
+            menu.MenuItems.Add(new MenuItem("Cut", (s, ea) => this.Cut()));
+            menu.MenuItems.Add(new MenuItem("Copy", (s, ea) => this.Copy()));
+            menu.MenuItems.Add(new MenuItem("Paste", (s, ea) => this.Paste()));
+            this.ContextMenu = menu;
+        }
+
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern Int32 SendMessage
           (IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)] string lParam);
