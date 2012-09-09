@@ -16,6 +16,8 @@ namespace LFI
         public infoPane()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.Selectable, false);
+            UpdateStyles();
         }
 
         public void Disable()
@@ -34,18 +36,18 @@ namespace LFI
         {
             try
             {
-                txtTitle.Text = sel.Rows[0][0].ToString();
-                txtEpisode.Text = sel.Rows[0][1].ToString();
-                txtCategory.Text = sel.Rows[0][2].ToString();
-                txtYear.Text = sel.Rows[0][3].ToString();
-                txtStatus.Text = sel.Rows[0][4].ToString();
+                lblTitle.Text = sel.Rows[0][0].ToString();
+                lblEpisode.Text = sel.Rows[0][1].ToString();
+                lblCategory.Text = sel.Rows[0][2].ToString();
+                lblYear.Text = sel.Rows[0][3].ToString();
+                lblStatus.Text = sel.Rows[0][4].ToString();
             }
             catch (Exception ex)
             {
                 BetterDialog.ShowDialog("Load Error", "Error : " + ex.Message, "", "", "OK", null, BetterDialog.ImageStyle.Icon);
             }
 
-            setImage(txtTitle.Text);
+            setImage(lblTitle.Text);
         }
 
         /// <summary>
@@ -75,13 +77,13 @@ namespace LFI
         }
 
         /// <summary>
-        /// Save, resize, and format dragged image with txtTitle filename.
+        /// Save, resize, and format dragged image with lblTitle filename.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void infoPane_DragDrop(object sender, DragEventArgs e)
         {
-            if (txtTitle.Text.Length < 1)
+            if (lblTitle.Text.Length < 1)
             {
                 BetterDialog.ShowDialog("Image Save", "Error : Title Required", "", "", "OK", null, BetterDialog.ImageStyle.Icon);
             }
@@ -103,7 +105,7 @@ namespace LFI
                         Image img = Image.FromStream(fs);
                         fs.Close();
                         img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
-                        img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), txtTitle.Text),
+                        img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), lblTitle.Text),
                             System.Drawing.Imaging.ImageFormat.Jpeg);
                         imgTitle.Image = img;
                     }
@@ -114,6 +116,22 @@ namespace LFI
                 }
             }
             ParentForm.Activate();
+        }
+
+        private void tableLayoutPanel1_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+        {
+            if (e.Column == 0)
+            {
+                Graphics g = e.Graphics;
+                Rectangle r = e.CellBounds;
+                SolidBrush br = new SolidBrush(Color.FromArgb(240, 52, 57, 77));
+                g.FillRectangle(br, r);
+            }
+            if (e.Row != 0)
+            {
+                Graphics ge = e.Graphics;
+                ge.DrawLine(new Pen(Brushes.Gray, 1), e.CellBounds.Left, e.CellBounds.Top, e.CellBounds.Right, e.CellBounds.Top);
+            }
         }
     }
 }

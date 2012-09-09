@@ -16,7 +16,7 @@ namespace LFI
         public string Disc = string.Empty;
         private static int selSlot = 0;
         private static int selPage = 0;
-        private static string selDisc = "0";
+        private static string selDisc = string.Empty;
         public static string Location_ID = string.Empty;
         public int Page = 0;
         public int Slot = 0;
@@ -79,6 +79,8 @@ namespace LFI
         private void swapMenu_Opening(object sender, CancelEventArgs e)
         {
             this.ContextMenuStrip.Items[0].Visible = true;
+            if (Disc == string.Empty)
+                this.ContextMenuStrip.Items[1].Visible = false;
             if (selDisc != string.Empty)
                 this.ContextMenuStrip.Items[0].Text = "Swap " + selDisc + " Here";
             else if (Disc != string.Empty)
@@ -183,12 +185,14 @@ namespace LFI
                 this.Invoke((Action)(() => Disc = disc.ToString()));
                 this.Invoke((Action)(() => Page = Convert.ToInt32(page)));
                 this.Invoke((Action)(() => vlbl.Text = Disc));
+                this.Invoke((Action)(() => this.ContextMenuStrip.Hide()));
             }
             else
             {
                 Disc = disc.ToString();
                 Page = Convert.ToInt32(page);
                 vlbl.Text = Disc;
+                this.ContextMenuStrip.Hide();
             }
         }
 

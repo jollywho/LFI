@@ -13,6 +13,7 @@ namespace LFI
 {
     public partial class mainView : UserControl
     {
+        private MainForm caller;
         DataTable dvTitles;
         DataView dvSearch;
         public contentsPane discPane;
@@ -22,14 +23,17 @@ namespace LFI
         int savedRow = 0;
         public bool enabled;
         private int scrollpos = 0;
+        private string filterCategory;
 
         /// <summary>
         /// Load child Panes and components.
         /// </summary>
-        public mainView() 
+        public mainView(MainForm main) 
         {
             InitializeComponent();
+            caller = main;
             DoubleBuffered = true;
+            btnCategory_Click(btnCate_TV, null);
             populateList();
             infoPane = new infoPane();
             discPane = new contentsPane();
@@ -65,7 +69,6 @@ namespace LFI
                     }
                 }
                 dvSearch.RowFilter = filter;
-                savedRow = 0;
                 gvTitles.DataSource = dvSearch;
             }
             else
@@ -232,10 +235,12 @@ namespace LFI
         {
             enabled = true;
             this.Show();
-            txtSearch_TextChanged(null, null);
 
+            if (gvTitles.Rows.Count <= savedRow)
+                savedRow = 0;
             if (gvTitles.Rows.Count > 0)
                 gvTitles.Rows[savedRow].Selected = true;
+            Force_RowEnter();
             txtSearch.Focus();
         }
 
@@ -246,8 +251,10 @@ namespace LFI
         {
             dvTitles = DB_Handle.GetDataTable(string.Format(
                 @"SELECT title_id 
-                FROM titles WHERE language ='{0}' 
-                ORDER BY title_id", MainForm.Lmode));
+                FROM titles 
+                WHERE language ='{0}' AND category='{1}'
+                ORDER BY title_id",
+                MainForm.Lmode, filterCategory));
             gvTitles.DataSource = dvTitles;
 
             if (txtSearch.Text.Length >= 1)
@@ -288,7 +295,7 @@ namespace LFI
                 editPane.Disable();
                 discPane.Disable();
                 gvTitles.Enabled = true;
-                txtSearch.Enabled = true;
+                panel1.Enabled = true;
                 populateList();
                 Enable();
                 if (gvTitles.Rows.Count > 0)
@@ -308,12 +315,15 @@ namespace LFI
             discPane.Disable();
             infoPane.Disable();
             gvTitles.Enabled = false;
-            txtSearch.Enabled = false;
+            panel1.Enabled = false;
             editPane.Clear_Fields();
+            editPane.SetFilter(filterCategory);
             editPane.load_data(DB_Handle.GetDataTable(string.Format(
-                @"SELECT * FROM titles WHERE title_id={0}",
+                @"SELECT * FROM titles 
+                WHERE title_id={0}",
                 "\"" + gvTitles.SelectedCells[0].Value.ToString() + "\"")));
             editPane.Enable();
+            editPane.Focus();
         }
 
         /// <summary>
@@ -327,7 +337,9 @@ namespace LFI
             txtSearch.Enabled = false;
             lblTitle.Text = string.Empty;
             editPane.Clear_Fields();
+            editPane.SetFilter(filterCategory);
             editPane.Enable();
+            editPane.Focus();
         }
 #endregion INTERFACE
 
@@ -345,6 +357,25 @@ namespace LFI
                 txtSearch.SelectionStart = txtSearch.Text.Length;
                 txtSearch.Focus();
             }
+        }
+
+        private void btnCategory_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btnCate_TV.FlatAppearance.BorderSize = 0;
+            btnCate_Movie.FlatAppearance.BorderSize = 0;
+            btnCate_OVA.FlatAppearance.BorderSize = 0;
+            btn.FlatAppearance.BorderSize = 1;
+            filterCategory = btn.Text;
+            populateList();
+        }
+
+        private void gvTitles_DataSourceChanged(object sender, EventArgs e)
+        {
+            if (gvTitles.Rows.Count < 1)
+                caller.EditControlState(true);
+            else
+                caller.EditControlState(false);
         }
     }
 }

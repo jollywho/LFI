@@ -36,16 +36,19 @@
             this.contextMenuItemDisc = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.gvTitles = new System.Windows.Forms.DataGridView();
             this.bPanel1 = new LFI.BPanel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelMain = new LFI.BPanel();
+            this.panel1 = new LFI.BPanel();
+            this.btnCate_OVA = new LFI.FButton();
+            this.btnCate_Movie = new LFI.FButton();
+            this.btnCate_TV = new LFI.FButton();
             this.txtSearch = new LFI.RTextBox();
             this.contextMenuDisc.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTitles)).BeginInit();
             this.bPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuDisc
@@ -85,19 +88,6 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = global::LFI.Properties.Resources.borderBigg;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.txtSearch);
-            this.panel1.Controls.Add(this.gvTitles);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(10, 20, 10, 0);
-            this.panel1.Size = new System.Drawing.Size(179, 630);
-            this.panel1.TabIndex = 0;
-            // 
             // gvTitles
             // 
             this.gvTitles.AllowUserToAddRows = false;
@@ -125,7 +115,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gvTitles.DefaultCellStyle = dataGridViewCellStyle2;
-            this.gvTitles.Location = new System.Drawing.Point(0, 59);
+            this.gvTitles.Location = new System.Drawing.Point(0, 60);
             this.gvTitles.MultiSelect = false;
             this.gvTitles.Name = "gvTitles";
             this.gvTitles.ReadOnly = true;
@@ -136,7 +126,8 @@
             this.gvTitles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvTitles.Size = new System.Drawing.Size(180, 570);
             this.gvTitles.StandardTab = true;
-            this.gvTitles.TabIndex = 1;
+            this.gvTitles.TabIndex = 0;
+            this.gvTitles.DataSourceChanged += new System.EventHandler(this.gvTitles_DataSourceChanged);
             this.gvTitles.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvTitles_CellMouseEnter);
             this.gvTitles.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvTitles_RowEnter);
             this.gvTitles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gvTitles_KeyDown);
@@ -159,7 +150,7 @@
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(349, 54);
-            this.lblTitle.TabIndex = 1;
+            this.lblTitle.TabIndex = 0;
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelMain
@@ -170,11 +161,65 @@
             this.panelMain.Size = new System.Drawing.Size(350, 570);
             this.panelMain.TabIndex = 2;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.BackgroundImage = global::LFI.Properties.Resources.borderBigg;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.btnCate_OVA);
+            this.panel1.Controls.Add(this.btnCate_Movie);
+            this.panel1.Controls.Add(this.btnCate_TV);
+            this.panel1.Controls.Add(this.txtSearch);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 20);
+            this.panel1.Size = new System.Drawing.Size(179, 72);
+            this.panel1.TabIndex = 1;
+            // 
+            // btnCate_OVA
+            // 
+            this.btnCate_OVA.FlatAppearance.BorderSize = 0;
+            this.btnCate_OVA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCate_OVA.Location = new System.Drawing.Point(116, 7);
+            this.btnCate_OVA.Name = "btnCate_OVA";
+            this.btnCate_OVA.Size = new System.Drawing.Size(53, 23);
+            this.btnCate_OVA.TabIndex = 3;
+            this.btnCate_OVA.TabStop = false;
+            this.btnCate_OVA.Text = "OVA";
+            this.btnCate_OVA.UseVisualStyleBackColor = true;
+            this.btnCate_OVA.Click += new System.EventHandler(this.btnCategory_Click);
+            // 
+            // btnCate_Movie
+            // 
+            this.btnCate_Movie.FlatAppearance.BorderSize = 0;
+            this.btnCate_Movie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCate_Movie.Location = new System.Drawing.Point(63, 7);
+            this.btnCate_Movie.Name = "btnCate_Movie";
+            this.btnCate_Movie.Size = new System.Drawing.Size(53, 23);
+            this.btnCate_Movie.TabIndex = 2;
+            this.btnCate_Movie.TabStop = false;
+            this.btnCate_Movie.Text = "Movie";
+            this.btnCate_Movie.UseVisualStyleBackColor = true;
+            this.btnCate_Movie.Click += new System.EventHandler(this.btnCategory_Click);
+            // 
+            // btnCate_TV
+            // 
+            this.btnCate_TV.FlatAppearance.BorderSize = 0;
+            this.btnCate_TV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCate_TV.Location = new System.Drawing.Point(10, 7);
+            this.btnCate_TV.Name = "btnCate_TV";
+            this.btnCate_TV.Size = new System.Drawing.Size(53, 23);
+            this.btnCate_TV.TabIndex = 1;
+            this.btnCate_TV.TabStop = false;
+            this.btnCate_TV.Text = "TV";
+            this.btnCate_TV.UseVisualStyleBackColor = true;
+            this.btnCate_TV.Click += new System.EventHandler(this.btnCategory_Click);
+            // 
             // txtSearch
             // 
             this.txtSearch.Cue = "<Search Here>";
-            this.txtSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtSearch.Location = new System.Drawing.Point(10, 20);
+            this.txtSearch.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtSearch.Location = new System.Drawing.Point(10, 32);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Restriction = LFI.RTextBox.RestrictionType.None;
             this.txtSearch.Size = new System.Drawing.Size(159, 20);
@@ -189,15 +234,16 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.bPanel1);
             this.Controls.Add(this.panelMain);
+            this.Controls.Add(this.gvTitles);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.Name = "mainView";
             this.Size = new System.Drawing.Size(534, 630);
             this.contextMenuDisc.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTitles)).EndInit();
             this.bPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -210,10 +256,13 @@
         private System.Windows.Forms.ToolStripMenuItem titleInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.Panel panel1;
+        private BPanel panel1;
         private System.Windows.Forms.DataGridView gvTitles;
         private BPanel panelMain;
         private RTextBox txtSearch;
         private BPanel bPanel1;
+        private FButton btnCate_OVA;
+        private FButton btnCate_Movie;
+        private FButton btnCate_TV;
     }
 }

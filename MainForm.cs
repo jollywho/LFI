@@ -53,8 +53,8 @@ namespace LFI
             UpdateStyles();
             InitializeComponent();
             discEditItem.Click += new EventHandler(discEditItem_Click);
-            mv = new mainView();
-            menuTitleItem.PerformClick();
+            mv = new mainView(this);
+            menuTitleItem_Click(null, null);
         }
 
         /// <summary>
@@ -68,7 +68,11 @@ namespace LFI
             toolstripLanguage.Text = Lmode;
             mv.populateList();
             mv.Force_RowEnter();
-            if (mv.IsEmpty())
+        }
+
+        public void EditControlState(bool state)
+        {
+            if (state)
             {
                 cancelItem.Enabled = false;
                 saveItem.Enabled = false;
@@ -428,12 +432,14 @@ namespace LFI
 
         private void toolstripJPN_Click(object sender, EventArgs e)
         {
+            if (mode == ViewMode.Edit) return;
             Lmode = toolstripJPN.Text;
             Load_Language();
         }
 
         private void toolstripENG_Click(object sender, EventArgs e)
         {
+            if (mode == ViewMode.Edit) return;
             Lmode = toolstripENG.Text;
             Load_Language();
         }
@@ -444,11 +450,6 @@ namespace LFI
                 TopMost = false;
             if (WindowState == FormWindowState.Normal)
                 TopMost = menuAlwaysTop.Checked;
-        }
-
-        private void MainForm_ResizeEnd(object sender, EventArgs e)
-        {
-            Console.WriteLine("END");
         }
     }
         #endregion Form_Events

@@ -183,11 +183,17 @@
     <Compile Include="Controls\BPanel.Designer.cs">
       <DependentUpon>BPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BTableLayout.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\DButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\DButton.Designer.cs">
       <DependentUpon>DButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FButton.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\RTextBox.cs">
       <SubType>Component</SubType>
@@ -298,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BetterDialogSource\DiscFinderDialog.resx">
       <DependentUpon>DiscFinderDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\BTableLayout.resx">
+      <DependentUpon>BTableLayout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DButton.resx">
       <DependentUpon>DButton.cs</DependentUpon>

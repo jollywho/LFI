@@ -38,6 +38,13 @@ namespace LFI
             this.Show();
         }
 
+        public void SetFilter(string filter)
+        {
+            if (filter == "OVA")
+                filter = "OVA/ Special";
+            ddCategory.Text = filter;
+        }
+
         private void numericTextbox_TextChanged(object sender, EventArgs e)
         {
             TextBox txt = (TextBox)sender;
@@ -311,6 +318,22 @@ namespace LFI
                         System.Drawing.Imaging.ImageFormat.Jpeg);
                     imgTitle.Image = img;
                 }
+            }
+        }
+
+        private void tableLayoutPanel1_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+        {
+            if (e.Column == 0)
+            {
+                Graphics g = e.Graphics;
+                Rectangle r = e.CellBounds;
+                SolidBrush br = new SolidBrush(Color.FromArgb(240, 52, 57, 77));
+                g.FillRectangle(br, r);
+            }
+            if (e.Row != 0)
+            {
+                Graphics ge = e.Graphics;
+                ge.DrawLine(new Pen(Brushes.Gray, 1), e.CellBounds.Left, e.CellBounds.Top, e.CellBounds.Right, e.CellBounds.Top);
             }
         }
     }

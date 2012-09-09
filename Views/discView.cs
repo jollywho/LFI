@@ -89,6 +89,7 @@ namespace LFI
                 @"Select title_id from titles order by title_id"));
             ddInsTitle.DataSource = titles;
             ddInsTitle.DisplayMember = "title_id";
+            ddInsTitle.Text = "";
             if (lastControlEntered != null)
                 lastControlEntered.Focus();
         }
@@ -289,7 +290,7 @@ namespace LFI
                     gvContents.Rows.Add(gvr);
 
                     txtSeason.Text = "1";
-                    ddInsTitle.SelectedText = "";
+                    ddInsTitle.Text = "";
                     txtRangeStart.Clear();
                     txtRangeEnd.Clear();
                 }
@@ -536,6 +537,15 @@ namespace LFI
                 ddLocation.Text = DiscFinderDialog.Location;
                 txtJump.Text = DiscFinderDialog.Page;
                 selectRequired = true;
+                //check if disc is on current page
+                foreach (DButton btn in dbuttons)
+                {
+                    if (btn.Disc == DiscFinderDialog.Disc)
+                    {
+                        btn.DButton_Click(null, null);
+                        selectRequired = false;
+                    }
+                }
             }
         }
 
