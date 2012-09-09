@@ -51,7 +51,7 @@
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtJump = new LFI.RTextBox();
             this.panel1 = new LFI.BPanel();
-            this.imgTitle = new System.Windows.Forms.PictureBox();
+            this.imgTitle = new LFI.FButton();
             this.ddLocation = new System.Windows.Forms.ComboBox();
             this.copyLabel = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -82,7 +82,6 @@
             this.lblRange = new System.Windows.Forms.Label();
             this.contextMenuImg.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).BeginInit();
             this.gbContents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvContents)).BeginInit();
             this.SuspendLayout();
@@ -296,7 +295,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::LFI.Properties.Resources.borderBigg;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.imgTitle);
@@ -311,6 +310,7 @@
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.btnGenerate);
             this.panel1.Controls.Add(this.gbContents);
+            this.panel1.ForeColor = System.Drawing.Color.Transparent;
             this.panel1.Location = new System.Drawing.Point(-10, 374);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(759, 256);
@@ -318,13 +318,14 @@
             // 
             // imgTitle
             // 
-            this.imgTitle.BackgroundImage = global::LFI.Properties.Resources.notavailable;
             this.imgTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.imgTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imgTitle.ContextMenuStrip = this.contextMenuImg;
-            this.imgTitle.Location = new System.Drawing.Point(540, 18);
+            this.imgTitle.FlatAppearance.BorderSize = 0;
+            this.imgTitle.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.imgTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.imgTitle.Location = new System.Drawing.Point(535, 13);
             this.imgTitle.Name = "imgTitle";
-            this.imgTitle.Size = new System.Drawing.Size(200, 232);
+            this.imgTitle.Size = new System.Drawing.Size(200, 230);
             this.imgTitle.TabIndex = 94;
             this.imgTitle.TabStop = false;
             this.imgTitle.DragDrop += new System.Windows.Forms.DragEventHandler(this.imgTitle_DragDrop);
@@ -734,7 +735,6 @@
             this.contextMenuImg.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgTitle)).EndInit();
             this.gbContents.ResumeLayout(false);
             this.gbContents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvContents)).EndInit();
@@ -779,7 +779,7 @@
         private System.Windows.Forms.Button btn4;
         private System.Windows.Forms.ContextMenuStrip buttonMenu;
         private BPanel panel1;
-        private System.Windows.Forms.PictureBox imgTitle;
+        private FButton imgTitle;
         private RTextBox txtJump;
         private RTextBox txtSeason;
         private RTextBox txtRangeEnd;

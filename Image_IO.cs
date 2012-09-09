@@ -34,11 +34,11 @@ namespace LFI
                         FileStream fs = new FileStream(path + string.Format("\\{0}.jpg", titleStrs[i]), FileMode.Open);
                         Image img = Image.FromStream(fs);
                         fs.Close();
-                        imgLst.Add(resize_Image(img, btn.Width, btn.Height));
+                        imgLst.Add(resize_Image(img, 245, 345));
                     }
                     else
                         imgLst.Add(resize_Image(LFI.Properties.Resources.notavailable,
-                            btn.Width, btn.Height));
+                            245, 345));
                 }
             }
             Image finalImage = merge_Images(imgLst, btn.Width, btn.Height, titleLst.Count);
@@ -58,7 +58,7 @@ namespace LFI
             using (Graphics gr = Graphics.FromImage(newImage))
             {
                 gr.SmoothingMode = SmoothingMode.AntiAlias;
-                gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                gr.InterpolationMode = InterpolationMode.HighQualityBilinear;
                 gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
                 gr.DrawImage(srcImage, new Rectangle(0, 0, newWidth, newHeight));
                 return newImage;
@@ -166,7 +166,7 @@ namespace LFI
         /// <returns></returns>
         public static Image generateDiscImage(string discid, string locationid,  Control btn)
         {
-            Image img = LFI.Properties.Resources.border;
+            Image img = resize_Image(LFI.Properties.Resources.border, 245, 345);
             DataTable temp = DB_Handle.GetDataTable(string.Format(
                 @"SELECT * FROM contents JOIN disc_contents on contents.content_id =
                 disc_contents.content_id WHERE disc_id='{0}' and location_id='{1}';",

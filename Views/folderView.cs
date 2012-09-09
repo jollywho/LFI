@@ -61,10 +61,13 @@ namespace LFI
             choices.Add(EPFORMAT.ALL_NUM, "{##}{##}");
             choices.Add(EPFORMAT.NUM_X_NUM, "{##}x{##}");
             choices.Add(EPFORMAT.S_NUM_E_NUM, "S{##}E{##}");
+            choices.Add(EPFORMAT.LONG, "Se{##}Ep{##}");
             ddFormat.DataSource = new BindingSource(choices, null);
             ddFormat.DisplayMember = "Value";
             ddFormat.ValueMember = "Key";
             choices.Remove(EPFORMAT.ALL_NUM);
+            choices.Remove(EPFORMAT.LONG);
+            choices.Add(EPFORMAT.MOVIE, "*[####]*");
             ddFormat_Use.DataSource = new BindingSource(choices, null);
             ddFormat_Use.DisplayMember = "Value";
             ddFormat_Use.ValueMember = "Key";

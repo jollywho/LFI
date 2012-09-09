@@ -12,6 +12,8 @@ namespace LFI
         ALL_NUM,        //{##}{##}
         NUM_X_NUM,      //{##}x{##}
         S_NUM_E_NUM,    //S{##}E{##}
+        MOVIE,          //*{[####]}
+        LONG,           //Se{##} Ep{##}
     };
 
     public class FileNameFormat
@@ -20,10 +22,12 @@ namespace LFI
         private const string reg_NUM_X_NUM = @"(\[(.*?)\])?(.*?)(\d{1,3})[Xx]?(\d{1,3}).*?";
         private const string reg_S_NUM_E_NUM = @"(\[(.*?)\])?(.*?)[Ss]?(\d{1,2})[Ee]?(\d{2}).*?";
         private const string reg_ALL_NUM = @"(\[(.*?)\])?(.*?)(0?[\d]{1,}?)([\d]{2}).*?";
+        private const string reg_LONG = @"(\[(.*?)\])?(.*?)[season]?.*?(\d{1,2})[episode]?.*?(\d{1,2}).*?";
 
         private const string format_NUM = @" - {0:d2}";
         private const string format_NUM_X_NUM = @" - {1:d2}x{0:d2}";
         private const string format_S_NUM_E_NUM = @" - S{1:d2}E{0:d2}";
+        private const string format_MOVIE = @"_[{0:d4}]";
 
         private string regChoice;
         private string fileName;
@@ -58,6 +62,9 @@ namespace LFI
                     break;
                 case EPFORMAT.S_NUM_E_NUM:
                     regChoice = reg_S_NUM_E_NUM;
+                    break;
+                case EPFORMAT.LONG:
+                    regChoice = reg_LONG;
                     break;
             }
         }
@@ -95,6 +102,9 @@ namespace LFI
                     break;
                 case EPFORMAT.S_NUM_E_NUM:
                     formatString = format_S_NUM_E_NUM;
+                    break;
+                case EPFORMAT.MOVIE:
+                    formatString = format_MOVIE;
                     break;
             }
             return formatString;

@@ -522,7 +522,7 @@ namespace LFI
 
         public void setImagebox(Image img)
         {
-            imgTitle.BackgroundImage = img;
+            imgTitle.Image = img;
         }
 
         public Control getImagebox()
@@ -612,7 +612,7 @@ namespace LFI
                         Folder_IO.GetUserImagePath(), 
                         gvContents.SelectedRows[0].Cells[0].Value),
                         System.Drawing.Imaging.ImageFormat.Jpeg);
-                    imgTitle.BackgroundImage = img;
+                    imgTitle.Image = img;
                 }
                 catch (Exception ex)
                 {
@@ -648,7 +648,7 @@ namespace LFI
                 else
                 {
                     DialogResult result = DialogResult.OK;
-                    if (imgTitle.BackgroundImage != LFI.Properties.Resources.border)
+                    if (imgTitle.Image != LFI.Properties.Resources.border)
                     {
                         result = BetterDialog.ShowDialog("Change Image", "Are you sure you want to overwrite this image?",
                             "", "Yes", "No", imgTitle.Image, BetterDialog.ImageStyle.Image);
@@ -658,7 +658,7 @@ namespace LFI
                         img = Image_IO.resize_Image(img, imgTitle.Width, imgTitle.Height);
                         img.Save(string.Format("{0}\\{1}.jpg", Folder_IO.GetUserImagePath(), gvContents.SelectedRows[0].Cells[0].Value),
                             System.Drawing.Imaging.ImageFormat.Jpeg);
-                        imgTitle.BackgroundImage = img;
+                        imgTitle.Image = img;
                     }
                 }
             }
