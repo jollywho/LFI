@@ -212,7 +212,7 @@
             this.ddCategory.Items.AddRange(new object[] {
             "TV",
             "Movie",
-            "OVA/ Special"});
+            "OVA"});
             this.ddCategory.Location = new System.Drawing.Point(84, 130);
             this.ddCategory.Margin = new System.Windows.Forms.Padding(5, 10, 5, 3);
             this.ddCategory.Name = "ddCategory";

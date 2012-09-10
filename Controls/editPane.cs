@@ -40,8 +40,6 @@ namespace LFI
 
         public void SetFilter(string filter)
         {
-            if (filter == "OVA")
-                filter = "OVA/ Special";
             ddCategory.Text = filter;
         }
 
