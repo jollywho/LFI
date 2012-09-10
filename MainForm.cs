@@ -46,12 +46,12 @@ namespace LFI
         {
             Main = this;
             Lmode = "JPN";
+            InitializeComponent();
             this.DoubleBuffered = true;
             SetStyle(ControlStyles.AllPaintingInWmPaint |
                           ControlStyles.OptimizedDoubleBuffer |
                           ControlStyles.UserPaint, true);
             UpdateStyles();
-            InitializeComponent();
             discEditItem.Click += new EventHandler(discEditItem_Click);
             mv = new mainView(this);
             menuTitleItem_Click(null, null);
@@ -396,6 +396,7 @@ namespace LFI
             Location = Properties.Settings.Default.location;
             Folder_IO.GetUserImagePath();
             this.Size = vertical;
+            this.ActiveControl = mv.GetInitialControl();
         }
 
         /// <summary>
@@ -455,6 +456,11 @@ namespace LFI
                 TopMost = false;
             if (WindowState == FormWindowState.Normal)
                 TopMost = menuAlwaysTop.Checked;
+        }
+
+        private void MainForm_Layout(object sender, LayoutEventArgs e)
+        {
+            Console.WriteLine("layout");
         }
     }
         #endregion Form_Events

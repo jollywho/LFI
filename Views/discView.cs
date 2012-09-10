@@ -37,6 +37,7 @@ namespace LFI
             worker.WorkerSupportsCancellation = true;
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
             worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_Completed);
+            imgTitle.Image = Image_IO.generateDiscImage("", "", imgTitle);
 
             for (int i = 0, slot = 1; i <= (PAGES_PER_VIEW * DISCS_PER_PAGE) - 1; i++, slot++)
             {

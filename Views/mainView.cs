@@ -48,6 +48,9 @@ namespace LFI
 
             txtSearch.Enter += new EventHandler(c_Enter);
             gvTitles.Enter += new EventHandler(c_Enter);
+            panel1.TabIndex = 0;
+            txtSearch.TabIndex = 0;
+            txtSearch.Select();
         }
 
         /// <summary>
@@ -392,6 +395,11 @@ namespace LFI
                 caller.EditControlState(true);
             else
                 caller.EditControlState(false);
+        }
+
+        public Control GetInitialControl()
+        {
+            return gvTitles;
         }
     }
 }

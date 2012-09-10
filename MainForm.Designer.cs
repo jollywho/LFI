@@ -74,12 +74,12 @@
             this.slblItems,
             this.slblItemSize});
             this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.statusStrip1.Location = new System.Drawing.Point(0, 376);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 449);
             this.statusStrip1.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(534, 23);
             this.statusStrip1.SizingGrip = false;
-            this.statusStrip1.TabIndex = 8;
+            this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolstripLanguage
@@ -103,7 +103,7 @@
             this.toolstripJPN.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolstripJPN.Name = "toolstripJPN";
             this.toolstripJPN.ShowShortcutKeys = false;
-            this.toolstripJPN.Size = new System.Drawing.Size(152, 22);
+            this.toolstripJPN.Size = new System.Drawing.Size(90, 22);
             this.toolstripJPN.Text = "JPN";
             this.toolstripJPN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolstripJPN.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
@@ -114,7 +114,7 @@
             this.toolstripENG.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolstripENG.Name = "toolstripENG";
             this.toolstripENG.ShowShortcutKeys = false;
-            this.toolstripENG.Size = new System.Drawing.Size(152, 22);
+            this.toolstripENG.Size = new System.Drawing.Size(90, 22);
             this.toolstripENG.Text = "ENG";
             this.toolstripENG.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolstripENG.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
@@ -302,8 +302,8 @@
             this.bPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bPanel.Location = new System.Drawing.Point(0, 0);
             this.bPanel.Name = "bPanel";
-            this.bPanel.Size = new System.Drawing.Size(534, 376);
-            this.bPanel.TabIndex = 9;
+            this.bPanel.Size = new System.Drawing.Size(534, 449);
+            this.bPanel.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -311,7 +311,7 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = global::LFI.Properties.Resources.bannerOrig;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(534, 399);
+            this.ClientSize = new System.Drawing.Size(534, 472);
             this.Controls.Add(this.bPanel);
             this.Controls.Add(this.statusStrip1);
             this.DoubleBuffered = true;
@@ -320,12 +320,14 @@
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Menu = this.mainMenu1;
+            this.MinimumSize = new System.Drawing.Size(50, 500);
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "LFI";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.Layout += new System.Windows.Forms.LayoutEventHandler(this.MainForm_Layout);
             this.Move += new System.EventHandler(this.MainForm_Move);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.statusStrip1.ResumeLayout(false);

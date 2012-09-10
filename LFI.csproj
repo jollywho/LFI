@@ -213,10 +213,10 @@
     <Compile Include="AlphanumComparator.cs" />
     <Compile Include="Crc32.cs" />
     <Compile Include="DB_Handle.cs" />
-    <Compile Include="Controls\editPane.cs">
+    <Compile Include="Pane\editPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\editPane.Designer.cs">
+    <Compile Include="Pane\editPane.Designer.cs">
       <DependentUpon>editPane.cs</DependentUpon>
     </Compile>
     <Compile Include="NativeMethods.cs" />
@@ -233,10 +233,10 @@
       <DependentUpon>folderView.cs</DependentUpon>
     </Compile>
     <Compile Include="Folder_IO.cs" />
-    <Compile Include="Controls\infoPane.cs">
+    <Compile Include="Pane\infoPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\infoPane.Designer.cs">
+    <Compile Include="Pane\infoPane.Designer.cs">
       <DependentUpon>infoPane.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -258,10 +258,10 @@
     <Compile Include="Views\mainView.Designer.cs">
       <DependentUpon>mainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\contentsPane.cs">
+    <Compile Include="Pane\contentsPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\contentsPane.Designer.cs">
+    <Compile Include="Pane\contentsPane.Designer.cs">
       <DependentUpon>contentsPane.cs</DependentUpon>
     </Compile>
     <None Include="Resources\eraser.png" />
@@ -314,7 +314,7 @@
     <EmbeddedResource Include="Controls\VLabel.resx">
       <DependentUpon>VLabel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\editPane.resx">
+    <EmbeddedResource Include="Pane\editPane.resx">
       <DependentUpon>editPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\discView.resx">
@@ -323,7 +323,7 @@
     <EmbeddedResource Include="Views\folderView.resx">
       <DependentUpon>folderView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\infoPane.resx">
+    <EmbeddedResource Include="Pane\infoPane.resx">
       <DependentUpon>infoPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
@@ -337,7 +337,7 @@
     <EmbeddedResource Include="Views\mainView.resx">
       <DependentUpon>mainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\contentsPane.resx">
+    <EmbeddedResource Include="Pane\contentsPane.resx">
       <DependentUpon>contentsPane.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="LFI_TemporaryKey.pfx" />
