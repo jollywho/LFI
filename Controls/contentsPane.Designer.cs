@@ -97,6 +97,7 @@
             this.gvDisc.Size = new System.Drawing.Size(340, 433);
             this.gvDisc.StandardTab = true;
             this.gvDisc.TabIndex = 78;
+            this.gvDisc.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvDisc_CellDoubleClick);
             // 
             // Column1
             // 

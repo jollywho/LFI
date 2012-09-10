@@ -26,7 +26,7 @@ namespace LFI
         List<DButton> dbuttons = new List<DButton>();
         Control lastControlEntered;
         bool refreshRequired = false;
-        bool selectRequired = false;
+        private string selectRequiredID = string.Empty;
 
         public discView()
         {
@@ -240,14 +240,15 @@ namespace LFI
                 worker.RunWorkerAsync(cur_page);
                 refreshRequired = false;
             }
-            if (selectRequired)
+            if (selectRequiredID != string.Empty)
             {
                 foreach (DButton btn in dbuttons)
                 {
-                    if (btn.Disc == DiscFinderDialog.Disc)
+                    if (btn.Disc == selectRequiredID)
                     {
                         btn.DButton_Click(null, null);
-                        selectRequired = false;
+                        selectRequiredID = string.Empty;
+                        return;
                     }
                 }
             }
@@ -536,17 +537,25 @@ namespace LFI
             {
                 ddLocation.Text = DiscFinderDialog.Location;
                 txtJump.Text = DiscFinderDialog.Page;
-                selectRequired = true;
+                selectRequiredID = DiscFinderDialog.Disc;
                 //check if disc is on current page
                 foreach (DButton btn in dbuttons)
                 {
-                    if (btn.Disc == DiscFinderDialog.Disc)
+                    if (btn.Disc == selectRequiredID)
                     {
                         btn.DButton_Click(null, null);
-                        selectRequired = false;
+                        selectRequiredID = string.Empty;
+                        return;
                     }
                 }
             }
+        }
+
+        public void OpenAt(string locationID, string pageID, string discID)
+        {
+            ddLocation.Text = locationID;
+            txtJump.Text = pageID;
+            selectRequiredID = discID;
         }
 
         /// <summary>

@@ -16,7 +16,8 @@ namespace LFI
         private MainForm caller;
         DataTable dvTitles;
         DataView dvSearch;
-        public contentsPane discPane;
+        Control lastControlEntered;
+        public contentsPane contentPane;
         public editPane editPane;
         public infoPane infoPane;
         int[] cellHover = new int[2];
@@ -36,14 +37,28 @@ namespace LFI
             btnCategory_Click(btnCate_TV, null);
             populateList();
             infoPane = new infoPane();
-            discPane = new contentsPane();
+            contentPane = new contentsPane(caller);
             editPane = new editPane();
             panelMain.Controls.Add(infoPane);
-            panelMain.Controls.Add(discPane);
+            panelMain.Controls.Add(contentPane);
             panelMain.Controls.Add(editPane);
             infoPane.Enable();
-            discPane.Disable();
+            contentPane.Disable();
             editPane.Disable();
+
+            txtSearch.Enter += new EventHandler(c_Enter);
+            gvTitles.Enter += new EventHandler(c_Enter);
+        }
+
+        /// <summary>
+        /// Save active control.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void c_Enter(object sender, EventArgs e)
+        {
+            if (sender is Control)
+                lastControlEntered = (Control)sender;
         }
 
         /// <summary>
@@ -98,7 +113,7 @@ namespace LFI
                     }
                     else
                     {
-                        discPane.load_data(gvTitles.SelectedCells[0].Value.ToString());
+                        contentPane.load_data(gvTitles.SelectedCells[0].Value.ToString());
                     }
                 }
             }
@@ -149,10 +164,10 @@ namespace LFI
         {
             if (infoPane.active)
             {
-                discPane.Enable();
+                contentPane.Enable();
                 infoPane.Disable();
                 editPane.Disable();
-                discPane.load_data(gvTitles.SelectedCells[0].Value.ToString());
+                contentPane.load_data(gvTitles.SelectedCells[0].Value.ToString());
             }
         }
 
@@ -163,9 +178,9 @@ namespace LFI
         /// <param name="e"></param>
         private void titleInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (discPane.active)
+            if (contentPane.active)
             {
-                discPane.Disable();
+                contentPane.Disable();
                 editPane.Disable();
                 load_infoPane();
             }
@@ -241,7 +256,8 @@ namespace LFI
             if (gvTitles.Rows.Count > 0)
                 gvTitles.Rows[savedRow].Selected = true;
             Force_RowEnter();
-            txtSearch.Focus();
+            if (lastControlEntered != null)
+                lastControlEntered.Focus();
         }
 
         /// <summary>
@@ -293,7 +309,7 @@ namespace LFI
                     scrollpos = gvTitles.FirstDisplayedScrollingRowIndex;
                 infoPane.Enable();
                 editPane.Disable();
-                discPane.Disable();
+                contentPane.Disable();
                 gvTitles.Enabled = true;
                 panel1.Enabled = true;
                 populateList();
@@ -312,7 +328,7 @@ namespace LFI
         /// </summary>
         public void load_editPane()
         {
-            discPane.Disable();
+            contentPane.Disable();
             infoPane.Disable();
             gvTitles.Enabled = false;
             panel1.Enabled = false;
@@ -331,7 +347,7 @@ namespace LFI
         /// </summary>
         public void load_blank_editPane()
         {
-            discPane.Disable();
+            contentPane.Disable();
             infoPane.Disable();
             gvTitles.Enabled = false;
             panel1.Enabled = false;

@@ -101,6 +101,11 @@ namespace LFI
         {
             menuItem3.Enabled = state;
         }
+        public void OpenDiscViewAt(string locationID, string pageID, string discID)
+        {
+            dv.OpenAt(locationID, pageID, discID);
+            menuDiscItem_Click(null, null);
+        }
         #endregion MENU_INTERFACE
         #region MENU_CLICK
 
