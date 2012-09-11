@@ -10,7 +10,7 @@ namespace LFI
 {
     class Folder_IO
     {
-        static Regex reg = new Regex(@"(?<=(?:\[))[a-fA-F0-9]{8}(?=(?:\]))(?x)");
+        static Regex reg = new Regex(@"(?<=(?:))[a-fA-F0-9]{8}(?=(?:))(?x)");
         const int CRC_STRLEN = 10; //square brackets inclusive
         const long DVD_SIZE = 4550000000;
         const long INCREMENT_VALUE = 10000000;

@@ -212,7 +212,6 @@ namespace LFI
                 titleEditItem.Checked = false;
                 bPanel.SuspendLayout();
                 mv.load_infoPane();
-                mv.Force_RowEnter();
                 mode = ViewMode.Main;
                 bPanel.ResumeLayout();
             }

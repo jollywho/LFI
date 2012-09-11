@@ -45,12 +45,9 @@ namespace LFI
             infoPane.Enable();
             contentPane.Disable();
             editPane.Disable();
-
+            
             txtSearch.Enter += new EventHandler(c_Enter);
             gvTitles.Enter += new EventHandler(c_Enter);
-            panel1.TabIndex = 0;
-            txtSearch.TabIndex = 0;
-            txtSearch.Select();
         }
 
         /// <summary>
@@ -60,8 +57,7 @@ namespace LFI
         /// <param name="e"></param>
         void c_Enter(object sender, EventArgs e)
         {
-            if (sender is Control)
-                lastControlEntered = (Control)sender;
+            lastControlEntered = (Control)sender;
         }
 
         /// <summary>
@@ -257,8 +253,8 @@ namespace LFI
             if (gvTitles.Rows.Count <= savedRow)
                 savedRow = 0;
             if (gvTitles.Rows.Count > 0)
-                gvTitles.Rows[savedRow].Selected = true;
-            Force_RowEnter();
+                gvTitles.Rows[savedRow].Cells[0].Selected = true;
+
             if (lastControlEntered != null)
                 lastControlEntered.Focus();
         }
@@ -308,15 +304,17 @@ namespace LFI
         {
             try
             {
+                editPane.Disable();
+                contentPane.Disable();
                 if (gvTitles.Rows.Count > 0)
                     scrollpos = gvTitles.FirstDisplayedScrollingRowIndex;
                 infoPane.Enable();
-                editPane.Disable();
-                contentPane.Disable();
                 gvTitles.Enabled = true;
                 panel1.Enabled = true;
+                
                 populateList();
                 Enable();
+                
                 if (gvTitles.Rows.Count > 0)
                     gvTitles.FirstDisplayedScrollingRowIndex = scrollpos;
             }
@@ -331,6 +329,7 @@ namespace LFI
         /// </summary>
         public void load_editPane()
         {
+            Control saveControl = lastControlEntered;
             contentPane.Disable();
             infoPane.Disable();
             gvTitles.Enabled = false;
@@ -343,6 +342,7 @@ namespace LFI
                 "\"" + gvTitles.SelectedCells[0].Value.ToString() + "\"")));
             editPane.Enable();
             editPane.Focus();
+            lastControlEntered = saveControl;
         }
 
         /// <summary>
@@ -350,6 +350,7 @@ namespace LFI
         /// </summary>
         public void load_blank_editPane()
         {
+            Control saveControl = lastControlEntered;
             contentPane.Disable();
             infoPane.Disable();
             gvTitles.Enabled = false;
@@ -359,6 +360,7 @@ namespace LFI
             editPane.SetFilter(filterCategory);
             editPane.Enable();
             editPane.Focus();
+            lastControlEntered = saveControl;
         }
 #endregion INTERFACE
 

@@ -41,6 +41,7 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelMain = new LFI.BPanel();
             this.panel1 = new LFI.BPanel();
+            this.bPanel2 = new LFI.BPanel();
             this.btnCate_OVA = new LFI.FButton();
             this.btnCate_Movie = new LFI.FButton();
             this.btnCate_TV = new LFI.FButton();
@@ -49,6 +50,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvTitles)).BeginInit();
             this.bPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.bPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuDisc
@@ -115,7 +117,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gvTitles.DefaultCellStyle = dataGridViewCellStyle2;
-            this.gvTitles.Location = new System.Drawing.Point(0, 60);
+            this.gvTitles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvTitles.Location = new System.Drawing.Point(0, 0);
             this.gvTitles.MultiSelect = false;
             this.gvTitles.Name = "gvTitles";
             this.gvTitles.ReadOnly = true;
@@ -176,6 +179,15 @@
             this.panel1.Size = new System.Drawing.Size(179, 72);
             this.panel1.TabIndex = 1;
             // 
+            // bPanel2
+            // 
+            this.bPanel2.BackColor = System.Drawing.Color.Transparent;
+            this.bPanel2.Controls.Add(this.gvTitles);
+            this.bPanel2.Location = new System.Drawing.Point(0, 60);
+            this.bPanel2.Name = "bPanel2";
+            this.bPanel2.Size = new System.Drawing.Size(180, 570);
+            this.bPanel2.TabIndex = 3;
+            // 
             // btnCate_OVA
             // 
             this.btnCate_OVA.FlatAppearance.BorderSize = 0;
@@ -232,9 +244,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.bPanel2);
             this.Controls.Add(this.bPanel1);
             this.Controls.Add(this.panelMain);
-            this.Controls.Add(this.gvTitles);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.Name = "mainView";
@@ -244,6 +256,7 @@
             this.bPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.bPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -264,5 +277,6 @@
         private FButton btnCate_OVA;
         private FButton btnCate_Movie;
         private FButton btnCate_TV;
+        private BPanel bPanel2;
     }
 }
