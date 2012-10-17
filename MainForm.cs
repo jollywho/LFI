@@ -55,6 +55,7 @@ namespace LFI
             discEditItem.Click += new EventHandler(discEditItem_Click);
             mv = new mainView(this);
             menuTitleItem_Click(null, null);
+            this.WindowState = FormWindowState.Normal;
         }
 
         /// <summary>
@@ -388,9 +389,6 @@ namespace LFI
         {
             BorderWidth = SystemInformation.FrameBorderSize.Width - 1;
 
-            if (Properties.Settings.Default.location == new Point(0, 0))
-                return; // state has never been saved
-
             StartPosition = FormStartPosition.Manual;
             Location = Properties.Settings.Default.location;
             Folder_IO.GetUserImagePath();
@@ -405,7 +403,10 @@ namespace LFI
         /// <param name="e"></param>
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Properties.Settings.Default.location = Location;
+            if (this.WindowState != FormWindowState.Minimized)
+                Properties.Settings.Default.location = Location;
+            else
+                Properties.Settings.Default.location = new Point(0, 0);
             Properties.Settings.Default.Save();
         }
 
