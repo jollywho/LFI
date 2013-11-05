@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolstripLanguage = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolstripJPN = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolstripENG = new System.Windows.Forms.ToolStripMenuItem();
             this.progBar = new System.Windows.Forms.ToolStripProgressBar();
             this.slblSize = new System.Windows.Forms.ToolStripStatusLabel();
             this.slblItems = new System.Windows.Forms.ToolStripStatusLabel();
@@ -86,9 +84,6 @@
             // 
             this.toolstripLanguage.AutoSize = false;
             this.toolstripLanguage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolstripLanguage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolstripJPN,
-            this.toolstripENG});
             this.toolstripLanguage.Image = ((System.Drawing.Image)(resources.GetObject("toolstripLanguage.Image")));
             this.toolstripLanguage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolstripLanguage.Name = "toolstripLanguage";
@@ -96,29 +91,7 @@
             this.toolstripLanguage.Size = new System.Drawing.Size(40, 22);
             this.toolstripLanguage.Text = "JPN";
             this.toolstripLanguage.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            // 
-            // toolstripJPN
-            // 
-            this.toolstripJPN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolstripJPN.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolstripJPN.Name = "toolstripJPN";
-            this.toolstripJPN.ShowShortcutKeys = false;
-            this.toolstripJPN.Size = new System.Drawing.Size(90, 22);
-            this.toolstripJPN.Text = "JPN";
-            this.toolstripJPN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolstripJPN.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            this.toolstripJPN.Click += new System.EventHandler(this.toolstripJPN_Click);
-            // 
-            // toolstripENG
-            // 
-            this.toolstripENG.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolstripENG.Name = "toolstripENG";
-            this.toolstripENG.ShowShortcutKeys = false;
-            this.toolstripENG.Size = new System.Drawing.Size(90, 22);
-            this.toolstripENG.Text = "ENG";
-            this.toolstripENG.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolstripENG.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            this.toolstripENG.Click += new System.EventHandler(this.toolstripENG_Click);
+            this.toolstripLanguage.Click += new System.EventHandler(this.toolstripLanguage_Click);
             // 
             // progBar
             // 
@@ -133,7 +106,7 @@
             this.slblSize.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
             this.slblSize.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.slblSize.Name = "slblSize";
-            this.slblSize.Size = new System.Drawing.Size(76, 19);
+            this.slblSize.Size = new System.Drawing.Size(78, 18);
             this.slblSize.Text = "Size: 0.00 GB";
             this.slblSize.Visible = false;
             // 
@@ -143,7 +116,7 @@
             this.slblItems.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
             this.slblItems.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.slblItems.Name = "slblItems";
-            this.slblItems.Size = new System.Drawing.Size(49, 19);
+            this.slblItems.Size = new System.Drawing.Size(49, 18);
             this.slblItems.Text = "0 Items";
             this.slblItems.Visible = false;
             // 
@@ -153,7 +126,7 @@
             this.slblItemSize.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
             this.slblItemSize.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.slblItemSize.Name = "slblItemSize";
-            this.slblItemSize.Size = new System.Drawing.Size(53, 19);
+            this.slblItemSize.Size = new System.Drawing.Size(56, 18);
             this.slblItemSize.Text = "0000 GB";
             this.slblItemSize.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.slblItemSize.Visible = false;
@@ -327,7 +300,6 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
-            this.Layout += new System.Windows.Forms.LayoutEventHandler(this.MainForm_Layout);
             this.Move += new System.EventHandler(this.MainForm_Move);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.statusStrip1.ResumeLayout(false);
@@ -364,8 +336,6 @@
         private System.Windows.Forms.ToolStripStatusLabel slblSize;
         private System.Windows.Forms.ToolStripStatusLabel slblItems;
         private System.Windows.Forms.ToolStripDropDownButton toolstripLanguage;
-        private System.Windows.Forms.ToolStripMenuItem toolstripJPN;
-        private System.Windows.Forms.ToolStripMenuItem toolstripENG;
         private System.Windows.Forms.ToolStripStatusLabel slblItemSize;
 
 

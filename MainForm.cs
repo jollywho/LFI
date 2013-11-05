@@ -436,20 +436,11 @@ namespace LFI
             if (DoSnap(scn.WorkingArea.Bottom, this.Bottom - BorderWidth)) this.Top = scn.WorkingArea.Bottom - this.Height - BorderWidth;
         }
 
-        private void toolstripJPN_Click(object sender, EventArgs e)
-        {
-            if (mode == ViewMode.Edit) return;
-            Lmode = toolstripJPN.Text;
-            Load_Language();
-        }
-
-        private void toolstripENG_Click(object sender, EventArgs e)
-        {
-            if (mode == ViewMode.Edit) return;
-            Lmode = toolstripENG.Text;
-            Load_Language();
-        }
-
+        /// <summary>
+        /// Flip topmost property on resize
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_Resize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Minimized)
@@ -458,9 +449,16 @@ namespace LFI
                 TopMost = menuAlwaysTop.Checked;
         }
 
-        private void MainForm_Layout(object sender, LayoutEventArgs e)
+        /// <summary>
+        /// Flip language mode on click and refresh
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolstripLanguage_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("layout");
+            if (mode == ViewMode.Edit) return;
+            Lmode = Lmode == "ENG" ? "JPN" : "ENG";
+            Load_Language();
         }
     }
         #endregion Form_Events

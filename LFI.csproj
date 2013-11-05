@@ -177,6 +177,12 @@
     <Compile Include="BetterDialogSource\FileMarkerDialog.Designer.cs">
       <DependentUpon>FileMarkerDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="BetterDialogSource\RemTrackDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BetterDialogSource\RemTrackDialog.designer.cs">
+      <DependentUpon>RemTrackDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\BPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -304,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BetterDialogSource\DiscFinderDialog.resx">
       <DependentUpon>DiscFinderDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BetterDialogSource\RemTrackDialog.resx">
+      <DependentUpon>RemTrackDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\BTableLayout.resx">
       <DependentUpon>BTableLayout.cs</DependentUpon>

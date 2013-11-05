@@ -66,6 +66,7 @@
             this.lstDivs = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtTitle = new LFI.RTextBox();
             this.ddFormat_Use = new System.Windows.Forms.ComboBox();
             this.btnRunFormats = new System.Windows.Forms.Button();
             this.btnShowEstimates = new System.Windows.Forms.Button();
@@ -74,14 +75,15 @@
             this.radCheckItem = new System.Windows.Forms.RadioButton();
             this.radCheckAll = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnPullFiles = new System.Windows.Forms.Button();
+            this.btnRemFile = new System.Windows.Forms.Button();
             this.btnMarkFiles = new System.Windows.Forms.Button();
             this.btnPartFiles = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtFilter = new LFI.RTextBox();
             this.fileWatcher = new System.IO.FileSystemWatcher();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtFilter = new LFI.RTextBox();
-            this.txtTitle = new LFI.RTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -205,7 +207,6 @@
             this.gvFiles_Group.Name = "gvFiles_Group";
             this.gvFiles_Group.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gvFiles_Group.Visible = false;
-            this.gvFiles_Group.Width = 42;
             // 
             // gvFiles_Season
             // 
@@ -218,7 +219,6 @@
             this.gvFiles_Season.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvFiles_Season.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gvFiles_Season.Visible = false;
-            this.gvFiles_Season.Width = 20;
             // 
             // gvFiles_Episode
             // 
@@ -231,7 +231,6 @@
             this.gvFiles_Episode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gvFiles_Episode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gvFiles_Episode.Visible = false;
-            this.gvFiles_Episode.Width = 20;
             // 
             // gvFiles_CRC
             // 
@@ -243,7 +242,6 @@
             this.gvFiles_CRC.ReadOnly = true;
             this.gvFiles_CRC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gvFiles_CRC.Visible = false;
-            this.gvFiles_CRC.Width = 35;
             // 
             // gvFiles_POS
             // 
@@ -457,6 +455,18 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(198, 55);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
+            // txtTitle
+            // 
+            this.tableLayoutPanel2.SetColumnSpan(this.txtTitle, 2);
+            this.txtTitle.Cue = "<Title>";
+            this.txtTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtTitle.Location = new System.Drawing.Point(3, 3);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Restriction = LFI.RTextBox.RestrictionType.File;
+            this.txtTitle.Size = new System.Drawing.Size(192, 23);
+            this.txtTitle.TabIndex = 0;
+            // 
             // ddFormat_Use
             // 
             this.ddFormat_Use.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -558,6 +568,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnPullFiles);
+            this.groupBox2.Controls.Add(this.btnRemFile);
             this.groupBox2.Controls.Add(this.btnMarkFiles);
             this.groupBox2.Controls.Add(this.btnPartFiles);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -571,17 +583,47 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Misc";
             // 
+            // btnPullFiles
+            // 
+            this.btnPullFiles.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPullFiles.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnPullFiles.FlatAppearance.BorderSize = 0;
+            this.btnPullFiles.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnPullFiles.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPullFiles.ForeColor = System.Drawing.Color.Transparent;
+            this.btnPullFiles.Location = new System.Drawing.Point(75, 15);
+            this.btnPullFiles.Name = "btnPullFiles";
+            this.btnPullFiles.Size = new System.Drawing.Size(35, 50);
+            this.btnPullFiles.TabIndex = 3;
+            this.btnPullFiles.Text = "Pull Tree";
+            this.btnPullFiles.UseVisualStyleBackColor = true;
+            // 
+            // btnRemFile
+            // 
+            this.btnRemFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRemFile.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnRemFile.FlatAppearance.BorderSize = 0;
+            this.btnRemFile.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnRemFile.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemFile.ForeColor = System.Drawing.Color.Transparent;
+            this.btnRemFile.Location = new System.Drawing.Point(110, 15);
+            this.btnRemFile.Name = "btnRemFile";
+            this.btnRemFile.Size = new System.Drawing.Size(35, 50);
+            this.btnRemFile.TabIndex = 2;
+            this.btnRemFile.Text = "Rem Track";
+            this.btnRemFile.UseVisualStyleBackColor = true;
+            // 
             // btnMarkFiles
             // 
             this.btnMarkFiles.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnMarkFiles.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnMarkFiles.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnMarkFiles.FlatAppearance.BorderSize = 0;
             this.btnMarkFiles.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnMarkFiles.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMarkFiles.ForeColor = System.Drawing.Color.Transparent;
-            this.btnMarkFiles.Location = new System.Drawing.Point(5, 42);
+            this.btnMarkFiles.Location = new System.Drawing.Point(40, 15);
             this.btnMarkFiles.Name = "btnMarkFiles";
-            this.btnMarkFiles.Size = new System.Drawing.Size(140, 23);
+            this.btnMarkFiles.Size = new System.Drawing.Size(35, 50);
             this.btnMarkFiles.TabIndex = 1;
             this.btnMarkFiles.Text = "Mark Files";
             this.btnMarkFiles.UseVisualStyleBackColor = true;
@@ -590,14 +632,14 @@
             // btnPartFiles
             // 
             this.btnPartFiles.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPartFiles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPartFiles.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnPartFiles.FlatAppearance.BorderSize = 0;
             this.btnPartFiles.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnPartFiles.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPartFiles.ForeColor = System.Drawing.Color.Transparent;
             this.btnPartFiles.Location = new System.Drawing.Point(5, 15);
             this.btnPartFiles.Name = "btnPartFiles";
-            this.btnPartFiles.Size = new System.Drawing.Size(140, 23);
+            this.btnPartFiles.Size = new System.Drawing.Size(35, 50);
             this.btnPartFiles.TabIndex = 0;
             this.btnPartFiles.Text = "Part Files";
             this.btnPartFiles.UseVisualStyleBackColor = true;
@@ -616,6 +658,18 @@
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Filter";
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.Cue = "<Search Here>";
+            this.txtFilter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtFilter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFilter.Location = new System.Drawing.Point(3, 22);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Restriction = LFI.RTextBox.RestrictionType.File;
+            this.txtFilter.Size = new System.Drawing.Size(227, 23);
+            this.txtFilter.TabIndex = 3;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
             // fileWatcher
             // 
@@ -654,30 +708,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(198, 28);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // txtFilter
-            // 
-            this.txtFilter.Cue = "<Search Here>";
-            this.txtFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtFilter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFilter.Location = new System.Drawing.Point(3, 22);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Restriction = LFI.RTextBox.RestrictionType.File;
-            this.txtFilter.Size = new System.Drawing.Size(227, 23);
-            this.txtFilter.TabIndex = 3;
-            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
-            // 
-            // txtTitle
-            // 
-            this.tableLayoutPanel2.SetColumnSpan(this.txtTitle, 2);
-            this.txtTitle.Cue = "<Title>";
-            this.txtTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTitle.Location = new System.Drawing.Point(3, 3);
-            this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Restriction = LFI.RTextBox.RestrictionType.File;
-            this.txtTitle.Size = new System.Drawing.Size(192, 23);
-            this.txtTitle.TabIndex = 0;
             // 
             // folderView
             // 
@@ -763,5 +793,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private RTextBox txtTitle;
+        private System.Windows.Forms.Button btnPullFiles;
+        private System.Windows.Forms.Button btnRemFile;
     }
 }
